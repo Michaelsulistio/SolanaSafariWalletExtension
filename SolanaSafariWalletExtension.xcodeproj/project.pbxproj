@@ -24,10 +24,7 @@
 		FB54E8B02ACD07D300A6E21D /* images in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8AF2ACD07D300A6E21D /* images */; };
 		FB54E8B22ACD07D300A6E21D /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8B12ACD07D300A6E21D /* manifest.json */; };
 		FB54E8BE2ACD07D300A6E21D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8892ACD07D300A6E21D /* Assets.xcassets */; };
-		FB54E8D62ACD082600A6E21D /* icon-128.png in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8CE2ACD082600A6E21D /* icon-128.png */; };
-		FB54E8D72ACD082600A6E21D /* icon-34.png in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8CF2ACD082600A6E21D /* icon-34.png */; };
 		FB54E8D92ACD082600A6E21D /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8D12ACD082600A6E21D /* popup.html */; };
-		FB54E8DB2ACD082600A6E21D /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8D32ACD082600A6E21D /* options.html */; };
 		FB54E8E32ACD0FB600A6E21D /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8DF2ACD0FB600A6E21D /* popup.js */; };
 		FB54E8E42ACD0FB600A6E21D /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8E02ACD0FB600A6E21D /* background.js */; };
 		FB54E8E52ACD0FB600A6E21D /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8E12ACD0FB600A6E21D /* injected.js */; };
@@ -95,10 +92,7 @@
 		FB54E8AF2ACD07D300A6E21D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		FB54E8B12ACD07D300A6E21D /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		FB54E8BD2ACD07D300A6E21D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB54E8CE2ACD082600A6E21D /* icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-128.png"; sourceTree = "<group>"; };
-		FB54E8CF2ACD082600A6E21D /* icon-34.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-34.png"; sourceTree = "<group>"; };
 		FB54E8D12ACD082600A6E21D /* popup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
-		FB54E8D32ACD082600A6E21D /* options.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		FB54E8DF2ACD0FB600A6E21D /* popup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		FB54E8E02ACD0FB600A6E21D /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
 		FB54E8E12ACD0FB600A6E21D /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
@@ -222,9 +216,6 @@
 				FB54E8E02ACD0FB600A6E21D /* background.js */,
 				FB54E8E12ACD0FB600A6E21D /* injected.js */,
 				FB54E8E22ACD0FB600A6E21D /* content.js */,
-				FB54E8CF2ACD082600A6E21D /* icon-34.png */,
-				FB54E8CE2ACD082600A6E21D /* icon-128.png */,
-				FB54E8D32ACD082600A6E21D /* options.html */,
 				FB54E8D12ACD082600A6E21D /* popup.html */,
 			);
 			path = Resources;
@@ -393,15 +384,12 @@
 			files = (
 				FB54E8E52ACD0FB600A6E21D /* injected.js in Resources */,
 				FB54E8D92ACD082600A6E21D /* popup.html in Resources */,
-				FB54E8D62ACD082600A6E21D /* icon-128.png in Resources */,
-				FB54E8D72ACD082600A6E21D /* icon-34.png in Resources */,
 				FB54E8E42ACD0FB600A6E21D /* background.js in Resources */,
 				FB54E8E62ACD0FB600A6E21D /* content.js in Resources */,
 				FB54E8E32ACD0FB600A6E21D /* popup.js in Resources */,
 				FB54E8B02ACD07D300A6E21D /* images in Resources */,
 				FB54E8B22ACD07D300A6E21D /* manifest.json in Resources */,
 				FB54E8AE2ACD07D300A6E21D /* _locales in Resources */,
-				FB54E8DB2ACD082600A6E21D /* options.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
