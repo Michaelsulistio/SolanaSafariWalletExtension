@@ -34,10 +34,6 @@
             "72": "images/toolbar-icon-72.png"
         }
     },
-    
-    "externally_connectable": {
-        "matches": [ "<all_urls>" ]
-    },
 
     "permissions": [ "nativeMessaging" ]
 }

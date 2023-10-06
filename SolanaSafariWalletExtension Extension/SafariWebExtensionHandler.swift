@@ -9,9 +9,11 @@ import SafariServices
 import os.log
 
 class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
+    
+    private let logger = OSLog(subsystem: "solanamobile.SolanaSafariWalletExtension", category: "ExtensionHandler")
 
     func beginRequest(with context: NSExtensionContext) {
-        os_log(.debug, "in beginRequest");
+        os_log("in beginRequest", log: logger, type: .default)
             guard let item = context.inputItems.first as? NSExtensionItem,
                   let userInfo = item.userInfo as? [String: Any],
                   let message = userInfo[SFExtensionMessageKey] else {
