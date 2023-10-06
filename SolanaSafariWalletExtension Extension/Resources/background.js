@@ -1,1 +1,1 @@
-(()=>{console.log("background script");})();
+(()=>{browser.runtime.onMessage.addListener((e,o,n)=>{console.log("Background message received"),console.log(e),e.type==="Word replaced"&&browser.runtime.sendNativeMessage({message:"Word replaced"}),e.type==="button-click"&&(console.log("Button click received"),browser.runtime.sendNativeMessage("application.id",{message:"Hello from background page"},function(s){console.log("Received sendNativeMessage response:"),console.log(s)}),browser.runtime.sendNativeMessage({message:"Word replaced"}),console.log("Button click sent"))});})();
