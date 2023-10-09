@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@solana/wallet-standard-ghost",
+    "name": "solana-safari-wallet-extension-standard-wallet",
     "version": "0.1.0",
     "author": "Solana Maintainers <maintainers@solana.foundation>",
     "repository": "https://github.com/solana-labs/wallet-standard",
