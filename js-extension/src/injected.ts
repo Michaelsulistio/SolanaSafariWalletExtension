@@ -8,6 +8,11 @@
  * tabs easily
  */
 
-console.log("Injected script");
+import { register, get } from "./provider";
 
-export {};
+function main() {
+  console.log("Injecting provider");
+  register();
+}
+
+main();
