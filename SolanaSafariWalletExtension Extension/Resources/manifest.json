@@ -15,7 +15,7 @@
     },
     
     "background": {
-        "service_worker": "background.js",
+        "service_worker": "background.js"
     },
     
     "content_scripts": [{
@@ -35,5 +35,13 @@
         }
     },
 
+    "web_accessible_resources": [
+        {
+            "resources": ["injected.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+
     "permissions": [ "nativeMessaging" ]
+    
 }

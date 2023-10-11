@@ -235,6 +235,7 @@ class MyWallet implements Wallet {
   };
 
   #solanaSignMessage: SolanaSignMessageMethod = async (...inputs) => {
+    console.log("Sign Message");
     // TODO: Implement.
     const outputs = [] as SolanaSignMessageOutput[];
     return outputs;
