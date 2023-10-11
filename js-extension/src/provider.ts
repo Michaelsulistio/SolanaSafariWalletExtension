@@ -1,8 +1,4 @@
-import type {
-  Wallet,
-  WalletAccount,
-  WindowAppReadyEvent
-} from "@wallet-standard/base";
+import type { Wallet, WalletAccount } from "@wallet-standard/base";
 import { ReadonlyWalletAccount, registerWallet } from "@wallet-standard/wallet";
 
 import {
@@ -36,6 +32,7 @@ import {
   StandardEventsNames,
   StandardEventsOnMethod
 } from "@wallet-standard/features";
+import getAccounts from "./util/getAccounts";
 
 let wallet: MyWallet;
 let registered = false;
@@ -152,7 +149,6 @@ class MyWallet implements Wallet {
   }
 
   constructor() {
-    console.log("constructed");
     if (new.target === MyWallet) {
       Object.freeze(this);
     }
@@ -212,7 +208,7 @@ class MyWallet implements Wallet {
     console.log("In connect");
     if (!this.#accounts.length || !input?.silent) {
       // TODO: Implement.
-      const accounts = [] as WalletAccount[];
+      const accounts: WalletAccount[] = getAccounts();
       this.#connected(accounts);
     }
     return { accounts: this.accounts };
