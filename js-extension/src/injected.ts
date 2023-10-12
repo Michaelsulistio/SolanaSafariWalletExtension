@@ -8,7 +8,7 @@
  * tabs easily
  */
 
-import { register, get } from "./provider";
+import { register } from "./provider";
 
 function main() {
   console.log("Injecting provider");

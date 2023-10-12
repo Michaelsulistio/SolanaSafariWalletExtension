@@ -38,7 +38,7 @@ import getKeypairForAccount from "./util/getKeypairForAccount";
 import signMessage from "./util/signMessage";
 import {
   SolanaChain,
-  getNetworkForChain,
+  getClusterForChain,
   isSolanaChain
 } from "./wallet/solana";
 import bs58 from "bs58";
@@ -269,7 +269,7 @@ class MyWallet implements Wallet {
       const { signature } = await signAndSendTransaction(
         VersionedTransaction.deserialize(transaction),
         keyPair,
-        getNetworkForChain(chain),
+        getClusterForChain(chain),
         {
           preflightCommitment,
           minContextSlot,

@@ -1,16 +1,18 @@
 import {
+  Cluster,
   Connection,
   Keypair,
   SendOptions,
   Signer,
   TransactionSignature,
-  VersionedTransaction
+  VersionedTransaction,
+  clusterApiUrl
 } from "@solana/web3.js";
 
 export default async function signAndSendTransaction(
   transaction: VersionedTransaction,
   keypair: Keypair,
-  rpcEndpoint: string,
+  network: Cluster,
   options?: SendOptions
 ): Promise<{ signature: TransactionSignature }> {
   // Sign Transaction
@@ -23,7 +25,7 @@ export default async function signAndSendTransaction(
   transaction.sign(signers);
 
   // Send Transaction
-  const connection = new Connection(rpcEndpoint);
+  const connection = new Connection(clusterApiUrl(network));
   const signature = await connection.sendTransaction(transaction, options);
 
   return { signature };

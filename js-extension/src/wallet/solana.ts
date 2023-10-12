@@ -1,12 +1,7 @@
 // This is copied from @solana/wallet-standard-chains
 
 import type { IdentifierString } from "@wallet-standard/base";
-
-export enum Network {
-  Mainnet = "mainnet",
-  Devnet = "devnet",
-  Localnet = "localnet"
-}
+import { Cluster } from "@solana/web3.js";
 
 /** Solana Mainnet (beta) cluster, e.g. https://api.mainnet-beta.solana.com */
 export const SOLANA_MAINNET_CHAIN = "solana:mainnet";
@@ -38,15 +33,15 @@ export function isSolanaChain(chain: IdentifierString): chain is SolanaChain {
   return SOLANA_CHAINS.includes(chain as SolanaChain);
 }
 
-export function getNetworkForChain(chain: SolanaChain): Network {
+export function getClusterForChain(chain: SolanaChain): Cluster {
   switch (chain) {
     case SOLANA_MAINNET_CHAIN:
-      return Network.Mainnet;
+      return "mainnet-beta";
     case SOLANA_DEVNET_CHAIN:
-      return Network.Devnet;
-    case SOLANA_LOCALNET_CHAIN:
-      return Network.Localnet;
+      return "devnet";
+    case SOLANA_TESTNET_CHAIN:
+      return "testnet";
     default:
-      return Network.Mainnet;
+      return "devnet";
   }
 }
