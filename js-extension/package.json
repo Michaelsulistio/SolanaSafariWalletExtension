@@ -14,7 +14,8 @@
     "@solana/web3.js": "^1.87.1",
     "@wallet-standard/base": "^1.0.1",
     "@wallet-standard/features": "^1.0.3",
-    "@wallet-standard/wallet": "^1.0.1"
+    "@wallet-standard/wallet": "^1.0.1",
+    "bs58": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

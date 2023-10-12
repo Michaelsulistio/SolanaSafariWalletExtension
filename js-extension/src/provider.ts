@@ -7,6 +7,7 @@ import {
   SolanaSignIn,
   SolanaSignInOutput,
   SolanaSignMessage,
+  SolanaSignMessageInput,
   SolanaSignMessageOutput,
   SolanaSignTransaction,
   SolanaSignTransactionOutput,
@@ -33,6 +34,10 @@ import {
   StandardEventsOnMethod
 } from "@wallet-standard/features";
 import getAccounts from "./util/getAccounts";
+import getKeypairForAccount from "./util/getKeypairForAccount";
+import signMessage from "./util/signMessage";
+import { isSolanaChain } from "./wallet/solana";
+import bs58 from "bs58";
 
 let wallet: MyWallet;
 let registered = false;
@@ -198,9 +203,11 @@ class MyWallet implements Wallet {
   ) => {
     console.log("In emitt");
     ((this.#listeners[event] ??= []) as StandardEventsListeners[E][]).forEach(
-      (listener) =>
+      (listener) => {
+        console.log("In emssion");
         // eslint-disable-next-line @typescript-eslint/ban-types,prefer-spread
-        (listener as Function).apply(null, args)
+        (listener as Function).apply(null, args);
+      }
     );
   };
 
@@ -209,6 +216,8 @@ class MyWallet implements Wallet {
     if (!this.#accounts.length || !input?.silent) {
       // TODO: Implement.
       const accounts: WalletAccount[] = getAccounts();
+      console.log("Connecting with with: ");
+      console.log(accounts[0].address);
       this.#connected(accounts);
     }
     return { accounts: this.accounts };
@@ -223,25 +232,89 @@ class MyWallet implements Wallet {
   #solanaSignAndSendTransaction: SolanaSignAndSendTransactionMethod = async (
     ...inputs
   ) => {
-    // TODO: Implement.
-    const outputs = [] as SolanaSignAndSendTransactionOutput[];
+    console.log("In Sign And Send Transaction");
+    if (!this.#accounts) throw new Error("not connected");
+
+    const outputs: SolanaSignAndSendTransactionOutput[] = [];
+
+    if (inputs.length === 1) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const { transaction, account, chain, options } = inputs[0]!;
+      const { minContextSlot, preflightCommitment, skipPreflight, maxRetries } =
+        options || {};
+
+      const matchingAccount = this.#accounts.filter((acc) => {
+        return account.address === acc.address;
+      });
+      if (matchingAccount.length === 0) {
+        throw new Error("invalid account");
+      }
+
+      if (!isSolanaChain(chain)) throw new Error("invalid chain");
+
+      const { signature } = await this.#ghost.signAndSendTransaction(
+        VersionedTransaction.deserialize(transaction),
+        {
+          preflightCommitment,
+          minContextSlot,
+          maxRetries,
+          skipPreflight
+        }
+      );
+
+      outputs.push({ signature: bs58.decode(signature) });
+    } else if (inputs.length > 1) {
+      for (const input of inputs) {
+        outputs.push(...(await this.#solanaSignAndSendTransaction(input)));
+      }
+    }
+
     return outputs;
   };
 
   #solanaSignIn: SolanaSignInMethod = async (...inputs) => {
+    console.log("In Sign In");
+
     // TODO: Implement.
     const outputs = [] as SolanaSignInOutput[];
     return outputs;
   };
 
   #solanaSignMessage: SolanaSignMessageMethod = async (...inputs) => {
-    console.log("Sign Message");
-    // TODO: Implement.
-    const outputs = [] as SolanaSignMessageOutput[];
+    console.log("In Sign Message");
+
+    if (!this.#accounts) throw new Error("not connected");
+
+    const outputs: SolanaSignMessageOutput[] = [];
+
+    if (inputs.length === 1) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const { message, account } = inputs[0]!;
+
+      const matchingAccount = this.#accounts.filter((acc) => {
+        return account.address === acc.address;
+      });
+      if (matchingAccount.length === 0) {
+        throw new Error("invalid account");
+      }
+
+      const keyPair = getKeypairForAccount(matchingAccount[0]);
+      console.log("Signing with: ");
+      console.log(keyPair.publicKey.toString());
+      const signature = await signMessage(message, keyPair);
+
+      outputs.push({ signedMessage: message, signature });
+    } else if (inputs.length > 1) {
+      for (const input of inputs) {
+        outputs.push(...(await this.#solanaSignMessage(input)));
+      }
+    }
+
     return outputs;
   };
 
   #solanaSignTransaction: SolanaSignTransactionMethod = async (...inputs) => {
+    console.log("In Sign Transaction");
     // TODO: Implement.
     const outputs = [] as SolanaSignTransactionOutput[];
     return outputs;

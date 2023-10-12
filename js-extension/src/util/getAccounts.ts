@@ -1,9 +1,10 @@
 import type { WalletAccount } from "@wallet-standard/base";
 import { Keypair } from "@solana/web3.js";
 import { MyWalletWalletAccount } from "../wallet/account";
+import getKeypairForAccount from "./getKeypairForAccount";
 
 export default function getAccounts(): MyWalletWalletAccount[] {
-  const randomKeypair = Keypair.generate();
+  const randomKeypair = getKeypairForAccount(null as any as WalletAccount);
   const account: WalletAccount = {
     address: randomKeypair.publicKey.toBase58(),
     publicKey: randomKeypair.publicKey.toBytes(),
