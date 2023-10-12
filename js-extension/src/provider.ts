@@ -36,8 +36,16 @@ import {
 import getAccounts from "./util/getAccounts";
 import getKeypairForAccount from "./util/getKeypairForAccount";
 import signMessage from "./util/signMessage";
-import { isSolanaChain } from "./wallet/solana";
+import {
+  SolanaChain,
+  getNetworkForChain,
+  isSolanaChain
+} from "./wallet/solana";
 import bs58 from "bs58";
+import { Transaction, VersionedTransaction } from "@solana/web3.js";
+import signAndSendTransaction from "./util/signAndSendTransaction";
+import signTransaction from "./util/signTransaction";
+import signAllTransactions from "./util/signAllTransactions";
 
 let wallet: MyWallet;
 let registered = false;
@@ -62,6 +70,14 @@ export function register(): boolean {
   }
   return false;
 }
+
+/** @internal */
+const checkAccountMatch = (
+  accounts: WalletAccount[],
+  targetAccount: WalletAccount
+) => {
+  return !accounts.some((acc) => acc.address === targetAccount.address);
+};
 
 /** @internal */
 const icon: Wallet["icon"] = "data:image/svg+xml;base64," as const;
@@ -243,17 +259,17 @@ class MyWallet implements Wallet {
       const { minContextSlot, preflightCommitment, skipPreflight, maxRetries } =
         options || {};
 
-      const matchingAccount = this.#accounts.filter((acc) => {
-        return account.address === acc.address;
-      });
-      if (matchingAccount.length === 0) {
+      if (!this.#accounts.some((acc) => acc.address === account.address)) {
         throw new Error("invalid account");
       }
 
       if (!isSolanaChain(chain)) throw new Error("invalid chain");
 
-      const { signature } = await this.#ghost.signAndSendTransaction(
+      const keyPair = getKeypairForAccount(account);
+      const { signature } = await signAndSendTransaction(
         VersionedTransaction.deserialize(transaction),
+        keyPair,
+        getNetworkForChain(chain),
         {
           preflightCommitment,
           minContextSlot,
@@ -291,17 +307,14 @@ class MyWallet implements Wallet {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const { message, account } = inputs[0]!;
 
-      const matchingAccount = this.#accounts.filter((acc) => {
-        return account.address === acc.address;
-      });
-      if (matchingAccount.length === 0) {
+      if (!this.#accounts.some((acc) => acc.address === account.address)) {
         throw new Error("invalid account");
       }
 
-      const keyPair = getKeypairForAccount(matchingAccount[0]);
+      const keyPair = getKeypairForAccount(account);
       console.log("Signing with: ");
       console.log(keyPair.publicKey.toString());
-      const signature = await signMessage(message, keyPair);
+      const { signature } = await signMessage(message, keyPair);
 
       outputs.push({ signedMessage: message, signature });
     } else if (inputs.length > 1) {
@@ -315,8 +328,61 @@ class MyWallet implements Wallet {
 
   #solanaSignTransaction: SolanaSignTransactionMethod = async (...inputs) => {
     console.log("In Sign Transaction");
-    // TODO: Implement.
-    const outputs = [] as SolanaSignTransactionOutput[];
+    if (!this.#accounts) throw new Error("not connected");
+
+    const outputs: SolanaSignTransactionOutput[] = [];
+
+    if (inputs.length === 1) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const { transaction, account, chain } = inputs[0]!;
+      if (!this.#accounts.some((acc) => acc.address === account.address)) {
+        throw new Error("invalid account");
+      }
+
+      if (chain && !isSolanaChain(chain)) throw new Error("invalid chain");
+
+      const keyPair = getKeypairForAccount(account);
+      const signedTransaction = await signTransaction(
+        Transaction.from(transaction),
+        keyPair
+      );
+
+      outputs.push({ signedTransaction: signedTransaction });
+    } else if (inputs.length > 1) {
+      let chain: SolanaChain | undefined = undefined;
+      for (const input of inputs) {
+        if (
+          !this.#accounts.some((acc) => acc.address === input.account.address)
+        ) {
+          throw new Error("invalid account");
+        }
+        if (input.chain) {
+          if (!isSolanaChain(input.chain)) throw new Error("invalid chain");
+          if (chain) {
+            if (input.chain !== chain) throw new Error("conflicting chain");
+          } else {
+            chain = input.chain;
+          }
+        }
+      }
+
+      const transactions = inputs.map(({ transaction }) =>
+        Transaction.from(transaction)
+      );
+
+      const keyPair = getKeypairForAccount(this.#accounts[0]);
+      const signedTransactions = await signAllTransactions(
+        transactions,
+        keyPair
+      );
+
+      outputs.push(
+        ...signedTransactions.map((signedTransaction) => ({
+          signedTransaction
+        }))
+      );
+    }
+
     return outputs;
   };
 }
