@@ -27,6 +27,14 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     // If yes, get keys and sign
     // then finally sendResponse
 
+    browser.tabs
+      .create({
+        url: browser.runtime.getURL("approval.html")
+      })
+      .then((tab) => {
+        console.log("Tab fullfillment: ", tab);
+      });
+
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         sendResponse({ type: "approval-request", approved: true });
@@ -36,6 +44,15 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     await promise;
   }
 });
+
+async function getResponseFromApprovalUI_old(): Promise<boolean> {
+  console.log("Getting response from approval tab...");
+  return new Promise((resolve, reject) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 5000)
+  );
+}
 
 // browser.runtime.onMessage.addListener((request, _sender, _sendResponse) => {
 //   console.log("Background message received");

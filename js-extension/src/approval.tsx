@@ -1,15 +1,16 @@
 /**
+ * This is a popup view
  * This script is bundled and imported by
- * approval.html
+ * popup.html
  */
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./Approval/App";
+import ApprovalScreen from "./Approval/ApprovalScreen";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApprovalScreen />
   </React.StrictMode>,
   document.getElementById("root")
 );

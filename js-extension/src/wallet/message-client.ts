@@ -35,12 +35,12 @@ export default class MessageClient {
    * Send an approval request with a payload.
    * @param {Object} payload - The data you want to send for approval.
    */
-  async sendWalletRequest(payload: WalletRequest): Promise<boolean | null> {
+  async sendWalletRequest(request: WalletRequest): Promise<boolean | null> {
     return new Promise((resolve, reject) => {
       const requestId = Math.random().toString(36);
       const walletRequest = new ContentRequestEvent({
-        type: "wallet-request-approval",
-        payload: "this is the payload",
+        method: request.method,
+        payload: request.payload,
         requestId
       });
 
@@ -52,24 +52,29 @@ export default class MessageClient {
 }
 
 export interface WalletRequest {
-  type: string;
+  method: string;
+  payload: string;
+}
+
+export interface ContentRequestDetails {
+  method: string;
   payload: string;
   requestId: string;
 }
 
-export interface WalletResponse {
+export interface ContentResponseDetails {
   approved: boolean;
   requestId: string;
 }
 
-export class ContentRequestEvent extends CustomEvent<WalletRequest> {
-  constructor(detail: WalletRequest) {
+export class ContentRequestEvent extends CustomEvent<ContentRequestDetails> {
+  constructor(detail: ContentRequestDetails) {
     super("page-to-content", { detail });
   }
 }
 
-export class ContentResponseEvent extends CustomEvent<WalletResponse> {
-  constructor(detail: WalletResponse) {
+export class ContentResponseEvent extends CustomEvent<ContentResponseDetails> {
+  constructor(detail: ContentResponseDetails) {
     super("content-response", { detail });
   }
 }

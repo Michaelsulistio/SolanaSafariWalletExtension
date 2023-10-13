@@ -7085,110 +7085,20 @@
     }
   });
 
-  // src/popup.tsx
-  var import_react3 = __toModule(require_react());
+  // src/approval.tsx
+  var import_react2 = __toModule(require_react());
   var import_react_dom = __toModule(require_react_dom());
 
-  // src/Popup/App.tsx
-  var import_react2 = __toModule(require_react());
-
-  // src/Card/Card.tsx
+  // src/Approval/ApprovalScreen.tsx
   var import_react = __toModule(require_react());
-  function Card({title, content}) {
-    const [isHovered, setIsHovered] = (0, import_react.useState)(false);
-    const baseCardStyle = {
-      width: "200px",
-      padding: "16px",
-      border: "1px solid #e8fa91",
-      borderRadius: "8px",
-      transition: "transform 0.3s, box-shadow 0.3s",
-      cursor: "pointer",
-      transform: isHovered ? "translateY(-5px)" : "none",
-      boxShadow: isHovered ? "0 6px 12px rgba(0, 0, 0, 0.2)" : "0 4px 8px rgba(0, 0, 0, 0.1)"
-    };
-    const cardTitleStyle = {
-      fontSize: "20px",
-      marginBottom: "8px"
-    };
-    const cardContentStyle = {
-      fontSize: "16px"
-    };
-    const handleButtonClick = () => {
-      console.log("Hello Button Click");
-      browser.runtime.sendMessage({
-        type: "button-click",
-        payload: "this is the payload"
-      });
-    };
-    return /* @__PURE__ */ import_react.default.createElement("div", {
-      style: baseCardStyle,
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false)
-    }, /* @__PURE__ */ import_react.default.createElement("h3", {
-      style: cardTitleStyle
-    }, title), /* @__PURE__ */ import_react.default.createElement("p", {
-      style: cardContentStyle
-    }, content), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: handleButtonClick
-    }, "Click me"));
-  }
-  var Card_default = Card;
-
-  // src/Popup/App.tsx
-  function App() {
-    const cardStyle = {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      backgroundColor: "#f4f4f4"
-    };
-    const contentStyle = {
-      backgroundColor: "white",
-      padding: "20px 40px",
-      borderRadius: "10px",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
-    };
-    const getCurrentTabs = () => {
-      console.log("Get Current Tabs");
-    };
-    const tabsClick1 = () => {
-      console.log("Tabs Click 1");
-      browser.tabs.create({
-        url: "popup.html"
-      }).then((tab) => {
-        console.log("tab promise fulfilled");
-      });
-    };
-    const tabsClick2 = () => {
-      console.log("Tabs Click 2");
-      browser.tabs.create();
-    };
-    const tabsClick3 = () => {
-      console.log("Tabs Click 3");
-      browser.tabs.create();
-    };
-    const tabsClick4 = () => {
-      console.log("Tabs Click 4");
-    };
-    return /* @__PURE__ */ import_react2.default.createElement("div", {
-      style: cardStyle
-    }, /* @__PURE__ */ import_react2.default.createElement("div", {
-      style: contentStyle
-    }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "React App Popup"), /* @__PURE__ */ import_react2.default.createElement("button", {
-      onClick: getCurrentTabs
-    }, "Get Current Tabs"), /* @__PURE__ */ import_react2.default.createElement("button", {
-      onClick: tabsClick1
-    }, "Tabs 1"), /* @__PURE__ */ import_react2.default.createElement("button", {
-      onClick: tabsClick2
-    }, "Tabs 2"), /* @__PURE__ */ import_react2.default.createElement("button", {
-      onClick: tabsClick3
-    }, "Tabs 3"), /* @__PURE__ */ import_react2.default.createElement(Card_default, {
-      title: "Card 1",
-      content: "Body 1"
-    })));
+  function ApprovalScreen() {
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: () => console.log(true)
+    }, "Approve"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: () => console.log(false)
+    }, "Reject"));
   }
 
-  // src/popup.tsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react3.default.createElement(import_react3.default.StrictMode, null, /* @__PURE__ */ import_react3.default.createElement(App, null)), document.getElementById("root"));
+  // src/approval.tsx
+  import_react_dom.default.render(/* @__PURE__ */ import_react2.default.createElement(import_react2.default.StrictMode, null, /* @__PURE__ */ import_react2.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
 })();

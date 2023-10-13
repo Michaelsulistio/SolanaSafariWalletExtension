@@ -9,8 +9,7 @@
 
 import {
   ContentRequestEvent,
-  ContentResponseEvent,
-  WalletResponse
+  ContentResponseEvent
 } from "./wallet/message-client";
 
 export const injectProvider = () => {
@@ -29,8 +28,38 @@ export const injectProvider = () => {
   }
 };
 
-async function getResponseFromApprovalUI(): Promise<boolean> {
+async function getResponseFromApprovalUI_old(): Promise<boolean> {
   console.log("Getting response from approval tab...");
+  return new Promise((resolve, reject) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 5000)
+  );
+}
+
+async function getResponseFromApprovalUI(
+  event: ContentRequestEvent
+): Promise<boolean> {
+  console.log("Getting response from approval tab...");
+
+  browser.runtime.sendMessage({
+    type: "approval-request"
+  });
+  // Create new tab with approval ui
+  // browser.tabs
+  //   .create({
+  //     url: "approval.html"
+  //   })
+  //   .then((tab) => {
+  //     console.log("Tab fullfillment: ", tab);
+  //   });
+
+  // On tab ready, send tab with request metadata (requestId, transaction details, etc)
+
+  // Wait for tab response
+
+  // resolve promise on tab response
+
   return new Promise((resolve, reject) =>
     setTimeout(() => {
       resolve(true);

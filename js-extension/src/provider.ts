@@ -322,7 +322,7 @@ class MyWallet implements Wallet {
       }
 
       const approved = await this.#messageClient.sendWalletRequest({
-        type: "wallet-request",
+        method: "approval-method",
         payload: "this is the payload"
       });
 
