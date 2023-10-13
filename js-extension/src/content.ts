@@ -7,6 +7,12 @@
  * https://developer.chrome.com/docs/extensions/mv2/content_scripts/
  */
 
+import {
+  ContentRequestEvent,
+  ContentResponseEvent,
+  WalletResponse
+} from "./wallet/message-client";
+
 export const injectProvider = () => {
   try {
     const container = document.head || document.documentElement;
@@ -22,5 +28,42 @@ export const injectProvider = () => {
     console.error("Wallet provider injection failed.", error);
   }
 };
+
+async function getResponseFromApprovalUI(): Promise<boolean> {
+  console.log("Getting response from approval tab...");
+  return new Promise((resolve, reject) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 5000)
+  );
+}
+
+async function getResponseFromBackground(): Promise<boolean> {
+  console.log("Getting response from background...");
+  return new Promise((resolve, reject) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 5000)
+  );
+}
+
+window.addEventListener("page-to-content", async (event) => {
+  console.log("Content Script Received: ", event);
+  const detail = (event as ContentRequestEvent).detail;
+
+  // do a bunch of tab stuff
+  const approvalResponse = await getResponseFromApprovalUI();
+
+  // get "keypair" from background
+  const backgroundResponse = await getResponseFromBackground();
+
+  if (approvalResponse && backgroundResponse) {
+    const responseEvent = new ContentResponseEvent({
+      approved: approvalResponse,
+      requestId: detail.requestId
+    });
+    window.dispatchEvent(responseEvent);
+  }
+});
 
 injectProvider();

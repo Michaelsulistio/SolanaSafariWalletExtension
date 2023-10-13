@@ -42,10 +42,11 @@ import {
   isSolanaChain
 } from "./wallet/solana";
 import bs58 from "bs58";
-import { Transaction, VersionedTransaction } from "@solana/web3.js";
+import { Message, Transaction, VersionedTransaction } from "@solana/web3.js";
 import signAndSendTransaction from "./util/signAndSendTransaction";
 import signTransaction from "./util/signTransaction";
 import signAllTransactions from "./util/signAllTransactions";
+import MessageClient from "./wallet/message-client";
 
 let wallet: MyWallet;
 let registered = false;
@@ -94,6 +95,10 @@ class MyWalletAccount extends ReadonlyWalletAccount {
 
 /** @internal */
 class MyWallet implements Wallet {
+  // Custom State
+  readonly #messageClient: MessageClient;
+
+  // Wallet Standard
   readonly #name = "My Wallet";
   readonly #version = "1.0.0" as const;
   readonly #icon = icon;
@@ -170,6 +175,11 @@ class MyWallet implements Wallet {
   }
 
   constructor() {
+    try {
+      this.#messageClient = new MessageClient();
+    } catch (e) {
+      console.error("Failed to initialize Message Client: ", e);
+    }
     if (new.target === MyWallet) {
       Object.freeze(this);
     }
@@ -309,6 +319,16 @@ class MyWallet implements Wallet {
 
       if (!this.#accounts.some((acc) => acc.address === account.address)) {
         throw new Error("invalid account");
+      }
+
+      const approved = await this.#messageClient.sendWalletRequest({
+        type: "wallet-request",
+        payload: "this is the payload"
+      });
+
+      if (!approved) {
+        console.error("Request rejected");
+        throw new Error("Request rejected");
       }
 
       const keyPair = getKeypairForAccount(account);

@@ -17,12 +17,45 @@ export default function App() {
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" // some shadow for the floating effect
   };
 
+  const getCurrentTabs = () => {
+    console.log("Get Current Tabs");
+  };
+
+  const tabsClick1 = () => {
+    console.log("Tabs Click 1");
+    browser.tabs
+      .create({
+        url: "popup.html"
+      })
+      .then((tab) => {
+        console.log("tab promise fulfilled");
+      });
+  };
+
+  const tabsClick2 = () => {
+    console.log("Tabs Click 2");
+    browser.tabs.create();
+  };
+
+  const tabsClick3 = () => {
+    console.log("Tabs Click 3");
+    browser.tabs.create();
+  };
+
+  const tabsClick4 = () => {
+    console.log("Tabs Click 4");
+  };
+
   return (
     <div style={cardStyle}>
       <div style={contentStyle}>
         <h1>React App Popup</h1>
+        <button onClick={getCurrentTabs}>Get Current Tabs</button>
+
+        <button onClick={tabsClick1}>Tabs 1</button>
+        <button onClick={tabsClick2}>Tabs 2</button>
+        <button onClick={tabsClick3}>Tabs 3</button>
         <Card title="Card 1" content="Body 1" />
-        <Card title="Card 2" content="Body 2" />
       </div>
     </div>
   );

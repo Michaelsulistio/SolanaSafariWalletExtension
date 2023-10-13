@@ -6,6 +6,7 @@ esbuild
       "./src/background.ts",
       "./src/content.ts",
       "./src/popup.tsx",
+      "./src/approval.tsx",
       "./src/injected.ts"
     ],
     bundle: true,

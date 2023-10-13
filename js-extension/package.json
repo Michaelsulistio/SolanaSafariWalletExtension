@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@solana/wallet-standard-features": "^1.1.0",
-    "@solana/wallet-standard-wallet-adapter-base": "^1.1.1",
     "@solana/web3.js": "^1.87.1",
+    "@types/firefox-webext-browser": "^111.0.2",
     "@wallet-standard/base": "^1.0.1",
     "@wallet-standard/features": "^1.0.3",
     "@wallet-standard/wallet": "^1.0.1",
