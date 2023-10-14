@@ -6,42 +6,126 @@ Script that makes up the extension's background page.
 */
 // Send a message from the Safari Web Extension to the containing app extension.
 // Listens to messages from "content"
+
+import { ContentRequestEvent } from "./wallet/message-client";
+
+function forwardRequestToApprovalUI(request) {
+  console.log("Forwarding request to approval UI: ", request);
+  browser.runtime.sendMessage({
+    type: "approval-tab-request",
+    method: request.method,
+    payload: request.payload,
+    requestId: request.requestId
+  });
+}
+
+async function initializeApprovalTab_old(initialRequest) {
+  return browser.tabs
+    .create({
+      url: browser.runtime.getURL("approval.html")
+    })
+    .then((tab) => {
+      const forwardHandler = (
+        tabId: number,
+        changeInfo: browser.tabs._OnUpdatedChangeInfo,
+        tab: browser.tabs.Tab
+      ) => {
+        console.log("In forward handler: ", changeInfo);
+        console.log(changeInfo);
+        if (tabId === tab.id && changeInfo.status === "complete") {
+          console.log("right before forward");
+          forwardRequestToApprovalUI(initialRequest);
+          browser.tabs.onUpdated.removeListener(forwardHandler);
+        }
+      };
+      browser.tabs.onUpdated.addListener(forwardHandler);
+    });
+}
+
+async function initializeApprovalTab_noRaceCondition(): Promise<browser.tabs.Tab> {
+  const getReadyTabPromise = new Promise<browser.tabs.Tab>(
+    (resolve, reject) => {
+      const onApproveTabReady = (
+        _tabId: number,
+        changeInfo: browser.tabs._OnUpdatedChangeInfo,
+        tab: browser.tabs.Tab
+      ) => {
+        if (
+          tab.url === browser.runtime.getURL("approval.html") &&
+          changeInfo.status === "complete"
+        ) {
+          browser.tabs.onUpdated.removeListener(onApproveTabReady);
+          resolve(tab);
+        }
+      };
+      browser.tabs.onUpdated.addListener(onApproveTabReady);
+    }
+  );
+
+  browser.tabs.create({
+    url: browser.runtime.getURL("approval.html")
+  });
+
+  return getReadyTabPromise;
+}
+
+async function initializeApprovalTab(): Promise<browser.tabs.Tab> {
+  const tab = await browser.tabs.create({
+    url: browser.runtime.getURL("approval.html")
+  });
+
+  return new Promise<browser.tabs.Tab>((resolve, reject) => {
+    const forwardHandler = (
+      tabId: number,
+      changeInfo: browser.tabs._OnUpdatedChangeInfo
+    ) => {
+      if (tabId === tab.id && changeInfo.status === "complete") {
+        browser.tabs.onUpdated.removeListener(forwardHandler);
+        resolve(tab); // Resolving with the tab once it's ready
+      }
+    };
+
+    // Potential race condition if listener is set, after the approval tab has already changed to "complete".
+    browser.tabs.onUpdated.addListener(forwardHandler);
+  });
+}
+
 browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   console.log("Background request received: ", request);
   console.log("From Sender: ", sender);
   console.log(sendResponse);
   if (request.type === "approval-result") {
-    // // Send the result back to the original tab
-    // browser.tabs.sendMessage(originalTabId, {
-    //   action: "approval-outcome",
-    //   approved: message.approved
-    // });
-    // // Optional: Close the approval tab
-    // if (sender.tab && sender.tab.id) {
-    //   browser.tabs.remove(sender.tab.id);
-    // }
   } else if (request.type === "approval-request") {
-    // Create a new tab
-    // Serve UI
-    // Wait for approval-result from new tab
-    // If yes, get keys and sign
-    // then finally sendResponse
+    const detail = (request as ContentRequestEvent).detail;
 
-    browser.tabs
-      .create({
-        url: browser.runtime.getURL("approval.html")
-      })
-      .then((tab) => {
-        console.log("Tab fullfillment: ", tab);
+    const isApprovalUIActive = await browser.tabs
+      .query({ active: true, currentWindow: true })
+      .then((tabs) => {
+        const activeTab = tabs[0];
+        console.log(activeTab.url);
+        console.log(browser.runtime.getURL("approval.html") === activeTab.url);
+        return browser.runtime.getURL("approval.html") === activeTab.url;
       });
 
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        sendResponse({ type: "approval-request", approved: true });
-        resolve(undefined);
-      }, 2000);
-    });
-    await promise;
+    if (isApprovalUIActive) {
+      console.log("Approval UI is Active");
+      // Forward to approval UI
+    } else {
+      console.log("Approval UI is not Active");
+      // Initialize and forward
+      initializeApprovalTab_noRaceCondition().then((approveTab) => {
+        if (approveTab.id) {
+          browser.tabs.sendMessage(approveTab.id, {
+            type: "approval-tab-request",
+            method: request.method,
+            payload: request.payload,
+            requestId: request.requestId
+          });
+        } else {
+          console.error("Approval tab missing id");
+        }
+      });
+    }
   }
 });
 

@@ -8,6 +8,7 @@
  */
 
 import {
+  ContentRequestDetails,
   ContentRequestEvent,
   ContentResponseEvent
 } from "./wallet/message-client";
@@ -44,6 +45,9 @@ async function getResponseFromApprovalUI(
 
   browser.runtime.sendMessage({
     type: "approval-request"
+    // requestId: event.detail.requestId,
+    // method: event.detail.method,
+    // payload: event.detail.payload
   });
   // Create new tab with approval ui
   // browser.tabs
@@ -76,23 +80,37 @@ async function getResponseFromBackground(): Promise<boolean> {
   );
 }
 
+function forwardToBackgroundScript(request: ContentRequestDetails) {
+  browser.runtime.sendMessage({ type: "approval-request", ...request });
+}
+
 window.addEventListener("page-to-content", async (event) => {
   console.log("Content Script Received: ", event);
   const detail = (event as ContentRequestEvent).detail;
-
-  // do a bunch of tab stuff
-  const approvalResponse = await getResponseFromApprovalUI();
-
-  // get "keypair" from background
-  const backgroundResponse = await getResponseFromBackground();
-
-  if (approvalResponse && backgroundResponse) {
-    const responseEvent = new ContentResponseEvent({
-      approved: approvalResponse,
-      requestId: detail.requestId
-    });
-    window.dispatchEvent(responseEvent);
-  }
+  forwardToBackgroundScript(detail);
 });
+
+// OLD
+// window.addEventListener("page-to-content", async (event) => {
+//   console.log("Content Script Received: ", event);
+//   const detail = (event as ContentRequestEvent).detail;
+
+//   // New Flow:
+//   //  - Store event in resolveHandler (requestId -> )
+
+//   // do a bunch of tab stuff
+//   const approvalResponse = await getResponseFromApprovalUI();
+
+//   // get "keypair" from background
+//   const backgroundResponse = await getResponseFromBackground();
+
+//   if (approvalResponse && backgroundResponse) {
+//     const responseEvent = new ContentResponseEvent({
+//       approved: approvalResponse,
+//       requestId: detail.requestId
+//     });
+//     window.dispatchEvent(responseEvent);
+//   }
+// });
 
 injectProvider();

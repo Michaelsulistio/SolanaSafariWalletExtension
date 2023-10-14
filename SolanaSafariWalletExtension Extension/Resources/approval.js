@@ -7092,11 +7092,46 @@
   // src/Approval/ApprovalScreen.tsx
   var import_react = __toModule(require_react());
   function ApprovalScreen() {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: () => console.log(true)
-    }, "Approve"), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: () => console.log(false)
-    }, "Reject"));
+    const [requestQueue, setRequestQueue] = (0, import_react.useState)([]);
+    const [randomID, setRandomID] = (0, import_react.useState)(Math.random());
+    const [message, setMessage] = (0, import_react.useState)("Empty");
+    (0, import_react.useEffect)(() => {
+      function handleIncomingMessage(request) {
+        console.log("Approval Screen Request Received: ", request);
+        if (request.type === "approval-tab-request") {
+          setRequestQueue((prevQueue) => [...prevQueue, request]);
+          setMessage((prevMessage) => prevMessage + "\n" + request.requestId);
+          console.log(request);
+        }
+      }
+      browser.runtime.onMessage.addListener(handleIncomingMessage);
+      browser.runtime.sendMessage("tab-ready");
+      return () => {
+        console.log("Unmount");
+        browser.runtime.onMessage.removeListener(handleIncomingMessage);
+      };
+    }, []);
+    const sendMessage = () => {
+      browser.runtime.sendMessage({
+        type: "from-approval",
+        payload: "hello message"
+      });
+    };
+    const sendNativeMessage = () => {
+      browser.runtime.sendNativeMessage("application-id", {message: "Word replaced"}, function(response) {
+        console.log("THIS IS THE NATIVE RESPONSE: ", response);
+      });
+    };
+    const logRequests = () => {
+      console.log(requestQueue);
+    };
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("div", null, "My Random ID: ", randomID), /* @__PURE__ */ import_react.default.createElement("div", null, "Messages: ", message), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: sendMessage
+    }, "Send Message"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: sendNativeMessage
+    }, "Send Native Message"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: logRequests
+    }, "Log Requests"), /* @__PURE__ */ import_react.default.createElement("div", null, "Request Queue Size: ", requestQueue.length));
   }
 
   // src/approval.tsx
