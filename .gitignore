@@ -2,6 +2,9 @@
 #
 # Apple sample code gitignore configuration.
 
+# editor
+.vscode
+
 # Finder
 .DS_Store
 

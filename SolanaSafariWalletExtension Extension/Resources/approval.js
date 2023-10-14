@@ -7092,7 +7092,11 @@
   // src/Approval/ApprovalScreen.tsx
   var import_react = __toModule(require_react());
   function ApprovalScreen() {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", {
+    return /* @__PURE__ */ import_react.default.createElement("div", {
+      className: "flex flex-col bg-green-300"
+    }, /* @__PURE__ */ import_react.default.createElement("div", {
+      className: "p-12 bg-red-400"
+    }, "Hello"), /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: () => console.log(true)
     }, "Approve"), /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: () => console.log(false)
