@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-
-type ApprovalRequest = {
-  type: string;
-  payload: string;
-  method: string;
-  requestId: string;
-};
+import { WalletResponse, WalletRequest } from "../types/messageTypes";
 
 export default function ApprovalScreen() {
-  const [requestQueue, setRequestQueue] = useState<Array<ApprovalRequest>>([]);
+  const [requestQueue, setRequestQueue] = useState<Array<WalletRequest>>([]);
   const [randomID, setRandomID] = useState<number>(Math.random());
   const [message, setMessage] = useState<String>("Empty");
 
+  // This effect achieves two things:
+  //    1. Initializes the wallet request listener for the approval tab
+  //    2. Signals to background that the approval tab is ready to receive requests
   useEffect(() => {
-    function handleIncomingMessage(request: ApprovalRequest) {
+    function handleWalletRequest(request: WalletRequest) {
       console.log("Approval Screen Request Received: ", request);
 
       if (request.type === "approval-tab-request") {
@@ -24,47 +21,59 @@ export default function ApprovalScreen() {
       }
     }
 
-    browser.runtime.onMessage.addListener(handleIncomingMessage);
+    // Begin listening for wallet requests
+    browser.runtime.onMessage.addListener(handleWalletRequest);
 
     // Signal approval listener is ready
     browser.runtime.sendMessage("tab-ready");
 
     // Clean up the listener when the component is unmounted
     return () => {
-      console.log("Unmount");
-      browser.runtime.onMessage.removeListener(handleIncomingMessage);
+      browser.runtime.onMessage.removeListener(handleWalletRequest);
     };
   }, []);
 
-  const sendMessage = () => {
-    browser.runtime.sendMessage({
-      type: "from-approval",
-      payload: "hello message"
+  const handleApprove = () => {
+    // Get current request
+    const currentRequest = requestQueue[0];
+
+    // Ask background for keypair
+
+    // Sign the current request payload
+
+    // Send response
+
+    // Remove front of queue
+    //   If queue is empty, close tab and redirect to host
+
+    const walletResponse: WalletResponse = {
+      type: "wallet-response",
+      method: currentRequest.method,
+      approved: true,
+      requestId: currentRequest.requestId
+    };
+    if (!currentRequest.sender?.tab?.id) {
+      throw new Error("Request has no origin sender metadata");
+    }
+    const originTabId = currentRequest.sender.tab.id;
+    browser.tabs.sendMessage(originTabId, walletResponse).then(() => {
+      browser.tabs.update(originTabId, { active: true });
     });
   };
 
-  const sendNativeMessage = () => {
-    browser.runtime.sendNativeMessage(
-      "application-id",
-      { message: "Word replaced" },
-      function (response) {
-        console.log("THIS IS THE NATIVE RESPONSE: ", response);
-      }
-    );
-  };
+  const handleReject = () => {};
 
   const logRequests = () => {
     console.log(requestQueue);
   };
   return (
     <div>
-      {/* Render other parts of your component */}
       <div>My Random ID: {randomID}</div>
       <div>Messages: {message}</div>
-      <button onClick={sendMessage}>Send Message</button>
-      <button onClick={sendNativeMessage}>Send Native Message</button>
       <button onClick={logRequests}>Log Requests</button>
       <div>Request Queue Size: {requestQueue.length}</div>
+      <button onClick={handleApprove}>Approve</button>
+      <button onClick={handleReject}>Reject</button>
     </div>
   );
 }

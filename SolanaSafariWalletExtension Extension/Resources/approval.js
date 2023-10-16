@@ -7096,7 +7096,7 @@
     const [randomID, setRandomID] = (0, import_react.useState)(Math.random());
     const [message, setMessage] = (0, import_react.useState)("Empty");
     (0, import_react.useEffect)(() => {
-      function handleIncomingMessage(request) {
+      function handleWalletRequest(request) {
         console.log("Approval Screen Request Received: ", request);
         if (request.type === "approval-tab-request") {
           setRequestQueue((prevQueue) => [...prevQueue, request]);
@@ -7104,34 +7104,41 @@
           console.log(request);
         }
       }
-      browser.runtime.onMessage.addListener(handleIncomingMessage);
+      browser.runtime.onMessage.addListener(handleWalletRequest);
       browser.runtime.sendMessage("tab-ready");
       return () => {
-        console.log("Unmount");
-        browser.runtime.onMessage.removeListener(handleIncomingMessage);
+        browser.runtime.onMessage.removeListener(handleWalletRequest);
       };
     }, []);
-    const sendMessage = () => {
-      browser.runtime.sendMessage({
-        type: "from-approval",
-        payload: "hello message"
+    const handleApprove = () => {
+      var _a, _b;
+      const currentRequest = requestQueue[0];
+      const walletResponse = {
+        type: "wallet-response",
+        method: currentRequest.method,
+        approved: true,
+        requestId: currentRequest.requestId
+      };
+      if (!((_b = (_a = currentRequest.sender) == null ? void 0 : _a.tab) == null ? void 0 : _b.id)) {
+        throw new Error("Request has no origin sender metadata");
+      }
+      const originTabId = currentRequest.sender.tab.id;
+      browser.tabs.sendMessage(originTabId, walletResponse).then(() => {
+        browser.tabs.update(originTabId, {active: true});
       });
     };
-    const sendNativeMessage = () => {
-      browser.runtime.sendNativeMessage("application-id", {message: "Word replaced"}, function(response) {
-        console.log("THIS IS THE NATIVE RESPONSE: ", response);
-      });
+    const handleReject = () => {
     };
     const logRequests = () => {
       console.log(requestQueue);
     };
     return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("div", null, "My Random ID: ", randomID), /* @__PURE__ */ import_react.default.createElement("div", null, "Messages: ", message), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: sendMessage
-    }, "Send Message"), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: sendNativeMessage
-    }, "Send Native Message"), /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: logRequests
-    }, "Log Requests"), /* @__PURE__ */ import_react.default.createElement("div", null, "Request Queue Size: ", requestQueue.length));
+    }, "Log Requests"), /* @__PURE__ */ import_react.default.createElement("div", null, "Request Queue Size: ", requestQueue.length), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: handleApprove
+    }, "Approve"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: handleReject
+    }, "Reject"));
   }
 
   // src/approval.tsx

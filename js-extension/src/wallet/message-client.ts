@@ -1,3 +1,5 @@
+import { WalletRequestEvent, WalletResponseEvent } from "../types/messageTypes";
+
 export default class MessageClient {
   #resolveHandler: {
     [key: string]: {
@@ -8,19 +10,17 @@ export default class MessageClient {
 
   constructor() {
     // Global listener for content responses
-    window.addEventListener(
-      "content-response",
-      this.#handleResponse.bind(this)
-    );
+    window.addEventListener("wallet-response", this.#handleResponse.bind(this));
   }
 
   // Handles responses from content script
   #handleResponse(event: Event) {
-    const detail = (event as ContentResponseEvent).detail;
+    console.log("In MessageClient wallet handle response: ", event);
+    const detail = (event as WalletResponseEvent).detail;
     const requestId = detail?.requestId;
 
     if (requestId && this.#resolveHandler[requestId]) {
-      console.log("Handler for content response: ", event);
+      console.log("Handler for wallet response: ", event);
       const { resolve, reject } = this.#resolveHandler[requestId];
 
       if (true) {
@@ -32,15 +32,18 @@ export default class MessageClient {
     }
   }
   /**
-   * Send an approval request with a payload.
-   * @param {Object} payload - The data you want to send for approval.
+   * Send a wallet request to content script
    */
-  async sendWalletRequest(request: WalletRequest): Promise<boolean | null> {
+  async sendWalletRequest(
+    requestId: string,
+    method: string,
+    payload: string
+  ): Promise<boolean | null> {
     return new Promise((resolve, reject) => {
-      const requestId = Math.random().toString(36);
-      const walletRequest = new ContentRequestEvent({
-        method: request.method,
-        payload: request.payload,
+      const walletRequest = new WalletRequestEvent({
+        type: "page-wallet-request",
+        method,
+        payload,
         requestId
       });
 
@@ -48,33 +51,5 @@ export default class MessageClient {
       console.log("Sending request: ", requestId);
       window.dispatchEvent(walletRequest);
     });
-  }
-}
-
-export interface WalletRequest {
-  method: string;
-  payload: string;
-}
-
-export interface ContentRequestDetails {
-  method: string;
-  payload: string;
-  requestId: string;
-}
-
-export interface ContentResponseDetails {
-  approved: boolean;
-  requestId: string;
-}
-
-export class ContentRequestEvent extends CustomEvent<ContentRequestDetails> {
-  constructor(detail: ContentRequestDetails) {
-    super("page-to-content", { detail });
-  }
-}
-
-export class ContentResponseEvent extends CustomEvent<ContentResponseDetails> {
-  constructor(detail: ContentResponseDetails) {
-    super("content-response", { detail });
   }
 }

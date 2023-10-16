@@ -8,10 +8,11 @@
  */
 
 import {
-  ContentRequestDetails,
-  ContentRequestEvent,
-  ContentResponseEvent
-} from "./wallet/message-client";
+  WalletRequest,
+  WalletRequestEvent,
+  WalletResponse,
+  WalletResponseEvent
+} from "./types/messageTypes";
 
 export const injectProvider = () => {
   try {
@@ -29,88 +30,27 @@ export const injectProvider = () => {
   }
 };
 
-async function getResponseFromApprovalUI_old(): Promise<boolean> {
-  console.log("Getting response from approval tab...");
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      resolve(true);
-    }, 5000)
-  );
+function forwardToBackgroundScript(request: WalletRequest) {
+  // Overwrite `type` to wallet-approval-request before forwarding
+  browser.runtime.sendMessage({ ...request, type: "wallet-approval-request" });
 }
 
-async function getResponseFromApprovalUI(
-  event: ContentRequestEvent
-): Promise<boolean> {
-  console.log("Getting response from approval tab...");
-
-  browser.runtime.sendMessage({
-    type: "approval-request"
-    // requestId: event.detail.requestId,
-    // method: event.detail.method,
-    // payload: event.detail.payload
-  });
-  // Create new tab with approval ui
-  // browser.tabs
-  //   .create({
-  //     url: "approval.html"
-  //   })
-  //   .then((tab) => {
-  //     console.log("Tab fullfillment: ", tab);
-  //   });
-
-  // On tab ready, send tab with request metadata (requestId, transaction details, etc)
-
-  // Wait for tab response
-
-  // resolve promise on tab response
-
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      resolve(true);
-    }, 5000)
-  );
+function forwardToPageScript(response: WalletResponse) {
+  // Overwrite `type` to wallet-approval-request before forwarding
+  window.dispatchEvent(new WalletResponseEvent(response));
 }
 
-async function getResponseFromBackground(): Promise<boolean> {
-  console.log("Getting response from background...");
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      resolve(true);
-    }, 5000)
-  );
-}
-
-function forwardToBackgroundScript(request: ContentRequestDetails) {
-  browser.runtime.sendMessage({ type: "approval-request", ...request });
-}
-
-window.addEventListener("page-to-content", async (event) => {
+window.addEventListener("page-wallet-request", async (event) => {
   console.log("Content Script Received: ", event);
-  const detail = (event as ContentRequestEvent).detail;
+  const detail = (event as WalletRequestEvent).detail;
   forwardToBackgroundScript(detail);
 });
 
-// OLD
-// window.addEventListener("page-to-content", async (event) => {
-//   console.log("Content Script Received: ", event);
-//   const detail = (event as ContentRequestEvent).detail;
-
-//   // New Flow:
-//   //  - Store event in resolveHandler (requestId -> )
-
-//   // do a bunch of tab stuff
-//   const approvalResponse = await getResponseFromApprovalUI();
-
-//   // get "keypair" from background
-//   const backgroundResponse = await getResponseFromBackground();
-
-//   if (approvalResponse && backgroundResponse) {
-//     const responseEvent = new ContentResponseEvent({
-//       approved: approvalResponse,
-//       requestId: detail.requestId
-//     });
-//     window.dispatchEvent(responseEvent);
-//   }
-// });
+browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+  console.log("Content Script Runtime Listener: ", message);
+  if (message.type === "wallet-response") {
+    forwardToPageScript(message as WalletResponse);
+  }
+});
 
 injectProvider();

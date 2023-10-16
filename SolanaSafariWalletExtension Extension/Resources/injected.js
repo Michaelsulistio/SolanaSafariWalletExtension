@@ -19881,20 +19881,27 @@
     }));
   }
 
+  // src/types/messageTypes.ts
+  var WalletRequestEvent = class extends CustomEvent {
+    constructor(request) {
+      super("page-wallet-request", {detail: request});
+    }
+  };
+
   // src/wallet/message-client.ts
   var _resolveHandler, _handleResponse, handleResponse_fn;
   var MessageClient = class {
     constructor() {
       _handleResponse.add(this);
       _resolveHandler.set(this, {});
-      window.addEventListener("content-response", __privateMethod(this, _handleResponse, handleResponse_fn).bind(this));
+      window.addEventListener("wallet-response", __privateMethod(this, _handleResponse, handleResponse_fn).bind(this));
     }
-    async sendWalletRequest(request) {
+    async sendWalletRequest(requestId, method, payload) {
       return new Promise((resolve, reject) => {
-        const requestId = Math.random().toString(36);
-        const walletRequest = new ContentRequestEvent({
-          method: request.method,
-          payload: request.payload,
+        const walletRequest = new WalletRequestEvent({
+          type: "page-wallet-request",
+          method,
+          payload,
           requestId
         });
         __privateGet(this, _resolveHandler)[requestId] = {resolve, reject};
@@ -19906,10 +19913,11 @@
   _resolveHandler = new WeakMap();
   _handleResponse = new WeakSet();
   handleResponse_fn = function(event) {
+    console.log("In MessageClient wallet handle response: ", event);
     const detail = event.detail;
     const requestId = detail == null ? void 0 : detail.requestId;
     if (requestId && __privateGet(this, _resolveHandler)[requestId]) {
-      console.log("Handler for content response: ", event);
+      console.log("Handler for wallet response: ", event);
       const {resolve, reject} = __privateGet(this, _resolveHandler)[requestId];
       if (true) {
         console.log("Resolving request: ", requestId);
@@ -19919,11 +19927,6 @@
     }
   };
   var message_client_default = MessageClient;
-  var ContentRequestEvent = class extends CustomEvent {
-    constructor(detail) {
-      super("page-to-content", {detail});
-    }
-  };
 
   // src/provider.ts
   var wallet;
@@ -20058,10 +20061,7 @@
           if (!__privateGet(this, _accounts).some((acc) => acc.address === account.address)) {
             throw new Error("invalid account");
           }
-          const approved = await __privateGet(this, _messageClient).sendWalletRequest({
-            method: "approval-method",
-            payload: "this is the payload"
-          });
+          const approved = await __privateGet(this, _messageClient).sendWalletRequest(Math.random().toString(36), "signMessage", import_bs582.default.encode(message));
           if (!approved) {
             console.error("Request rejected");
             throw new Error("Request rejected");
@@ -20119,11 +20119,7 @@
         }
         return outputs;
       });
-      try {
-        __privateSet(this, _messageClient, new message_client_default());
-      } catch (e) {
-        console.error("Failed to initialize Message Client: ", e);
-      }
+      __privateSet(this, _messageClient, new message_client_default());
       if (new.target === _MyWallet) {
         Object.freeze(this);
       }

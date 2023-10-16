@@ -175,11 +175,7 @@ class MyWallet implements Wallet {
   }
 
   constructor() {
-    try {
-      this.#messageClient = new MessageClient();
-    } catch (e) {
-      console.error("Failed to initialize Message Client: ", e);
-    }
+    this.#messageClient = new MessageClient();
     if (new.target === MyWallet) {
       Object.freeze(this);
     }
@@ -321,10 +317,11 @@ class MyWallet implements Wallet {
         throw new Error("invalid account");
       }
 
-      const approved = await this.#messageClient.sendWalletRequest({
-        method: "approval-method",
-        payload: "this is the payload"
-      });
+      const approved = await this.#messageClient.sendWalletRequest(
+        Math.random().toString(36),
+        "signMessage",
+        bs58.encode(message)
+      );
 
       if (!approved) {
         console.error("Request rejected");

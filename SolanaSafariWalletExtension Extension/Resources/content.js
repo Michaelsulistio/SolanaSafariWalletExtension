@@ -1,6 +1,13 @@
 (() => {
   var __assign = Object.assign;
 
+  // src/types/messageTypes.ts
+  var WalletResponseEvent = class extends CustomEvent {
+    constructor(detail) {
+      super("wallet-response", {detail});
+    }
+  };
+
   // src/content.ts
   var injectProvider = () => {
     try {
@@ -18,12 +25,21 @@
     }
   };
   function forwardToBackgroundScript(request) {
-    browser.runtime.sendMessage(__assign({type: "approval-request"}, request));
+    browser.runtime.sendMessage(__assign(__assign({}, request), {type: "wallet-approval-request"}));
   }
-  window.addEventListener("page-to-content", async (event) => {
+  function forwardToPageScript(response) {
+    window.dispatchEvent(new WalletResponseEvent(response));
+  }
+  window.addEventListener("page-wallet-request", async (event) => {
     console.log("Content Script Received: ", event);
     const detail = event.detail;
     forwardToBackgroundScript(detail);
+  });
+  browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+    console.log("Content Script Runtime Listener: ", message);
+    if (message.type === "wallet-response") {
+      forwardToPageScript(message);
+    }
   });
   injectProvider();
 })();
