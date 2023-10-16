@@ -56,9 +56,10 @@ export default function ApprovalScreen() {
       throw new Error("Request has no origin sender metadata");
     }
     const originTabId = currentRequest.sender.tab.id;
-    browser.tabs.sendMessage(originTabId, walletResponse).then(() => {
-      browser.tabs.update(originTabId, { active: true });
-    });
+    browser.tabs
+      .sendMessage(originTabId, walletResponse)
+      .then(() => browser.tabs.update(originTabId, { active: true }))
+      .then(() => window.close());
   };
 
   const handleReject = () => {};
