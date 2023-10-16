@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { WalletResponse, WalletRequest } from "../types/messageTypes";
 
+const DUMMY_PUBLIC_KEY = "BtTKesmqAEaBoKBnwFKPFtJEGiJz2Q92bnAbqb6oWN2V";
+const DUMMY_SECRET_KEY =
+  "4z2CZjiaKXVFaPG5G3MRDCEfAKEXBVusN9ZPB8vY4fdTLi7o6gKJrUY2Gj88UgBcALVTyiXxsTxaj6SCL8dgboBP";
+
 export default function ApprovalScreen() {
   const [requestQueue, setRequestQueue] = useState<Array<WalletRequest>>([]);
   const [randomID, setRandomID] = useState<number>(Math.random());
@@ -57,7 +61,7 @@ export default function ApprovalScreen() {
     }
     const originTabId = currentRequest.sender.tab.id;
     browser.tabs
-      .sendMessage(originTabId, walletResponse)
+      .sendMessage(originTabId, walletResponse) // TODO: Only `update` and `close` tab if its the last request in queue
       .then(() => browser.tabs.update(originTabId, { active: true }))
       .then(() => window.close());
   };

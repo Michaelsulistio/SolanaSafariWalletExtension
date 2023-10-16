@@ -1,5 +1,4 @@
 import type { WalletAccount } from "@wallet-standard/base";
-import { Keypair } from "@solana/web3.js";
 import { MyWalletWalletAccount } from "../wallet/account";
 import getKeypairForAccount from "./getKeypairForAccount";
 
