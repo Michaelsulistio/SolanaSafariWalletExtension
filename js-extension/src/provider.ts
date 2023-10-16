@@ -47,6 +47,7 @@ import signAndSendTransaction from "./util/signAndSendTransaction";
 import signTransaction from "./util/signTransaction";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
+import { ConnectResponse } from "./types/messageTypes";
 
 let wallet: MyWallet;
 let registered = false;
@@ -237,10 +238,14 @@ class MyWallet implements Wallet {
     console.log("In connect");
     if (!this.#accounts.length || !input?.silent) {
       // TODO: Implement.
-      const accounts: WalletAccount[] = getAccounts();
-      console.log("Connecting with with: ");
-      console.log(accounts[0].address);
-      this.#connected(accounts);
+      const response: ConnectResponse =
+        await this.#messageClient.sendWalletRequest({
+          type: "page-wallet-request",
+          requestId: Math.random().toString(36),
+          method: "SOLANA_CONNECT",
+          input: { silent: input?.silent }
+        });
+      this.#connected(response.output.accounts);
     }
     return { accounts: this.accounts };
   };
@@ -316,6 +321,13 @@ class MyWallet implements Wallet {
       if (!this.#accounts.some((acc) => acc.address === account.address)) {
         throw new Error("invalid account");
       }
+
+      const signedMessage = await this.#messageClient.sendWalletRequest({
+        type: "page-wallet-request",
+        requestId: Math.random().toString(36),
+        method: "SOLANA_SIGN_MESSAGE",
+        input: inputs[0]
+      });
 
       const approved = await this.#messageClient.sendWalletRequest(
         Math.random().toString(36),

@@ -32,8 +32,8 @@ export interface WalletResponse {
   requestId: string;
 }
 
-export class WalletRequestEvent extends CustomEvent<WalletRequest> {
-  constructor(request: WalletRequest) {
+export class WalletRequestEvent extends CustomEvent<BaseWalletRequest> {
+  constructor(request: BaseWalletRequest) {
     super("page-wallet-request", { detail: request });
   }
 }
@@ -56,12 +56,12 @@ type WalletRequestOutput =
   | SolanaSignTransactionOutput
   | SolanaSignAndSendTransactionOutput;
 
-export interface BaseRequest {
+export interface BaseWalletRequest {
   type: string;
   requestId: string;
   method: string;
   input: WalletRequestInput;
-  origin: browser.runtime.MessageSender;
+  origin?: browser.runtime.MessageSender;
 }
 
 export interface BaseResponse {
@@ -71,7 +71,7 @@ export interface BaseResponse {
   output: WalletRequestOutput;
 }
 
-export interface ConnectRequest extends BaseRequest {
+export interface ConnectRequest extends BaseWalletRequest {
   input: StandardConnectInput;
   method: "SOLANA_CONNECT";
 }
@@ -80,7 +80,7 @@ export interface ConnectResponse extends BaseResponse {
   output: StandardConnectOutput;
 }
 
-export interface SignMessageRequest extends BaseRequest {
+export interface SignMessageRequest extends BaseWalletRequest {
   input: SolanaSignMessageInput;
   method: "SOLANA_SIGN_MESSAGE";
 }
@@ -89,7 +89,7 @@ export interface SignMessageResponse extends BaseResponse {
   output: SolanaSignMessageOutput;
 }
 
-export interface SignTransactionRequest extends BaseRequest {
+export interface SignTransactionRequest extends BaseWalletRequest {
   input: SolanaSignTransactionInput;
   method: "SOLANA_SIGN_TRANSACTION";
 }
@@ -98,7 +98,7 @@ export interface SignTransactionResponse extends BaseResponse {
   output: SolanaSignTransactionOutput;
 }
 
-export interface SignAndSendTransactionRequest extends BaseRequest {
+export interface SignAndSendTransactionRequest extends BaseWalletRequest {
   input: SolanaSignAndSendTransactionInput;
   method: "SOLANA_SIGN_AND_SEND_TRANSACTION";
 }
