@@ -40,7 +40,7 @@ import {
   decodeConnectOutput,
   decodeSignAndSendTransactionOutput,
   decodeSignTransactionOutput
-} from "./util/decodeWalletResponseOutput";
+} from "./util/decodeWalletResponse";
 import { icon, MyWalletAccount } from "./provider";
 
 /** @internal */

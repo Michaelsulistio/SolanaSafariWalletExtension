@@ -42,16 +42,13 @@ import bs58 from "bs58";
 import { Transaction } from "@solana/web3.js";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
-import {
-  ConnectResponseEncoded,
-  WalletRequestMethod
-} from "./types/messageTypes";
+import { ConnectResponse, WalletRequestMethod } from "./types/messageTypes";
 import {
   decodeConnectOutput,
   decodeSignAndSendTransactionOutput,
   decodeSignMessageOutput,
   decodeSignTransactionOutput
-} from "./util/decodeWalletResponseOutput";
+} from "./util/decodeWalletResponse";
 import { MyWalletWalletAccount } from "./wallet/account";
 
 let wallet: MyWallet;
@@ -79,25 +76,7 @@ export function register(): boolean {
 }
 
 /** @internal */
-const checkAccountMatch = (
-  accounts: WalletAccount[],
-  targetAccount: WalletAccount
-) => {
-  return !accounts.some((acc) => acc.address === targetAccount.address);
-};
-
-/** @internal */
 const icon: Wallet["icon"] = "data:image/svg+xml;base64," as const;
-
-/** @internal */
-class MyWalletAccount extends ReadonlyWalletAccount {
-  constructor(account: WalletAccount) {
-    super(account);
-    if (new.target === MyWalletAccount) {
-      Object.freeze(this);
-    }
-  }
-}
 
 /** @internal */
 class MyWallet implements Wallet {

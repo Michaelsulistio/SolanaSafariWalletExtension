@@ -3,19 +3,17 @@ import {
   BaseWalletResponse,
   ConnectRequest,
   ConnectResponse,
-  ConnectResponseEncoded,
   SignAndSendTransactionRequest,
   SignAndSendTransactionResponse,
-  SignAndSendTransactionResponseEncoded,
   SignMessageRequest,
   SignMessageResponse,
-  SignMessageResponseEncoded,
   SignTransactionRequest,
   SignTransactionResponse,
-  SignTransactionResponseEncoded,
   WalletRequestEvent,
   WalletResponseEvent
 } from "../types/messageTypes";
+import { decodeWalletResponse } from "../util/decodeWalletResponse";
+import { encodeWalletRequest } from "../util/encodeWalletRequest";
 
 export default class MessageClient {
   #resolveHandler: {
@@ -33,8 +31,8 @@ export default class MessageClient {
   // Handles responses from content script
   #handleResponse(event: Event) {
     console.log("In MessageClient wallet handle response: ", event);
-    const request = (event as WalletResponseEvent).detail;
-    const requestId = request?.requestId;
+    const response = (event as WalletResponseEvent).detail;
+    const requestId = response?.requestId;
 
     if (requestId && this.#resolveHandler[requestId]) {
       console.log("Handler for wallet response: ", event);
@@ -42,53 +40,32 @@ export default class MessageClient {
 
       if (true) {
         console.log("Resolving request: ", requestId);
-        resolve(request);
+        const decodedResponse = decodeWalletResponse(response);
+        resolve(decodedResponse);
       }
 
       delete this.#resolveHandler[requestId]; // Cleanup
     }
   }
 
-  /**
-   * Send a wallet request to content script
-   */
-  // async sendWalletRequest_old(
-  //   requestId: string,
-  //   method: string,
-  //   payload: string
-  // ): Promise<boolean | null> {
-  //   return new Promise((resolve, reject) => {
-  //     const walletRequest = new WalletRequestEvent({
-  //       type: "page-wallet-request",
-  //       method,
-  //       payload,
-  //       requestId
-  //     });
-
-  //     this.#resolveHandler[requestId] = { resolve, reject };
-  //     console.log("Sending request: ", requestId);
-  //     window.dispatchEvent(walletRequest);
-  //   });
-  // }
-
-  async sendWalletRequest(
-    request: ConnectRequest
-  ): Promise<ConnectResponseEncoded>;
+  async sendWalletRequest(request: ConnectRequest): Promise<ConnectResponse>;
   async sendWalletRequest(
     request: SignMessageRequest
-  ): Promise<SignMessageResponseEncoded>;
+  ): Promise<SignMessageResponse>;
   async sendWalletRequest(
     request: SignTransactionRequest
-  ): Promise<SignTransactionResponseEncoded>;
+  ): Promise<SignTransactionResponse>;
   async sendWalletRequest(
     request: SignAndSendTransactionRequest
-  ): Promise<SignAndSendTransactionResponseEncoded>;
+  ): Promise<SignAndSendTransactionResponse>;
 
   async sendWalletRequest(
     request: BaseWalletRequest
   ): Promise<BaseWalletResponse> {
     return new Promise<BaseWalletResponse>((resolve, reject) => {
-      const walletRequest = new WalletRequestEvent(request);
+      const walletRequest = new WalletRequestEvent(
+        encodeWalletRequest(request)
+      );
 
       this.#resolveHandler[request.requestId] = { resolve, reject };
       console.log("Sending request: ", request.requestId);
