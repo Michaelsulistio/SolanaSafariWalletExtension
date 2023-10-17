@@ -8,6 +8,7 @@
  */
 
 import {
+  BaseWalletRequest,
   WalletRequest,
   WalletRequestEvent,
   WalletResponse,
@@ -30,7 +31,7 @@ export const injectProvider = () => {
   }
 };
 
-function forwardToBackgroundScript(request: WalletRequest) {
+function forwardToBackgroundScript(request: BaseWalletRequest) {
   // Overwrite `type` to wallet-approval-request before forwarding
   browser.runtime.sendMessage({ ...request, type: "wallet-approval-request" });
 }
@@ -42,8 +43,8 @@ function forwardToPageScript(response: WalletResponse) {
 
 window.addEventListener("page-wallet-request", async (event) => {
   console.log("Content Script Received: ", event);
-  const detail = (event as WalletRequestEvent).detail;
-  forwardToBackgroundScript(detail);
+  const walletRequest = (event as WalletRequestEvent).detail;
+  forwardToBackgroundScript(walletRequest);
 });
 
 browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {

@@ -7,7 +7,6 @@ import {
   SolanaSignIn,
   SolanaSignInOutput,
   SolanaSignMessage,
-  SolanaSignMessageInput,
   SolanaSignMessageOutput,
   SolanaSignTransaction,
   SolanaSignTransactionOutput,
@@ -33,21 +32,21 @@ import {
   StandardEventsNames,
   StandardEventsOnMethod
 } from "@wallet-standard/features";
-import getAccounts from "./util/getAccounts";
 import getKeypairForAccount from "./util/getKeypairForAccount";
-import signMessage from "./util/signMessage";
 import {
   SolanaChain,
   getClusterForChain,
   isSolanaChain
 } from "./wallet/solana";
 import bs58 from "bs58";
-import { Message, Transaction, VersionedTransaction } from "@solana/web3.js";
-import signAndSendTransaction from "./util/signAndSendTransaction";
-import signTransaction from "./util/signTransaction";
+import { Transaction } from "@solana/web3.js";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
-import { ConnectResponse } from "./types/messageTypes";
+import {
+  ConnectResponseEncoded,
+  WalletRequestMethod
+} from "./types/messageTypes";
+import { decodeConnectOutput } from "./util/decodeWalletResponseOutput";
 
 let wallet: MyWallet;
 let registered = false;
@@ -186,6 +185,7 @@ class MyWallet implements Wallet {
     console.log("connected");
 
     this.#accounts = accounts.map((account) => new MyWalletAccount(account));
+    console.log(this.#accounts);
     this.#standardEventsEmit("change", { accounts: this.accounts });
   };
 
@@ -237,15 +237,15 @@ class MyWallet implements Wallet {
   #standardConnect: StandardConnectMethod = async (input) => {
     console.log("In connect");
     if (!this.#accounts.length || !input?.silent) {
-      // TODO: Implement.
-      const response: ConnectResponse =
-        await this.#messageClient.sendWalletRequest({
-          type: "page-wallet-request",
-          requestId: Math.random().toString(36),
-          method: "SOLANA_CONNECT",
-          input: { silent: input?.silent }
-        });
-      this.#connected(response.output.accounts);
+      const response = await this.#messageClient.sendWalletRequest({
+        type: "page-wallet-request",
+        requestId: Math.random().toString(36),
+        method: WalletRequestMethod.SOLANA_CONNECT,
+        input: input ?? { silent: false }
+      });
+      const decodedOutput = decodeConnectOutput(response.output);
+
+      this.#connected(decodedOutput.accounts);
     }
     return { accounts: this.accounts };
   };
@@ -276,20 +276,16 @@ class MyWallet implements Wallet {
 
       if (!isSolanaChain(chain)) throw new Error("invalid chain");
 
-      const keyPair = getKeypairForAccount(account);
-      const { signature } = await signAndSendTransaction(
-        VersionedTransaction.deserialize(transaction),
-        keyPair,
-        getClusterForChain(chain),
-        {
-          preflightCommitment,
-          minContextSlot,
-          maxRetries,
-          skipPreflight
-        }
-      );
+      const response = await this.#messageClient.sendWalletRequest({
+        type: "page-wallet-request",
+        requestId: Math.random().toString(36),
+        method: WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION,
+        input: inputs[0]
+      });
 
-      outputs.push({ signature: bs58.decode(signature) });
+      const decodedOutput = decodeWalletResponseOutput(response);
+
+      outputs.push(decodedOutput);
     } else if (inputs.length > 1) {
       for (const input of inputs) {
         outputs.push(...(await this.#solanaSignAndSendTransaction(input)));
@@ -322,30 +318,19 @@ class MyWallet implements Wallet {
         throw new Error("invalid account");
       }
 
-      const signedMessage = await this.#messageClient.sendWalletRequest({
+      const response = await this.#messageClient.sendWalletRequest({
         type: "page-wallet-request",
         requestId: Math.random().toString(36),
-        method: "SOLANA_SIGN_MESSAGE",
+        method: WalletRequestMethod.SOLANA_SIGN_MESSAGE,
         input: inputs[0]
       });
 
-      const approved = await this.#messageClient.sendWalletRequest(
-        Math.random().toString(36),
-        "signMessage",
-        bs58.encode(message)
-      );
+      // const keyPair = getKeypairForAccount(account);
+      // console.log("Signing with: ");
+      // console.log(keyPair.publicKey.toString());
+      // const { signature } = await signMessage(message, keyPair);
 
-      if (!approved) {
-        console.error("Request rejected");
-        throw new Error("Request rejected");
-      }
-
-      const keyPair = getKeypairForAccount(account);
-      console.log("Signing with: ");
-      console.log(keyPair.publicKey.toString());
-      const { signature } = await signMessage(message, keyPair);
-
-      outputs.push({ signedMessage: message, signature });
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       for (const input of inputs) {
         outputs.push(...(await this.#solanaSignMessage(input)));
@@ -370,13 +355,14 @@ class MyWallet implements Wallet {
 
       if (chain && !isSolanaChain(chain)) throw new Error("invalid chain");
 
-      const keyPair = getKeypairForAccount(account);
-      const signedTransaction = await signTransaction(
-        Transaction.from(transaction),
-        keyPair
-      );
+      const response = await this.#messageClient.sendWalletRequest({
+        type: "page-wallet-request",
+        requestId: Math.random().toString(36),
+        method: WalletRequestMethod.SOLANA_SIGN_TRANSACTION,
+        input: inputs[0]
+      });
 
-      outputs.push({ signedTransaction: signedTransaction });
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       let chain: SolanaChain | undefined = undefined;
       for (const input of inputs) {

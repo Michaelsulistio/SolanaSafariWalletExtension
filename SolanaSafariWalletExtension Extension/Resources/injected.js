@@ -3494,14 +3494,14 @@
         const pointBytes = point.toRawBytes();
         return {head, prefix, scalar, point, pointBytes};
       }
-      function getPublicKey3(privKey) {
+      function getPublicKey2(privKey) {
         return getExtendedPublicKey(privKey).pointBytes;
       }
       function hashDomainToScalar(context = new Uint8Array(), ...msgs) {
         const msg = ut.concatBytes(...msgs);
         return modN_LE(cHash(domain(msg, (0, utils_js_1.ensureBytes)("context", context), !!prehash)));
       }
-      function sign3(msg, privKey, options = {}) {
+      function sign2(msg, privKey, options = {}) {
         msg = (0, utils_js_1.ensureBytes)("message", msg);
         if (prehash)
           msg = prehash(msg);
@@ -3515,7 +3515,7 @@
         return (0, utils_js_1.ensureBytes)("result", res, nByteLength * 2);
       }
       const verifyOpts = VERIFY_DEFAULT;
-      function verify3(sig, msg, publicKey2, options = verifyOpts) {
+      function verify2(sig, msg, publicKey2, options = verifyOpts) {
         const {context, zip215} = options;
         const len = Fp.BYTES;
         sig = (0, utils_js_1.ensureBytes)("signature", sig, 2 * len);
@@ -3549,9 +3549,9 @@
       };
       return {
         CURVE,
-        getPublicKey: getPublicKey3,
-        sign: sign3,
-        verify: verify3,
+        getPublicKey: getPublicKey2,
+        sign: sign2,
+        verify: verify2,
         ExtendedPoint: Point,
         utils
       };
@@ -7281,7 +7281,7 @@
         }
         return vch;
       }
-      function decode(string2) {
+      function decode2(string2) {
         var buffer = decodeUnsafe(string2);
         if (buffer) {
           return buffer;
@@ -7291,7 +7291,7 @@
       return {
         encode,
         decodeUnsafe,
-        decode
+        decode: decode2
       };
     }
     module.exports = base;
@@ -7590,7 +7590,7 @@
         }
         return vch;
       }
-      function decode(string2) {
+      function decode2(string2) {
         var buffer = decodeUnsafe(string2);
         if (buffer) {
           return buffer;
@@ -7600,7 +7600,7 @@
       return {
         encode,
         decodeUnsafe,
-        decode
+        decode: decode2
       };
     }
     module.exports = base;
@@ -7744,7 +7744,7 @@
       Object.defineProperty(this, "ignoreBOM", {value: this._ignoreBOM});
     }
     TextDecoder2.prototype = {
-      decode: function decode(input, options) {
+      decode: function decode2(input, options) {
         var bytes;
         if (typeof input === "object" && input instanceof ArrayBuffer) {
           bytes = new Uint8Array(input);
@@ -9651,14 +9651,14 @@
     for (let i = 0; i < 256; ++i) {
       byteToHex.push((i + 256).toString(16).substr(1));
     }
-    function stringify2(arr, offset2 = 0) {
+    function stringify(arr, offset2 = 0) {
       const uuid = (byteToHex[arr[offset2 + 0]] + byteToHex[arr[offset2 + 1]] + byteToHex[arr[offset2 + 2]] + byteToHex[arr[offset2 + 3]] + "-" + byteToHex[arr[offset2 + 4]] + byteToHex[arr[offset2 + 5]] + "-" + byteToHex[arr[offset2 + 6]] + byteToHex[arr[offset2 + 7]] + "-" + byteToHex[arr[offset2 + 8]] + byteToHex[arr[offset2 + 9]] + "-" + byteToHex[arr[offset2 + 10]] + byteToHex[arr[offset2 + 11]] + byteToHex[arr[offset2 + 12]] + byteToHex[arr[offset2 + 13]] + byteToHex[arr[offset2 + 14]] + byteToHex[arr[offset2 + 15]]).toLowerCase();
       if (!(0, _validate.default)(uuid)) {
         throw TypeError("Stringified UUID is invalid");
       }
       return uuid;
     }
-    var _default = stringify2;
+    var _default = stringify;
     exports.default = _default;
   });
 
@@ -12313,7 +12313,7 @@
           return point;
         }
       };
-      function getPublicKey3(privateKey, isCompressed = true) {
+      function getPublicKey2(privateKey, isCompressed = true) {
         return Point.fromPrivateKey(privateKey).toRawBytes(isCompressed);
       }
       function isProbPub(item) {
@@ -12395,16 +12395,16 @@
       }
       const defaultSigOpts = {lowS: CURVE.lowS, prehash: false};
       const defaultVerOpts = {lowS: CURVE.lowS, prehash: false};
-      function sign3(msgHash, privKey, opts = defaultSigOpts) {
+      function sign2(msgHash, privKey, opts = defaultSigOpts) {
         const {seed, k2sig} = prepSig(msgHash, privKey, opts);
         const C = CURVE;
         const drbg = ut.createHmacDrbg(C.hash.outputLen, C.nByteLength, C.hmac);
         return drbg(seed, k2sig);
       }
       Point.BASE._setWindowSize(8);
-      function verify3(signature2, msgHash, publicKey2, opts = defaultVerOpts) {
+      function verify2(signature, msgHash, publicKey2, opts = defaultVerOpts) {
         var _a;
-        const sg = signature2;
+        const sg = signature;
         msgHash = (0, utils_js_1.ensureBytes)("msgHash", msgHash);
         publicKey2 = (0, utils_js_1.ensureBytes)("publicKey", publicKey2);
         if ("strict" in opts)
@@ -12450,10 +12450,10 @@
       }
       return {
         CURVE,
-        getPublicKey: getPublicKey3,
+        getPublicKey: getPublicKey2,
         getSharedSecret,
-        sign: sign3,
-        verify: verify3,
+        sign: sign2,
+        verify: verify2,
         ProjectivePoint: Point,
         Signature,
         utils
@@ -12798,8 +12798,8 @@
         throw new Error("sign: Invalid signature produced");
       return sig;
     }
-    function schnorrVerify(signature2, message, publicKey2) {
-      const sig = (0, utils_js_1.ensureBytes)("signature", signature2, 64);
+    function schnorrVerify(signature, message, publicKey2) {
+      const sig = (0, utils_js_1.ensureBytes)("signature", signature, 64);
       const m = (0, utils_js_1.ensureBytes)("message", message);
       const pub = (0, utils_js_1.ensureBytes)("publicKey", publicKey2, 32);
       try {
@@ -12993,7 +12993,7 @@
         }
         return vch;
       }
-      function decode(string2) {
+      function decode2(string2) {
         var buffer = decodeUnsafe(string2);
         if (buffer) {
           return buffer;
@@ -13003,7 +13003,7 @@
       return {
         encode,
         decodeUnsafe,
-        decode
+        decode: decode2
       };
     }
     module.exports = base;
@@ -13159,91 +13159,6 @@
 
   // node_modules/@wallet-standard/features/lib/esm/events.js
   var StandardEvents = "standard:events";
-
-  // src/wallet/solana.ts
-  var SOLANA_MAINNET_CHAIN = "solana:mainnet";
-  var SOLANA_DEVNET_CHAIN = "solana:devnet";
-  var SOLANA_TESTNET_CHAIN = "solana:testnet";
-  var SOLANA_LOCALNET_CHAIN = "solana:localnet";
-  var SOLANA_CHAINS = [
-    SOLANA_MAINNET_CHAIN,
-    SOLANA_DEVNET_CHAIN,
-    SOLANA_TESTNET_CHAIN,
-    SOLANA_LOCALNET_CHAIN
-  ];
-  function isSolanaChain(chain) {
-    return SOLANA_CHAINS.includes(chain);
-  }
-  function getClusterForChain(chain) {
-    switch (chain) {
-      case SOLANA_MAINNET_CHAIN:
-        return "mainnet-beta";
-      case SOLANA_DEVNET_CHAIN:
-        return "devnet";
-      case SOLANA_TESTNET_CHAIN:
-        return "testnet";
-      default:
-        return "devnet";
-    }
-  }
-
-  // src/wallet/account.ts
-  var chains = SOLANA_CHAINS;
-  var features = [
-    SolanaSignAndSendTransaction,
-    SolanaSignTransaction,
-    SolanaSignMessage
-  ];
-  var _address, _publicKey, _chains, _features, _label, _icon;
-  var _MyWalletWalletAccount = class {
-    constructor({
-      address,
-      publicKey: publicKey2,
-      label,
-      icon: icon2
-    }) {
-      _address.set(this, void 0);
-      _publicKey.set(this, void 0);
-      _chains.set(this, void 0);
-      _features.set(this, void 0);
-      _label.set(this, void 0);
-      _icon.set(this, void 0);
-      if (new.target === _MyWalletWalletAccount) {
-        Object.freeze(this);
-      }
-      __privateSet(this, _address, address);
-      __privateSet(this, _publicKey, publicKey2);
-      __privateSet(this, _chains, chains);
-      __privateSet(this, _features, features);
-      __privateSet(this, _label, label);
-      __privateSet(this, _icon, icon2);
-    }
-    get address() {
-      return __privateGet(this, _address);
-    }
-    get publicKey() {
-      return __privateGet(this, _publicKey).slice();
-    }
-    get chains() {
-      return __privateGet(this, _chains).slice();
-    }
-    get features() {
-      return __privateGet(this, _features).slice();
-    }
-    get label() {
-      return __privateGet(this, _label);
-    }
-    get icon() {
-      return __privateGet(this, _icon);
-    }
-  };
-  var MyWalletWalletAccount = _MyWalletWalletAccount;
-  _address = new WeakMap();
-  _publicKey = new WeakMap();
-  _chains = new WeakMap();
-  _features = new WeakMap();
-  _label = new WeakMap();
-  _icon = new WeakMap();
 
   // node_modules/@solana/web3.js/lib/index.browser.esm.js
   var import_buffer = __toModule(require_buffer());
@@ -13833,30 +13748,30 @@
   var VERSION_PREFIX_MASK = 127;
   var SIGNATURE_LENGTH_IN_BYTES = 64;
   var TransactionExpiredBlockheightExceededError = class extends Error {
-    constructor(signature2) {
-      super(`Signature ${signature2} has expired: block height exceeded.`);
+    constructor(signature) {
+      super(`Signature ${signature} has expired: block height exceeded.`);
       this.signature = void 0;
-      this.signature = signature2;
+      this.signature = signature;
     }
   };
   Object.defineProperty(TransactionExpiredBlockheightExceededError.prototype, "name", {
     value: "TransactionExpiredBlockheightExceededError"
   });
   var TransactionExpiredTimeoutError = class extends Error {
-    constructor(signature2, timeoutSeconds) {
-      super(`Transaction was not confirmed in ${timeoutSeconds.toFixed(2)} seconds. It is unknown if it succeeded or failed. Check signature ${signature2} using the Solana Explorer or CLI tools.`);
+    constructor(signature, timeoutSeconds) {
+      super(`Transaction was not confirmed in ${timeoutSeconds.toFixed(2)} seconds. It is unknown if it succeeded or failed. Check signature ${signature} using the Solana Explorer or CLI tools.`);
       this.signature = void 0;
-      this.signature = signature2;
+      this.signature = signature;
     }
   };
   Object.defineProperty(TransactionExpiredTimeoutError.prototype, "name", {
     value: "TransactionExpiredTimeoutError"
   });
   var TransactionExpiredNonceInvalidError = class extends Error {
-    constructor(signature2) {
-      super(`Signature ${signature2} has expired: the nonce is no longer valid.`);
+    constructor(signature) {
+      super(`Signature ${signature} has expired: the nonce is no longer valid.`);
       this.signature = void 0;
-      this.signature = signature2;
+      this.signature = signature;
     }
   };
   Object.defineProperty(TransactionExpiredNonceInvalidError.prototype, "name", {
@@ -13916,9 +13831,6 @@
   };
   var publicKey = (property = "publicKey") => {
     return BufferLayout.blob(32, property);
-  };
-  var signature = (property = "signature") => {
-    return BufferLayout.blob(64, property);
   };
   var rustString = (property = "string") => {
     const rsl = BufferLayout.struct([BufferLayout.u32("length"), BufferLayout.u32("lengthPadding"), BufferLayout.blob(BufferLayout.offset(BufferLayout.u32(), -8), "chars")], property);
@@ -14262,267 +14174,6 @@
       return new Message(messageArgs);
     }
   };
-  var MessageV0 = class {
-    constructor(args) {
-      this.header = void 0;
-      this.staticAccountKeys = void 0;
-      this.recentBlockhash = void 0;
-      this.compiledInstructions = void 0;
-      this.addressTableLookups = void 0;
-      this.header = args.header;
-      this.staticAccountKeys = args.staticAccountKeys;
-      this.recentBlockhash = args.recentBlockhash;
-      this.compiledInstructions = args.compiledInstructions;
-      this.addressTableLookups = args.addressTableLookups;
-    }
-    get version() {
-      return 0;
-    }
-    get numAccountKeysFromLookups() {
-      let count = 0;
-      for (const lookup of this.addressTableLookups) {
-        count += lookup.readonlyIndexes.length + lookup.writableIndexes.length;
-      }
-      return count;
-    }
-    getAccountKeys(args) {
-      let accountKeysFromLookups;
-      if (args && "accountKeysFromLookups" in args && args.accountKeysFromLookups) {
-        if (this.numAccountKeysFromLookups != args.accountKeysFromLookups.writable.length + args.accountKeysFromLookups.readonly.length) {
-          throw new Error("Failed to get account keys because of a mismatch in the number of account keys from lookups");
-        }
-        accountKeysFromLookups = args.accountKeysFromLookups;
-      } else if (args && "addressLookupTableAccounts" in args && args.addressLookupTableAccounts) {
-        accountKeysFromLookups = this.resolveAddressTableLookups(args.addressLookupTableAccounts);
-      } else if (this.addressTableLookups.length > 0) {
-        throw new Error("Failed to get account keys because address table lookups were not resolved");
-      }
-      return new MessageAccountKeys(this.staticAccountKeys, accountKeysFromLookups);
-    }
-    isAccountSigner(index) {
-      return index < this.header.numRequiredSignatures;
-    }
-    isAccountWritable(index) {
-      const numSignedAccounts = this.header.numRequiredSignatures;
-      const numStaticAccountKeys = this.staticAccountKeys.length;
-      if (index >= numStaticAccountKeys) {
-        const lookupAccountKeysIndex = index - numStaticAccountKeys;
-        const numWritableLookupAccountKeys = this.addressTableLookups.reduce((count, lookup) => count + lookup.writableIndexes.length, 0);
-        return lookupAccountKeysIndex < numWritableLookupAccountKeys;
-      } else if (index >= this.header.numRequiredSignatures) {
-        const unsignedAccountIndex = index - numSignedAccounts;
-        const numUnsignedAccounts = numStaticAccountKeys - numSignedAccounts;
-        const numWritableUnsignedAccounts = numUnsignedAccounts - this.header.numReadonlyUnsignedAccounts;
-        return unsignedAccountIndex < numWritableUnsignedAccounts;
-      } else {
-        const numWritableSignedAccounts = numSignedAccounts - this.header.numReadonlySignedAccounts;
-        return index < numWritableSignedAccounts;
-      }
-    }
-    resolveAddressTableLookups(addressLookupTableAccounts) {
-      const accountKeysFromLookups = {
-        writable: [],
-        readonly: []
-      };
-      for (const tableLookup of this.addressTableLookups) {
-        const tableAccount = addressLookupTableAccounts.find((account) => account.key.equals(tableLookup.accountKey));
-        if (!tableAccount) {
-          throw new Error(`Failed to find address lookup table account for table key ${tableLookup.accountKey.toBase58()}`);
-        }
-        for (const index of tableLookup.writableIndexes) {
-          if (index < tableAccount.state.addresses.length) {
-            accountKeysFromLookups.writable.push(tableAccount.state.addresses[index]);
-          } else {
-            throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
-          }
-        }
-        for (const index of tableLookup.readonlyIndexes) {
-          if (index < tableAccount.state.addresses.length) {
-            accountKeysFromLookups.readonly.push(tableAccount.state.addresses[index]);
-          } else {
-            throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
-          }
-        }
-      }
-      return accountKeysFromLookups;
-    }
-    static compile(args) {
-      const compiledKeys = CompiledKeys.compile(args.instructions, args.payerKey);
-      const addressTableLookups = new Array();
-      const accountKeysFromLookups = {
-        writable: new Array(),
-        readonly: new Array()
-      };
-      const lookupTableAccounts = args.addressLookupTableAccounts || [];
-      for (const lookupTable of lookupTableAccounts) {
-        const extractResult = compiledKeys.extractTableLookup(lookupTable);
-        if (extractResult !== void 0) {
-          const [addressTableLookup, {
-            writable,
-            readonly
-          }] = extractResult;
-          addressTableLookups.push(addressTableLookup);
-          accountKeysFromLookups.writable.push(...writable);
-          accountKeysFromLookups.readonly.push(...readonly);
-        }
-      }
-      const [header, staticAccountKeys] = compiledKeys.getMessageComponents();
-      const accountKeys = new MessageAccountKeys(staticAccountKeys, accountKeysFromLookups);
-      const compiledInstructions = accountKeys.compileInstructions(args.instructions);
-      return new MessageV0({
-        header,
-        staticAccountKeys,
-        recentBlockhash: args.recentBlockhash,
-        compiledInstructions,
-        addressTableLookups
-      });
-    }
-    serialize() {
-      const encodedStaticAccountKeysLength = Array();
-      encodeLength(encodedStaticAccountKeysLength, this.staticAccountKeys.length);
-      const serializedInstructions = this.serializeInstructions();
-      const encodedInstructionsLength = Array();
-      encodeLength(encodedInstructionsLength, this.compiledInstructions.length);
-      const serializedAddressTableLookups = this.serializeAddressTableLookups();
-      const encodedAddressTableLookupsLength = Array();
-      encodeLength(encodedAddressTableLookupsLength, this.addressTableLookups.length);
-      const messageLayout = BufferLayout.struct([BufferLayout.u8("prefix"), BufferLayout.struct([BufferLayout.u8("numRequiredSignatures"), BufferLayout.u8("numReadonlySignedAccounts"), BufferLayout.u8("numReadonlyUnsignedAccounts")], "header"), BufferLayout.blob(encodedStaticAccountKeysLength.length, "staticAccountKeysLength"), BufferLayout.seq(publicKey(), this.staticAccountKeys.length, "staticAccountKeys"), publicKey("recentBlockhash"), BufferLayout.blob(encodedInstructionsLength.length, "instructionsLength"), BufferLayout.blob(serializedInstructions.length, "serializedInstructions"), BufferLayout.blob(encodedAddressTableLookupsLength.length, "addressTableLookupsLength"), BufferLayout.blob(serializedAddressTableLookups.length, "serializedAddressTableLookups")]);
-      const serializedMessage = new Uint8Array(PACKET_DATA_SIZE);
-      const MESSAGE_VERSION_0_PREFIX = 1 << 7;
-      const serializedMessageLength = messageLayout.encode({
-        prefix: MESSAGE_VERSION_0_PREFIX,
-        header: this.header,
-        staticAccountKeysLength: new Uint8Array(encodedStaticAccountKeysLength),
-        staticAccountKeys: this.staticAccountKeys.map((key) => key.toBytes()),
-        recentBlockhash: import_bs58.default.decode(this.recentBlockhash),
-        instructionsLength: new Uint8Array(encodedInstructionsLength),
-        serializedInstructions,
-        addressTableLookupsLength: new Uint8Array(encodedAddressTableLookupsLength),
-        serializedAddressTableLookups
-      }, serializedMessage);
-      return serializedMessage.slice(0, serializedMessageLength);
-    }
-    serializeInstructions() {
-      let serializedLength = 0;
-      const serializedInstructions = new Uint8Array(PACKET_DATA_SIZE);
-      for (const instruction of this.compiledInstructions) {
-        const encodedAccountKeyIndexesLength = Array();
-        encodeLength(encodedAccountKeyIndexesLength, instruction.accountKeyIndexes.length);
-        const encodedDataLength = Array();
-        encodeLength(encodedDataLength, instruction.data.length);
-        const instructionLayout = BufferLayout.struct([BufferLayout.u8("programIdIndex"), BufferLayout.blob(encodedAccountKeyIndexesLength.length, "encodedAccountKeyIndexesLength"), BufferLayout.seq(BufferLayout.u8(), instruction.accountKeyIndexes.length, "accountKeyIndexes"), BufferLayout.blob(encodedDataLength.length, "encodedDataLength"), BufferLayout.blob(instruction.data.length, "data")]);
-        serializedLength += instructionLayout.encode({
-          programIdIndex: instruction.programIdIndex,
-          encodedAccountKeyIndexesLength: new Uint8Array(encodedAccountKeyIndexesLength),
-          accountKeyIndexes: instruction.accountKeyIndexes,
-          encodedDataLength: new Uint8Array(encodedDataLength),
-          data: instruction.data
-        }, serializedInstructions, serializedLength);
-      }
-      return serializedInstructions.slice(0, serializedLength);
-    }
-    serializeAddressTableLookups() {
-      let serializedLength = 0;
-      const serializedAddressTableLookups = new Uint8Array(PACKET_DATA_SIZE);
-      for (const lookup of this.addressTableLookups) {
-        const encodedWritableIndexesLength = Array();
-        encodeLength(encodedWritableIndexesLength, lookup.writableIndexes.length);
-        const encodedReadonlyIndexesLength = Array();
-        encodeLength(encodedReadonlyIndexesLength, lookup.readonlyIndexes.length);
-        const addressTableLookupLayout = BufferLayout.struct([publicKey("accountKey"), BufferLayout.blob(encodedWritableIndexesLength.length, "encodedWritableIndexesLength"), BufferLayout.seq(BufferLayout.u8(), lookup.writableIndexes.length, "writableIndexes"), BufferLayout.blob(encodedReadonlyIndexesLength.length, "encodedReadonlyIndexesLength"), BufferLayout.seq(BufferLayout.u8(), lookup.readonlyIndexes.length, "readonlyIndexes")]);
-        serializedLength += addressTableLookupLayout.encode({
-          accountKey: lookup.accountKey.toBytes(),
-          encodedWritableIndexesLength: new Uint8Array(encodedWritableIndexesLength),
-          writableIndexes: lookup.writableIndexes,
-          encodedReadonlyIndexesLength: new Uint8Array(encodedReadonlyIndexesLength),
-          readonlyIndexes: lookup.readonlyIndexes
-        }, serializedAddressTableLookups, serializedLength);
-      }
-      return serializedAddressTableLookups.slice(0, serializedLength);
-    }
-    static deserialize(serializedMessage) {
-      let byteArray = [...serializedMessage];
-      const prefix = byteArray.shift();
-      const maskedPrefix = prefix & VERSION_PREFIX_MASK;
-      assert2(prefix !== maskedPrefix, `Expected versioned message but received legacy message`);
-      const version = maskedPrefix;
-      assert2(version === 0, `Expected versioned message with version 0 but found version ${version}`);
-      const header = {
-        numRequiredSignatures: byteArray.shift(),
-        numReadonlySignedAccounts: byteArray.shift(),
-        numReadonlyUnsignedAccounts: byteArray.shift()
-      };
-      const staticAccountKeys = [];
-      const staticAccountKeysLength = decodeLength(byteArray);
-      for (let i = 0; i < staticAccountKeysLength; i++) {
-        staticAccountKeys.push(new PublicKey(byteArray.splice(0, PUBLIC_KEY_LENGTH)));
-      }
-      const recentBlockhash = import_bs58.default.encode(byteArray.splice(0, PUBLIC_KEY_LENGTH));
-      const instructionCount = decodeLength(byteArray);
-      const compiledInstructions = [];
-      for (let i = 0; i < instructionCount; i++) {
-        const programIdIndex = byteArray.shift();
-        const accountKeyIndexesLength = decodeLength(byteArray);
-        const accountKeyIndexes = byteArray.splice(0, accountKeyIndexesLength);
-        const dataLength = decodeLength(byteArray);
-        const data = new Uint8Array(byteArray.splice(0, dataLength));
-        compiledInstructions.push({
-          programIdIndex,
-          accountKeyIndexes,
-          data
-        });
-      }
-      const addressTableLookupsCount = decodeLength(byteArray);
-      const addressTableLookups = [];
-      for (let i = 0; i < addressTableLookupsCount; i++) {
-        const accountKey = new PublicKey(byteArray.splice(0, PUBLIC_KEY_LENGTH));
-        const writableIndexesLength = decodeLength(byteArray);
-        const writableIndexes = byteArray.splice(0, writableIndexesLength);
-        const readonlyIndexesLength = decodeLength(byteArray);
-        const readonlyIndexes = byteArray.splice(0, readonlyIndexesLength);
-        addressTableLookups.push({
-          accountKey,
-          writableIndexes,
-          readonlyIndexes
-        });
-      }
-      return new MessageV0({
-        header,
-        staticAccountKeys,
-        recentBlockhash,
-        compiledInstructions,
-        addressTableLookups
-      });
-    }
-  };
-  var VersionedMessage = {
-    deserializeMessageVersion(serializedMessage) {
-      const prefix = serializedMessage[0];
-      const maskedPrefix = prefix & VERSION_PREFIX_MASK;
-      if (maskedPrefix === prefix) {
-        return "legacy";
-      }
-      return maskedPrefix;
-    },
-    deserialize: (serializedMessage) => {
-      const version = VersionedMessage.deserializeMessageVersion(serializedMessage);
-      if (version === "legacy") {
-        return Message.from(serializedMessage);
-      }
-      if (version === 0) {
-        return MessageV0.deserialize(serializedMessage);
-      } else {
-        throw new Error(`Transaction message version ${version} deserialization is not supported`);
-      }
-    }
-  };
-  var TransactionStatus = /* @__PURE__ */ function(TransactionStatus2) {
-    TransactionStatus2[TransactionStatus2["BLOCKHEIGHT_EXCEEDED"] = 0] = "BLOCKHEIGHT_EXCEEDED";
-    TransactionStatus2[TransactionStatus2["PROCESSED"] = 1] = "PROCESSED";
-    TransactionStatus2[TransactionStatus2["TIMED_OUT"] = 2] = "TIMED_OUT";
-    TransactionStatus2[TransactionStatus2["NONCE_INVALID"] = 3] = "NONCE_INVALID";
-    return TransactionStatus2;
-  }({});
   var DEFAULT_SIGNATURE = import_buffer.Buffer.alloc(SIGNATURE_LENGTH_IN_BYTES).fill(0);
   var TransactionInstruction = class {
     constructor(opts) {
@@ -14732,9 +14383,9 @@
           isWritable: true
         });
       }
-      for (const signature2 of this.signatures) {
+      for (const signature of this.signatures) {
         const uniqueIndex = uniqueMetas.findIndex((x) => {
-          return x.pubkey.equals(signature2.publicKey);
+          return x.pubkey.equals(signature.publicKey);
         });
         if (uniqueIndex > -1) {
           if (!uniqueMetas[uniqueIndex].isSigner) {
@@ -14742,7 +14393,7 @@
             console.warn("Transaction references a signature that is unnecessary, only the fee payer and instruction signer accounts should sign a transaction. This behavior is deprecated and will throw an error in the next major version release.");
           }
         } else {
-          throw new Error(`unknown signer: ${signature2.publicKey.toString()}`);
+          throw new Error(`unknown signer: ${signature.publicKey.toString()}`);
         }
       }
       let numRequiredSignatures = 0;
@@ -14878,36 +14529,36 @@
     _partialSign(message, ...signers) {
       const signData = message.serialize();
       signers.forEach((signer) => {
-        const signature2 = sign(signData, signer.secretKey);
-        this._addSignature(signer.publicKey, toBuffer(signature2));
+        const signature = sign(signData, signer.secretKey);
+        this._addSignature(signer.publicKey, toBuffer(signature));
       });
     }
-    addSignature(pubkey, signature2) {
+    addSignature(pubkey, signature) {
       this._compile();
-      this._addSignature(pubkey, signature2);
+      this._addSignature(pubkey, signature);
     }
-    _addSignature(pubkey, signature2) {
-      assert2(signature2.length === 64);
+    _addSignature(pubkey, signature) {
+      assert2(signature.length === 64);
       const index = this.signatures.findIndex((sigpair) => pubkey.equals(sigpair.publicKey));
       if (index < 0) {
         throw new Error(`unknown signer: ${pubkey.toString()}`);
       }
-      this.signatures[index].signature = import_buffer.Buffer.from(signature2);
+      this.signatures[index].signature = import_buffer.Buffer.from(signature);
     }
     verifySignatures(requireAllSignatures) {
       return this._verifySignatures(this.serializeMessage(), requireAllSignatures === void 0 ? true : requireAllSignatures);
     }
     _verifySignatures(signData, requireAllSignatures) {
       for (const {
-        signature: signature2,
+        signature,
         publicKey: publicKey2
       } of this.signatures) {
-        if (signature2 === null) {
+        if (signature === null) {
           if (requireAllSignatures) {
             return false;
           }
         } else {
-          if (!verify(signature2, signData, publicKey2.toBytes())) {
+          if (!verify(signature, signData, publicKey2.toBytes())) {
             return false;
           }
         }
@@ -14939,11 +14590,11 @@
       assert2(signatures.length < 256);
       import_buffer.Buffer.from(signatureCount).copy(wireTransaction, 0);
       signatures.forEach(({
-        signature: signature2
+        signature
       }, index) => {
-        if (signature2 !== null) {
-          assert2(signature2.length === 64, `signature has invalid length`);
-          import_buffer.Buffer.from(signature2).copy(wireTransaction, signatureCount.length + index * 64);
+        if (signature !== null) {
+          assert2(signature.length === 64, `signature has invalid length`);
+          import_buffer.Buffer.from(signature).copy(wireTransaction, signatureCount.length + index * 64);
         }
       });
       signData.copy(wireTransaction, signatureCount.length + signatures.length * 64);
@@ -14967,9 +14618,9 @@
       const signatureCount = decodeLength(byteArray);
       let signatures = [];
       for (let i = 0; i < signatureCount; i++) {
-        const signature2 = byteArray.slice(0, SIGNATURE_LENGTH_IN_BYTES);
+        const signature = byteArray.slice(0, SIGNATURE_LENGTH_IN_BYTES);
         byteArray = byteArray.slice(SIGNATURE_LENGTH_IN_BYTES);
-        signatures.push(import_bs58.default.encode(import_buffer.Buffer.from(signature2)));
+        signatures.push(import_bs58.default.encode(import_buffer.Buffer.from(signature)));
       }
       return Transaction.populate(Message.from(byteArray), signatures);
     }
@@ -14979,9 +14630,9 @@
       if (message.header.numRequiredSignatures > 0) {
         transaction.feePayer = message.accountKeys[0];
       }
-      signatures.forEach((signature2, index) => {
+      signatures.forEach((signature, index) => {
         const sigPubkeyPair = {
-          signature: signature2 == import_bs58.default.encode(DEFAULT_SIGNATURE) ? null : import_bs58.default.decode(signature2),
+          signature: signature == import_bs58.default.encode(DEFAULT_SIGNATURE) ? null : import_bs58.default.decode(signature),
           publicKey: message.accountKeys[index]
         };
         transaction.signatures.push(sigPubkeyPair);
@@ -15006,65 +14657,6 @@
       return transaction;
     }
   };
-  var VersionedTransaction = class {
-    get version() {
-      return this.message.version;
-    }
-    constructor(message, signatures) {
-      this.signatures = void 0;
-      this.message = void 0;
-      if (signatures !== void 0) {
-        assert2(signatures.length === message.header.numRequiredSignatures, "Expected signatures length to be equal to the number of required signatures");
-        this.signatures = signatures;
-      } else {
-        const defaultSignatures = [];
-        for (let i = 0; i < message.header.numRequiredSignatures; i++) {
-          defaultSignatures.push(new Uint8Array(SIGNATURE_LENGTH_IN_BYTES));
-        }
-        this.signatures = defaultSignatures;
-      }
-      this.message = message;
-    }
-    serialize() {
-      const serializedMessage = this.message.serialize();
-      const encodedSignaturesLength = Array();
-      encodeLength(encodedSignaturesLength, this.signatures.length);
-      const transactionLayout = BufferLayout.struct([BufferLayout.blob(encodedSignaturesLength.length, "encodedSignaturesLength"), BufferLayout.seq(signature(), this.signatures.length, "signatures"), BufferLayout.blob(serializedMessage.length, "serializedMessage")]);
-      const serializedTransaction = new Uint8Array(2048);
-      const serializedTransactionLength = transactionLayout.encode({
-        encodedSignaturesLength: new Uint8Array(encodedSignaturesLength),
-        signatures: this.signatures,
-        serializedMessage
-      }, serializedTransaction);
-      return serializedTransaction.slice(0, serializedTransactionLength);
-    }
-    static deserialize(serializedTransaction) {
-      let byteArray = [...serializedTransaction];
-      const signatures = [];
-      const signaturesLength = decodeLength(byteArray);
-      for (let i = 0; i < signaturesLength; i++) {
-        signatures.push(new Uint8Array(byteArray.splice(0, SIGNATURE_LENGTH_IN_BYTES)));
-      }
-      const message = VersionedMessage.deserialize(new Uint8Array(byteArray));
-      return new VersionedTransaction(message, signatures);
-    }
-    sign(signers) {
-      const messageData = this.message.serialize();
-      const signerPubkeys = this.message.staticAccountKeys.slice(0, this.message.header.numRequiredSignatures);
-      for (const signer of signers) {
-        const signerIndex = signerPubkeys.findIndex((pubkey) => pubkey.equals(signer.publicKey));
-        assert2(signerIndex >= 0, `Cannot sign with non signer key ${signer.publicKey.toBase58()}`);
-        this.signatures[signerIndex] = sign(messageData, signer.secretKey);
-      }
-    }
-    addSignature(publicKey2, signature2) {
-      assert2(signature2.byteLength === 64, "Signature must be 64 bytes long");
-      const signerPubkeys = this.message.staticAccountKeys.slice(0, this.message.header.numRequiredSignatures);
-      const signerIndex = signerPubkeys.findIndex((pubkey) => pubkey.equals(publicKey2));
-      assert2(signerIndex >= 0, `Can not add signature; \`${publicKey2.toBase58()}\` is not required to sign this transaction`);
-      this.signatures[signerIndex] = signature2;
-    }
-  };
   var NUM_TICKS_PER_SECOND = 160;
   var DEFAULT_TICKS_PER_SLOT = 64;
   var NUM_SLOTS_PER_SECOND = NUM_TICKS_PER_SECOND / DEFAULT_TICKS_PER_SLOT;
@@ -15085,12 +14677,12 @@
       maxRetries: options.maxRetries,
       minContextSlot: options.minContextSlot
     };
-    const signature2 = await connection.sendTransaction(transaction, signers, sendOptions);
+    const signature = await connection.sendTransaction(transaction, signers, sendOptions);
     let status;
     if (transaction.recentBlockhash != null && transaction.lastValidBlockHeight != null) {
       status = (await connection.confirmTransaction({
         abortSignal: options == null ? void 0 : options.abortSignal,
-        signature: signature2,
+        signature,
         blockhash: transaction.recentBlockhash,
         lastValidBlockHeight: transaction.lastValidBlockHeight
       }, options && options.commitment)).value;
@@ -15104,18 +14696,18 @@
         minContextSlot: transaction.minNonceContextSlot,
         nonceAccountPubkey,
         nonceValue: transaction.nonceInfo.nonce,
-        signature: signature2
+        signature
       }, options && options.commitment)).value;
     } else {
       if ((options == null ? void 0 : options.abortSignal) != null) {
         console.warn("sendAndConfirmTransaction(): A transaction with a deprecated confirmation strategy was supplied along with an `abortSignal`. Only transactions having `lastValidBlockHeight` or a combination of `nonceInfo` and `minNonceContextSlot` are abortable.");
       }
-      status = (await connection.confirmTransaction(signature2, options && options.commitment)).value;
+      status = (await connection.confirmTransaction(signature, options && options.commitment)).value;
     }
     if (status.err) {
-      throw new Error(`Transaction ${signature2} failed (${JSON.stringify(status)})`);
+      throw new Error(`Transaction ${signature} failed (${JSON.stringify(status)})`);
     }
-    return signature2;
+    return signature;
   }
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -15132,29 +14724,11 @@
   var FeeCalculatorLayout = BufferLayout.nu64("lamportsPerSignature");
   var NonceAccountLayout = BufferLayout.struct([BufferLayout.u32("version"), BufferLayout.u32("state"), publicKey("authorizedPubkey"), publicKey("nonce"), BufferLayout.struct([FeeCalculatorLayout], "feeCalculator")]);
   var NONCE_ACCOUNT_LENGTH = NonceAccountLayout.span;
-  var NonceAccount = class {
-    constructor(args) {
-      this.authorizedPubkey = void 0;
-      this.nonce = void 0;
-      this.feeCalculator = void 0;
-      this.authorizedPubkey = args.authorizedPubkey;
-      this.nonce = args.nonce;
-      this.feeCalculator = args.feeCalculator;
-    }
-    static fromAccountData(buffer) {
-      const nonceAccount = NonceAccountLayout.decode(toBuffer(buffer), 0);
-      return new NonceAccount({
-        authorizedPubkey: new PublicKey(nonceAccount.authorizedPubkey),
-        nonce: new PublicKey(nonceAccount.nonce).toString(),
-        feeCalculator: nonceAccount.feeCalculator
-      });
-    }
-  };
   var encodeDecode = (layout) => {
-    const decode = layout.decode.bind(layout);
+    const decode2 = layout.decode.bind(layout);
     const encode = layout.encode.bind(layout);
     return {
-      decode,
+      decode: decode2,
       encode
     };
   };
@@ -15162,11 +14736,11 @@
     const layout = (0, import_buffer_layout.blob)(length, property);
     const {
       encode,
-      decode
+      decode: decode2
     } = encodeDecode(layout);
     const bigIntLayout = layout;
     bigIntLayout.decode = (buffer, offset2) => {
-      const src = decode(buffer, offset2);
+      const src = decode2(buffer, offset2);
       return (0, import_bigint_buffer.toBigIntLE)(import_buffer.Buffer.from(src));
     };
     bigIntLayout.encode = (bigInt2, buffer, offset2) => {
@@ -15669,249 +15243,7 @@
   };
   Loader.chunkSize = CHUNK_SIZE;
   var BPF_LOADER_PROGRAM_ID = new PublicKey("BPFLoader2111111111111111111111111111111111");
-  function getDefaultExportFromCjs(x) {
-    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
-  }
-  var objToString = Object.prototype.toString;
-  var objKeys = Object.keys || function(obj) {
-    var keys = [];
-    for (var name in obj) {
-      keys.push(name);
-    }
-    return keys;
-  };
-  function stringify(val, isArrayProp) {
-    var i, max, str, keys, key, propVal, toStr;
-    if (val === true) {
-      return "true";
-    }
-    if (val === false) {
-      return "false";
-    }
-    switch (typeof val) {
-      case "object":
-        if (val === null) {
-          return null;
-        } else if (val.toJSON && typeof val.toJSON === "function") {
-          return stringify(val.toJSON(), isArrayProp);
-        } else {
-          toStr = objToString.call(val);
-          if (toStr === "[object Array]") {
-            str = "[";
-            max = val.length - 1;
-            for (i = 0; i < max; i++) {
-              str += stringify(val[i], true) + ",";
-            }
-            if (max > -1) {
-              str += stringify(val[i], true);
-            }
-            return str + "]";
-          } else if (toStr === "[object Object]") {
-            keys = objKeys(val).sort();
-            max = keys.length;
-            str = "";
-            i = 0;
-            while (i < max) {
-              key = keys[i];
-              propVal = stringify(val[key], false);
-              if (propVal !== void 0) {
-                if (str) {
-                  str += ",";
-                }
-                str += JSON.stringify(key) + ":" + propVal;
-              }
-              i++;
-            }
-            return "{" + str + "}";
-          } else {
-            return JSON.stringify(val);
-          }
-        }
-      case "function":
-      case "undefined":
-        return isArrayProp ? null : void 0;
-      case "string":
-        return JSON.stringify(val);
-      default:
-        return isFinite(val) ? val : null;
-    }
-  }
-  var fastStableStringify = function(val) {
-    var returnVal = stringify(val, false);
-    if (returnVal !== void 0) {
-      return "" + returnVal;
-    }
-  };
-  var fastStableStringify$1 = /* @__PURE__ */ getDefaultExportFromCjs(fastStableStringify);
-  var MINIMUM_SLOT_PER_EPOCH = 32;
-  function trailingZeros(n) {
-    let trailingZeros2 = 0;
-    while (n > 1) {
-      n /= 2;
-      trailingZeros2++;
-    }
-    return trailingZeros2;
-  }
-  function nextPowerOfTwo(n) {
-    if (n === 0)
-      return 1;
-    n--;
-    n |= n >> 1;
-    n |= n >> 2;
-    n |= n >> 4;
-    n |= n >> 8;
-    n |= n >> 16;
-    n |= n >> 32;
-    return n + 1;
-  }
-  var EpochSchedule = class {
-    constructor(slotsPerEpoch, leaderScheduleSlotOffset, warmup, firstNormalEpoch, firstNormalSlot) {
-      this.slotsPerEpoch = void 0;
-      this.leaderScheduleSlotOffset = void 0;
-      this.warmup = void 0;
-      this.firstNormalEpoch = void 0;
-      this.firstNormalSlot = void 0;
-      this.slotsPerEpoch = slotsPerEpoch;
-      this.leaderScheduleSlotOffset = leaderScheduleSlotOffset;
-      this.warmup = warmup;
-      this.firstNormalEpoch = firstNormalEpoch;
-      this.firstNormalSlot = firstNormalSlot;
-    }
-    getEpoch(slot) {
-      return this.getEpochAndSlotIndex(slot)[0];
-    }
-    getEpochAndSlotIndex(slot) {
-      if (slot < this.firstNormalSlot) {
-        const epoch = trailingZeros(nextPowerOfTwo(slot + MINIMUM_SLOT_PER_EPOCH + 1)) - trailingZeros(MINIMUM_SLOT_PER_EPOCH) - 1;
-        const epochLen = this.getSlotsInEpoch(epoch);
-        const slotIndex = slot - (epochLen - MINIMUM_SLOT_PER_EPOCH);
-        return [epoch, slotIndex];
-      } else {
-        const normalSlotIndex = slot - this.firstNormalSlot;
-        const normalEpochIndex = Math.floor(normalSlotIndex / this.slotsPerEpoch);
-        const epoch = this.firstNormalEpoch + normalEpochIndex;
-        const slotIndex = normalSlotIndex % this.slotsPerEpoch;
-        return [epoch, slotIndex];
-      }
-    }
-    getFirstSlotInEpoch(epoch) {
-      if (epoch <= this.firstNormalEpoch) {
-        return (Math.pow(2, epoch) - 1) * MINIMUM_SLOT_PER_EPOCH;
-      } else {
-        return (epoch - this.firstNormalEpoch) * this.slotsPerEpoch + this.firstNormalSlot;
-      }
-    }
-    getLastSlotInEpoch(epoch) {
-      return this.getFirstSlotInEpoch(epoch) + this.getSlotsInEpoch(epoch) - 1;
-    }
-    getSlotsInEpoch(epoch) {
-      if (epoch < this.firstNormalEpoch) {
-        return Math.pow(2, epoch + trailingZeros(MINIMUM_SLOT_PER_EPOCH));
-      } else {
-        return this.slotsPerEpoch;
-      }
-    }
-  };
-  var SendTransactionError = class extends Error {
-    constructor(message, logs) {
-      super(message);
-      this.logs = void 0;
-      this.logs = logs;
-    }
-  };
-  var SolanaJSONRPCError = class extends Error {
-    constructor({
-      code,
-      message,
-      data
-    }, customMessage) {
-      super(customMessage != null ? `${customMessage}: ${message}` : message);
-      this.code = void 0;
-      this.data = void 0;
-      this.code = code;
-      this.data = data;
-      this.name = "SolanaJSONRPCError";
-    }
-  };
   var fetchImpl = globalThis.fetch;
-  var RpcWebSocketClient = class extends import_client.default {
-    constructor(address, options, generate_request_id) {
-      const webSocketFactory = (url) => {
-        const rpc = (0, import_websocket.default)(url, __assign({
-          autoconnect: true,
-          max_reconnects: 5,
-          reconnect: true,
-          reconnect_interval: 1e3
-        }, options));
-        if ("socket" in rpc) {
-          this.underlyingSocket = rpc.socket;
-        } else {
-          this.underlyingSocket = rpc;
-        }
-        return rpc;
-      };
-      super(webSocketFactory, address, options, generate_request_id);
-      this.underlyingSocket = void 0;
-    }
-    call(...args) {
-      var _a;
-      const readyState = (_a = this.underlyingSocket) == null ? void 0 : _a.readyState;
-      if (readyState === 1) {
-        return super.call(...args);
-      }
-      return Promise.reject(new Error("Tried to call a JSON-RPC method `" + args[0] + "` but the socket was not `CONNECTING` or `OPEN` (`readyState` was " + readyState + ")"));
-    }
-    notify(...args) {
-      var _a;
-      const readyState = (_a = this.underlyingSocket) == null ? void 0 : _a.readyState;
-      if (readyState === 1) {
-        return super.notify(...args);
-      }
-      return Promise.reject(new Error("Tried to send a JSON-RPC notification `" + args[0] + "` but the socket was not `CONNECTING` or `OPEN` (`readyState` was " + readyState + ")"));
-    }
-  };
-  function decodeData(type2, data) {
-    let decoded;
-    try {
-      decoded = type2.layout.decode(data);
-    } catch (err) {
-      throw new Error("invalid instruction; " + err);
-    }
-    if (decoded.typeIndex !== type2.index) {
-      throw new Error(`invalid account data; account type mismatch ${decoded.typeIndex} != ${type2.index}`);
-    }
-    return decoded;
-  }
-  var LOOKUP_TABLE_META_SIZE = 56;
-  var AddressLookupTableAccount = class {
-    constructor(args) {
-      this.key = void 0;
-      this.state = void 0;
-      this.key = args.key;
-      this.state = args.state;
-    }
-    isActive() {
-      const U64_MAX = BigInt("0xffffffffffffffff");
-      return this.state.deactivationSlot === U64_MAX;
-    }
-    static deserialize(accountData) {
-      const meta = decodeData(LookupTableMetaLayout, accountData);
-      const serializedAddressesLen = accountData.length - LOOKUP_TABLE_META_SIZE;
-      assert2(serializedAddressesLen >= 0, "lookup table is invalid");
-      assert2(serializedAddressesLen % 32 === 0, "lookup table is invalid");
-      const numSerializedAddresses = serializedAddressesLen / 32;
-      const {
-        addresses
-      } = BufferLayout.struct([BufferLayout.seq(publicKey(), numSerializedAddresses, "addresses")]).decode(accountData.slice(LOOKUP_TABLE_META_SIZE));
-      return {
-        deactivationSlot: meta.deactivationSlot,
-        lastExtendedSlot: meta.lastExtendedSlot,
-        lastExtendedSlotStartIndex: meta.lastExtendedStartIndex,
-        authority: meta.authority.length !== 0 ? new PublicKey(meta.authority[0]) : void 0,
-        addresses: addresses.map((address) => new PublicKey(address))
-      };
-    }
-  };
   var LookupTableMetaLayout = {
     index: 1,
     layout: BufferLayout.struct([
@@ -15923,52 +15255,10 @@
       BufferLayout.seq(publicKey(), BufferLayout.offset(BufferLayout.u8(), -1), "authority")
     ])
   };
-  var URL_RE = /^[^:]+:\/\/([^:[]+|\[[^\]]+\])(:\d+)?(.*)/i;
-  function makeWebsocketUrl(endpoint2) {
-    const matches = endpoint2.match(URL_RE);
-    if (matches == null) {
-      throw TypeError(`Failed to validate endpoint URL \`${endpoint2}\``);
-    }
-    const [
-      _,
-      hostish,
-      portWithColon,
-      rest
-    ] = matches;
-    const protocol = endpoint2.startsWith("https:") ? "wss:" : "ws:";
-    const startPort = portWithColon == null ? null : parseInt(portWithColon.slice(1), 10);
-    const websocketPort = startPort == null ? "" : `:${startPort + 1}`;
-    return `${protocol}//${hostish}${websocketPort}${rest}`;
-  }
   var PublicKeyFromString = coerce(instance(PublicKey), string(), (value) => new PublicKey(value));
   var RawAccountDataResult = tuple([string(), literal("base64")]);
   var BufferFromRawAccountData = coerce(instance(import_buffer.Buffer), RawAccountDataResult, (value) => import_buffer.Buffer.from(value[0], "base64"));
   var BLOCKHASH_CACHE_TIMEOUT_MS = 30 * 1e3;
-  function assertEndpointUrl(putativeUrl) {
-    if (/^https?:/.test(putativeUrl) === false) {
-      throw new TypeError("Endpoint URL must start with `http:` or `https:`.");
-    }
-    return putativeUrl;
-  }
-  function extractCommitmentFromConfig(commitmentOrConfig) {
-    let commitment;
-    let config;
-    if (typeof commitmentOrConfig === "string") {
-      commitment = commitmentOrConfig;
-    } else if (commitmentOrConfig) {
-      const {
-        commitment: specifiedCommitment
-      } = commitmentOrConfig, specifiedConfig = __rest(commitmentOrConfig, [
-        "commitment"
-      ]);
-      commitment = specifiedCommitment;
-      config = specifiedConfig;
-    }
-    return {
-      commitment,
-      config
-    };
-  }
   function createRpcResult(result) {
     return union([type({
       jsonrpc: literal("2.0"),
@@ -16011,23 +15301,6 @@
       }),
       value
     });
-  }
-  function versionedMessageFromResponse(version, response) {
-    if (version === 0) {
-      return new MessageV0({
-        header: response.header,
-        staticAccountKeys: response.accountKeys.map((accountKey) => new PublicKey(accountKey)),
-        recentBlockhash: response.recentBlockhash,
-        compiledInstructions: response.instructions.map((ix) => ({
-          programIdIndex: ix.programIdIndex,
-          accountKeyIndexes: ix.accounts,
-          data: import_bs58.default.decode(ix.data)
-        })),
-        addressTableLookups: response.addressTableLookups
-      });
-    } else {
-      return new Message(response);
-    }
   }
   var GetInflationGovernorResult = type({
     foundation: number(),
@@ -16101,104 +15374,6 @@
       lastSlot: number()
     })
   }));
-  function createRpcClient(url, httpHeaders, customFetch, fetchMiddleware, disableRetryOnRateLimit, httpAgent) {
-    const fetch = customFetch ? customFetch : fetchImpl;
-    let agent;
-    {
-      if (httpAgent != null) {
-        console.warn("You have supplied an `httpAgent` when creating a `Connection` in a browser environment.It has been ignored; `httpAgent` is only used in Node environments.");
-      }
-    }
-    let fetchWithMiddleware;
-    if (fetchMiddleware) {
-      fetchWithMiddleware = async (info, init) => {
-        const modifiedFetchArgs = await new Promise((resolve, reject) => {
-          try {
-            fetchMiddleware(info, init, (modifiedInfo, modifiedInit) => resolve([modifiedInfo, modifiedInit]));
-          } catch (error) {
-            reject(error);
-          }
-        });
-        return await fetch(...modifiedFetchArgs);
-      };
-    }
-    const clientBrowser = new import_browser.default(async (request, callback) => {
-      const options = {
-        method: "POST",
-        body: request,
-        agent,
-        headers: Object.assign({
-          "Content-Type": "application/json"
-        }, httpHeaders || {}, COMMON_HTTP_HEADERS)
-      };
-      try {
-        let too_many_requests_retries = 5;
-        let res;
-        let waitTime = 500;
-        for (; ; ) {
-          if (fetchWithMiddleware) {
-            res = await fetchWithMiddleware(url, options);
-          } else {
-            res = await fetch(url, options);
-          }
-          if (res.status !== 429) {
-            break;
-          }
-          if (disableRetryOnRateLimit === true) {
-            break;
-          }
-          too_many_requests_retries -= 1;
-          if (too_many_requests_retries === 0) {
-            break;
-          }
-          console.log(`Server responded with ${res.status} ${res.statusText}.  Retrying after ${waitTime}ms delay...`);
-          await sleep(waitTime);
-          waitTime *= 2;
-        }
-        const text = await res.text();
-        if (res.ok) {
-          callback(null, text);
-        } else {
-          callback(new Error(`${res.status} ${res.statusText}: ${text}`));
-        }
-      } catch (err) {
-        if (err instanceof Error)
-          callback(err);
-      }
-    }, {});
-    return clientBrowser;
-  }
-  function createRpcRequest(client) {
-    return (method, args) => {
-      return new Promise((resolve, reject) => {
-        client.request(method, args, (err, response) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(response);
-        });
-      });
-    };
-  }
-  function createRpcBatchRequest(client) {
-    return (requests) => {
-      return new Promise((resolve, reject) => {
-        if (requests.length === 0)
-          resolve([]);
-        const batch = requests.map((params) => {
-          return client.request(params.methodName, params.args);
-        });
-        client.request(batch, (err, response) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(response);
-        });
-      });
-    };
-  }
   var GetInflationGovernorRpcResult = jsonRpcResult(GetInflationGovernorResult);
   var GetInflationRateRpcResult = jsonRpcResult(GetInflationRateResult);
   var GetRecentPrioritizationFeesRpcResult = jsonRpcResult(GetRecentPrioritizationFeesResult);
@@ -16648,2080 +15823,6 @@
   var COMMON_HTTP_HEADERS = {
     "solana-client": `js/${"0.0.0-development"}`
   };
-  var Connection = class {
-    constructor(endpoint2, _commitmentOrConfig) {
-      this._commitment = void 0;
-      this._confirmTransactionInitialTimeout = void 0;
-      this._rpcEndpoint = void 0;
-      this._rpcWsEndpoint = void 0;
-      this._rpcClient = void 0;
-      this._rpcRequest = void 0;
-      this._rpcBatchRequest = void 0;
-      this._rpcWebSocket = void 0;
-      this._rpcWebSocketConnected = false;
-      this._rpcWebSocketHeartbeat = null;
-      this._rpcWebSocketIdleTimeout = null;
-      this._rpcWebSocketGeneration = 0;
-      this._disableBlockhashCaching = false;
-      this._pollingBlockhash = false;
-      this._blockhashInfo = {
-        latestBlockhash: null,
-        lastFetch: 0,
-        transactionSignatures: [],
-        simulatedSignatures: []
-      };
-      this._nextClientSubscriptionId = 0;
-      this._subscriptionDisposeFunctionsByClientSubscriptionId = {};
-      this._subscriptionHashByClientSubscriptionId = {};
-      this._subscriptionStateChangeCallbacksByHash = {};
-      this._subscriptionCallbacksByServerSubscriptionId = {};
-      this._subscriptionsByHash = {};
-      this._subscriptionsAutoDisposedByRpc = new Set();
-      this.getBlockHeight = (() => {
-        const requestPromises = {};
-        return async (commitmentOrConfig) => {
-          var _a;
-          const {
-            commitment,
-            config
-          } = extractCommitmentFromConfig(commitmentOrConfig);
-          const args = this._buildArgs([], commitment, void 0, config);
-          const requestHash = fastStableStringify$1(args);
-          requestPromises[requestHash] = (_a = requestPromises[requestHash]) != null ? _a : (async () => {
-            try {
-              const unsafeRes = await this._rpcRequest("getBlockHeight", args);
-              const res = create(unsafeRes, jsonRpcResult(number()));
-              if ("error" in res) {
-                throw new SolanaJSONRPCError(res.error, "failed to get block height information");
-              }
-              return res.result;
-            } finally {
-              delete requestPromises[requestHash];
-            }
-          })();
-          return await requestPromises[requestHash];
-        };
-      })();
-      let wsEndpoint;
-      let httpHeaders;
-      let fetch;
-      let fetchMiddleware;
-      let disableRetryOnRateLimit;
-      let httpAgent;
-      if (_commitmentOrConfig && typeof _commitmentOrConfig === "string") {
-        this._commitment = _commitmentOrConfig;
-      } else if (_commitmentOrConfig) {
-        this._commitment = _commitmentOrConfig.commitment;
-        this._confirmTransactionInitialTimeout = _commitmentOrConfig.confirmTransactionInitialTimeout;
-        wsEndpoint = _commitmentOrConfig.wsEndpoint;
-        httpHeaders = _commitmentOrConfig.httpHeaders;
-        fetch = _commitmentOrConfig.fetch;
-        fetchMiddleware = _commitmentOrConfig.fetchMiddleware;
-        disableRetryOnRateLimit = _commitmentOrConfig.disableRetryOnRateLimit;
-        httpAgent = _commitmentOrConfig.httpAgent;
-      }
-      this._rpcEndpoint = assertEndpointUrl(endpoint2);
-      this._rpcWsEndpoint = wsEndpoint || makeWebsocketUrl(endpoint2);
-      this._rpcClient = createRpcClient(endpoint2, httpHeaders, fetch, fetchMiddleware, disableRetryOnRateLimit, httpAgent);
-      this._rpcRequest = createRpcRequest(this._rpcClient);
-      this._rpcBatchRequest = createRpcBatchRequest(this._rpcClient);
-      this._rpcWebSocket = new RpcWebSocketClient(this._rpcWsEndpoint, {
-        autoconnect: false,
-        max_reconnects: Infinity
-      });
-      this._rpcWebSocket.on("open", this._wsOnOpen.bind(this));
-      this._rpcWebSocket.on("error", this._wsOnError.bind(this));
-      this._rpcWebSocket.on("close", this._wsOnClose.bind(this));
-      this._rpcWebSocket.on("accountNotification", this._wsOnAccountNotification.bind(this));
-      this._rpcWebSocket.on("programNotification", this._wsOnProgramAccountNotification.bind(this));
-      this._rpcWebSocket.on("slotNotification", this._wsOnSlotNotification.bind(this));
-      this._rpcWebSocket.on("slotsUpdatesNotification", this._wsOnSlotUpdatesNotification.bind(this));
-      this._rpcWebSocket.on("signatureNotification", this._wsOnSignatureNotification.bind(this));
-      this._rpcWebSocket.on("rootNotification", this._wsOnRootNotification.bind(this));
-      this._rpcWebSocket.on("logsNotification", this._wsOnLogsNotification.bind(this));
-    }
-    get commitment() {
-      return this._commitment;
-    }
-    get rpcEndpoint() {
-      return this._rpcEndpoint;
-    }
-    async getBalanceAndContext(publicKey2, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([publicKey2.toBase58()], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getBalance", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(number()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get balance for ${publicKey2.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getBalance(publicKey2, commitmentOrConfig) {
-      return await this.getBalanceAndContext(publicKey2, commitmentOrConfig).then((x) => x.value).catch((e) => {
-        throw new Error("failed to get balance of account " + publicKey2.toBase58() + ": " + e);
-      });
-    }
-    async getBlockTime(slot) {
-      const unsafeRes = await this._rpcRequest("getBlockTime", [slot]);
-      const res = create(unsafeRes, jsonRpcResult(nullable(number())));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get block time for slot ${slot}`);
-      }
-      return res.result;
-    }
-    async getMinimumLedgerSlot() {
-      const unsafeRes = await this._rpcRequest("minimumLedgerSlot", []);
-      const res = create(unsafeRes, jsonRpcResult(number()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get minimum ledger slot");
-      }
-      return res.result;
-    }
-    async getFirstAvailableBlock() {
-      const unsafeRes = await this._rpcRequest("getFirstAvailableBlock", []);
-      const res = create(unsafeRes, SlotRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get first available block");
-      }
-      return res.result;
-    }
-    async getSupply(config) {
-      let configArg = {};
-      if (typeof config === "string") {
-        configArg = {
-          commitment: config
-        };
-      } else if (config) {
-        configArg = __assign(__assign({}, config), {
-          commitment: config && config.commitment || this.commitment
-        });
-      } else {
-        configArg = {
-          commitment: this.commitment
-        };
-      }
-      const unsafeRes = await this._rpcRequest("getSupply", [configArg]);
-      const res = create(unsafeRes, GetSupplyRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get supply");
-      }
-      return res.result;
-    }
-    async getTokenSupply(tokenMintAddress, commitment) {
-      const args = this._buildArgs([tokenMintAddress.toBase58()], commitment);
-      const unsafeRes = await this._rpcRequest("getTokenSupply", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get token supply");
-      }
-      return res.result;
-    }
-    async getTokenAccountBalance(tokenAddress, commitment) {
-      const args = this._buildArgs([tokenAddress.toBase58()], commitment);
-      const unsafeRes = await this._rpcRequest("getTokenAccountBalance", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get token account balance");
-      }
-      return res.result;
-    }
-    async getTokenAccountsByOwner(ownerAddress, filter, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      let _args = [ownerAddress.toBase58()];
-      if ("mint" in filter) {
-        _args.push({
-          mint: filter.mint.toBase58()
-        });
-      } else {
-        _args.push({
-          programId: filter.programId.toBase58()
-        });
-      }
-      const args = this._buildArgs(_args, commitment, "base64", config);
-      const unsafeRes = await this._rpcRequest("getTokenAccountsByOwner", args);
-      const res = create(unsafeRes, GetTokenAccountsByOwner);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getParsedTokenAccountsByOwner(ownerAddress, filter, commitment) {
-      let _args = [ownerAddress.toBase58()];
-      if ("mint" in filter) {
-        _args.push({
-          mint: filter.mint.toBase58()
-        });
-      } else {
-        _args.push({
-          programId: filter.programId.toBase58()
-        });
-      }
-      const args = this._buildArgs(_args, commitment, "jsonParsed");
-      const unsafeRes = await this._rpcRequest("getTokenAccountsByOwner", args);
-      const res = create(unsafeRes, GetParsedTokenAccountsByOwner);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getLargestAccounts(config) {
-      const arg = __assign(__assign({}, config), {
-        commitment: config && config.commitment || this.commitment
-      });
-      const args = arg.filter || arg.commitment ? [arg] : [];
-      const unsafeRes = await this._rpcRequest("getLargestAccounts", args);
-      const res = create(unsafeRes, GetLargestAccountsRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get largest accounts");
-      }
-      return res.result;
-    }
-    async getTokenLargestAccounts(mintAddress, commitment) {
-      const args = this._buildArgs([mintAddress.toBase58()], commitment);
-      const unsafeRes = await this._rpcRequest("getTokenLargestAccounts", args);
-      const res = create(unsafeRes, GetTokenLargestAccountsResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get token largest accounts");
-      }
-      return res.result;
-    }
-    async getAccountInfoAndContext(publicKey2, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([publicKey2.toBase58()], commitment, "base64", config);
-      const unsafeRes = await this._rpcRequest("getAccountInfo", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(nullable(AccountInfoResult)));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey2.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getParsedAccountInfo(publicKey2, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([publicKey2.toBase58()], commitment, "jsonParsed", config);
-      const unsafeRes = await this._rpcRequest("getAccountInfo", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(nullable(ParsedAccountInfoResult)));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey2.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getAccountInfo(publicKey2, commitmentOrConfig) {
-      try {
-        const res = await this.getAccountInfoAndContext(publicKey2, commitmentOrConfig);
-        return res.value;
-      } catch (e) {
-        throw new Error("failed to get info about account " + publicKey2.toBase58() + ": " + e);
-      }
-    }
-    async getMultipleParsedAccounts(publicKeys, rawConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(rawConfig);
-      const keys = publicKeys.map((key) => key.toBase58());
-      const args = this._buildArgs([keys], commitment, "jsonParsed", config);
-      const unsafeRes = await this._rpcRequest("getMultipleAccounts", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(array(nullable(ParsedAccountInfoResult))));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
-      }
-      return res.result;
-    }
-    async getMultipleAccountsInfoAndContext(publicKeys, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const keys = publicKeys.map((key) => key.toBase58());
-      const args = this._buildArgs([keys], commitment, "base64", config);
-      const unsafeRes = await this._rpcRequest("getMultipleAccounts", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(array(nullable(AccountInfoResult))));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
-      }
-      return res.result;
-    }
-    async getMultipleAccountsInfo(publicKeys, commitmentOrConfig) {
-      const res = await this.getMultipleAccountsInfoAndContext(publicKeys, commitmentOrConfig);
-      return res.value;
-    }
-    async getStakeActivation(publicKey2, commitmentOrConfig, epoch) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([publicKey2.toBase58()], commitment, void 0, __assign(__assign({}, config), {
-        epoch: epoch != null ? epoch : config == null ? void 0 : config.epoch
-      }));
-      const unsafeRes = await this._rpcRequest("getStakeActivation", args);
-      const res = create(unsafeRes, jsonRpcResult(StakeActivationResult));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get Stake Activation ${publicKey2.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getProgramAccounts(programId, configOrCommitment) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(configOrCommitment);
-      const _a = config || {}, {
-        encoding
-      } = _a, configWithoutEncoding = __rest(_a, [
-        "encoding"
-      ]);
-      const args = this._buildArgs([programId.toBase58()], commitment, encoding || "base64", configWithoutEncoding);
-      const unsafeRes = await this._rpcRequest("getProgramAccounts", args);
-      const baseSchema = array(KeyedAccountInfoResult);
-      const res = configWithoutEncoding.withContext === true ? create(unsafeRes, jsonRpcResultAndContext(baseSchema)) : create(unsafeRes, jsonRpcResult(baseSchema));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
-      }
-      return res.result;
-    }
-    async getParsedProgramAccounts(programId, configOrCommitment) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(configOrCommitment);
-      const args = this._buildArgs([programId.toBase58()], commitment, "jsonParsed", config);
-      const unsafeRes = await this._rpcRequest("getProgramAccounts", args);
-      const res = create(unsafeRes, jsonRpcResult(array(KeyedParsedAccountInfoResult)));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
-      }
-      return res.result;
-    }
-    async confirmTransaction(strategy, commitment) {
-      var _a;
-      let rawSignature;
-      if (typeof strategy == "string") {
-        rawSignature = strategy;
-      } else {
-        const config = strategy;
-        if ((_a = config.abortSignal) == null ? void 0 : _a.aborted) {
-          return Promise.reject(config.abortSignal.reason);
-        }
-        rawSignature = config.signature;
-      }
-      let decodedSignature;
-      try {
-        decodedSignature = import_bs58.default.decode(rawSignature);
-      } catch (err) {
-        throw new Error("signature must be base58 encoded: " + rawSignature);
-      }
-      assert2(decodedSignature.length === 64, "signature has invalid length");
-      if (typeof strategy === "string") {
-        return await this.confirmTransactionUsingLegacyTimeoutStrategy({
-          commitment: commitment || this.commitment,
-          signature: rawSignature
-        });
-      } else if ("lastValidBlockHeight" in strategy) {
-        return await this.confirmTransactionUsingBlockHeightExceedanceStrategy({
-          commitment: commitment || this.commitment,
-          strategy
-        });
-      } else {
-        return await this.confirmTransactionUsingDurableNonceStrategy({
-          commitment: commitment || this.commitment,
-          strategy
-        });
-      }
-    }
-    getCancellationPromise(signal) {
-      return new Promise((_, reject) => {
-        if (signal == null) {
-          return;
-        }
-        if (signal.aborted) {
-          reject(signal.reason);
-        } else {
-          signal.addEventListener("abort", () => {
-            reject(signal.reason);
-          });
-        }
-      });
-    }
-    getTransactionConfirmationPromise({
-      commitment,
-      signature: signature2
-    }) {
-      let signatureSubscriptionId;
-      let disposeSignatureSubscriptionStateChangeObserver;
-      let done = false;
-      const confirmationPromise = new Promise((resolve, reject) => {
-        try {
-          signatureSubscriptionId = this.onSignature(signature2, (result, context) => {
-            signatureSubscriptionId = void 0;
-            const response = {
-              context,
-              value: result
-            };
-            resolve({
-              __type: TransactionStatus.PROCESSED,
-              response
-            });
-          }, commitment);
-          const subscriptionSetupPromise = new Promise((resolveSubscriptionSetup) => {
-            if (signatureSubscriptionId == null) {
-              resolveSubscriptionSetup();
-            } else {
-              disposeSignatureSubscriptionStateChangeObserver = this._onSubscriptionStateChange(signatureSubscriptionId, (nextState) => {
-                if (nextState === "subscribed") {
-                  resolveSubscriptionSetup();
-                }
-              });
-            }
-          });
-          (async () => {
-            await subscriptionSetupPromise;
-            if (done)
-              return;
-            const response = await this.getSignatureStatus(signature2);
-            if (done)
-              return;
-            if (response == null) {
-              return;
-            }
-            const {
-              context,
-              value
-            } = response;
-            if (value == null) {
-              return;
-            }
-            if (value == null ? void 0 : value.err) {
-              reject(value.err);
-            } else {
-              switch (commitment) {
-                case "confirmed":
-                case "single":
-                case "singleGossip": {
-                  if (value.confirmationStatus === "processed") {
-                    return;
-                  }
-                  break;
-                }
-                case "finalized":
-                case "max":
-                case "root": {
-                  if (value.confirmationStatus === "processed" || value.confirmationStatus === "confirmed") {
-                    return;
-                  }
-                  break;
-                }
-                case "processed":
-                case "recent":
-              }
-              done = true;
-              resolve({
-                __type: TransactionStatus.PROCESSED,
-                response: {
-                  context,
-                  value
-                }
-              });
-            }
-          })();
-        } catch (err) {
-          reject(err);
-        }
-      });
-      const abortConfirmation = () => {
-        if (disposeSignatureSubscriptionStateChangeObserver) {
-          disposeSignatureSubscriptionStateChangeObserver();
-          disposeSignatureSubscriptionStateChangeObserver = void 0;
-        }
-        if (signatureSubscriptionId != null) {
-          this.removeSignatureListener(signatureSubscriptionId);
-          signatureSubscriptionId = void 0;
-        }
-      };
-      return {
-        abortConfirmation,
-        confirmationPromise
-      };
-    }
-    async confirmTransactionUsingBlockHeightExceedanceStrategy({
-      commitment,
-      strategy: {
-        abortSignal,
-        lastValidBlockHeight,
-        signature: signature2
-      }
-    }) {
-      let done = false;
-      const expiryPromise = new Promise((resolve) => {
-        const checkBlockHeight = async () => {
-          try {
-            const blockHeight = await this.getBlockHeight(commitment);
-            return blockHeight;
-          } catch (_e) {
-            return -1;
-          }
-        };
-        (async () => {
-          let currentBlockHeight = await checkBlockHeight();
-          if (done)
-            return;
-          while (currentBlockHeight <= lastValidBlockHeight) {
-            await sleep(1e3);
-            if (done)
-              return;
-            currentBlockHeight = await checkBlockHeight();
-            if (done)
-              return;
-          }
-          resolve({
-            __type: TransactionStatus.BLOCKHEIGHT_EXCEEDED
-          });
-        })();
-      });
-      const {
-        abortConfirmation,
-        confirmationPromise
-      } = this.getTransactionConfirmationPromise({
-        commitment,
-        signature: signature2
-      });
-      const cancellationPromise = this.getCancellationPromise(abortSignal);
-      let result;
-      try {
-        const outcome = await Promise.race([cancellationPromise, confirmationPromise, expiryPromise]);
-        if (outcome.__type === TransactionStatus.PROCESSED) {
-          result = outcome.response;
-        } else {
-          throw new TransactionExpiredBlockheightExceededError(signature2);
-        }
-      } finally {
-        done = true;
-        abortConfirmation();
-      }
-      return result;
-    }
-    async confirmTransactionUsingDurableNonceStrategy({
-      commitment,
-      strategy: {
-        abortSignal,
-        minContextSlot,
-        nonceAccountPubkey,
-        nonceValue,
-        signature: signature2
-      }
-    }) {
-      var _a;
-      let done = false;
-      const expiryPromise = new Promise((resolve) => {
-        let currentNonceValue = nonceValue;
-        let lastCheckedSlot = null;
-        const getCurrentNonceValue = async () => {
-          try {
-            const {
-              context,
-              value: nonceAccount
-            } = await this.getNonceAndContext(nonceAccountPubkey, {
-              commitment,
-              minContextSlot
-            });
-            lastCheckedSlot = context.slot;
-            return nonceAccount == null ? void 0 : nonceAccount.nonce;
-          } catch (e) {
-            return currentNonceValue;
-          }
-        };
-        (async () => {
-          currentNonceValue = await getCurrentNonceValue();
-          if (done)
-            return;
-          while (true) {
-            if (nonceValue !== currentNonceValue) {
-              resolve({
-                __type: TransactionStatus.NONCE_INVALID,
-                slotInWhichNonceDidAdvance: lastCheckedSlot
-              });
-              return;
-            }
-            await sleep(2e3);
-            if (done)
-              return;
-            currentNonceValue = await getCurrentNonceValue();
-            if (done)
-              return;
-          }
-        })();
-      });
-      const {
-        abortConfirmation,
-        confirmationPromise
-      } = this.getTransactionConfirmationPromise({
-        commitment,
-        signature: signature2
-      });
-      const cancellationPromise = this.getCancellationPromise(abortSignal);
-      let result;
-      try {
-        const outcome = await Promise.race([cancellationPromise, confirmationPromise, expiryPromise]);
-        if (outcome.__type === TransactionStatus.PROCESSED) {
-          result = outcome.response;
-        } else {
-          let signatureStatus;
-          while (true) {
-            const status = await this.getSignatureStatus(signature2);
-            if (status == null) {
-              break;
-            }
-            if (status.context.slot < ((_a = outcome.slotInWhichNonceDidAdvance) != null ? _a : minContextSlot)) {
-              await sleep(400);
-              continue;
-            }
-            signatureStatus = status;
-            break;
-          }
-          if (signatureStatus == null ? void 0 : signatureStatus.value) {
-            const commitmentForStatus = commitment || "finalized";
-            const {
-              confirmationStatus
-            } = signatureStatus.value;
-            switch (commitmentForStatus) {
-              case "processed":
-              case "recent":
-                if (confirmationStatus !== "processed" && confirmationStatus !== "confirmed" && confirmationStatus !== "finalized") {
-                  throw new TransactionExpiredNonceInvalidError(signature2);
-                }
-                break;
-              case "confirmed":
-              case "single":
-              case "singleGossip":
-                if (confirmationStatus !== "confirmed" && confirmationStatus !== "finalized") {
-                  throw new TransactionExpiredNonceInvalidError(signature2);
-                }
-                break;
-              case "finalized":
-              case "max":
-              case "root":
-                if (confirmationStatus !== "finalized") {
-                  throw new TransactionExpiredNonceInvalidError(signature2);
-                }
-                break;
-              default:
-                ((_) => {
-                })(commitmentForStatus);
-            }
-            result = {
-              context: signatureStatus.context,
-              value: {
-                err: signatureStatus.value.err
-              }
-            };
-          } else {
-            throw new TransactionExpiredNonceInvalidError(signature2);
-          }
-        }
-      } finally {
-        done = true;
-        abortConfirmation();
-      }
-      return result;
-    }
-    async confirmTransactionUsingLegacyTimeoutStrategy({
-      commitment,
-      signature: signature2
-    }) {
-      let timeoutId;
-      const expiryPromise = new Promise((resolve) => {
-        let timeoutMs = this._confirmTransactionInitialTimeout || 60 * 1e3;
-        switch (commitment) {
-          case "processed":
-          case "recent":
-          case "single":
-          case "confirmed":
-          case "singleGossip": {
-            timeoutMs = this._confirmTransactionInitialTimeout || 30 * 1e3;
-            break;
-          }
-        }
-        timeoutId = setTimeout(() => resolve({
-          __type: TransactionStatus.TIMED_OUT,
-          timeoutMs
-        }), timeoutMs);
-      });
-      const {
-        abortConfirmation,
-        confirmationPromise
-      } = this.getTransactionConfirmationPromise({
-        commitment,
-        signature: signature2
-      });
-      let result;
-      try {
-        const outcome = await Promise.race([confirmationPromise, expiryPromise]);
-        if (outcome.__type === TransactionStatus.PROCESSED) {
-          result = outcome.response;
-        } else {
-          throw new TransactionExpiredTimeoutError(signature2, outcome.timeoutMs / 1e3);
-        }
-      } finally {
-        clearTimeout(timeoutId);
-        abortConfirmation();
-      }
-      return result;
-    }
-    async getClusterNodes() {
-      const unsafeRes = await this._rpcRequest("getClusterNodes", []);
-      const res = create(unsafeRes, jsonRpcResult(array(ContactInfoResult)));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get cluster nodes");
-      }
-      return res.result;
-    }
-    async getVoteAccounts(commitment) {
-      const args = this._buildArgs([], commitment);
-      const unsafeRes = await this._rpcRequest("getVoteAccounts", args);
-      const res = create(unsafeRes, GetVoteAccounts);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get vote accounts");
-      }
-      return res.result;
-    }
-    async getSlot(commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getSlot", args);
-      const res = create(unsafeRes, jsonRpcResult(number()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get slot");
-      }
-      return res.result;
-    }
-    async getSlotLeader(commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getSlotLeader", args);
-      const res = create(unsafeRes, jsonRpcResult(string()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get slot leader");
-      }
-      return res.result;
-    }
-    async getSlotLeaders(startSlot, limit) {
-      const args = [startSlot, limit];
-      const unsafeRes = await this._rpcRequest("getSlotLeaders", args);
-      const res = create(unsafeRes, jsonRpcResult(array(PublicKeyFromString)));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get slot leaders");
-      }
-      return res.result;
-    }
-    async getSignatureStatus(signature2, config) {
-      const {
-        context,
-        value: values
-      } = await this.getSignatureStatuses([signature2], config);
-      assert2(values.length === 1);
-      const value = values[0];
-      return {
-        context,
-        value
-      };
-    }
-    async getSignatureStatuses(signatures, config) {
-      const params = [signatures];
-      if (config) {
-        params.push(config);
-      }
-      const unsafeRes = await this._rpcRequest("getSignatureStatuses", params);
-      const res = create(unsafeRes, GetSignatureStatusesRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get signature status");
-      }
-      return res.result;
-    }
-    async getTransactionCount(commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getTransactionCount", args);
-      const res = create(unsafeRes, jsonRpcResult(number()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get transaction count");
-      }
-      return res.result;
-    }
-    async getTotalSupply(commitment) {
-      const result = await this.getSupply({
-        commitment,
-        excludeNonCirculatingAccountsList: true
-      });
-      return result.value.total;
-    }
-    async getInflationGovernor(commitment) {
-      const args = this._buildArgs([], commitment);
-      const unsafeRes = await this._rpcRequest("getInflationGovernor", args);
-      const res = create(unsafeRes, GetInflationGovernorRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get inflation");
-      }
-      return res.result;
-    }
-    async getInflationReward(addresses, epoch, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([addresses.map((pubkey) => pubkey.toBase58())], commitment, void 0, __assign(__assign({}, config), {
-        epoch: epoch != null ? epoch : config == null ? void 0 : config.epoch
-      }));
-      const unsafeRes = await this._rpcRequest("getInflationReward", args);
-      const res = create(unsafeRes, GetInflationRewardResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get inflation reward");
-      }
-      return res.result;
-    }
-    async getInflationRate() {
-      const unsafeRes = await this._rpcRequest("getInflationRate", []);
-      const res = create(unsafeRes, GetInflationRateRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get inflation rate");
-      }
-      return res.result;
-    }
-    async getEpochInfo(commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getEpochInfo", args);
-      const res = create(unsafeRes, GetEpochInfoRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get epoch info");
-      }
-      return res.result;
-    }
-    async getEpochSchedule() {
-      const unsafeRes = await this._rpcRequest("getEpochSchedule", []);
-      const res = create(unsafeRes, GetEpochScheduleRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get epoch schedule");
-      }
-      const epochSchedule = res.result;
-      return new EpochSchedule(epochSchedule.slotsPerEpoch, epochSchedule.leaderScheduleSlotOffset, epochSchedule.warmup, epochSchedule.firstNormalEpoch, epochSchedule.firstNormalSlot);
-    }
-    async getLeaderSchedule() {
-      const unsafeRes = await this._rpcRequest("getLeaderSchedule", []);
-      const res = create(unsafeRes, GetLeaderScheduleRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get leader schedule");
-      }
-      return res.result;
-    }
-    async getMinimumBalanceForRentExemption(dataLength, commitment) {
-      const args = this._buildArgs([dataLength], commitment);
-      const unsafeRes = await this._rpcRequest("getMinimumBalanceForRentExemption", args);
-      const res = create(unsafeRes, GetMinimumBalanceForRentExemptionRpcResult);
-      if ("error" in res) {
-        console.warn("Unable to fetch minimum balance for rent exemption");
-        return 0;
-      }
-      return res.result;
-    }
-    async getRecentBlockhashAndContext(commitment) {
-      const args = this._buildArgs([], commitment);
-      const unsafeRes = await this._rpcRequest("getRecentBlockhash", args);
-      const res = create(unsafeRes, GetRecentBlockhashAndContextRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get recent blockhash");
-      }
-      return res.result;
-    }
-    async getRecentPerformanceSamples(limit) {
-      const unsafeRes = await this._rpcRequest("getRecentPerformanceSamples", limit ? [limit] : []);
-      const res = create(unsafeRes, GetRecentPerformanceSamplesRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get recent performance samples");
-      }
-      return res.result;
-    }
-    async getFeeCalculatorForBlockhash(blockhash, commitment) {
-      const args = this._buildArgs([blockhash], commitment);
-      const unsafeRes = await this._rpcRequest("getFeeCalculatorForBlockhash", args);
-      const res = create(unsafeRes, GetFeeCalculatorRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get fee calculator");
-      }
-      const {
-        context,
-        value
-      } = res.result;
-      return {
-        context,
-        value: value !== null ? value.feeCalculator : null
-      };
-    }
-    async getFeeForMessage(message, commitment) {
-      const wireMessage = toBuffer(message.serialize()).toString("base64");
-      const args = this._buildArgs([wireMessage], commitment);
-      const unsafeRes = await this._rpcRequest("getFeeForMessage", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(nullable(number())));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get fee for message");
-      }
-      if (res.result === null) {
-        throw new Error("invalid blockhash");
-      }
-      return res.result;
-    }
-    async getRecentPrioritizationFees(config) {
-      var _a;
-      const accounts = (_a = config == null ? void 0 : config.lockedWritableAccounts) == null ? void 0 : _a.map((key) => key.toBase58());
-      const args = (accounts == null ? void 0 : accounts.length) ? [accounts] : [];
-      const unsafeRes = await this._rpcRequest("getRecentPrioritizationFees", args);
-      const res = create(unsafeRes, GetRecentPrioritizationFeesRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get recent prioritization fees");
-      }
-      return res.result;
-    }
-    async getRecentBlockhash(commitment) {
-      try {
-        const res = await this.getRecentBlockhashAndContext(commitment);
-        return res.value;
-      } catch (e) {
-        throw new Error("failed to get recent blockhash: " + e);
-      }
-    }
-    async getLatestBlockhash(commitmentOrConfig) {
-      try {
-        const res = await this.getLatestBlockhashAndContext(commitmentOrConfig);
-        return res.value;
-      } catch (e) {
-        throw new Error("failed to get recent blockhash: " + e);
-      }
-    }
-    async getLatestBlockhashAndContext(commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgs([], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getLatestBlockhash", args);
-      const res = create(unsafeRes, GetLatestBlockhashRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get latest blockhash");
-      }
-      return res.result;
-    }
-    async isBlockhashValid(blockhash, rawConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(rawConfig);
-      const args = this._buildArgs([blockhash], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("isBlockhashValid", args);
-      const res = create(unsafeRes, IsBlockhashValidRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to determine if the blockhash `" + blockhash + "`is valid");
-      }
-      return res.result;
-    }
-    async getVersion() {
-      const unsafeRes = await this._rpcRequest("getVersion", []);
-      const res = create(unsafeRes, jsonRpcResult(VersionResult));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get version");
-      }
-      return res.result;
-    }
-    async getGenesisHash() {
-      const unsafeRes = await this._rpcRequest("getGenesisHash", []);
-      const res = create(unsafeRes, jsonRpcResult(string()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get genesis hash");
-      }
-      return res.result;
-    }
-    async getBlock(slot, rawConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(rawConfig);
-      const args = this._buildArgsAtLeastConfirmed([slot], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getBlock", args);
-      try {
-        switch (config == null ? void 0 : config.transactionDetails) {
-          case "accounts": {
-            const res = create(unsafeRes, GetAccountsModeBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            return res.result;
-          }
-          case "none": {
-            const res = create(unsafeRes, GetNoneModeBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            return res.result;
-          }
-          default: {
-            const res = create(unsafeRes, GetBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            const {
-              result
-            } = res;
-            return result ? __assign(__assign({}, result), {
-              transactions: result.transactions.map(({
-                transaction,
-                meta,
-                version
-              }) => ({
-                meta,
-                transaction: __assign(__assign({}, transaction), {
-                  message: versionedMessageFromResponse(version, transaction.message)
-                }),
-                version
-              }))
-            }) : null;
-          }
-        }
-      } catch (e) {
-        throw new SolanaJSONRPCError(e, "failed to get confirmed block");
-      }
-    }
-    async getParsedBlock(slot, rawConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(rawConfig);
-      const args = this._buildArgsAtLeastConfirmed([slot], commitment, "jsonParsed", config);
-      const unsafeRes = await this._rpcRequest("getBlock", args);
-      try {
-        switch (config == null ? void 0 : config.transactionDetails) {
-          case "accounts": {
-            const res = create(unsafeRes, GetParsedAccountsModeBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            return res.result;
-          }
-          case "none": {
-            const res = create(unsafeRes, GetParsedNoneModeBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            return res.result;
-          }
-          default: {
-            const res = create(unsafeRes, GetParsedBlockRpcResult);
-            if ("error" in res) {
-              throw res.error;
-            }
-            return res.result;
-          }
-        }
-      } catch (e) {
-        throw new SolanaJSONRPCError(e, "failed to get block");
-      }
-    }
-    async getBlockProduction(configOrCommitment) {
-      let extra;
-      let commitment;
-      if (typeof configOrCommitment === "string") {
-        commitment = configOrCommitment;
-      } else if (configOrCommitment) {
-        const {
-          commitment: c
-        } = configOrCommitment, rest = __rest(configOrCommitment, [
-          "commitment"
-        ]);
-        commitment = c;
-        extra = rest;
-      }
-      const args = this._buildArgs([], commitment, "base64", extra);
-      const unsafeRes = await this._rpcRequest("getBlockProduction", args);
-      const res = create(unsafeRes, BlockProductionResponseStruct);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get block production information");
-      }
-      return res.result;
-    }
-    async getTransaction(signature2, rawConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(rawConfig);
-      const args = this._buildArgsAtLeastConfirmed([signature2], commitment, void 0, config);
-      const unsafeRes = await this._rpcRequest("getTransaction", args);
-      const res = create(unsafeRes, GetTransactionRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get transaction");
-      }
-      const result = res.result;
-      if (!result)
-        return result;
-      return __assign(__assign({}, result), {
-        transaction: __assign(__assign({}, result.transaction), {
-          message: versionedMessageFromResponse(result.version, result.transaction.message)
-        })
-      });
-    }
-    async getParsedTransaction(signature2, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const args = this._buildArgsAtLeastConfirmed([signature2], commitment, "jsonParsed", config);
-      const unsafeRes = await this._rpcRequest("getTransaction", args);
-      const res = create(unsafeRes, GetParsedTransactionRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get transaction");
-      }
-      return res.result;
-    }
-    async getParsedTransactions(signatures, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const batch = signatures.map((signature2) => {
-        const args = this._buildArgsAtLeastConfirmed([signature2], commitment, "jsonParsed", config);
-        return {
-          methodName: "getTransaction",
-          args
-        };
-      });
-      const unsafeRes = await this._rpcBatchRequest(batch);
-      const res = unsafeRes.map((unsafeRes2) => {
-        const res2 = create(unsafeRes2, GetParsedTransactionRpcResult);
-        if ("error" in res2) {
-          throw new SolanaJSONRPCError(res2.error, "failed to get transactions");
-        }
-        return res2.result;
-      });
-      return res;
-    }
-    async getTransactions(signatures, commitmentOrConfig) {
-      const {
-        commitment,
-        config
-      } = extractCommitmentFromConfig(commitmentOrConfig);
-      const batch = signatures.map((signature2) => {
-        const args = this._buildArgsAtLeastConfirmed([signature2], commitment, void 0, config);
-        return {
-          methodName: "getTransaction",
-          args
-        };
-      });
-      const unsafeRes = await this._rpcBatchRequest(batch);
-      const res = unsafeRes.map((unsafeRes2) => {
-        const res2 = create(unsafeRes2, GetTransactionRpcResult);
-        if ("error" in res2) {
-          throw new SolanaJSONRPCError(res2.error, "failed to get transactions");
-        }
-        const result = res2.result;
-        if (!result)
-          return result;
-        return __assign(__assign({}, result), {
-          transaction: __assign(__assign({}, result.transaction), {
-            message: versionedMessageFromResponse(result.version, result.transaction.message)
-          })
-        });
-      });
-      return res;
-    }
-    async getConfirmedBlock(slot, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([slot], commitment);
-      const unsafeRes = await this._rpcRequest("getConfirmedBlock", args);
-      const res = create(unsafeRes, GetConfirmedBlockRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get confirmed block");
-      }
-      const result = res.result;
-      if (!result) {
-        throw new Error("Confirmed block " + slot + " not found");
-      }
-      const block = __assign(__assign({}, result), {
-        transactions: result.transactions.map(({
-          transaction,
-          meta
-        }) => {
-          const message = new Message(transaction.message);
-          return {
-            meta,
-            transaction: __assign(__assign({}, transaction), {
-              message
-            })
-          };
-        })
-      });
-      return __assign(__assign({}, block), {
-        transactions: block.transactions.map(({
-          transaction,
-          meta
-        }) => {
-          return {
-            meta,
-            transaction: Transaction.populate(transaction.message, transaction.signatures)
-          };
-        })
-      });
-    }
-    async getBlocks(startSlot, endSlot, commitment) {
-      const args = this._buildArgsAtLeastConfirmed(endSlot !== void 0 ? [startSlot, endSlot] : [startSlot], commitment);
-      const unsafeRes = await this._rpcRequest("getBlocks", args);
-      const res = create(unsafeRes, jsonRpcResult(array(number())));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get blocks");
-      }
-      return res.result;
-    }
-    async getBlockSignatures(slot, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([slot], commitment, void 0, {
-        transactionDetails: "signatures",
-        rewards: false
-      });
-      const unsafeRes = await this._rpcRequest("getBlock", args);
-      const res = create(unsafeRes, GetBlockSignaturesRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get block");
-      }
-      const result = res.result;
-      if (!result) {
-        throw new Error("Block " + slot + " not found");
-      }
-      return result;
-    }
-    async getConfirmedBlockSignatures(slot, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([slot], commitment, void 0, {
-        transactionDetails: "signatures",
-        rewards: false
-      });
-      const unsafeRes = await this._rpcRequest("getConfirmedBlock", args);
-      const res = create(unsafeRes, GetBlockSignaturesRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get confirmed block");
-      }
-      const result = res.result;
-      if (!result) {
-        throw new Error("Confirmed block " + slot + " not found");
-      }
-      return result;
-    }
-    async getConfirmedTransaction(signature2, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([signature2], commitment);
-      const unsafeRes = await this._rpcRequest("getConfirmedTransaction", args);
-      const res = create(unsafeRes, GetTransactionRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get transaction");
-      }
-      const result = res.result;
-      if (!result)
-        return result;
-      const message = new Message(result.transaction.message);
-      const signatures = result.transaction.signatures;
-      return __assign(__assign({}, result), {
-        transaction: Transaction.populate(message, signatures)
-      });
-    }
-    async getParsedConfirmedTransaction(signature2, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([signature2], commitment, "jsonParsed");
-      const unsafeRes = await this._rpcRequest("getConfirmedTransaction", args);
-      const res = create(unsafeRes, GetParsedTransactionRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get confirmed transaction");
-      }
-      return res.result;
-    }
-    async getParsedConfirmedTransactions(signatures, commitment) {
-      const batch = signatures.map((signature2) => {
-        const args = this._buildArgsAtLeastConfirmed([signature2], commitment, "jsonParsed");
-        return {
-          methodName: "getConfirmedTransaction",
-          args
-        };
-      });
-      const unsafeRes = await this._rpcBatchRequest(batch);
-      const res = unsafeRes.map((unsafeRes2) => {
-        const res2 = create(unsafeRes2, GetParsedTransactionRpcResult);
-        if ("error" in res2) {
-          throw new SolanaJSONRPCError(res2.error, "failed to get confirmed transactions");
-        }
-        return res2.result;
-      });
-      return res;
-    }
-    async getConfirmedSignaturesForAddress(address, startSlot, endSlot) {
-      let options = {};
-      let firstAvailableBlock = await this.getFirstAvailableBlock();
-      while (!("until" in options)) {
-        startSlot--;
-        if (startSlot <= 0 || startSlot < firstAvailableBlock) {
-          break;
-        }
-        try {
-          const block = await this.getConfirmedBlockSignatures(startSlot, "finalized");
-          if (block.signatures.length > 0) {
-            options.until = block.signatures[block.signatures.length - 1].toString();
-          }
-        } catch (err) {
-          if (err instanceof Error && err.message.includes("skipped")) {
-            continue;
-          } else {
-            throw err;
-          }
-        }
-      }
-      let highestConfirmedRoot = await this.getSlot("finalized");
-      while (!("before" in options)) {
-        endSlot++;
-        if (endSlot > highestConfirmedRoot) {
-          break;
-        }
-        try {
-          const block = await this.getConfirmedBlockSignatures(endSlot);
-          if (block.signatures.length > 0) {
-            options.before = block.signatures[block.signatures.length - 1].toString();
-          }
-        } catch (err) {
-          if (err instanceof Error && err.message.includes("skipped")) {
-            continue;
-          } else {
-            throw err;
-          }
-        }
-      }
-      const confirmedSignatureInfo = await this.getConfirmedSignaturesForAddress2(address, options);
-      return confirmedSignatureInfo.map((info) => info.signature);
-    }
-    async getConfirmedSignaturesForAddress2(address, options, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([address.toBase58()], commitment, void 0, options);
-      const unsafeRes = await this._rpcRequest("getConfirmedSignaturesForAddress2", args);
-      const res = create(unsafeRes, GetConfirmedSignaturesForAddress2RpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get confirmed signatures for address");
-      }
-      return res.result;
-    }
-    async getSignaturesForAddress(address, options, commitment) {
-      const args = this._buildArgsAtLeastConfirmed([address.toBase58()], commitment, void 0, options);
-      const unsafeRes = await this._rpcRequest("getSignaturesForAddress", args);
-      const res = create(unsafeRes, GetSignaturesForAddressRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, "failed to get signatures for address");
-      }
-      return res.result;
-    }
-    async getAddressLookupTable(accountKey, config) {
-      const {
-        context,
-        value: accountInfo
-      } = await this.getAccountInfoAndContext(accountKey, config);
-      let value = null;
-      if (accountInfo !== null) {
-        value = new AddressLookupTableAccount({
-          key: accountKey,
-          state: AddressLookupTableAccount.deserialize(accountInfo.data)
-        });
-      }
-      return {
-        context,
-        value
-      };
-    }
-    async getNonceAndContext(nonceAccount, commitmentOrConfig) {
-      const {
-        context,
-        value: accountInfo
-      } = await this.getAccountInfoAndContext(nonceAccount, commitmentOrConfig);
-      let value = null;
-      if (accountInfo !== null) {
-        value = NonceAccount.fromAccountData(accountInfo.data);
-      }
-      return {
-        context,
-        value
-      };
-    }
-    async getNonce(nonceAccount, commitmentOrConfig) {
-      return await this.getNonceAndContext(nonceAccount, commitmentOrConfig).then((x) => x.value).catch((e) => {
-        throw new Error("failed to get nonce for account " + nonceAccount.toBase58() + ": " + e);
-      });
-    }
-    async requestAirdrop(to, lamports) {
-      const unsafeRes = await this._rpcRequest("requestAirdrop", [to.toBase58(), lamports]);
-      const res = create(unsafeRes, RequestAirdropRpcResult);
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `airdrop to ${to.toBase58()} failed`);
-      }
-      return res.result;
-    }
-    async _blockhashWithExpiryBlockHeight(disableCache) {
-      if (!disableCache) {
-        while (this._pollingBlockhash) {
-          await sleep(100);
-        }
-        const timeSinceFetch = Date.now() - this._blockhashInfo.lastFetch;
-        const expired = timeSinceFetch >= BLOCKHASH_CACHE_TIMEOUT_MS;
-        if (this._blockhashInfo.latestBlockhash !== null && !expired) {
-          return this._blockhashInfo.latestBlockhash;
-        }
-      }
-      return await this._pollNewBlockhash();
-    }
-    async _pollNewBlockhash() {
-      this._pollingBlockhash = true;
-      try {
-        const startTime = Date.now();
-        const cachedLatestBlockhash = this._blockhashInfo.latestBlockhash;
-        const cachedBlockhash = cachedLatestBlockhash ? cachedLatestBlockhash.blockhash : null;
-        for (let i = 0; i < 50; i++) {
-          const latestBlockhash = await this.getLatestBlockhash("finalized");
-          if (cachedBlockhash !== latestBlockhash.blockhash) {
-            this._blockhashInfo = {
-              latestBlockhash,
-              lastFetch: Date.now(),
-              transactionSignatures: [],
-              simulatedSignatures: []
-            };
-            return latestBlockhash;
-          }
-          await sleep(MS_PER_SLOT / 2);
-        }
-        throw new Error(`Unable to obtain a new blockhash after ${Date.now() - startTime}ms`);
-      } finally {
-        this._pollingBlockhash = false;
-      }
-    }
-    async getStakeMinimumDelegation(config) {
-      const {
-        commitment,
-        config: configArg
-      } = extractCommitmentFromConfig(config);
-      const args = this._buildArgs([], commitment, "base64", configArg);
-      const unsafeRes = await this._rpcRequest("getStakeMinimumDelegation", args);
-      const res = create(unsafeRes, jsonRpcResultAndContext(number()));
-      if ("error" in res) {
-        throw new SolanaJSONRPCError(res.error, `failed to get stake minimum delegation`);
-      }
-      return res.result;
-    }
-    async simulateTransaction(transactionOrMessage, configOrSigners, includeAccounts) {
-      if ("message" in transactionOrMessage) {
-        const versionedTx = transactionOrMessage;
-        const wireTransaction2 = versionedTx.serialize();
-        const encodedTransaction2 = import_buffer.Buffer.from(wireTransaction2).toString("base64");
-        if (Array.isArray(configOrSigners) || includeAccounts !== void 0) {
-          throw new Error("Invalid arguments");
-        }
-        const config2 = configOrSigners || {};
-        config2.encoding = "base64";
-        if (!("commitment" in config2)) {
-          config2.commitment = this.commitment;
-        }
-        const args2 = [encodedTransaction2, config2];
-        const unsafeRes2 = await this._rpcRequest("simulateTransaction", args2);
-        const res2 = create(unsafeRes2, SimulatedTransactionResponseStruct);
-        if ("error" in res2) {
-          throw new Error("failed to simulate transaction: " + res2.error.message);
-        }
-        return res2.result;
-      }
-      let transaction;
-      if (transactionOrMessage instanceof Transaction) {
-        let originalTx = transactionOrMessage;
-        transaction = new Transaction();
-        transaction.feePayer = originalTx.feePayer;
-        transaction.instructions = transactionOrMessage.instructions;
-        transaction.nonceInfo = originalTx.nonceInfo;
-        transaction.signatures = originalTx.signatures;
-      } else {
-        transaction = Transaction.populate(transactionOrMessage);
-        transaction._message = transaction._json = void 0;
-      }
-      if (configOrSigners !== void 0 && !Array.isArray(configOrSigners)) {
-        throw new Error("Invalid arguments");
-      }
-      const signers = configOrSigners;
-      if (transaction.nonceInfo && signers) {
-        transaction.sign(...signers);
-      } else {
-        let disableCache = this._disableBlockhashCaching;
-        for (; ; ) {
-          const latestBlockhash = await this._blockhashWithExpiryBlockHeight(disableCache);
-          transaction.lastValidBlockHeight = latestBlockhash.lastValidBlockHeight;
-          transaction.recentBlockhash = latestBlockhash.blockhash;
-          if (!signers)
-            break;
-          transaction.sign(...signers);
-          if (!transaction.signature) {
-            throw new Error("!signature");
-          }
-          const signature2 = transaction.signature.toString("base64");
-          if (!this._blockhashInfo.simulatedSignatures.includes(signature2) && !this._blockhashInfo.transactionSignatures.includes(signature2)) {
-            this._blockhashInfo.simulatedSignatures.push(signature2);
-            break;
-          } else {
-            disableCache = true;
-          }
-        }
-      }
-      const message = transaction._compile();
-      const signData = message.serialize();
-      const wireTransaction = transaction._serialize(signData);
-      const encodedTransaction = wireTransaction.toString("base64");
-      const config = {
-        encoding: "base64",
-        commitment: this.commitment
-      };
-      if (includeAccounts) {
-        const addresses = (Array.isArray(includeAccounts) ? includeAccounts : message.nonProgramIds()).map((key) => key.toBase58());
-        config["accounts"] = {
-          encoding: "base64",
-          addresses
-        };
-      }
-      if (signers) {
-        config.sigVerify = true;
-      }
-      const args = [encodedTransaction, config];
-      const unsafeRes = await this._rpcRequest("simulateTransaction", args);
-      const res = create(unsafeRes, SimulatedTransactionResponseStruct);
-      if ("error" in res) {
-        let logs;
-        if ("data" in res.error) {
-          logs = res.error.data.logs;
-          if (logs && Array.isArray(logs)) {
-            const traceIndent = "\n    ";
-            const logTrace = traceIndent + logs.join(traceIndent);
-            console.error(res.error.message, logTrace);
-          }
-        }
-        throw new SendTransactionError("failed to simulate transaction: " + res.error.message, logs);
-      }
-      return res.result;
-    }
-    async sendTransaction(transaction, signersOrOptions, options) {
-      if ("version" in transaction) {
-        if (signersOrOptions && Array.isArray(signersOrOptions)) {
-          throw new Error("Invalid arguments");
-        }
-        const wireTransaction2 = transaction.serialize();
-        return await this.sendRawTransaction(wireTransaction2, signersOrOptions);
-      }
-      if (signersOrOptions === void 0 || !Array.isArray(signersOrOptions)) {
-        throw new Error("Invalid arguments");
-      }
-      const signers = signersOrOptions;
-      if (transaction.nonceInfo) {
-        transaction.sign(...signers);
-      } else {
-        let disableCache = this._disableBlockhashCaching;
-        for (; ; ) {
-          const latestBlockhash = await this._blockhashWithExpiryBlockHeight(disableCache);
-          transaction.lastValidBlockHeight = latestBlockhash.lastValidBlockHeight;
-          transaction.recentBlockhash = latestBlockhash.blockhash;
-          transaction.sign(...signers);
-          if (!transaction.signature) {
-            throw new Error("!signature");
-          }
-          const signature2 = transaction.signature.toString("base64");
-          if (!this._blockhashInfo.transactionSignatures.includes(signature2)) {
-            this._blockhashInfo.transactionSignatures.push(signature2);
-            break;
-          } else {
-            disableCache = true;
-          }
-        }
-      }
-      const wireTransaction = transaction.serialize();
-      return await this.sendRawTransaction(wireTransaction, options);
-    }
-    async sendRawTransaction(rawTransaction, options) {
-      const encodedTransaction = toBuffer(rawTransaction).toString("base64");
-      const result = await this.sendEncodedTransaction(encodedTransaction, options);
-      return result;
-    }
-    async sendEncodedTransaction(encodedTransaction, options) {
-      const config = {
-        encoding: "base64"
-      };
-      const skipPreflight = options && options.skipPreflight;
-      const preflightCommitment = options && options.preflightCommitment || this.commitment;
-      if (options && options.maxRetries != null) {
-        config.maxRetries = options.maxRetries;
-      }
-      if (options && options.minContextSlot != null) {
-        config.minContextSlot = options.minContextSlot;
-      }
-      if (skipPreflight) {
-        config.skipPreflight = skipPreflight;
-      }
-      if (preflightCommitment) {
-        config.preflightCommitment = preflightCommitment;
-      }
-      const args = [encodedTransaction, config];
-      const unsafeRes = await this._rpcRequest("sendTransaction", args);
-      const res = create(unsafeRes, SendTransactionRpcResult);
-      if ("error" in res) {
-        let logs;
-        if ("data" in res.error) {
-          logs = res.error.data.logs;
-        }
-        throw new SendTransactionError("failed to send transaction: " + res.error.message, logs);
-      }
-      return res.result;
-    }
-    _wsOnOpen() {
-      this._rpcWebSocketConnected = true;
-      this._rpcWebSocketHeartbeat = setInterval(() => {
-        (async () => {
-          try {
-            await this._rpcWebSocket.notify("ping");
-          } catch (e) {
-          }
-        })();
-      }, 5e3);
-      this._updateSubscriptions();
-    }
-    _wsOnError(err) {
-      this._rpcWebSocketConnected = false;
-      console.error("ws error:", err.message);
-    }
-    _wsOnClose(code) {
-      this._rpcWebSocketConnected = false;
-      this._rpcWebSocketGeneration = (this._rpcWebSocketGeneration + 1) % Number.MAX_SAFE_INTEGER;
-      if (this._rpcWebSocketIdleTimeout) {
-        clearTimeout(this._rpcWebSocketIdleTimeout);
-        this._rpcWebSocketIdleTimeout = null;
-      }
-      if (this._rpcWebSocketHeartbeat) {
-        clearInterval(this._rpcWebSocketHeartbeat);
-        this._rpcWebSocketHeartbeat = null;
-      }
-      if (code === 1e3) {
-        this._updateSubscriptions();
-        return;
-      }
-      this._subscriptionCallbacksByServerSubscriptionId = {};
-      Object.entries(this._subscriptionsByHash).forEach(([hash, subscription]) => {
-        this._setSubscription(hash, __assign(__assign({}, subscription), {
-          state: "pending"
-        }));
-      });
-    }
-    _setSubscription(hash, nextSubscription) {
-      var _a;
-      const prevState = (_a = this._subscriptionsByHash[hash]) == null ? void 0 : _a.state;
-      this._subscriptionsByHash[hash] = nextSubscription;
-      if (prevState !== nextSubscription.state) {
-        const stateChangeCallbacks = this._subscriptionStateChangeCallbacksByHash[hash];
-        if (stateChangeCallbacks) {
-          stateChangeCallbacks.forEach((cb) => {
-            try {
-              cb(nextSubscription.state);
-            } catch (e) {
-            }
-          });
-        }
-      }
-    }
-    _onSubscriptionStateChange(clientSubscriptionId, callback) {
-      var _a;
-      const hash = this._subscriptionHashByClientSubscriptionId[clientSubscriptionId];
-      if (hash == null) {
-        return () => {
-        };
-      }
-      const stateChangeCallbacks = (_a = this._subscriptionStateChangeCallbacksByHash)[hash] || (_a[hash] = new Set());
-      stateChangeCallbacks.add(callback);
-      return () => {
-        stateChangeCallbacks.delete(callback);
-        if (stateChangeCallbacks.size === 0) {
-          delete this._subscriptionStateChangeCallbacksByHash[hash];
-        }
-      };
-    }
-    async _updateSubscriptions() {
-      if (Object.keys(this._subscriptionsByHash).length === 0) {
-        if (this._rpcWebSocketConnected) {
-          this._rpcWebSocketConnected = false;
-          this._rpcWebSocketIdleTimeout = setTimeout(() => {
-            this._rpcWebSocketIdleTimeout = null;
-            try {
-              this._rpcWebSocket.close();
-            } catch (err) {
-              if (err instanceof Error) {
-                console.log(`Error when closing socket connection: ${err.message}`);
-              }
-            }
-          }, 500);
-        }
-        return;
-      }
-      if (this._rpcWebSocketIdleTimeout !== null) {
-        clearTimeout(this._rpcWebSocketIdleTimeout);
-        this._rpcWebSocketIdleTimeout = null;
-        this._rpcWebSocketConnected = true;
-      }
-      if (!this._rpcWebSocketConnected) {
-        this._rpcWebSocket.connect();
-        return;
-      }
-      const activeWebSocketGeneration = this._rpcWebSocketGeneration;
-      const isCurrentConnectionStillActive = () => {
-        return activeWebSocketGeneration === this._rpcWebSocketGeneration;
-      };
-      await Promise.all(Object.keys(this._subscriptionsByHash).map(async (hash) => {
-        const subscription = this._subscriptionsByHash[hash];
-        if (subscription === void 0) {
-          return;
-        }
-        switch (subscription.state) {
-          case "pending":
-          case "unsubscribed":
-            if (subscription.callbacks.size === 0) {
-              delete this._subscriptionsByHash[hash];
-              if (subscription.state === "unsubscribed") {
-                delete this._subscriptionCallbacksByServerSubscriptionId[subscription.serverSubscriptionId];
-              }
-              await this._updateSubscriptions();
-              return;
-            }
-            await (async () => {
-              const {
-                args,
-                method
-              } = subscription;
-              try {
-                this._setSubscription(hash, __assign(__assign({}, subscription), {
-                  state: "subscribing"
-                }));
-                const serverSubscriptionId = await this._rpcWebSocket.call(method, args);
-                this._setSubscription(hash, __assign(__assign({}, subscription), {
-                  serverSubscriptionId,
-                  state: "subscribed"
-                }));
-                this._subscriptionCallbacksByServerSubscriptionId[serverSubscriptionId] = subscription.callbacks;
-                await this._updateSubscriptions();
-              } catch (e) {
-                if (e instanceof Error) {
-                  console.error(`${method} error for argument`, args, e.message);
-                }
-                if (!isCurrentConnectionStillActive()) {
-                  return;
-                }
-                this._setSubscription(hash, __assign(__assign({}, subscription), {
-                  state: "pending"
-                }));
-                await this._updateSubscriptions();
-              }
-            })();
-            break;
-          case "subscribed":
-            if (subscription.callbacks.size === 0) {
-              await (async () => {
-                const {
-                  serverSubscriptionId,
-                  unsubscribeMethod
-                } = subscription;
-                if (this._subscriptionsAutoDisposedByRpc.has(serverSubscriptionId)) {
-                  this._subscriptionsAutoDisposedByRpc.delete(serverSubscriptionId);
-                } else {
-                  this._setSubscription(hash, __assign(__assign({}, subscription), {
-                    state: "unsubscribing"
-                  }));
-                  this._setSubscription(hash, __assign(__assign({}, subscription), {
-                    state: "unsubscribing"
-                  }));
-                  try {
-                    await this._rpcWebSocket.call(unsubscribeMethod, [serverSubscriptionId]);
-                  } catch (e) {
-                    if (e instanceof Error) {
-                      console.error(`${unsubscribeMethod} error:`, e.message);
-                    }
-                    if (!isCurrentConnectionStillActive()) {
-                      return;
-                    }
-                    this._setSubscription(hash, __assign(__assign({}, subscription), {
-                      state: "subscribed"
-                    }));
-                    await this._updateSubscriptions();
-                    return;
-                  }
-                }
-                this._setSubscription(hash, __assign(__assign({}, subscription), {
-                  state: "unsubscribed"
-                }));
-                await this._updateSubscriptions();
-              })();
-            }
-            break;
-        }
-      }));
-    }
-    _handleServerNotification(serverSubscriptionId, callbackArgs) {
-      const callbacks = this._subscriptionCallbacksByServerSubscriptionId[serverSubscriptionId];
-      if (callbacks === void 0) {
-        return;
-      }
-      callbacks.forEach((cb) => {
-        try {
-          cb(...callbackArgs);
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    }
-    _wsOnAccountNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, AccountNotificationResult);
-      this._handleServerNotification(subscription, [result.value, result.context]);
-    }
-    _makeSubscription(subscriptionConfig, args) {
-      const clientSubscriptionId = this._nextClientSubscriptionId++;
-      const hash = fastStableStringify$1([subscriptionConfig.method, args], true);
-      const existingSubscription = this._subscriptionsByHash[hash];
-      if (existingSubscription === void 0) {
-        this._subscriptionsByHash[hash] = __assign(__assign({}, subscriptionConfig), {
-          args,
-          callbacks: new Set([subscriptionConfig.callback]),
-          state: "pending"
-        });
-      } else {
-        existingSubscription.callbacks.add(subscriptionConfig.callback);
-      }
-      this._subscriptionHashByClientSubscriptionId[clientSubscriptionId] = hash;
-      this._subscriptionDisposeFunctionsByClientSubscriptionId[clientSubscriptionId] = async () => {
-        delete this._subscriptionDisposeFunctionsByClientSubscriptionId[clientSubscriptionId];
-        delete this._subscriptionHashByClientSubscriptionId[clientSubscriptionId];
-        const subscription = this._subscriptionsByHash[hash];
-        assert2(subscription !== void 0, `Could not find a \`Subscription\` when tearing down client subscription #${clientSubscriptionId}`);
-        subscription.callbacks.delete(subscriptionConfig.callback);
-        await this._updateSubscriptions();
-      };
-      this._updateSubscriptions();
-      return clientSubscriptionId;
-    }
-    onAccountChange(publicKey2, callback, commitment) {
-      const args = this._buildArgs([publicKey2.toBase58()], commitment || this._commitment || "finalized", "base64");
-      return this._makeSubscription({
-        callback,
-        method: "accountSubscribe",
-        unsubscribeMethod: "accountUnsubscribe"
-      }, args);
-    }
-    async removeAccountChangeListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "account change");
-    }
-    _wsOnProgramAccountNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, ProgramAccountNotificationResult);
-      this._handleServerNotification(subscription, [{
-        accountId: result.value.pubkey,
-        accountInfo: result.value.account
-      }, result.context]);
-    }
-    onProgramAccountChange(programId, callback, commitment, filters) {
-      const args = this._buildArgs([programId.toBase58()], commitment || this._commitment || "finalized", "base64", filters ? {
-        filters
-      } : void 0);
-      return this._makeSubscription({
-        callback,
-        method: "programSubscribe",
-        unsubscribeMethod: "programUnsubscribe"
-      }, args);
-    }
-    async removeProgramAccountChangeListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "program account change");
-    }
-    onLogs(filter, callback, commitment) {
-      const args = this._buildArgs([typeof filter === "object" ? {
-        mentions: [filter.toString()]
-      } : filter], commitment || this._commitment || "finalized");
-      return this._makeSubscription({
-        callback,
-        method: "logsSubscribe",
-        unsubscribeMethod: "logsUnsubscribe"
-      }, args);
-    }
-    async removeOnLogsListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "logs");
-    }
-    _wsOnLogsNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, LogsNotificationResult);
-      this._handleServerNotification(subscription, [result.value, result.context]);
-    }
-    _wsOnSlotNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, SlotNotificationResult);
-      this._handleServerNotification(subscription, [result]);
-    }
-    onSlotChange(callback) {
-      return this._makeSubscription({
-        callback,
-        method: "slotSubscribe",
-        unsubscribeMethod: "slotUnsubscribe"
-      }, []);
-    }
-    async removeSlotChangeListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "slot change");
-    }
-    _wsOnSlotUpdatesNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, SlotUpdateNotificationResult);
-      this._handleServerNotification(subscription, [result]);
-    }
-    onSlotUpdate(callback) {
-      return this._makeSubscription({
-        callback,
-        method: "slotsUpdatesSubscribe",
-        unsubscribeMethod: "slotsUpdatesUnsubscribe"
-      }, []);
-    }
-    async removeSlotUpdateListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "slot update");
-    }
-    async _unsubscribeClientSubscription(clientSubscriptionId, subscriptionName) {
-      const dispose = this._subscriptionDisposeFunctionsByClientSubscriptionId[clientSubscriptionId];
-      if (dispose) {
-        await dispose();
-      } else {
-        console.warn(`Ignored unsubscribe request because an active subscription with id \`${clientSubscriptionId}\` for '${subscriptionName}' events could not be found.`);
-      }
-    }
-    _buildArgs(args, override, encoding, extra) {
-      const commitment = override || this._commitment;
-      if (commitment || encoding || extra) {
-        let options = {};
-        if (encoding) {
-          options.encoding = encoding;
-        }
-        if (commitment) {
-          options.commitment = commitment;
-        }
-        if (extra) {
-          options = Object.assign(options, extra);
-        }
-        args.push(options);
-      }
-      return args;
-    }
-    _buildArgsAtLeastConfirmed(args, override, encoding, extra) {
-      const commitment = override || this._commitment;
-      if (commitment && !["confirmed", "finalized"].includes(commitment)) {
-        throw new Error("Using Connection with default commitment: `" + this._commitment + "`, but method requires at least `confirmed`");
-      }
-      return this._buildArgs(args, override, encoding, extra);
-    }
-    _wsOnSignatureNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, SignatureNotificationResult);
-      if (result.value !== "receivedSignature") {
-        this._subscriptionsAutoDisposedByRpc.add(subscription);
-      }
-      this._handleServerNotification(subscription, result.value === "receivedSignature" ? [{
-        type: "received"
-      }, result.context] : [{
-        type: "status",
-        result: result.value
-      }, result.context]);
-    }
-    onSignature(signature2, callback, commitment) {
-      const args = this._buildArgs([signature2], commitment || this._commitment || "finalized");
-      const clientSubscriptionId = this._makeSubscription({
-        callback: (notification, context) => {
-          if (notification.type === "status") {
-            callback(notification.result, context);
-            try {
-              this.removeSignatureListener(clientSubscriptionId);
-            } catch (_err) {
-            }
-          }
-        },
-        method: "signatureSubscribe",
-        unsubscribeMethod: "signatureUnsubscribe"
-      }, args);
-      return clientSubscriptionId;
-    }
-    onSignatureWithOptions(signature2, callback, options) {
-      const _a = __assign(__assign({}, options), {
-        commitment: options && options.commitment || this._commitment || "finalized"
-      }), {
-        commitment
-      } = _a, extra = __rest(_a, [
-        "commitment"
-      ]);
-      const args = this._buildArgs([signature2], commitment, void 0, extra);
-      const clientSubscriptionId = this._makeSubscription({
-        callback: (notification, context) => {
-          callback(notification, context);
-          try {
-            this.removeSignatureListener(clientSubscriptionId);
-          } catch (_err) {
-          }
-        },
-        method: "signatureSubscribe",
-        unsubscribeMethod: "signatureUnsubscribe"
-      }, args);
-      return clientSubscriptionId;
-    }
-    async removeSignatureListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "signature result");
-    }
-    _wsOnRootNotification(notification) {
-      const {
-        result,
-        subscription
-      } = create(notification, RootNotificationResult);
-      this._handleServerNotification(subscription, [result]);
-    }
-    onRootChange(callback) {
-      return this._makeSubscription({
-        callback,
-        method: "rootSubscribe",
-        unsubscribeMethod: "rootUnsubscribe"
-      }, []);
-    }
-    async removeRootChangeListener(clientSubscriptionId) {
-      await this._unsubscribeClientSubscription(clientSubscriptionId, "root change");
-    }
-  };
   var Keypair = class {
     constructor(keypair) {
       this._keypair = void 0;
@@ -18984,14 +16085,14 @@
       const {
         publicKey: publicKey2,
         message,
-        signature: signature2,
+        signature,
         instructionIndex
       } = params;
       assert2(publicKey2.length === PUBLIC_KEY_BYTES$1, `Public Key must be ${PUBLIC_KEY_BYTES$1} bytes but received ${publicKey2.length} bytes`);
-      assert2(signature2.length === SIGNATURE_BYTES, `Signature must be ${SIGNATURE_BYTES} bytes but received ${signature2.length} bytes`);
+      assert2(signature.length === SIGNATURE_BYTES, `Signature must be ${SIGNATURE_BYTES} bytes but received ${signature.length} bytes`);
       const publicKeyOffset = ED25519_INSTRUCTION_LAYOUT.span;
       const signatureOffset = publicKeyOffset + publicKey2.length;
-      const messageDataOffset = signatureOffset + signature2.length;
+      const messageDataOffset = signatureOffset + signature.length;
       const numSignatures = 1;
       const instructionData = import_buffer.Buffer.alloc(messageDataOffset + message.length);
       const index = instructionIndex == null ? 65535 : instructionIndex;
@@ -19007,7 +16108,7 @@
         messageInstructionIndex: index
       }, instructionData);
       instructionData.fill(publicKey2, publicKeyOffset);
-      instructionData.fill(signature2, signatureOffset);
+      instructionData.fill(signature, signatureOffset);
       instructionData.fill(message, messageDataOffset);
       return new TransactionInstruction({
         keys: [],
@@ -19025,11 +16126,11 @@
       try {
         const keypair = Keypair.fromSecretKey(privateKey);
         const publicKey2 = keypair.publicKey.toBytes();
-        const signature2 = sign(message, keypair.secretKey);
+        const signature = sign(message, keypair.secretKey);
         return this.createInstructionWithPublicKey({
           publicKey: publicKey2,
           message,
-          signature: signature2,
+          signature,
           instructionIndex
         });
       } catch (error) {
@@ -19039,8 +16140,8 @@
   };
   Ed25519Program.programId = new PublicKey("Ed25519SigVerify111111111111111111111111111");
   var ecdsaSign = (msgHash, privKey) => {
-    const signature2 = import_secp256k1.secp256k1.sign(msgHash, privKey);
-    return [signature2.toCompactRawBytes(), signature2.recovery];
+    const signature = import_secp256k1.secp256k1.sign(msgHash, privKey);
+    return [signature.toCompactRawBytes(), signature.recovery];
   };
   import_secp256k1.secp256k1.utils.isValidPrivateKey;
   var publicKeyCreate = import_secp256k1.secp256k1.getPublicKey;
@@ -19064,14 +16165,14 @@
       const {
         publicKey: publicKey2,
         message,
-        signature: signature2,
+        signature,
         recoveryId,
         instructionIndex
       } = params;
       return Secp256k1Program.createInstructionWithEthAddress({
         ethAddress: Secp256k1Program.publicKeyToEthAddress(publicKey2),
         message,
-        signature: signature2,
+        signature,
         recoveryId,
         instructionIndex
       });
@@ -19080,7 +16181,7 @@
       const {
         ethAddress: rawAddress,
         message,
-        signature: signature2,
+        signature,
         recoveryId,
         instructionIndex = 0
       } = params;
@@ -19098,7 +16199,7 @@
       const dataStart = 1 + SIGNATURE_OFFSETS_SERIALIZED_SIZE;
       const ethAddressOffset = dataStart;
       const signatureOffset = dataStart + ethAddress.length;
-      const messageDataOffset = signatureOffset + signature2.length + 1;
+      const messageDataOffset = signatureOffset + signature.length + 1;
       const numSignatures = 1;
       const instructionData = import_buffer.Buffer.alloc(SECP256K1_INSTRUCTION_LAYOUT.span + message.length);
       SECP256K1_INSTRUCTION_LAYOUT.encode({
@@ -19110,7 +16211,7 @@
         messageDataOffset,
         messageDataSize: message.length,
         messageInstructionIndex: instructionIndex,
-        signature: toBuffer(signature2),
+        signature: toBuffer(signature),
         ethAddress: toBuffer(ethAddress),
         recoveryId
       }, instructionData);
@@ -19132,11 +16233,11 @@
         const privateKey = toBuffer(pkey);
         const publicKey2 = publicKeyCreate(privateKey, false).slice(1);
         const messageHash = import_buffer.Buffer.from((0, import_sha3.keccak_256)(toBuffer(message)));
-        const [signature2, recoveryId] = ecdsaSign(messageHash, privateKey);
+        const [signature, recoveryId] = ecdsaSign(messageHash, privateKey);
         return this.createInstructionWithPublicKey({
           publicKey: publicKey2,
           message,
-          signature: signature2,
+          signature,
           recoveryId,
           instructionIndex
         });
@@ -19785,29 +16886,6 @@
     BufferLayout.seq(BufferLayout.struct([BufferLayout.nu64("epoch"), BufferLayout.nu64("credits"), BufferLayout.nu64("prevCredits")]), BufferLayout.offset(BufferLayout.u32(), -8), "epochCredits"),
     BufferLayout.struct([BufferLayout.nu64("slot"), BufferLayout.nu64("timestamp")], "lastTimestamp")
   ]);
-  var endpoint = {
-    http: {
-      devnet: "http://api.devnet.solana.com",
-      testnet: "http://api.testnet.solana.com",
-      "mainnet-beta": "http://api.mainnet-beta.solana.com/"
-    },
-    https: {
-      devnet: "https://api.devnet.solana.com",
-      testnet: "https://api.testnet.solana.com",
-      "mainnet-beta": "https://api.mainnet-beta.solana.com/"
-    }
-  };
-  function clusterApiUrl(cluster, tls) {
-    const key = tls === false ? "http" : "https";
-    if (!cluster) {
-      return endpoint[key]["devnet"];
-    }
-    const url = endpoint[key][cluster];
-    if (!url) {
-      throw new Error(`Unknown ${key} cluster: ${cluster}`);
-    }
-    return url;
-  }
 
   // src/util/getKeypairForAccount.ts
   var burnerKeypair;
@@ -19818,51 +16896,19 @@
     return burnerKeypair;
   }
 
-  // src/util/getAccounts.ts
-  function getAccounts() {
-    const randomKeypair = getKeypairForAccount(null);
-    const account = {
-      address: randomKeypair.publicKey.toBase58(),
-      publicKey: randomKeypair.publicKey.toBytes(),
-      chains: [
-        "solana:mainnet",
-        "solana:devnet",
-        "solana:testnet",
-        "solana:localnet"
-      ],
-      features: [],
-      label: "Sample Safari Extension Wallet"
-    };
-    return [new MyWalletWalletAccount(account)];
-  }
-
-  // node_modules/@solana/web3.js/src/utils/ed25519.ts
-  var import_ed255192 = __toModule(require_ed25519());
-  var generatePrivateKey2 = import_ed255192.ed25519.utils.randomPrivateKey;
-  var getPublicKey2 = import_ed255192.ed25519.getPublicKey;
-  var sign2 = (message, secretKey) => import_ed255192.ed25519.sign(message, secretKey.slice(0, 32));
-  var verify2 = import_ed255192.ed25519.verify;
-
-  // src/util/signMessage.ts
-  function signMessage(messageByteArray, keypair) {
-    return {signature: sign2(messageByteArray, keypair.secretKey.slice(0, 32))};
-  }
-
-  // src/provider.ts
-  var import_bs582 = __toModule(require_bs583());
-
-  // src/util/signAndSendTransaction.ts
-  async function signAndSendTransaction(transaction, keypair, network, options) {
-    const signers = [
-      {
-        publicKey: keypair.publicKey,
-        secretKey: keypair.secretKey
-      }
-    ];
-    transaction.sign(signers);
-    const connection = new Connection(clusterApiUrl(network));
-    const signature2 = await connection.sendTransaction(transaction, options);
-    return {signature: signature2};
+  // src/wallet/solana.ts
+  var SOLANA_MAINNET_CHAIN = "solana:mainnet";
+  var SOLANA_DEVNET_CHAIN = "solana:devnet";
+  var SOLANA_TESTNET_CHAIN = "solana:testnet";
+  var SOLANA_LOCALNET_CHAIN = "solana:localnet";
+  var SOLANA_CHAINS = [
+    SOLANA_MAINNET_CHAIN,
+    SOLANA_DEVNET_CHAIN,
+    SOLANA_TESTNET_CHAIN,
+    SOLANA_LOCALNET_CHAIN
+  ];
+  function isSolanaChain(chain) {
+    return SOLANA_CHAINS.includes(chain);
   }
 
   // src/util/signTransaction.ts
@@ -19882,6 +16928,13 @@
   }
 
   // src/types/messageTypes.ts
+  var WalletRequestMethod;
+  (function(WalletRequestMethod2) {
+    WalletRequestMethod2["SOLANA_CONNECT"] = "SOLANA_CONNECT";
+    WalletRequestMethod2["SOLANA_SIGN_MESSAGE"] = "SOLANA_SIGN_MESSAGE";
+    WalletRequestMethod2["SOLANA_SIGN_TRANSACTION"] = "SOLANA_SIGN_TRANSACTION";
+    WalletRequestMethod2["SOLANA_SIGN_AND_SEND_TRANSACTION"] = "SOLANA_SIGN_AND_SEND_TRANSACTION";
+  })(WalletRequestMethod || (WalletRequestMethod = {}));
   var WalletRequestEvent = class extends CustomEvent {
     constructor(request) {
       super("page-wallet-request", {detail: request});
@@ -19896,16 +16949,11 @@
       _resolveHandler.set(this, {});
       window.addEventListener("wallet-response", __privateMethod(this, _handleResponse, handleResponse_fn).bind(this));
     }
-    async sendWalletRequest(requestId, method, payload) {
+    async sendWalletRequest(request) {
       return new Promise((resolve, reject) => {
-        const walletRequest = new WalletRequestEvent({
-          type: "page-wallet-request",
-          method,
-          payload,
-          requestId
-        });
-        __privateGet(this, _resolveHandler)[requestId] = {resolve, reject};
-        console.log("Sending request: ", requestId);
+        const walletRequest = new WalletRequestEvent(request);
+        __privateGet(this, _resolveHandler)[request.requestId] = {resolve, reject};
+        console.log("Sending request: ", request.requestId);
         window.dispatchEvent(walletRequest);
       });
     }
@@ -19914,19 +16962,29 @@
   _handleResponse = new WeakSet();
   handleResponse_fn = function(event) {
     console.log("In MessageClient wallet handle response: ", event);
-    const detail = event.detail;
-    const requestId = detail == null ? void 0 : detail.requestId;
+    const request = event.detail;
+    const requestId = request == null ? void 0 : request.requestId;
     if (requestId && __privateGet(this, _resolveHandler)[requestId]) {
       console.log("Handler for wallet response: ", event);
       const {resolve, reject} = __privateGet(this, _resolveHandler)[requestId];
       if (true) {
         console.log("Resolving request: ", requestId);
-        resolve(true);
+        resolve(request);
       }
       delete __privateGet(this, _resolveHandler)[requestId];
     }
   };
   var message_client_default = MessageClient;
+
+  // src/util/decodeWalletResponseOutput.ts
+  var bs582 = __toModule(require_bs583());
+  function decodeConnectOutput(encodedOutput) {
+    return {
+      accounts: encodedOutput.accounts.map((account) => __assign(__assign({}, account), {
+        publicKey: bs582.decode(account.publicKey)
+      }))
+    };
+  }
 
   // src/provider.ts
   var wallet;
@@ -19958,16 +17016,16 @@
       }
     }
   };
-  var _messageClient, _name, _version, _icon2, _listeners, _accounts, _chains2, _connected, _disconnected, _standardEventsOn, _standardEventsOff, _standardEventsEmit, _standardConnect, _standardDisconnect, _solanaSignAndSendTransaction, _solanaSignIn, _solanaSignMessage, _solanaSignTransaction;
+  var _messageClient, _name, _version, _icon, _listeners, _accounts, _chains, _connected, _disconnected, _standardEventsOn, _standardEventsOff, _standardEventsEmit, _standardConnect, _standardDisconnect, _solanaSignAndSendTransaction, _solanaSignIn, _solanaSignMessage, _solanaSignTransaction;
   var _MyWallet = class {
     constructor() {
       _messageClient.set(this, void 0);
       _name.set(this, "My Wallet");
       _version.set(this, "1.0.0");
-      _icon2.set(this, icon);
+      _icon.set(this, icon);
       _listeners.set(this, {});
       _accounts.set(this, []);
-      _chains2.set(this, [
+      _chains.set(this, [
         "solana:mainnet",
         "solana:devnet",
         "solana:testnet",
@@ -19976,6 +17034,7 @@
       _connected.set(this, (accounts) => {
         console.log("connected");
         __privateSet(this, _accounts, accounts.map((account) => new MyWalletAccount(account)));
+        console.log(__privateGet(this, _accounts));
         __privateGet(this, _standardEventsEmit).call(this, "change", {accounts: this.accounts});
       });
       _disconnected.set(this, () => {
@@ -20007,10 +17066,14 @@
       _standardConnect.set(this, async (input) => {
         console.log("In connect");
         if (!__privateGet(this, _accounts).length || !(input == null ? void 0 : input.silent)) {
-          const accounts = getAccounts();
-          console.log("Connecting with with: ");
-          console.log(accounts[0].address);
-          __privateGet(this, _connected).call(this, accounts);
+          const response = await __privateGet(this, _messageClient).sendWalletRequest({
+            type: "page-wallet-request",
+            requestId: Math.random().toString(36),
+            method: WalletRequestMethod.SOLANA_CONNECT,
+            input: input != null ? input : {silent: false}
+          });
+          const decodedOutput = decodeConnectOutput(response.output);
+          __privateGet(this, _connected).call(this, decodedOutput.accounts);
         }
         return {accounts: this.accounts};
       });
@@ -20031,14 +17094,14 @@
           }
           if (!isSolanaChain(chain))
             throw new Error("invalid chain");
-          const keyPair = getKeypairForAccount(account);
-          const {signature: signature2} = await signAndSendTransaction(VersionedTransaction.deserialize(transaction), keyPair, getClusterForChain(chain), {
-            preflightCommitment,
-            minContextSlot,
-            maxRetries,
-            skipPreflight
+          const response = await __privateGet(this, _messageClient).sendWalletRequest({
+            type: "page-wallet-request",
+            requestId: Math.random().toString(36),
+            method: WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION,
+            input: inputs[0]
           });
-          outputs.push({signature: import_bs582.default.decode(signature2)});
+          const decodedOutput = decodeWalletResponseOutput(response);
+          outputs.push(decodedOutput);
         } else if (inputs.length > 1) {
           for (const input of inputs) {
             outputs.push(...await __privateGet(this, _solanaSignAndSendTransaction).call(this, input));
@@ -20061,16 +17124,13 @@
           if (!__privateGet(this, _accounts).some((acc) => acc.address === account.address)) {
             throw new Error("invalid account");
           }
-          const approved = await __privateGet(this, _messageClient).sendWalletRequest(Math.random().toString(36), "signMessage", import_bs582.default.encode(message));
-          if (!approved) {
-            console.error("Request rejected");
-            throw new Error("Request rejected");
-          }
-          const keyPair = getKeypairForAccount(account);
-          console.log("Signing with: ");
-          console.log(keyPair.publicKey.toString());
-          const {signature: signature2} = await signMessage(message, keyPair);
-          outputs.push({signedMessage: message, signature: signature2});
+          const response = await __privateGet(this, _messageClient).sendWalletRequest({
+            type: "page-wallet-request",
+            requestId: Math.random().toString(36),
+            method: WalletRequestMethod.SOLANA_SIGN_MESSAGE,
+            input: inputs[0]
+          });
+          outputs.push(response.output);
         } else if (inputs.length > 1) {
           for (const input of inputs) {
             outputs.push(...await __privateGet(this, _solanaSignMessage).call(this, input));
@@ -20090,9 +17150,13 @@
           }
           if (chain && !isSolanaChain(chain))
             throw new Error("invalid chain");
-          const keyPair = getKeypairForAccount(account);
-          const signedTransaction = await signTransaction(Transaction.from(transaction), keyPair);
-          outputs.push({signedTransaction});
+          const response = await __privateGet(this, _messageClient).sendWalletRequest({
+            type: "page-wallet-request",
+            requestId: Math.random().toString(36),
+            method: WalletRequestMethod.SOLANA_SIGN_TRANSACTION,
+            input: inputs[0]
+          });
+          outputs.push(response.output);
         } else if (inputs.length > 1) {
           let chain = void 0;
           for (const input of inputs) {
@@ -20131,13 +17195,13 @@
       return __privateGet(this, _name);
     }
     get icon() {
-      return __privateGet(this, _icon2);
+      return __privateGet(this, _icon);
     }
     get accounts() {
       return __privateGet(this, _accounts).slice();
     }
     get chains() {
-      return __privateGet(this, _chains2).slice();
+      return __privateGet(this, _chains).slice();
     }
     get features() {
       return {
@@ -20178,10 +17242,10 @@
   _messageClient = new WeakMap();
   _name = new WeakMap();
   _version = new WeakMap();
-  _icon2 = new WeakMap();
+  _icon = new WeakMap();
   _listeners = new WeakMap();
   _accounts = new WeakMap();
-  _chains2 = new WeakMap();
+  _chains = new WeakMap();
   _connected = new WeakMap();
   _disconnected = new WeakMap();
   _standardEventsOn = new WeakMap();

@@ -20,8 +20,6 @@
   async function forwardWalletRequestToApproval(request) {
     const isApprovalUIActive = await browser.tabs.query({active: true, currentWindow: true}).then((tabs) => {
       const activeTab = tabs[0];
-      console.log(activeTab.url);
-      console.log(browser.runtime.getURL("approval.html") === activeTab.url);
       return browser.runtime.getURL("approval.html") === activeTab.url;
     });
     if (isApprovalUIActive) {
@@ -30,9 +28,15 @@
       console.log("Approval UI is not Active");
       initializeApprovalTab_noRaceCondition().then((approveTab) => {
         if (approveTab.id) {
-          browser.tabs.sendMessage(approveTab.id, __assign(__assign({}, request), {
+          const newreq = __assign(__assign({}, request), {
             type: "approval-tab-request"
-          }));
+          });
+          setTimeout(() => {
+            console.log("Right before sending: ", newreq);
+            browser.tabs.sendMessage(approveTab.id, __assign(__assign({}, request), {
+              type: "approval-tab-request"
+            }));
+          }, 5e3);
         } else {
           console.error("Approval tab missing id");
         }
@@ -45,7 +49,9 @@
     console.log(sendResponse);
     if (request.type === "wallet-response") {
     } else if (request.type === "wallet-approval-request") {
-      forwardWalletRequestToApproval(__assign(__assign({}, request), {sender}));
+      forwardWalletRequestToApproval(__assign(__assign({}, request), {
+        origin: sender
+      }));
     }
   });
 })();

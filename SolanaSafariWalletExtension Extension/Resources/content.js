@@ -2,6 +2,13 @@
   var __assign = Object.assign;
 
   // src/types/messageTypes.ts
+  var WalletRequestMethod;
+  (function(WalletRequestMethod2) {
+    WalletRequestMethod2["SOLANA_CONNECT"] = "SOLANA_CONNECT";
+    WalletRequestMethod2["SOLANA_SIGN_MESSAGE"] = "SOLANA_SIGN_MESSAGE";
+    WalletRequestMethod2["SOLANA_SIGN_TRANSACTION"] = "SOLANA_SIGN_TRANSACTION";
+    WalletRequestMethod2["SOLANA_SIGN_AND_SEND_TRANSACTION"] = "SOLANA_SIGN_AND_SEND_TRANSACTION";
+  })(WalletRequestMethod || (WalletRequestMethod = {}));
   var WalletResponseEvent = class extends CustomEvent {
     constructor(detail) {
       super("wallet-response", {detail});
@@ -32,8 +39,8 @@
   }
   window.addEventListener("page-wallet-request", async (event) => {
     console.log("Content Script Received: ", event);
-    const detail = event.detail;
-    forwardToBackgroundScript(detail);
+    const walletRequest = event.detail;
+    forwardToBackgroundScript(walletRequest);
   });
   browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     console.log("Content Script Runtime Listener: ", message);

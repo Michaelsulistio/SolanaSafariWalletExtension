@@ -7,7 +7,7 @@ Script that makes up the extension's background page.
 // Send a message from the Safari Web Extension to the containing app extension.
 // Listens to messages from "content"
 
-import { WalletRequest, WalletResponse } from "./types/messageTypes";
+import { BaseWalletRequest } from "./types/messageTypes";
 
 async function initializeApprovalTab_noRaceCondition(): Promise<browser.tabs.Tab> {
   const getReadyTabPromise = new Promise<browser.tabs.Tab>(
@@ -36,13 +36,11 @@ async function initializeApprovalTab_noRaceCondition(): Promise<browser.tabs.Tab
   return getReadyTabPromise;
 }
 
-async function forwardWalletRequestToApproval(request: WalletRequest) {
+async function forwardWalletRequestToApproval(request: BaseWalletRequest) {
   const isApprovalUIActive = await browser.tabs
     .query({ active: true, currentWindow: true })
     .then((tabs) => {
       const activeTab = tabs[0];
-      console.log(activeTab.url);
-      console.log(browser.runtime.getURL("approval.html") === activeTab.url);
       return browser.runtime.getURL("approval.html") === activeTab.url;
     });
 
@@ -54,21 +52,22 @@ async function forwardWalletRequestToApproval(request: WalletRequest) {
     // Initialize and forward
     initializeApprovalTab_noRaceCondition().then((approveTab) => {
       if (approveTab.id) {
-        browser.tabs.sendMessage(approveTab.id, {
+        const newreq = {
           ...request,
           type: "approval-tab-request"
-        });
+        };
+        setTimeout(() => {
+          console.log("Right before sending: ", newreq);
+          browser.tabs.sendMessage(approveTab.id, {
+            ...request,
+            type: "approval-tab-request"
+          });
+        }, 5000);
       } else {
         console.error("Approval tab missing id");
       }
     });
   }
-}
-
-async function forwardApprovalResponseToContent(
-  approvalResponse: WalletResponse
-) {
-  browser.runtime.sendMessage(approvalResponse);
 }
 
 browser.runtime.onMessage.addListener(
@@ -80,7 +79,10 @@ browser.runtime.onMessage.addListener(
       // forwardApprovalResponseToContent(request as WalletResponse);
     } else if (request.type === "wallet-approval-request") {
       // Attach sender identity metadata before forwarding
-      forwardWalletRequestToApproval({ ...request, sender } as WalletRequest);
+      forwardWalletRequestToApproval({
+        ...request,
+        origin: sender
+      } as BaseWalletRequest);
     }
   }
 );
