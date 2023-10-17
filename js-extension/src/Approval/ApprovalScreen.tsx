@@ -56,9 +56,9 @@ function getRequestScreenComponent(
 }
 
 export default function ApprovalScreen() {
-  const [requestQueue, setRequestQueue] = useState<Array<BaseWalletRequest>>(
-    []
-  );
+  const [requestQueue, setRequestQueue] = useState<
+    Array<BaseWalletRequestEncoded>
+  >([]);
   const [randomID, setRandomID] = useState<number>(Math.random());
   const [message, setMessage] = useState<String>("Empty");
 
@@ -66,7 +66,7 @@ export default function ApprovalScreen() {
   //    1. Initializes the wallet request listener for the approval tab
   //    2. Signals to background that the approval tab is ready to receive requests
   useEffect(() => {
-    function handleWalletRequest(request: BaseWalletRequest) {
+    function handleWalletRequest(request: BaseWalletRequestEncoded) {
       console.log("Approval Screen Request Received: ", request);
 
       if (request.type === "approval-tab-request") {
@@ -88,7 +88,7 @@ export default function ApprovalScreen() {
     };
   }, []);
 
-  const handleApprove = (response: BaseWalletResponse) => {
+  const handleApprove = (response: BaseWalletResponseEncoded) => {
     // Get current request
     const currentRequest = requestQueue[0];
 

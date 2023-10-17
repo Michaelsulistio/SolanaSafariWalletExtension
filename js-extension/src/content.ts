@@ -8,10 +8,9 @@
  */
 
 import {
-  BaseWalletRequest,
-  WalletRequest,
+  BaseWalletRequestEncoded,
+  BaseWalletResponseEncoded,
   WalletRequestEvent,
-  WalletResponse,
   WalletResponseEvent
 } from "./types/messageTypes";
 
@@ -31,12 +30,12 @@ export const injectProvider = () => {
   }
 };
 
-function forwardToBackgroundScript(request: BaseWalletRequest) {
+function forwardToBackgroundScript(request: BaseWalletRequestEncoded) {
   // Overwrite `type` to wallet-approval-request before forwarding
   browser.runtime.sendMessage({ ...request, type: "wallet-approval-request" });
 }
 
-function forwardToPageScript(response: WalletResponse) {
+function forwardToPageScript(response: BaseWalletResponseEncoded) {
   // Overwrite `type` to wallet-approval-request before forwarding
   window.dispatchEvent(new WalletResponseEvent(response));
 }
@@ -50,7 +49,7 @@ window.addEventListener("page-wallet-request", async (event) => {
 browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log("Content Script Runtime Listener: ", message);
   if (message.type === "wallet-response") {
-    forwardToPageScript(message as WalletResponse);
+    forwardToPageScript(message);
   }
 });
 
