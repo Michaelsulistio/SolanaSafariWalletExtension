@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ConnectRequest, ConnectResponse } from "../types/messageTypes";
+import {
+  ConnectRequest,
+  ConnectResponseEncoded,
+  WalletAccountEncoded
+} from "../types/messageTypes";
 import getDummyKeypair from "../util/getDummyKeypair";
 import { WalletAccount } from "@wallet-standard/base";
 import { MyWalletWalletAccount } from "../wallet/account";
 
 type Props = Readonly<{
   request: ConnectRequest;
-  onApprove: (response: ConnectResponse) => void;
+  onApprove: (response: ConnectResponseEncoded) => void;
 }>;
 
 function uint8ArrayToNumberArray(typedArray: Uint8Array): number[] {
@@ -16,7 +20,7 @@ function uint8ArrayToNumberArray(typedArray: Uint8Array): number[] {
 export default function ConnectScreen({ request, onApprove }: Props) {
   const handleConnect = (request: ConnectRequest) => {
     const dummyKeypair = getDummyKeypair();
-    const account: WalletAccount = {
+    const account: WalletAccountEncoded = {
       address: dummyKeypair.publicKey.toBase58(),
       publicKey: dummyKeypair.publicKey.toBase58(),
       chains: [
@@ -31,11 +35,15 @@ export default function ConnectScreen({ request, onApprove }: Props) {
 
     console.log("Connected account: ", account);
 
+    if (!request.origin) {
+      throw new Error("Sender origin is missing: " + request);
+    }
+
     onApprove({
       type: "wallet-response",
       method: request.method,
       requestId: request.requestId,
-      origin: request.origin!,
+      origin: request.origin,
       output: {
         accounts: [account]
       }

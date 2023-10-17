@@ -1,6 +1,4 @@
 import type { Wallet, WalletAccount } from "@wallet-standard/base";
-import { ReadonlyWalletAccount, registerWallet } from "@wallet-standard/wallet";
-
 import {
   SolanaSignAndSendTransaction,
   SolanaSignAndSendTransactionOutput,
@@ -33,74 +31,20 @@ import {
   StandardEventsOnMethod
 } from "@wallet-standard/features";
 import getKeypairForAccount from "./util/getKeypairForAccount";
-import {
-  SolanaChain,
-  getClusterForChain,
-  isSolanaChain
-} from "./wallet/solana";
-import bs58 from "bs58";
+import { SolanaChain, isSolanaChain } from "./wallet/solana";
 import { Transaction } from "@solana/web3.js";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
-import {
-  ConnectResponseEncoded,
-  WalletRequestMethod
-} from "./types/messageTypes";
+import { WalletRequestMethod } from "./types/messageTypes";
 import {
   decodeConnectOutput,
   decodeSignAndSendTransactionOutput,
-  decodeSignMessageOutput,
   decodeSignTransactionOutput
 } from "./util/decodeWalletResponseOutput";
-import { MyWalletWalletAccount } from "./wallet/account";
-
-let wallet: MyWallet;
-let registered = false;
-
-export function get(): Wallet {
-  return (wallet ??= new MyWallet());
-}
-
-export function register(): boolean {
-  try {
-    if (registered) return true;
-
-    const wallet = get();
-    console.log("in register");
-    console.log(wallet);
-    registerWallet(wallet);
-    registered = true;
-    return true;
-  } catch (error) {
-    // Silently catch and return false.
-    console.error("Failed to register wallet");
-  }
-  return false;
-}
+import { icon, MyWalletAccount } from "./provider";
 
 /** @internal */
-const checkAccountMatch = (
-  accounts: WalletAccount[],
-  targetAccount: WalletAccount
-) => {
-  return !accounts.some((acc) => acc.address === targetAccount.address);
-};
-
-/** @internal */
-const icon: Wallet["icon"] = "data:image/svg+xml;base64," as const;
-
-/** @internal */
-class MyWalletAccount extends ReadonlyWalletAccount {
-  constructor(account: WalletAccount) {
-    super(account);
-    if (new.target === MyWalletAccount) {
-      Object.freeze(this);
-    }
-  }
-}
-
-/** @internal */
-class MyWallet implements Wallet {
+export class MyWallet implements Wallet {
   // Custom State
   readonly #messageClient: MessageClient;
 
@@ -111,7 +55,7 @@ class MyWallet implements Wallet {
   readonly #listeners: {
     [E in StandardEventsNames]?: StandardEventsListeners[E][];
   } = {};
-  #accounts: Wallet["accounts"] & readonly MyWalletWalletAccount[] = [];
+  #accounts: Wallet["accounts"] & readonly MyWalletAccount[] = [];
   #chains: Wallet["chains"] = [
     "solana:mainnet",
     "solana:devnet",
@@ -190,9 +134,7 @@ class MyWallet implements Wallet {
   #connected = (accounts: readonly WalletAccount[]) => {
     console.log("connected");
 
-    this.#accounts = accounts.map(
-      (account) => new MyWalletWalletAccount(account)
-    );
+    this.#accounts = accounts.map((account) => new MyWalletAccount(account));
     console.log(this.#accounts);
     this.#standardEventsEmit("change", { accounts: this.accounts });
   };
@@ -252,7 +194,6 @@ class MyWallet implements Wallet {
         input: input ?? { silent: false }
       });
       const decodedOutput = decodeConnectOutput(response.output);
-      console.log(decodedOutput);
 
       this.#connected(decodedOutput.accounts);
     }
@@ -334,9 +275,12 @@ class MyWallet implements Wallet {
         input: inputs[0]
       });
 
-      const decodedOutput = decodeSignMessageOutput(response.output);
-
-      outputs.push(decodedOutput);
+      const decodedOutput = decodeSignMessageOutput();
+      // const keyPair = getKeypairForAccount(account);
+      // console.log("Signing with: ");
+      // console.log(keyPair.publicKey.toString());
+      // const { signature } = await signMessage(message, keyPair);
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       for (const input of inputs) {
         outputs.push(...(await this.#solanaSignMessage(input)));

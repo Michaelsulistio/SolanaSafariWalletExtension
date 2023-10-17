@@ -79,6 +79,10 @@ export interface BaseWalletResponse {
   origin: browser.runtime.MessageSender;
 }
 
+/**
+ * Connect
+ */
+
 export interface ConnectRequest extends BaseWalletRequest {
   input: StandardConnectInput;
   method: WalletRequestMethod.SOLANA_CONNECT;
@@ -89,7 +93,7 @@ export interface ConnectResponseEncoded extends BaseWalletResponse {
   method: WalletRequestMethod.SOLANA_CONNECT;
 }
 
-type WalletAccountEncoded = Omit<WalletAccount, "publicKey"> & {
+export type WalletAccountEncoded = Omit<WalletAccount, "publicKey"> & {
   publicKey: string;
 };
 
@@ -97,6 +101,9 @@ export type StandardConnectOutputEncoded = {
   accounts: readonly WalletAccountEncoded[];
 };
 
+/**
+ * Sign Message
+ */
 export interface SignMessageRequest extends BaseWalletRequest {
   input: SolanaSignMessageInput;
   method: WalletRequestMethod.SOLANA_SIGN_MESSAGE;
@@ -113,6 +120,9 @@ export interface SolanaSignMessageOutputEncoded {
   readonly signatureType?: "ed25519";
 }
 
+/**
+ * Sign Transaction
+ */
 export interface SignTransactionRequest extends BaseWalletRequest {
   input: SolanaSignTransactionInput;
   method: WalletRequestMethod.SOLANA_SIGN_TRANSACTION;
@@ -126,6 +136,10 @@ export interface SignTransactionResponseEncoded extends BaseWalletResponse {
 export interface SolanaSignTransactionOutputEncoded {
   readonly signedTransaction: string;
 }
+
+/**
+ * Sign And Send Transaction
+ */
 
 export interface SignAndSendTransactionRequest extends BaseWalletRequest {
   input: SolanaSignAndSendTransactionInput;
