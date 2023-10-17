@@ -3,30 +3,42 @@ import {
   Connection,
   Keypair,
   SendOptions,
-  Signer,
   TransactionSignature,
+  Transaction,
+  clusterApiUrl,
   VersionedTransaction,
-  clusterApiUrl
+  VersionedMessage,
+  TransactionMessage,
+  Message
 } from "@solana/web3.js";
 
 export default async function signAndSendTransaction(
-  transaction: VersionedTransaction,
+  transactionBytes: Uint8Array,
   keypair: Keypair,
   network: Cluster,
   options?: SendOptions
 ): Promise<{ signature: TransactionSignature }> {
-  // Sign Transaction
-  const signers: Signer[] = [
+  const versionedMessage = VersionedMessage.deserialize(transactionBytes);
+  console.log(versionedMessage.header);
+  console.log(versionedMessage.version);
+  console.log(versionedMessage.recentBlockhash);
+  const tx: VersionedTransaction = new VersionedTransaction(versionedMessage);
+
+  tx.sign([
     {
       publicKey: keypair.publicKey,
       secretKey: keypair.secretKey
     }
-  ];
-  transaction.sign(signers);
+  ]);
 
   // Send Transaction
   const connection = new Connection(clusterApiUrl(network));
-  const signature = await connection.sendTransaction(transaction, options);
+  const signature = await connection.sendTransaction(tx, options);
+
+  // console.log("Length of bytes: ", transactionBytes.length);
+  // const versionedMessage = VersionedMessage.deserialize(
+  //   transactionBytes.slice(64)
+  // );
 
   return { signature };
 }

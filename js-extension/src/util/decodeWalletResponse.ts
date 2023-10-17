@@ -41,6 +41,8 @@ function decodeOutput(
         encodedOutput as SolanaSignTransactionOutputEncoded
       );
     case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
+      console.log("IN DECODE");
+      console.log(encodedOutput);
       return decodeSignAndSendTransactionOutput(
         encodedOutput as SolanaSignAndSendTransactionOutputEncoded
       );

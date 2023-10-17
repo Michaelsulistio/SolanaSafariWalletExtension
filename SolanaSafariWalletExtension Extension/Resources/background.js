@@ -31,12 +31,10 @@
           const newreq = __assign(__assign({}, request), {
             type: "approval-tab-request"
           });
-          setTimeout(() => {
-            console.log("Right before sending: ", newreq);
-            browser.tabs.sendMessage(approveTab.id, __assign(__assign({}, request), {
-              type: "approval-tab-request"
-            }));
-          }, 5e3);
+          console.log("Right before sending: ", newreq);
+          browser.tabs.sendMessage(approveTab.id, __assign(__assign({}, request), {
+            type: "approval-tab-request"
+          }));
         } else {
           console.error("Approval tab missing id");
         }

@@ -7192,7 +7192,7 @@
       var LEADER = ALPHABET.charAt(0);
       var FACTOR = Math.log(BASE) / Math.log(256);
       var iFACTOR = Math.log(256) / Math.log(BASE);
-      function encode(source) {
+      function encode2(source) {
         if (Array.isArray(source) || source instanceof Uint8Array) {
           source = _Buffer.from(source);
         }
@@ -7289,7 +7289,7 @@
         throw new Error("Non-base" + BASE + " character");
       }
       return {
-        encode,
+        encode: encode2,
         decodeUnsafe,
         decode: decode2
       };
@@ -7501,7 +7501,7 @@
       var LEADER = ALPHABET.charAt(0);
       var FACTOR = Math.log(BASE) / Math.log(256);
       var iFACTOR = Math.log(256) / Math.log(BASE);
-      function encode(source) {
+      function encode2(source) {
         if (Array.isArray(source) || source instanceof Uint8Array) {
           source = _Buffer.from(source);
         }
@@ -7598,7 +7598,7 @@
         throw new Error("Non-base" + BASE + " character");
       }
       return {
-        encode,
+        encode: encode2,
         decodeUnsafe,
         decode: decode2
       };
@@ -7814,7 +7814,7 @@
       Object.defineProperty(this, "encoding", {value: "utf-8"});
     }
     TextEncoder2.prototype = {
-      encode: function encode(opt_string, options) {
+      encode: function encode2(opt_string, options) {
         opt_string = opt_string ? String(opt_string) : "";
         options = ToDictionary(options);
         if (!this._streaming)
@@ -12902,7 +12902,7 @@
       var LEADER = ALPHABET.charAt(0);
       var FACTOR = Math.log(BASE) / Math.log(256);
       var iFACTOR = Math.log(256) / Math.log(BASE);
-      function encode(source) {
+      function encode2(source) {
         if (source instanceof Uint8Array) {
         } else if (ArrayBuffer.isView(source)) {
           source = new Uint8Array(source.buffer, source.byteOffset, source.byteLength);
@@ -13001,7 +13001,7 @@
         throw new Error("Non-base" + BASE + " character");
       }
       return {
-        encode,
+        encode: encode2,
         decodeUnsafe,
         decode: decode2
       };
@@ -13076,68 +13076,6 @@
     }
   };
   _RegisterWalletEvent_detail = new WeakMap();
-
-  // node_modules/@wallet-standard/wallet/lib/esm/util.js
-  var __classPrivateFieldSet2 = function(receiver, state, value, kind, f) {
-    if (kind === "m")
-      throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f)
-      throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
-      throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
-  };
-  var __classPrivateFieldGet2 = function(receiver, state, kind, f) {
-    if (kind === "a" && !f)
-      throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
-      throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-  };
-  var _ReadonlyWalletAccount_address;
-  var _ReadonlyWalletAccount_publicKey;
-  var _ReadonlyWalletAccount_chains;
-  var _ReadonlyWalletAccount_features;
-  var _ReadonlyWalletAccount_label;
-  var _ReadonlyWalletAccount_icon;
-  var ReadonlyWalletAccount = class {
-    constructor(account) {
-      _ReadonlyWalletAccount_address.set(this, void 0);
-      _ReadonlyWalletAccount_publicKey.set(this, void 0);
-      _ReadonlyWalletAccount_chains.set(this, void 0);
-      _ReadonlyWalletAccount_features.set(this, void 0);
-      _ReadonlyWalletAccount_label.set(this, void 0);
-      _ReadonlyWalletAccount_icon.set(this, void 0);
-      if (new.target === ReadonlyWalletAccount) {
-        Object.freeze(this);
-      }
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_address, account.address, "f");
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_publicKey, account.publicKey.slice(), "f");
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_chains, account.chains.slice(), "f");
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_features, account.features.slice(), "f");
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_label, account.label, "f");
-      __classPrivateFieldSet2(this, _ReadonlyWalletAccount_icon, account.icon, "f");
-    }
-    get address() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_address, "f");
-    }
-    get publicKey() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_publicKey, "f").slice();
-    }
-    get chains() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_chains, "f").slice();
-    }
-    get features() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_features, "f").slice();
-    }
-    get label() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_label, "f");
-    }
-    get icon() {
-      return __classPrivateFieldGet2(this, _ReadonlyWalletAccount_icon, "f");
-    }
-  };
-  _ReadonlyWalletAccount_address = new WeakMap(), _ReadonlyWalletAccount_publicKey = new WeakMap(), _ReadonlyWalletAccount_chains = new WeakMap(), _ReadonlyWalletAccount_features = new WeakMap(), _ReadonlyWalletAccount_label = new WeakMap(), _ReadonlyWalletAccount_icon = new WeakMap();
 
   // node_modules/@solana/wallet-standard-features/lib/esm/signAndSendTransaction.js
   var SolanaSignAndSendTransaction = "solana:signAndSendTransaction";
@@ -14726,16 +14664,16 @@
   var NONCE_ACCOUNT_LENGTH = NonceAccountLayout.span;
   var encodeDecode = (layout) => {
     const decode2 = layout.decode.bind(layout);
-    const encode = layout.encode.bind(layout);
+    const encode2 = layout.encode.bind(layout);
     return {
       decode: decode2,
-      encode
+      encode: encode2
     };
   };
   var bigInt = (length) => (property) => {
     const layout = (0, import_buffer_layout.blob)(length, property);
     const {
-      encode,
+      encode: encode2,
       decode: decode2
     } = encodeDecode(layout);
     const bigIntLayout = layout;
@@ -14745,7 +14683,7 @@
     };
     bigIntLayout.encode = (bigInt2, buffer, offset2) => {
       const src = (0, import_bigint_buffer.toBufferLE)(bigInt2, length);
-      return encode(src, buffer, offset2);
+      return encode2(src, buffer, offset2);
     };
     return bigIntLayout;
   };
@@ -16941,6 +16879,100 @@
     }
   };
 
+  // src/util/decodeWalletResponse.ts
+  var bs582 = __toModule(require_bs583());
+  function decodeWalletResponse(response) {
+    return __assign(__assign({}, response), {
+      output: decodeOutput(response.method, response.output)
+    });
+  }
+  function decodeOutput(method, encodedOutput) {
+    switch (method) {
+      case WalletRequestMethod.SOLANA_CONNECT:
+        return decodeConnectOutput(encodedOutput);
+      case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
+        return decodeSignMessageOutput(encodedOutput);
+      case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
+        return decodeSignTransactionOutput(encodedOutput);
+      case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
+        console.log("IN DECODE");
+        console.log(encodedOutput);
+        return decodeSignAndSendTransactionOutput(encodedOutput);
+      default:
+        throw new Error(`Unsupported method: ${method}`);
+    }
+  }
+  function decodeConnectOutput(encodedOutput) {
+    return {
+      accounts: encodedOutput.accounts.map((account) => __assign(__assign({}, account), {
+        publicKey: bs582.decode(account.publicKey)
+      }))
+    };
+  }
+  function decodeSignMessageOutput(encodedOutput) {
+    return {
+      signedMessage: bs582.decode(encodedOutput.signedMessage),
+      signature: bs582.decode(encodedOutput.signature),
+      signatureType: encodedOutput.signatureType
+    };
+  }
+  function decodeSignTransactionOutput(encodedOutput) {
+    return {
+      signedTransaction: bs582.decode(encodedOutput.signedTransaction)
+    };
+  }
+  function decodeSignAndSendTransactionOutput(encodedOutput) {
+    return {
+      signature: bs582.decode(encodedOutput.signature)
+    };
+  }
+
+  // src/util/encodeWalletRequest.ts
+  var bs583 = __toModule(require_bs583());
+  function encodeWalletRequest(request) {
+    return __assign(__assign({}, request), {
+      input: encodeInput(request.method, request.input)
+    });
+  }
+  function encodeInput(method, input) {
+    switch (method) {
+      case WalletRequestMethod.SOLANA_CONNECT:
+        return input;
+      case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
+        return encodeSignMessageInput(input);
+      case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
+        return encodeSignTransactionInput(input);
+      case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
+        return encodeSignAndSendTransactionInput(input);
+      default:
+        throw new Error(`Unsupported method: ${method}`);
+    }
+  }
+  function encodeSignMessageInput(input) {
+    return {
+      account: __assign(__assign({}, input.account), {
+        publicKey: bs583.encode(input.account.publicKey)
+      }),
+      message: bs583.encode(input.message)
+    };
+  }
+  function encodeSignTransactionInput(input) {
+    return {
+      account: __assign(__assign({}, input.account), {
+        publicKey: bs583.encode(input.account.publicKey)
+      }),
+      transaction: bs583.encode(input.transaction),
+      chain: input.chain,
+      options: input.options
+    };
+  }
+  function encodeSignAndSendTransactionInput(input) {
+    return __assign(__assign({}, encodeSignTransactionInput(input)), {
+      chain: input.chain,
+      options: input.options
+    });
+  }
+
   // src/wallet/message-client.ts
   var _resolveHandler, _handleResponse, handleResponse_fn;
   var MessageClient = class {
@@ -16951,7 +16983,7 @@
     }
     async sendWalletRequest(request) {
       return new Promise((resolve, reject) => {
-        const walletRequest = new WalletRequestEvent(request);
+        const walletRequest = new WalletRequestEvent(encodeWalletRequest(request));
         __privateGet(this, _resolveHandler)[request.requestId] = {resolve, reject};
         console.log("Sending request: ", request.requestId);
         window.dispatchEvent(walletRequest);
@@ -16962,29 +16994,78 @@
   _handleResponse = new WeakSet();
   handleResponse_fn = function(event) {
     console.log("In MessageClient wallet handle response: ", event);
-    const request = event.detail;
-    const requestId = request == null ? void 0 : request.requestId;
+    const response = event.detail;
+    const requestId = response == null ? void 0 : response.requestId;
     if (requestId && __privateGet(this, _resolveHandler)[requestId]) {
       console.log("Handler for wallet response: ", event);
       const {resolve, reject} = __privateGet(this, _resolveHandler)[requestId];
       if (true) {
         console.log("Resolving request: ", requestId);
-        resolve(request);
+        const decodedResponse = decodeWalletResponse(response);
+        resolve(decodedResponse);
       }
       delete __privateGet(this, _resolveHandler)[requestId];
     }
   };
   var message_client_default = MessageClient;
 
-  // src/util/decodeWalletResponseOutput.ts
-  var bs582 = __toModule(require_bs583());
-  function decodeConnectOutput(encodedOutput) {
-    return {
-      accounts: encodedOutput.accounts.map((account) => __assign(__assign({}, account), {
-        publicKey: bs582.decode(account.publicKey)
-      }))
-    };
-  }
+  // src/wallet/account.ts
+  var chains = SOLANA_CHAINS;
+  var features = [
+    SolanaSignAndSendTransaction,
+    SolanaSignTransaction,
+    SolanaSignMessage
+  ];
+  var _address, _publicKey, _chains, _features, _label, _icon;
+  var _MyWalletWalletAccount = class {
+    constructor({
+      address,
+      publicKey: publicKey2,
+      label,
+      icon: icon2
+    }) {
+      _address.set(this, void 0);
+      _publicKey.set(this, void 0);
+      _chains.set(this, void 0);
+      _features.set(this, void 0);
+      _label.set(this, void 0);
+      _icon.set(this, void 0);
+      if (new.target === _MyWalletWalletAccount) {
+        Object.freeze(this);
+      }
+      __privateSet(this, _address, address);
+      __privateSet(this, _publicKey, publicKey2);
+      __privateSet(this, _chains, chains);
+      __privateSet(this, _features, features);
+      __privateSet(this, _label, label);
+      __privateSet(this, _icon, icon2);
+    }
+    get address() {
+      return __privateGet(this, _address);
+    }
+    get publicKey() {
+      return __privateGet(this, _publicKey).slice();
+    }
+    get chains() {
+      return __privateGet(this, _chains).slice();
+    }
+    get features() {
+      return __privateGet(this, _features).slice();
+    }
+    get label() {
+      return __privateGet(this, _label);
+    }
+    get icon() {
+      return __privateGet(this, _icon);
+    }
+  };
+  var MyWalletWalletAccount = _MyWalletWalletAccount;
+  _address = new WeakMap();
+  _publicKey = new WeakMap();
+  _chains = new WeakMap();
+  _features = new WeakMap();
+  _label = new WeakMap();
+  _icon = new WeakMap();
 
   // src/provider.ts
   var wallet;
@@ -17008,24 +17089,16 @@
     return false;
   }
   var icon = "data:image/svg+xml;base64,";
-  var MyWalletAccount = class extends ReadonlyWalletAccount {
-    constructor(account) {
-      super(account);
-      if (new.target === MyWalletAccount) {
-        Object.freeze(this);
-      }
-    }
-  };
-  var _messageClient, _name, _version, _icon, _listeners, _accounts, _chains, _connected, _disconnected, _standardEventsOn, _standardEventsOff, _standardEventsEmit, _standardConnect, _standardDisconnect, _solanaSignAndSendTransaction, _solanaSignIn, _solanaSignMessage, _solanaSignTransaction;
+  var _messageClient, _name, _version, _icon2, _listeners, _accounts, _chains2, _connected, _disconnected, _standardEventsOn, _standardEventsOff, _standardEventsEmit, _standardConnect, _standardDisconnect, _solanaSignAndSendTransaction, _solanaSignIn, _solanaSignMessage, _solanaSignTransaction;
   var _MyWallet = class {
     constructor() {
       _messageClient.set(this, void 0);
       _name.set(this, "My Wallet");
       _version.set(this, "1.0.0");
-      _icon.set(this, icon);
+      _icon2.set(this, icon);
       _listeners.set(this, {});
       _accounts.set(this, []);
-      _chains.set(this, [
+      _chains2.set(this, [
         "solana:mainnet",
         "solana:devnet",
         "solana:testnet",
@@ -17033,7 +17106,7 @@
       ]);
       _connected.set(this, (accounts) => {
         console.log("connected");
-        __privateSet(this, _accounts, accounts.map((account) => new MyWalletAccount(account)));
+        __privateSet(this, _accounts, accounts.map((account) => new MyWalletWalletAccount(account)));
         console.log(__privateGet(this, _accounts));
         __privateGet(this, _standardEventsEmit).call(this, "change", {accounts: this.accounts});
       });
@@ -17072,8 +17145,7 @@
             method: WalletRequestMethod.SOLANA_CONNECT,
             input: input != null ? input : {silent: false}
           });
-          const decodedOutput = decodeConnectOutput(response.output);
-          __privateGet(this, _connected).call(this, decodedOutput.accounts);
+          __privateGet(this, _connected).call(this, response.output.accounts);
         }
         return {accounts: this.accounts};
       });
@@ -17100,8 +17172,7 @@
             method: WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION,
             input: inputs[0]
           });
-          const decodedOutput = decodeWalletResponseOutput(response);
-          outputs.push(decodedOutput);
+          outputs.push(response.output);
         } else if (inputs.length > 1) {
           for (const input of inputs) {
             outputs.push(...await __privateGet(this, _solanaSignAndSendTransaction).call(this, input));
@@ -17195,13 +17266,13 @@
       return __privateGet(this, _name);
     }
     get icon() {
-      return __privateGet(this, _icon);
+      return __privateGet(this, _icon2);
     }
     get accounts() {
       return __privateGet(this, _accounts).slice();
     }
     get chains() {
-      return __privateGet(this, _chains).slice();
+      return __privateGet(this, _chains2).slice();
     }
     get features() {
       return {
@@ -17242,10 +17313,10 @@
   _messageClient = new WeakMap();
   _name = new WeakMap();
   _version = new WeakMap();
-  _icon = new WeakMap();
+  _icon2 = new WeakMap();
   _listeners = new WeakMap();
   _accounts = new WeakMap();
-  _chains = new WeakMap();
+  _chains2 = new WeakMap();
   _connected = new WeakMap();
   _disconnected = new WeakMap();
   _standardEventsOn = new WeakMap();

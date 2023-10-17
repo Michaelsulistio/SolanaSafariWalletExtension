@@ -8,12 +8,14 @@ import {
   BaseWalletRequestEncoded,
   BaseWalletResponseEncoded,
   SignTransactionRequestEncoded,
-  SignMessageRequestEncoded
+  SignMessageRequestEncoded,
+  SignAndSendTransactionRequestEncoded
 } from "../types/messageTypes";
 import ConnectScreen from "./ConnectScreen";
 import SignMessageScreen from "./SignMessageScreen";
 import ErrorBoundary from "./ErrorBoundary";
 import SignTransactionScreen from "./SignTransactionScreen";
+import SignAndSendTransactionScreen from "./SignAndSendTransactionScreen";
 
 function getRequestScreenComponent(
   request: BaseWalletRequestEncoded,
@@ -35,6 +37,12 @@ function getRequestScreenComponent(
         />
       );
     case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
+      return (
+        <SignAndSendTransactionScreen
+          request={request as SignAndSendTransactionRequestEncoded}
+          onApprove={onApprove}
+        />
+      );
     case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
       return (
         <SignTransactionScreen

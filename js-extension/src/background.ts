@@ -56,13 +56,11 @@ async function forwardWalletRequestToApproval(request: BaseWalletRequest) {
           ...request,
           type: "approval-tab-request"
         };
-        setTimeout(() => {
-          console.log("Right before sending: ", newreq);
-          browser.tabs.sendMessage(approveTab.id, {
-            ...request,
-            type: "approval-tab-request"
-          });
-        }, 5000);
+        console.log("Right before sending: ", newreq);
+        browser.tabs.sendMessage(approveTab.id, {
+          ...request,
+          type: "approval-tab-request"
+        });
       } else {
         console.error("Approval tab missing id");
       }
