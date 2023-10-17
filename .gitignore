@@ -2,8 +2,13 @@
 #
 # Apple sample code gitignore configuration.
 
+<<<<<<< HEAD
 # Editor
 .vscode/
+=======
+# editor
+.vscode
+>>>>>>> add-tailwind
 
 # Finder
 .DS_Store

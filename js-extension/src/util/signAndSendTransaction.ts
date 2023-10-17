@@ -4,12 +4,9 @@ import {
   Keypair,
   SendOptions,
   TransactionSignature,
-  Transaction,
   clusterApiUrl,
   VersionedTransaction,
-  VersionedMessage,
-  TransactionMessage,
-  Message
+  VersionedMessage
 } from "@solana/web3.js";
 
 export default async function signAndSendTransaction(
@@ -18,6 +15,7 @@ export default async function signAndSendTransaction(
   network: Cluster,
   options?: SendOptions
 ): Promise<{ signature: TransactionSignature }> {
+  // TODO: Fix signAndSend
   const versionedMessage = VersionedMessage.deserialize(transactionBytes);
   console.log(versionedMessage.header);
   console.log(versionedMessage.version);

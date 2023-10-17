@@ -31,6 +31,7 @@
 		FB54E8E62ACD0FB600A6E21D /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8E22ACD0FB600A6E21D /* content.js */; };
 		FBD7450E2ADA094C003D5E6B /* approval.html in Resources */ = {isa = PBXBuildFile; fileRef = FBD7450D2ADA094B003D5E6B /* approval.html */; };
 		FBD745102ADA1757003D5E6B /* approval.js in Resources */ = {isa = PBXBuildFile; fileRef = FBD7450F2ADA1757003D5E6B /* approval.js */; };
+		FBD745122ADA5521003D5E6B /* output.css in Resources */ = {isa = PBXBuildFile; fileRef = FBD745112ADA5521003D5E6B /* output.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		FB54E8E22ACD0FB600A6E21D /* content.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		FBD7450D2ADA094B003D5E6B /* approval.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = approval.html; sourceTree = "<group>"; };
 		FBD7450F2ADA1757003D5E6B /* approval.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = approval.js; sourceTree = "<group>"; };
+		FBD745112ADA5521003D5E6B /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 		FB54E8AC2ACD07D300A6E21D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FBD745112ADA5521003D5E6B /* output.css */,
 				FBD7450F2ADA1757003D5E6B /* approval.js */,
 				FBD7450D2ADA094B003D5E6B /* approval.html */,
 				FB54E8DE2ACD0FB600A6E21D /* build */,
@@ -394,6 +397,7 @@
 				FBD745102ADA1757003D5E6B /* approval.js in Resources */,
 				FB54E8E62ACD0FB600A6E21D /* content.js in Resources */,
 				FB54E8E32ACD0FB600A6E21D /* popup.js in Resources */,
+				FBD745122ADA5521003D5E6B /* output.css in Resources */,
 				FB54E8B02ACD07D300A6E21D /* images in Resources */,
 				FB54E8B22ACD07D300A6E21D /* manifest.json in Resources */,
 				FBD7450E2ADA094C003D5E6B /* approval.html in Resources */,
