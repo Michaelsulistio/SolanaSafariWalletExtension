@@ -4,15 +4,20 @@ import {
   WalletRequestMethod,
   ConnectRequest,
   BaseWalletResponse,
-  SignMessageRequest
+  SignMessageRequest,
+  BaseWalletRequestEncoded,
+  BaseWalletResponseEncoded,
+  SignTransactionRequestEncoded,
+  SignMessageRequestEncoded
 } from "../types/messageTypes";
 import ConnectScreen from "./ConnectScreen";
 import SignMessageScreen from "./SignMessageScreen";
 import ErrorBoundary from "./ErrorBoundary";
+import SignTransactionScreen from "./SignTransactionScreen";
 
 function getRequestScreenComponent(
-  request: BaseWalletRequest,
-  onApprove: (response: BaseWalletResponse) => void
+  request: BaseWalletRequestEncoded,
+  onApprove: (response: BaseWalletResponseEncoded) => void
 ) {
   switch (request.method) {
     case WalletRequestMethod.SOLANA_CONNECT:
@@ -25,12 +30,18 @@ function getRequestScreenComponent(
     case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
       return (
         <SignMessageScreen
-          request={request as SignMessageRequest}
+          request={request as SignMessageRequestEncoded}
           onApprove={onApprove}
         />
       );
     case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
     case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
+      return (
+        <SignTransactionScreen
+          request={request as SignTransactionRequestEncoded}
+          onApprove={onApprove}
+        />
+      );
     default:
       return <div> loading </div>;
   }
