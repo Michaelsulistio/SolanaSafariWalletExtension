@@ -1,6 +1,7 @@
 import React from "react";
 import {
   SignMessageRequest,
+  SignMessageRequestEncoded,
   SignMessageResponseEncoded
 } from "../types/messageTypes";
 import getDummyKeypair from "../util/getDummyKeypair";
@@ -8,17 +9,19 @@ import signMessage from "../util/signMessage";
 import bs58 from "bs58";
 
 type Props = Readonly<{
-  request: SignMessageRequest;
+  request: SignMessageRequestEncoded;
   onApprove: (response: SignMessageResponseEncoded) => void;
 }>;
 
 export default function SignMessageScreen({ request, onApprove }: Props) {
-  const handleSignMessage = async (request: SignMessageRequest) => {
+  const handleSignMessage = async (request: SignMessageRequestEncoded) => {
     const dummyKeypair = getDummyKeypair();
 
     const input = request.input;
-    console.log(input);
-    const { signature } = await signMessage(input.message, dummyKeypair);
+    const { signature } = await signMessage(
+      bs58.decode(input.message),
+      dummyKeypair
+    );
 
     if (!request.origin) {
       throw new Error("Sender origin is missing: " + request);
@@ -30,7 +33,7 @@ export default function SignMessageScreen({ request, onApprove }: Props) {
       requestId: request.requestId,
       origin: request.origin,
       output: {
-        signedMessage: bs58.encode(input.message),
+        signedMessage: input.message,
         signature: bs58.encode(signature)
       }
     });

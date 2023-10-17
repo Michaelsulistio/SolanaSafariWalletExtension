@@ -1,5 +1,5 @@
 import type { Wallet, WalletAccount } from "@wallet-standard/base";
-import { ReadonlyWalletAccount, registerWallet } from "@wallet-standard/wallet";
+import { registerWallet } from "@wallet-standard/wallet";
 
 import {
   SolanaSignAndSendTransaction,
@@ -38,17 +38,10 @@ import {
   getClusterForChain,
   isSolanaChain
 } from "./wallet/solana";
-import bs58 from "bs58";
 import { Transaction } from "@solana/web3.js";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
-import { ConnectResponse, WalletRequestMethod } from "./types/messageTypes";
-import {
-  decodeConnectOutput,
-  decodeSignAndSendTransactionOutput,
-  decodeSignMessageOutput,
-  decodeSignTransactionOutput
-} from "./util/decodeWalletResponse";
+import { WalletRequestMethod } from "./types/messageTypes";
 import { MyWalletWalletAccount } from "./wallet/account";
 
 let wallet: MyWallet;
@@ -230,10 +223,8 @@ class MyWallet implements Wallet {
         method: WalletRequestMethod.SOLANA_CONNECT,
         input: input ?? { silent: false }
       });
-      const decodedOutput = decodeConnectOutput(response.output);
-      console.log(decodedOutput);
 
-      this.#connected(decodedOutput.accounts);
+      this.#connected(response.output.accounts);
     }
     return { accounts: this.accounts };
   };
@@ -271,9 +262,7 @@ class MyWallet implements Wallet {
         input: inputs[0]
       });
 
-      const decodedOutput = decodeSignAndSendTransactionOutput(response.output);
-
-      outputs.push(decodedOutput);
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       for (const input of inputs) {
         outputs.push(...(await this.#solanaSignAndSendTransaction(input)));
@@ -313,9 +302,7 @@ class MyWallet implements Wallet {
         input: inputs[0]
       });
 
-      const decodedOutput = decodeSignMessageOutput(response.output);
-
-      outputs.push(decodedOutput);
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       for (const input of inputs) {
         outputs.push(...(await this.#solanaSignMessage(input)));
@@ -347,9 +334,7 @@ class MyWallet implements Wallet {
         input: inputs[0]
       });
 
-      const decodedOutput = decodeSignTransactionOutput(response.output);
-
-      outputs.push(decodedOutput);
+      outputs.push(response.output);
     } else if (inputs.length > 1) {
       let chain: SolanaChain | undefined = undefined;
       for (const input of inputs) {
