@@ -89,9 +89,13 @@ export default function ApprovalScreen() {
   }, []);
 
   const handleApprove = (response: BaseWalletResponseEncoded) => {
+    console.log("In handle Approve");
+
     if (!response.origin?.tab?.id) {
       throw new Error("Request has no origin sender metadata");
     }
+    console.log("In handle Approve 2");
+
     const originTabId = response.origin.tab.id;
     browser.tabs
       .sendMessage(originTabId, response) // TODO: Only `update` and `close` tab if its the last request in queue

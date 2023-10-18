@@ -8,12 +8,13 @@ type HeaderProps = {
 
 const OriginHeader: React.FC<HeaderProps> = ({ favIconUrl, title, url }) => {
   // Fallback to hardcoded path if not provided
+
   const faviconSrc = favIconUrl || `${url}/favicon.ico`;
 
   return (
     <div className="flex flex-col items-center justify-center space-y-2 pt-8 pb-4">
       <img
-        src={faviconSrc}
+        src={"https://jup.ag/favicon.ico"}
         alt="FavIcon"
         className="w-20 h-20 bg-gray-800 rounded-full p-2" // Added bg-gray-800 for dark background, rounded-full for circular shape, and p-2 for padding
       />

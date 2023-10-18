@@ -43,7 +43,7 @@ import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
 import { WalletRequestMethod } from "./types/messageTypes";
 import { MyWalletWalletAccount } from "./wallet/account";
-
+import { icon } from "./wallet/icon";
 let wallet: MyWallet;
 let registered = false;
 
@@ -69,15 +69,12 @@ export function register(): boolean {
 }
 
 /** @internal */
-const icon: Wallet["icon"] = "data:image/svg+xml;base64," as const;
-
-/** @internal */
 class MyWallet implements Wallet {
   // Custom State
   readonly #messageClient: MessageClient;
 
   // Wallet Standard
-  readonly #name = "My Wallet";
+  readonly #name = "Safari Web Extension Wallet";
   readonly #version = "1.0.0" as const;
   readonly #icon = icon;
   readonly #listeners: {

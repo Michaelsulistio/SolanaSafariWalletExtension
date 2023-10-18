@@ -6,13 +6,18 @@ import {
 import getDummyKeypair from "../util/getDummyKeypair";
 import bs58 from "bs58";
 import signTransaction from "../util/signTransaction";
-import { Transaction } from "@solana/web3.js";
+import {
+  Transaction,
+  VersionedMessage,
+  VersionedTransaction
+} from "@solana/web3.js";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import ApprovalFooter from "./ApprovalFooter";
 import ApprovalHeader from "./ApprovalHeader";
 import WalletDisplay from "./WalletDisplay";
 import { Download, SendHorizontal } from "lucide-react";
+import signVersionedTransaction from "../util/signVersionedTransaction";
 
 type Props = Readonly<{
   request: SignTransactionRequestEncoded;
@@ -23,17 +28,34 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
   const handleSignTransaction = async (
     request: SignTransactionRequestEncoded
   ) => {
+    console.log("In sign transaction");
     const dummyKeypair = getDummyKeypair();
 
     const input = request.input;
-    const signedTxBytes = await signTransaction(
-      Transaction.from(bs58.decode(input.transaction)),
+
+    const txBytes = bs58.decode(input.transaction);
+
+    // Asuming single byte variant
+    const numOfSignatures = txBytes[0];
+    const txHeaderLength = 1 + numOfSignatures * 64;
+
+    console.log(txBytes, txBytes.length);
+
+    const versionedMessage = VersionedMessage.deserialize(
+      txBytes.slice(txHeaderLength, txBytes.length)
+    );
+    const versionedTx = new VersionedTransaction(versionedMessage);
+
+    const signedTxBytes = await signVersionedTransaction(
+      new VersionedTransaction(versionedMessage),
       dummyKeypair
     );
+    console.log("In sign transaction 2");
 
     if (!request.origin) {
       throw new Error("Sender origin is missing: " + request);
     }
+    console.log("In sign transaction 3");
 
     onApprove({
       type: "wallet-response",
@@ -53,7 +75,7 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
           title="Sign Transaction"
           description="A website is requesting you to approve a transaction."
           origin={request.origin}
-          includeTitle={true}
+          displayTitle={true}
         />
 
         <Separator className="mb-4" />
@@ -69,7 +91,7 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
             <SendHorizontal />
             <span className="font-bold ml-3">Sent</span>
           </div>
-          <span className="text-red-500 font-semibold">{"0.5 SOL"}</span>
+          <span className="text-red-500 font-semibold">{"0.01 SOL"}</span>
         </div>
 
         <div className="flex justify-between">
@@ -77,7 +99,7 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
             <Download />
             <span className="font-bold ml-3">Received</span>
           </div>
-          <span className="text-green-500 font-semibold">{"13.43 USDC"}</span>
+          <span className="text-green-500 font-semibold">{"0.236 USDC"}</span>
         </div>
 
         <Separator className="my-4" />

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
 import { BaseWalletResponseEncoded } from "../types/messageTypes";
+import { Loader2 } from "lucide-react";
 
 type FooterProps = Readonly<{
   onCancel: () => void;
@@ -13,13 +14,38 @@ export default function ApprovalFooter({
   onConfirm,
   confirmText
 }: FooterProps) {
+  const [isConfirmLoading, setIsConfirmLoading] = useState(false);
+  const [isCancelLoading, setIsCancelLoading] = useState(false);
+
+  const handleCancel = () => {
+    setIsCancelLoading(true);
+    onCancel();
+    // After processing (e.g., after a promise resolves), you might need:
+    // setIsLoading(false);
+  };
+
+  const handleConfirm = () => {
+    setIsConfirmLoading(true);
+    onConfirm();
+    // After processing (e.g., after a promise resolves), you might need:
+    // setIsLoading(false);
+  };
+
   return (
     <div className="mt-auto flex justify-evenly pb-32 space-x-2">
-      <Button className="rounded-full w-2/5 mr-2" onClick={onCancel}>
-        Cancel
+      <Button className="rounded-full w-2/5 mr-2" onClick={handleCancel}>
+        {isCancelLoading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          "Cancel"
+        )}
       </Button>
-      <Button className="rounded-full w-2/5 px-4" onClick={onConfirm}>
-        {confirmText}
+      <Button className="rounded-full w-2/5 px-4" onClick={handleConfirm}>
+        {isConfirmLoading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          confirmText
+        )}
       </Button>
     </div>
   );

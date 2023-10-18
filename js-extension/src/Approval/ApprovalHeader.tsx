@@ -10,6 +10,14 @@ type Props = Readonly<{
   displayTitle: boolean;
 }>;
 
+function getBaseUrl(url: string | undefined): string | undefined {
+  if (!url) {
+    return undefined;
+  }
+  const match = url.match(/(https?:\/\/[^\/]+\/)/);
+  return match ? match[1] : undefined;
+}
+
 export default function ApprovalHeader({
   title,
   description,
@@ -26,7 +34,7 @@ export default function ApprovalHeader({
       ) : null}
       <OriginHeader
         title={origin?.tab?.title}
-        url={origin?.tab?.url}
+        url={getBaseUrl(origin?.tab?.url)}
         favIconUrl={origin?.tab?.favIconUrl}
       />
     </>
