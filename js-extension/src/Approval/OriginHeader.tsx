@@ -22,7 +22,7 @@ const OriginHeader: React.FC<HeaderProps> = ({ favIconUrl, title, url }) => {
       <span className="font-semibold">{title}</span>
 
       {/* URL as subtext */}
-      <span className="text-sm text-gray-500">{url}</span>
+      <span className="text-sm text-center text-gray-500">{url}</span>
     </div>
   );
 };

@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button";
 import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import OriginHeader from "./OriginHeader";
+import WalletDisplay from "./WalletDisplay";
+import ApprovalHeader from "./ApprovalHeader";
+import ApprovalFooter from "./ApprovalFooter";
 
 type Props = Readonly<{
   request: ConnectRequest;
@@ -53,18 +56,14 @@ export default function ConnectScreen({ request, onApprove }: Props) {
   return (
     <div className="flex flex-col mx-auto max-w-sm min-h-screen">
       <div className="flex-grow flex-col space-y-4">
-        <CardHeader>
-          <CardTitle className="text-xxl">Connect</CardTitle>
-          <CardDescription>
-            A website is requesting to connect your wallet.
-          </CardDescription>
-        </CardHeader>
-        <OriginHeader
-          title={request.origin?.tab?.title}
-          url={request.origin?.tab?.url}
-          favIconUrl={request.origin?.tab?.favIconUrl}
+        <ApprovalHeader
+          title="Connect"
+          description="A website is requesting to connect to your wallet"
+          origin={request.origin}
         />
+
         <Separator className="mb-4" />
+
         <div className="space-y-1">
           <div className="text-lg font-bold">Permissions: </div>
           <div className="text-sm pl-0 text-muted-foreground">
@@ -74,16 +73,17 @@ export default function ConnectScreen({ request, onApprove }: Props) {
             • Request approval for transactions.
           </div>
         </div>
+
         <Separator className="my-4" />
+
+        <div className="text-lg font-bold">Wallet</div>
+        <WalletDisplay publicKey={getDummyKeypair().publicKey} />
       </div>
-      <div className="mt-auto flex justify-between pb-32">
-        <Button className="flex-1 mr-2" variant="outline">
-          Cancel
-        </Button>
-        <Button className="flex-1" onClick={() => handleConnect(request)}>
-          Connect
-        </Button>
-      </div>
+      <ApprovalFooter
+        onCancel={() => {}}
+        onConfirm={() => handleConnect(request)}
+        confirmText="Connect"
+      />
     </div>
   );
 }

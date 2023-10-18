@@ -7,6 +7,11 @@ import getDummyKeypair from "../util/getDummyKeypair";
 import bs58 from "bs58";
 import signTransaction from "../util/signTransaction";
 import { Transaction } from "@solana/web3.js";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import ApprovalFooter from "./ApprovalFooter";
+import ApprovalHeader from "./ApprovalHeader";
+import WalletDisplay from "./WalletDisplay";
 
 type Props = Readonly<{
   request: SignTransactionRequestEncoded;
@@ -41,11 +46,38 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
   };
 
   return (
-    <div>
-      <button onClick={() => handleSignTransaction(request)}>
-        SignTransaction
-      </button>
-      <button onClick={() => {}}>Reject</button>
+    <div className="flex flex-col mx-auto max-w-sm min-h-screen">
+      <div className="flex-grow flex-col space-y-4">
+        <ApprovalHeader
+          title="Sign Transaction"
+          description="A website is requesting you to approve a transaction."
+          origin={request.origin}
+        />
+
+        <Separator className="mb-4" />
+
+        <div className="text-lg font-bold">Estimated Changes</div>
+        <div className="flex justify-between">
+          <span className="font-bold">Network fee</span>
+          <span>{"< 0.00001 SOL"}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="font-bold">Network fee</span>
+          <span>{"< 0.00001 SOL"}</span>
+        </div>
+
+        <Separator className="my-4" />
+
+        <div className="text-lg font-bold">Wallet</div>
+        <WalletDisplay publicKey={getDummyKeypair().publicKey} />
+      </div>
+
+      <ApprovalFooter
+        onCancel={() => {}}
+        onConfirm={() => handleSignTransaction(request)}
+        confirmText={"Sign Transaction"}
+      />
     </div>
   );
 }
