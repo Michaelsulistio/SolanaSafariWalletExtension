@@ -20060,11 +20060,11 @@
   });
 
   // src/approval.tsx
-  var import_react11 = __toModule(require_react());
-  var import_react_dom2 = __toModule(require_react_dom());
+  var import_react21 = __toModule(require_react());
+  var import_react_dom3 = __toModule(require_react_dom());
 
   // src/Approval/ApprovalScreen.tsx
-  var import_react10 = __toModule(require_react());
+  var import_react20 = __toModule(require_react());
 
   // src/types/messageTypes.ts
   var WalletRequestMethod;
@@ -20076,7 +20076,7 @@
   })(WalletRequestMethod || (WalletRequestMethod = {}));
 
   // src/Approval/ConnectScreen.tsx
-  var import_react6 = __toModule(require_react());
+  var import_react10 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/lib/index.browser.esm.js
   var import_buffer = __toModule(require_buffer());
@@ -26652,7 +26652,7 @@
     return Keypair.fromSecretKey(secretKey);
   }
 
-  // components/ui/button.tsx
+  // components/ui/separator.tsx
   var React = __toModule(require_react());
 
   // node_modules/@babel/runtime/helpers/esm/extends.js
@@ -26671,6 +26671,13 @@
     return _extends.apply(this, arguments);
   }
 
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var import_react4 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-primitive/dist/index.mjs
+  var import_react3 = __toModule(require_react());
+  var import_react_dom = __toModule(require_react_dom());
+
   // node_modules/@radix-ui/react-slot/dist/index.mjs
   var import_react2 = __toModule(require_react());
 
@@ -26684,6 +26691,9 @@
   }
   function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
     return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
+  }
+  function $6ed0406888f73fc4$export$c7b2cbe3552a0d05(...refs) {
+    return (0, import_react.useCallback)($6ed0406888f73fc4$export$43e446d32b3d21af(...refs), refs);
   }
 
   // node_modules/@radix-ui/react-slot/dist/index.mjs
@@ -26750,6 +26760,85 @@
     return __assign(__assign({}, slotProps), overrideProps);
   }
 
+  // node_modules/@radix-ui/react-primitive/dist/index.mjs
+  var $8927f6f2acc4f386$var$NODES = [
+    "a",
+    "button",
+    "div",
+    "form",
+    "h2",
+    "h3",
+    "img",
+    "input",
+    "label",
+    "li",
+    "nav",
+    "ol",
+    "p",
+    "span",
+    "svg",
+    "ul"
+  ];
+  var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
+    const Node = /* @__PURE__ */ (0, import_react3.forwardRef)((props, forwardedRef) => {
+      const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
+      const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
+      (0, import_react3.useEffect)(() => {
+        window[Symbol.for("radix-ui")] = true;
+      }, []);
+      return /* @__PURE__ */ (0, import_react3.createElement)(Comp, _extends({}, primitiveProps, {
+        ref: forwardedRef
+      }));
+    });
+    Node.displayName = `Primitive.${node}`;
+    return __assign(__assign({}, primitive), {
+      [node]: Node
+    });
+  }, {});
+
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var $89eedd556c436f6a$var$DEFAULT_ORIENTATION = "horizontal";
+  var $89eedd556c436f6a$var$ORIENTATIONS = [
+    "horizontal",
+    "vertical"
+  ];
+  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react4.forwardRef)((props, forwardedRef) => {
+    const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
+    const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
+    const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+    const semanticProps = decorative ? {
+      role: "none"
+    } : {
+      "aria-orientation": ariaOrientation,
+      role: "separator"
+    };
+    return /* @__PURE__ */ (0, import_react4.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      "data-orientation": orientation
+    }, semanticProps, domProps, {
+      ref: forwardedRef
+    }));
+  });
+  $89eedd556c436f6a$export$1ff3c3f08ae963c0.propTypes = {
+    orientation(props, propName, componentName) {
+      const propValue = props[propName];
+      const strVal = String(propValue);
+      if (propValue && !$89eedd556c436f6a$var$isValidOrientation(propValue))
+        return new Error($89eedd556c436f6a$var$getInvalidOrientationError(strVal, componentName));
+      return null;
+    }
+  };
+  function $89eedd556c436f6a$var$getInvalidOrientationError(value, componentName) {
+    return `Invalid prop \`orientation\` of value \`${value}\` supplied to \`${componentName}\`, expected one of:
+  - horizontal
+  - vertical
+
+Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
+  }
+  function $89eedd556c436f6a$var$isValidOrientation(orientation) {
+    return $89eedd556c436f6a$var$ORIENTATIONS.includes(orientation);
+  }
+  var $89eedd556c436f6a$export$be92b6f5f03c0fe9 = $89eedd556c436f6a$export$1ff3c3f08ae963c0;
+
   // node_modules/clsx/dist/clsx.mjs
   function r(e) {
     var t, f, n = "";
@@ -26769,46 +26858,6 @@
       (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
     return n;
   }
-
-  // node_modules/class-variance-authority/dist/index.mjs
-  var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
-  var cx = clsx;
-  var cva = (base, config) => {
-    return (props) => {
-      var ref;
-      if ((config === null || config === void 0 ? void 0 : config.variants) == null)
-        return cx(base, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
-      const {variants, defaultVariants} = config;
-      const getVariantClassNames = Object.keys(variants).map((variant) => {
-        const variantProp = props === null || props === void 0 ? void 0 : props[variant];
-        const defaultVariantProp = defaultVariants === null || defaultVariants === void 0 ? void 0 : defaultVariants[variant];
-        if (variantProp === null)
-          return null;
-        const variantKey = falsyToString(variantProp) || falsyToString(defaultVariantProp);
-        return variants[variant][variantKey];
-      });
-      const propsWithoutUndefined = props && Object.entries(props).reduce((acc, param) => {
-        let [key, value] = param;
-        if (value === void 0) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-      const getCompoundVariantClassNames = config === null || config === void 0 ? void 0 : (ref = config.compoundVariants) === null || ref === void 0 ? void 0 : ref.reduce((acc, param1) => {
-        let {class: cvClass, className: cvClassName} = param1, compoundVariantOptions = __rest(param1, ["class", "className"]);
-        return Object.entries(compoundVariantOptions).every((param) => {
-          let [key, value] = param;
-          return Array.isArray(value) ? value.includes(__assign(__assign({}, defaultVariants), propsWithoutUndefined)[key]) : __assign(__assign({}, defaultVariants), propsWithoutUndefined)[key] === value;
-        }) ? [
-          ...acc,
-          cvClass,
-          cvClassName
-        ] : acc;
-      }, []);
-      return cx(base, getVariantClassNames, getCompoundVariantClassNames, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
-    };
-  };
 
   // node_modules/tailwind-merge/dist/lib/tw-join.mjs
   function twJoin() {
@@ -28192,6 +28241,221 @@
     return twMerge(clsx(inputs));
   }
 
+  // components/ui/separator.tsx
+  var Separator = React.forwardRef((_a, ref) => {
+    var {className, orientation = "horizontal", decorative = true} = _a, props = __rest(_a, ["className", "orientation", "decorative"]);
+    return /* @__PURE__ */ React.createElement($89eedd556c436f6a$export$be92b6f5f03c0fe9, __assign({
+      ref,
+      decorative,
+      orientation,
+      className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className)
+    }, props));
+  });
+  Separator.displayName = $89eedd556c436f6a$export$be92b6f5f03c0fe9.displayName;
+
+  // src/Approval/WalletDisplay.tsx
+  var import_react6 = __toModule(require_react());
+
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
+  var import_react5 = __toModule(require_react());
+
+  // node_modules/lucide-react/dist/esm/defaultAttributes.js
+  var defaultAttributes = {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
+  var toKebabCase = (string2) => string2.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+  var createLucideIcon = (iconName, iconNode) => {
+    const Component = (0, import_react5.forwardRef)((_a, ref) => {
+      var {color = "currentColor", size = 24, strokeWidth = 2, absoluteStrokeWidth, children} = _a, rest = __rest(_a, ["color", "size", "strokeWidth", "absoluteStrokeWidth", "children"]);
+      return (0, import_react5.createElement)("svg", __assign(__assign(__assign({
+        ref
+      }, defaultAttributes), {
+        width: size,
+        height: size,
+        stroke: color,
+        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+        className: `lucide lucide-${toKebabCase(iconName)}`
+      }), rest), [
+        ...iconNode.map(([tag, attrs]) => (0, import_react5.createElement)(tag, attrs)),
+        ...(Array.isArray(children) ? children : [children]) || []
+      ]);
+    });
+    Component.displayName = `${iconName}`;
+    return Component;
+  };
+
+  // node_modules/lucide-react/dist/esm/icons/download.js
+  var Download = createLucideIcon("Download", [
+    ["path", {d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h"}],
+    ["polyline", {points: "7 10 12 15 17 10", key: "2ggqvy"}],
+    ["line", {x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/send-horizontal.js
+  var SendHorizontal = createLucideIcon("SendHorizontal", [
+    ["path", {d: "m3 3 3 9-3 9 19-9Z", key: "1aobqy"}],
+    ["path", {d: "M6 12h16", key: "s4cdu5"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/wallet.js
+  var Wallet = createLucideIcon("Wallet", [
+    ["path", {d: "M21 12V7H5a2 2 0 0 1 0-4h14v4", key: "195gfw"}],
+    ["path", {d: "M3 5v14a2 2 0 0 0 2 2h16v-5", key: "195n9w"}],
+    ["path", {d: "M18 12a2 2 0 0 0 0 4h4v-4Z", key: "vllfpd"}]
+  ]);
+
+  // src/Approval/WalletDisplay.tsx
+  function WalletDisplay({publicKey: publicKey2}) {
+    return /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "flex items-center"
+    }, /* @__PURE__ */ import_react6.default.createElement(Wallet, {
+      className: "mr-4"
+    }), /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "flex flex-col"
+    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "font-semibold"
+    }, "Main Wallet"), " ", /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "text-sm text-gray-500"
+    }, "0x1234567780000"), " "));
+  }
+
+  // components/ui/card.tsx
+  var React3 = __toModule(require_react());
+  var Card = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("div", __assign({
+      ref,
+      className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
+    }, props));
+  });
+  Card.displayName = "Card";
+  var CardHeader = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("div", __assign({
+      ref,
+      className: cn("flex flex-col space-y-1.5", className)
+    }, props));
+  });
+  CardHeader.displayName = "CardHeader";
+  var CardTitle = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("h3", __assign({
+      ref,
+      className: cn("text-2xl font-semibold leading-none tracking-tight", className)
+    }, props));
+  });
+  CardTitle.displayName = "CardTitle";
+  var CardDescription = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("p", __assign({
+      ref,
+      className: cn("text-sm text-muted-foreground", className)
+    }, props));
+  });
+  CardDescription.displayName = "CardDescription";
+  var CardContent = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("div", __assign({
+      ref,
+      className: cn("p-6 pt-0", className)
+    }, props));
+  });
+  CardContent.displayName = "CardContent";
+  var CardFooter = React3.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React3.createElement("div", __assign({
+      ref,
+      className: cn("flex items-center p-6 pt-0", className)
+    }, props));
+  });
+  CardFooter.displayName = "CardFooter";
+
+  // src/Approval/ApprovalHeader.tsx
+  var import_react8 = __toModule(require_react());
+
+  // src/Approval/OriginHeader.tsx
+  var import_react7 = __toModule(require_react());
+  var OriginHeader = ({favIconUrl, title, url}) => {
+    const faviconSrc = favIconUrl || `${url}/favicon.ico`;
+    return /* @__PURE__ */ import_react7.default.createElement("div", {
+      className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
+    }, /* @__PURE__ */ import_react7.default.createElement("img", {
+      src: faviconSrc,
+      alt: "FavIcon",
+      className: "w-20 h-20 bg-gray-800 rounded-full p-2"
+    }), /* @__PURE__ */ import_react7.default.createElement("span", {
+      className: "font-semibold"
+    }, title), /* @__PURE__ */ import_react7.default.createElement("span", {
+      className: "text-sm text-center text-gray-500"
+    }, url));
+  };
+  var OriginHeader_default = OriginHeader;
+
+  // src/Approval/ApprovalHeader.tsx
+  function ApprovalHeader({title, description, origin}) {
+    var _a, _b, _c;
+    return /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(CardTitle, {
+      className: "text-xxl"
+    }, title), /* @__PURE__ */ import_react8.default.createElement(CardDescription, null, description)), /* @__PURE__ */ import_react8.default.createElement(OriginHeader_default, {
+      title: (_a = origin == null ? void 0 : origin.tab) == null ? void 0 : _a.title,
+      url: (_b = origin == null ? void 0 : origin.tab) == null ? void 0 : _b.url,
+      favIconUrl: (_c = origin == null ? void 0 : origin.tab) == null ? void 0 : _c.favIconUrl
+    }));
+  }
+
+  // components/ui/button.tsx
+  var React6 = __toModule(require_react());
+
+  // node_modules/class-variance-authority/dist/index.mjs
+  var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
+  var cx = clsx;
+  var cva = (base, config) => {
+    return (props) => {
+      var ref;
+      if ((config === null || config === void 0 ? void 0 : config.variants) == null)
+        return cx(base, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+      const {variants, defaultVariants} = config;
+      const getVariantClassNames = Object.keys(variants).map((variant) => {
+        const variantProp = props === null || props === void 0 ? void 0 : props[variant];
+        const defaultVariantProp = defaultVariants === null || defaultVariants === void 0 ? void 0 : defaultVariants[variant];
+        if (variantProp === null)
+          return null;
+        const variantKey = falsyToString(variantProp) || falsyToString(defaultVariantProp);
+        return variants[variant][variantKey];
+      });
+      const propsWithoutUndefined = props && Object.entries(props).reduce((acc, param) => {
+        let [key, value] = param;
+        if (value === void 0) {
+          return acc;
+        }
+        acc[key] = value;
+        return acc;
+      }, {});
+      const getCompoundVariantClassNames = config === null || config === void 0 ? void 0 : (ref = config.compoundVariants) === null || ref === void 0 ? void 0 : ref.reduce((acc, param1) => {
+        let {class: cvClass, className: cvClassName} = param1, compoundVariantOptions = __rest(param1, ["class", "className"]);
+        return Object.entries(compoundVariantOptions).every((param) => {
+          let [key, value] = param;
+          return Array.isArray(value) ? value.includes(__assign(__assign({}, defaultVariants), propsWithoutUndefined)[key]) : __assign(__assign({}, defaultVariants), propsWithoutUndefined)[key] === value;
+        }) ? [
+          ...acc,
+          cvClass,
+          cvClassName
+        ] : acc;
+      }, []);
+      return cx(base, getVariantClassNames, getCompoundVariantClassNames, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+    };
+  };
+
   // components/ui/button.tsx
   var buttonVariants = cva("inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", {
     variants: {
@@ -28215,187 +28479,37 @@
       size: "default"
     }
   });
-  var Button = React.forwardRef((_a, ref) => {
+  var Button = React6.forwardRef((_a, ref) => {
     var {className, variant, size, asChild = false} = _a, props = __rest(_a, ["className", "variant", "size", "asChild"]);
     const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : "button";
-    return /* @__PURE__ */ React.createElement(Comp, __assign({
+    return /* @__PURE__ */ React6.createElement(Comp, __assign({
       className: cn(buttonVariants({variant, size, className})),
       ref
     }, props));
   });
   Button.displayName = "Button";
 
-  // components/ui/card.tsx
-  var React2 = __toModule(require_react());
-  var Card = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
-    }, props));
-  });
-  Card.displayName = "Card";
-  var CardHeader = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("flex flex-col space-y-1.5", className)
-    }, props));
-  });
-  CardHeader.displayName = "CardHeader";
-  var CardTitle = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("h3", __assign({
-      ref,
-      className: cn("text-2xl font-semibold leading-none tracking-tight", className)
-    }, props));
-  });
-  CardTitle.displayName = "CardTitle";
-  var CardDescription = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("p", __assign({
-      ref,
-      className: cn("text-sm text-muted-foreground", className)
-    }, props));
-  });
-  CardDescription.displayName = "CardDescription";
-  var CardContent = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("p-6 pt-0", className)
-    }, props));
-  });
-  CardContent.displayName = "CardContent";
-  var CardFooter = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("flex items-center p-6 pt-0", className)
-    }, props));
-  });
-  CardFooter.displayName = "CardFooter";
-
-  // components/ui/separator.tsx
-  var React3 = __toModule(require_react());
-
-  // node_modules/@radix-ui/react-separator/dist/index.mjs
-  var import_react4 = __toModule(require_react());
-
-  // node_modules/@radix-ui/react-primitive/dist/index.mjs
-  var import_react3 = __toModule(require_react());
-  var import_react_dom = __toModule(require_react_dom());
-  var $8927f6f2acc4f386$var$NODES = [
-    "a",
-    "button",
-    "div",
-    "form",
-    "h2",
-    "h3",
-    "img",
-    "input",
-    "label",
-    "li",
-    "nav",
-    "ol",
-    "p",
-    "span",
-    "svg",
-    "ul"
-  ];
-  var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
-    const Node = /* @__PURE__ */ (0, import_react3.forwardRef)((props, forwardedRef) => {
-      const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
-      const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
-      (0, import_react3.useEffect)(() => {
-        window[Symbol.for("radix-ui")] = true;
-      }, []);
-      return /* @__PURE__ */ (0, import_react3.createElement)(Comp, _extends({}, primitiveProps, {
-        ref: forwardedRef
-      }));
-    });
-    Node.displayName = `Primitive.${node}`;
-    return __assign(__assign({}, primitive), {
-      [node]: Node
-    });
-  }, {});
-
-  // node_modules/@radix-ui/react-separator/dist/index.mjs
-  var $89eedd556c436f6a$var$DEFAULT_ORIENTATION = "horizontal";
-  var $89eedd556c436f6a$var$ORIENTATIONS = [
-    "horizontal",
-    "vertical"
-  ];
-  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react4.forwardRef)((props, forwardedRef) => {
-    const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
-    const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
-    const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-    const semanticProps = decorative ? {
-      role: "none"
-    } : {
-      "aria-orientation": ariaOrientation,
-      role: "separator"
-    };
-    return /* @__PURE__ */ (0, import_react4.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
-      "data-orientation": orientation
-    }, semanticProps, domProps, {
-      ref: forwardedRef
-    }));
-  });
-  $89eedd556c436f6a$export$1ff3c3f08ae963c0.propTypes = {
-    orientation(props, propName, componentName) {
-      const propValue = props[propName];
-      const strVal = String(propValue);
-      if (propValue && !$89eedd556c436f6a$var$isValidOrientation(propValue))
-        return new Error($89eedd556c436f6a$var$getInvalidOrientationError(strVal, componentName));
-      return null;
-    }
-  };
-  function $89eedd556c436f6a$var$getInvalidOrientationError(value, componentName) {
-    return `Invalid prop \`orientation\` of value \`${value}\` supplied to \`${componentName}\`, expected one of:
-  - horizontal
-  - vertical
-
-Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
+  // src/Approval/ApprovalFooter.tsx
+  var import_react9 = __toModule(require_react());
+  function ApprovalFooter({
+    onCancel,
+    onConfirm,
+    confirmText
+  }) {
+    return /* @__PURE__ */ import_react9.default.createElement("div", {
+      className: "mt-auto flex justify-between pb-32"
+    }, /* @__PURE__ */ import_react9.default.createElement(Button, {
+      className: "flex-1 mr-2",
+      variant: "outline",
+      onClick: onCancel
+    }, "Cancel"), /* @__PURE__ */ import_react9.default.createElement(Button, {
+      className: "flex-1",
+      onClick: onConfirm
+    }, confirmText));
   }
-  function $89eedd556c436f6a$var$isValidOrientation(orientation) {
-    return $89eedd556c436f6a$var$ORIENTATIONS.includes(orientation);
-  }
-  var $89eedd556c436f6a$export$be92b6f5f03c0fe9 = $89eedd556c436f6a$export$1ff3c3f08ae963c0;
-
-  // components/ui/separator.tsx
-  var Separator = React3.forwardRef((_a, ref) => {
-    var {className, orientation = "horizontal", decorative = true} = _a, props = __rest(_a, ["className", "orientation", "decorative"]);
-    return /* @__PURE__ */ React3.createElement($89eedd556c436f6a$export$be92b6f5f03c0fe9, __assign({
-      ref,
-      decorative,
-      orientation,
-      className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className)
-    }, props));
-  });
-  Separator.displayName = $89eedd556c436f6a$export$be92b6f5f03c0fe9.displayName;
-
-  // src/Approval/OriginHeader.tsx
-  var import_react5 = __toModule(require_react());
-  var OriginHeader = ({favIconUrl, title, url}) => {
-    const faviconSrc = favIconUrl || `${url}/favicon.ico`;
-    return /* @__PURE__ */ import_react5.default.createElement("div", {
-      className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
-    }, /* @__PURE__ */ import_react5.default.createElement("img", {
-      src: faviconSrc,
-      alt: "FavIcon",
-      className: "w-20 h-20"
-    }), /* @__PURE__ */ import_react5.default.createElement("span", {
-      className: "font-semibold"
-    }, title), /* @__PURE__ */ import_react5.default.createElement("span", {
-      className: "text-sm text-gray-500"
-    }, url));
-  };
-  var OriginHeader_default = OriginHeader;
 
   // src/Approval/ConnectScreen.tsx
   function ConnectScreen({request, onApprove}) {
-    var _a, _b, _c, _d, _e, _f;
     const handleConnect = (request2) => {
       const dummyKeypair = getDummyKeypair();
       const account = {
@@ -28424,41 +28538,40 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react6.default.createElement("div", {
+    return /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "flex flex-col mx-auto max-w-sm min-h-screen"
-    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+    }, /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "flex-grow flex-col space-y-4"
-    }, /* @__PURE__ */ import_react6.default.createElement(CardHeader, null, /* @__PURE__ */ import_react6.default.createElement(CardTitle, {
-      className: "text-xxl"
-    }, "Connect"), /* @__PURE__ */ import_react6.default.createElement(CardDescription, null, "A website is requesting to connect your wallet.")), /* @__PURE__ */ import_react6.default.createElement(OriginHeader_default, {
-      title: (_b = (_a = request.origin) == null ? void 0 : _a.tab) == null ? void 0 : _b.title,
-      url: (_d = (_c = request.origin) == null ? void 0 : _c.tab) == null ? void 0 : _d.url,
-      favIconUrl: (_f = (_e = request.origin) == null ? void 0 : _e.tab) == null ? void 0 : _f.favIconUrl
-    }), /* @__PURE__ */ import_react6.default.createElement(Separator, {
+    }, /* @__PURE__ */ import_react10.default.createElement(ApprovalHeader, {
+      title: "Connect",
+      description: "A website is requesting to connect to your wallet",
+      origin: request.origin
+    }), /* @__PURE__ */ import_react10.default.createElement(Separator, {
       className: "mb-4"
-    }), /* @__PURE__ */ import_react6.default.createElement("div", {
+    }), /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "space-y-1"
-    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+    }, /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "Permissions: "), /* @__PURE__ */ import_react6.default.createElement("div", {
+    }, "Permissions: "), /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "text-sm pl-0 text-muted-foreground"
-    }, "\u2022 View your wallet's public key."), /* @__PURE__ */ import_react6.default.createElement("div", {
+    }, "\u2022 View your wallet's public key."), /* @__PURE__ */ import_react10.default.createElement("div", {
       className: "text-sm pl-0 text-muted-foreground"
-    }, "\u2022 Request approval for transactions.")), /* @__PURE__ */ import_react6.default.createElement(Separator, {
+    }, "\u2022 Request approval for transactions.")), /* @__PURE__ */ import_react10.default.createElement(Separator, {
       className: "my-4"
-    })), /* @__PURE__ */ import_react6.default.createElement("div", {
-      className: "mt-auto flex justify-between pb-32"
-    }, /* @__PURE__ */ import_react6.default.createElement(Button, {
-      className: "flex-1 mr-2",
-      variant: "outline"
-    }, "Reject"), /* @__PURE__ */ import_react6.default.createElement(Button, {
-      className: "flex-1",
-      onClick: () => handleConnect(request)
-    }, "Approve")));
+    }), /* @__PURE__ */ import_react10.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Wallet"), /* @__PURE__ */ import_react10.default.createElement(WalletDisplay, {
+      publicKey: getDummyKeypair().publicKey
+    })), /* @__PURE__ */ import_react10.default.createElement(ApprovalFooter, {
+      onCancel: () => {
+      },
+      onConfirm: () => handleConnect(request),
+      confirmText: "Connect"
+    }));
   }
 
   // src/Approval/SignMessageScreen.tsx
-  var import_react7 = __toModule(require_react());
+  var import_react17 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/src/utils/ed25519.ts
   var import_ed255192 = __toModule(require_ed25519());
@@ -28474,6 +28587,981 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
 
   // src/Approval/SignMessageScreen.tsx
   var import_bs583 = __toModule(require_bs583());
+
+  // components/ui/scroll-area.tsx
+  var React9 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-scroll-area/dist/index.mjs
+  var import_react16 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-presence/dist/index.mjs
+  var import_react12 = __toModule(require_react());
+  var import_react_dom2 = __toModule(require_react_dom());
+
+  // node_modules/@radix-ui/react-use-layout-effect/dist/index.mjs
+  var import_react11 = __toModule(require_react());
+  var $9f79659886946c16$export$e5c5a5f917a5871c = Boolean(globalThis === null || globalThis === void 0 ? void 0 : globalThis.document) ? import_react11.useLayoutEffect : () => {
+  };
+
+  // node_modules/@radix-ui/react-presence/dist/index.mjs
+  function $fe963b355347cc68$export$3e6543de14f8614f(initialState, machine) {
+    return (0, import_react12.useReducer)((state, event) => {
+      const nextState = machine[state][event];
+      return nextState !== null && nextState !== void 0 ? nextState : state;
+    }, initialState);
+  }
+  var $921a889cee6df7e8$export$99c2b779aa4e8b8b = (props) => {
+    const {present, children} = props;
+    const presence = $921a889cee6df7e8$var$usePresence(present);
+    const child = typeof children === "function" ? children({
+      present: presence.isPresent
+    }) : import_react12.Children.only(children);
+    const ref = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(presence.ref, child.ref);
+    const forceMount = typeof children === "function";
+    return forceMount || presence.isPresent ? /* @__PURE__ */ (0, import_react12.cloneElement)(child, {
+      ref
+    }) : null;
+  };
+  $921a889cee6df7e8$export$99c2b779aa4e8b8b.displayName = "Presence";
+  function $921a889cee6df7e8$var$usePresence(present) {
+    const [node1, setNode] = (0, import_react12.useState)();
+    const stylesRef = (0, import_react12.useRef)({});
+    const prevPresentRef = (0, import_react12.useRef)(present);
+    const prevAnimationNameRef = (0, import_react12.useRef)("none");
+    const initialState = present ? "mounted" : "unmounted";
+    const [state, send] = $fe963b355347cc68$export$3e6543de14f8614f(initialState, {
+      mounted: {
+        UNMOUNT: "unmounted",
+        ANIMATION_OUT: "unmountSuspended"
+      },
+      unmountSuspended: {
+        MOUNT: "mounted",
+        ANIMATION_END: "unmounted"
+      },
+      unmounted: {
+        MOUNT: "mounted"
+      }
+    });
+    (0, import_react12.useEffect)(() => {
+      const currentAnimationName = $921a889cee6df7e8$var$getAnimationName(stylesRef.current);
+      prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
+    }, [
+      state
+    ]);
+    $9f79659886946c16$export$e5c5a5f917a5871c(() => {
+      const styles = stylesRef.current;
+      const wasPresent = prevPresentRef.current;
+      const hasPresentChanged = wasPresent !== present;
+      if (hasPresentChanged) {
+        const prevAnimationName = prevAnimationNameRef.current;
+        const currentAnimationName = $921a889cee6df7e8$var$getAnimationName(styles);
+        if (present)
+          send("MOUNT");
+        else if (currentAnimationName === "none" || (styles === null || styles === void 0 ? void 0 : styles.display) === "none")
+          send("UNMOUNT");
+        else {
+          const isAnimating = prevAnimationName !== currentAnimationName;
+          if (wasPresent && isAnimating)
+            send("ANIMATION_OUT");
+          else
+            send("UNMOUNT");
+        }
+        prevPresentRef.current = present;
+      }
+    }, [
+      present,
+      send
+    ]);
+    $9f79659886946c16$export$e5c5a5f917a5871c(() => {
+      if (node1) {
+        const handleAnimationEnd = (event) => {
+          const currentAnimationName = $921a889cee6df7e8$var$getAnimationName(stylesRef.current);
+          const isCurrentAnimation = currentAnimationName.includes(event.animationName);
+          if (event.target === node1 && isCurrentAnimation)
+            (0, import_react_dom2.flushSync)(() => send("ANIMATION_END"));
+        };
+        const handleAnimationStart = (event) => {
+          if (event.target === node1)
+            prevAnimationNameRef.current = $921a889cee6df7e8$var$getAnimationName(stylesRef.current);
+        };
+        node1.addEventListener("animationstart", handleAnimationStart);
+        node1.addEventListener("animationcancel", handleAnimationEnd);
+        node1.addEventListener("animationend", handleAnimationEnd);
+        return () => {
+          node1.removeEventListener("animationstart", handleAnimationStart);
+          node1.removeEventListener("animationcancel", handleAnimationEnd);
+          node1.removeEventListener("animationend", handleAnimationEnd);
+        };
+      } else
+        send("ANIMATION_END");
+    }, [
+      node1,
+      send
+    ]);
+    return {
+      isPresent: [
+        "mounted",
+        "unmountSuspended"
+      ].includes(state),
+      ref: (0, import_react12.useCallback)((node) => {
+        if (node)
+          stylesRef.current = getComputedStyle(node);
+        setNode(node);
+      }, [])
+    };
+  }
+  function $921a889cee6df7e8$var$getAnimationName(styles) {
+    return (styles === null || styles === void 0 ? void 0 : styles.animationName) || "none";
+  }
+
+  // node_modules/@radix-ui/react-context/dist/index.mjs
+  var import_react13 = __toModule(require_react());
+  function $c512c27ab02ef895$export$50c7b4e9d9f19c1(scopeName, createContextScopeDeps = []) {
+    let defaultContexts = [];
+    function $c512c27ab02ef895$export$fd42f52fd3ae1109(rootComponentName, defaultContext) {
+      const BaseContext = /* @__PURE__ */ (0, import_react13.createContext)(defaultContext);
+      const index = defaultContexts.length;
+      defaultContexts = [
+        ...defaultContexts,
+        defaultContext
+      ];
+      function Provider(props) {
+        const {scope, children} = props, context = __rest(props, ["scope", "children"]);
+        const Context = (scope === null || scope === void 0 ? void 0 : scope[scopeName][index]) || BaseContext;
+        const value = (0, import_react13.useMemo)(() => context, Object.values(context));
+        return /* @__PURE__ */ (0, import_react13.createElement)(Context.Provider, {
+          value
+        }, children);
+      }
+      function useContext(consumerName, scope) {
+        const Context = (scope === null || scope === void 0 ? void 0 : scope[scopeName][index]) || BaseContext;
+        const context = (0, import_react13.useContext)(Context);
+        if (context)
+          return context;
+        if (defaultContext !== void 0)
+          return defaultContext;
+        throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
+      }
+      Provider.displayName = rootComponentName + "Provider";
+      return [
+        Provider,
+        useContext
+      ];
+    }
+    const createScope = () => {
+      const scopeContexts = defaultContexts.map((defaultContext) => {
+        return /* @__PURE__ */ (0, import_react13.createContext)(defaultContext);
+      });
+      return function useScope(scope) {
+        const contexts = (scope === null || scope === void 0 ? void 0 : scope[scopeName]) || scopeContexts;
+        return (0, import_react13.useMemo)(() => ({
+          [`__scope${scopeName}`]: __assign(__assign({}, scope), {
+            [scopeName]: contexts
+          })
+        }), [
+          scope,
+          contexts
+        ]);
+      };
+    };
+    createScope.scopeName = scopeName;
+    return [
+      $c512c27ab02ef895$export$fd42f52fd3ae1109,
+      $c512c27ab02ef895$var$composeContextScopes(createScope, ...createContextScopeDeps)
+    ];
+  }
+  function $c512c27ab02ef895$var$composeContextScopes(...scopes) {
+    const baseScope = scopes[0];
+    if (scopes.length === 1)
+      return baseScope;
+    const createScope1 = () => {
+      const scopeHooks = scopes.map((createScope) => ({
+        useScope: createScope(),
+        scopeName: createScope.scopeName
+      }));
+      return function useComposedScopes(overrideScopes) {
+        const nextScopes1 = scopeHooks.reduce((nextScopes, {useScope, scopeName}) => {
+          const scopeProps = useScope(overrideScopes);
+          const currentScope = scopeProps[`__scope${scopeName}`];
+          return __assign(__assign({}, nextScopes), currentScope);
+        }, {});
+        return (0, import_react13.useMemo)(() => ({
+          [`__scope${baseScope.scopeName}`]: nextScopes1
+        }), [
+          nextScopes1
+        ]);
+      };
+    };
+    createScope1.scopeName = baseScope.scopeName;
+    return createScope1;
+  }
+
+  // node_modules/@radix-ui/react-use-callback-ref/dist/index.mjs
+  var import_react14 = __toModule(require_react());
+  function $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(callback) {
+    const callbackRef = (0, import_react14.useRef)(callback);
+    (0, import_react14.useEffect)(() => {
+      callbackRef.current = callback;
+    });
+    return (0, import_react14.useMemo)(() => (...args) => {
+      var _callbackRef$current;
+      return (_callbackRef$current = callbackRef.current) === null || _callbackRef$current === void 0 ? void 0 : _callbackRef$current.call(callbackRef, ...args);
+    }, []);
+  }
+
+  // node_modules/@radix-ui/react-direction/dist/index.mjs
+  var import_react15 = __toModule(require_react());
+  var $f631663db3294ace$var$DirectionContext = /* @__PURE__ */ (0, import_react15.createContext)(void 0);
+  function $f631663db3294ace$export$b39126d51d94e6f3(localDir) {
+    const globalDir = (0, import_react15.useContext)($f631663db3294ace$var$DirectionContext);
+    return localDir || globalDir || "ltr";
+  }
+
+  // node_modules/@radix-ui/number/dist/index.mjs
+  function $ae6933e535247d3d$export$7d15b64cf5a3a4c4(value, [min, max]) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  // node_modules/@radix-ui/primitive/dist/index.mjs
+  function $e42e1063c40fb3ef$export$b9ecd428b558ff10(originalEventHandler, ourEventHandler, {checkForDefaultPrevented = true} = {}) {
+    return function handleEvent(event) {
+      originalEventHandler === null || originalEventHandler === void 0 || originalEventHandler(event);
+      if (checkForDefaultPrevented === false || !event.defaultPrevented)
+        return ourEventHandler === null || ourEventHandler === void 0 ? void 0 : ourEventHandler(event);
+    };
+  }
+
+  // node_modules/@radix-ui/react-scroll-area/dist/index.mjs
+  function $6c2e24571c90391f$export$3e6543de14f8614f(initialState, machine) {
+    return (0, import_react16.useReducer)((state, event) => {
+      const nextState = machine[state][event];
+      return nextState !== null && nextState !== void 0 ? nextState : state;
+    }, initialState);
+  }
+  var $57acba87d6e25586$var$SCROLL_AREA_NAME = "ScrollArea";
+  var [$57acba87d6e25586$var$createScrollAreaContext, $57acba87d6e25586$export$488468afe3a6f2b1] = $c512c27ab02ef895$export$50c7b4e9d9f19c1($57acba87d6e25586$var$SCROLL_AREA_NAME);
+  var [$57acba87d6e25586$var$ScrollAreaProvider, $57acba87d6e25586$var$useScrollAreaContext] = $57acba87d6e25586$var$createScrollAreaContext($57acba87d6e25586$var$SCROLL_AREA_NAME);
+  var $57acba87d6e25586$export$ccf8d8d7bbf3c2cc = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {__scopeScrollArea, type: type2 = "hover", dir, scrollHideDelay = 600} = props, scrollAreaProps = __rest(props, ["__scopeScrollArea", "type", "dir", "scrollHideDelay"]);
+    const [scrollArea, setScrollArea] = (0, import_react16.useState)(null);
+    const [viewport, setViewport] = (0, import_react16.useState)(null);
+    const [content, setContent] = (0, import_react16.useState)(null);
+    const [scrollbarX, setScrollbarX] = (0, import_react16.useState)(null);
+    const [scrollbarY, setScrollbarY] = (0, import_react16.useState)(null);
+    const [cornerWidth, setCornerWidth] = (0, import_react16.useState)(0);
+    const [cornerHeight, setCornerHeight] = (0, import_react16.useState)(0);
+    const [scrollbarXEnabled, setScrollbarXEnabled] = (0, import_react16.useState)(false);
+    const [scrollbarYEnabled, setScrollbarYEnabled] = (0, import_react16.useState)(false);
+    const composedRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => setScrollArea(node));
+    const direction = $f631663db3294ace$export$b39126d51d94e6f3(dir);
+    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaProvider, {
+      scope: __scopeScrollArea,
+      type: type2,
+      dir: direction,
+      scrollHideDelay,
+      scrollArea,
+      viewport,
+      onViewportChange: setViewport,
+      content,
+      onContentChange: setContent,
+      scrollbarX,
+      onScrollbarXChange: setScrollbarX,
+      scrollbarXEnabled,
+      onScrollbarXEnabledChange: setScrollbarXEnabled,
+      scrollbarY,
+      onScrollbarYChange: setScrollbarY,
+      scrollbarYEnabled,
+      onScrollbarYEnabledChange: setScrollbarYEnabled,
+      onCornerWidthChange: setCornerWidth,
+      onCornerHeightChange: setCornerHeight
+    }, /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      dir: direction
+    }, scrollAreaProps, {
+      ref: composedRefs,
+      style: __assign({
+        position: "relative",
+        ["--radix-scroll-area-corner-width"]: cornerWidth + "px",
+        ["--radix-scroll-area-corner-height"]: cornerHeight + "px"
+      }, props.style)
+    })));
+  });
+  var $57acba87d6e25586$var$VIEWPORT_NAME = "ScrollAreaViewport";
+  var $57acba87d6e25586$export$a21cbf9f11fca853 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {__scopeScrollArea, children} = props, viewportProps = __rest(props, ["__scopeScrollArea", "children"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$VIEWPORT_NAME, __scopeScrollArea);
+    const ref = (0, import_react16.useRef)(null);
+    const composedRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onViewportChange);
+    return /* @__PURE__ */ (0, import_react16.createElement)(import_react16.Fragment, null, /* @__PURE__ */ (0, import_react16.createElement)("style", {
+      dangerouslySetInnerHTML: {
+        __html: `[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}`
+      }
+    }), /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      "data-radix-scroll-area-viewport": ""
+    }, viewportProps, {
+      ref: composedRefs,
+      style: __assign({
+        overflowX: context.scrollbarXEnabled ? "scroll" : "hidden",
+        overflowY: context.scrollbarYEnabled ? "scroll" : "hidden"
+      }, props.style)
+    }), /* @__PURE__ */ (0, import_react16.createElement)("div", {
+      ref: context.onContentChange,
+      style: {
+        minWidth: "100%",
+        display: "table"
+      }
+    }, children)));
+  });
+  var $57acba87d6e25586$var$SCROLLBAR_NAME = "ScrollAreaScrollbar";
+  var $57acba87d6e25586$export$2fabd85d0eba3c57 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const {onScrollbarXEnabledChange, onScrollbarYEnabledChange} = context;
+    const isHorizontal = props.orientation === "horizontal";
+    (0, import_react16.useEffect)(() => {
+      isHorizontal ? onScrollbarXEnabledChange(true) : onScrollbarYEnabledChange(true);
+      return () => {
+        isHorizontal ? onScrollbarXEnabledChange(false) : onScrollbarYEnabledChange(false);
+      };
+    }, [
+      isHorizontal,
+      onScrollbarXEnabledChange,
+      onScrollbarYEnabledChange
+    ]);
+    return context.type === "hover" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarHover, _extends({}, scrollbarProps, {
+      ref: forwardedRef,
+      forceMount
+    })) : context.type === "scroll" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarScroll, _extends({}, scrollbarProps, {
+      ref: forwardedRef,
+      forceMount
+    })) : context.type === "auto" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({}, scrollbarProps, {
+      ref: forwardedRef,
+      forceMount
+    })) : context.type === "always" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({}, scrollbarProps, {
+      ref: forwardedRef
+    })) : null;
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarHover = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const [visible, setVisible] = (0, import_react16.useState)(false);
+    (0, import_react16.useEffect)(() => {
+      const scrollArea = context.scrollArea;
+      let hideTimer = 0;
+      if (scrollArea) {
+        const handlePointerEnter = () => {
+          window.clearTimeout(hideTimer);
+          setVisible(true);
+        };
+        const handlePointerLeave = () => {
+          hideTimer = window.setTimeout(() => setVisible(false), context.scrollHideDelay);
+        };
+        scrollArea.addEventListener("pointerenter", handlePointerEnter);
+        scrollArea.addEventListener("pointerleave", handlePointerLeave);
+        return () => {
+          window.clearTimeout(hideTimer);
+          scrollArea.removeEventListener("pointerenter", handlePointerEnter);
+          scrollArea.removeEventListener("pointerleave", handlePointerLeave);
+        };
+      }
+    }, [
+      context.scrollArea,
+      context.scrollHideDelay
+    ]);
+    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+      present: forceMount || visible
+    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({
+      "data-state": visible ? "visible" : "hidden"
+    }, scrollbarProps, {
+      ref: forwardedRef
+    })));
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarScroll = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const isHorizontal = props.orientation === "horizontal";
+    const debounceScrollEnd = $57acba87d6e25586$var$useDebounceCallback(() => send("SCROLL_END"), 100);
+    const [state, send] = $6c2e24571c90391f$export$3e6543de14f8614f("hidden", {
+      hidden: {
+        SCROLL: "scrolling"
+      },
+      scrolling: {
+        SCROLL_END: "idle",
+        POINTER_ENTER: "interacting"
+      },
+      interacting: {
+        SCROLL: "interacting",
+        POINTER_LEAVE: "idle"
+      },
+      idle: {
+        HIDE: "hidden",
+        SCROLL: "scrolling",
+        POINTER_ENTER: "interacting"
+      }
+    });
+    (0, import_react16.useEffect)(() => {
+      if (state === "idle") {
+        const hideTimer = window.setTimeout(() => send("HIDE"), context.scrollHideDelay);
+        return () => window.clearTimeout(hideTimer);
+      }
+    }, [
+      state,
+      context.scrollHideDelay,
+      send
+    ]);
+    (0, import_react16.useEffect)(() => {
+      const viewport = context.viewport;
+      const scrollDirection = isHorizontal ? "scrollLeft" : "scrollTop";
+      if (viewport) {
+        let prevScrollPos = viewport[scrollDirection];
+        const handleScroll = () => {
+          const scrollPos = viewport[scrollDirection];
+          const hasScrollInDirectionChanged = prevScrollPos !== scrollPos;
+          if (hasScrollInDirectionChanged) {
+            send("SCROLL");
+            debounceScrollEnd();
+          }
+          prevScrollPos = scrollPos;
+        };
+        viewport.addEventListener("scroll", handleScroll);
+        return () => viewport.removeEventListener("scroll", handleScroll);
+      }
+    }, [
+      context.viewport,
+      isHorizontal,
+      send,
+      debounceScrollEnd
+    ]);
+    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+      present: forceMount || state !== "hidden"
+    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
+      "data-state": state === "hidden" ? "hidden" : "visible"
+    }, scrollbarProps, {
+      ref: forwardedRef,
+      onPointerEnter: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerEnter, () => send("POINTER_ENTER")),
+      onPointerLeave: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerLeave, () => send("POINTER_LEAVE"))
+    })));
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarAuto = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
+    const [visible, setVisible] = (0, import_react16.useState)(false);
+    const isHorizontal = props.orientation === "horizontal";
+    const handleResize = $57acba87d6e25586$var$useDebounceCallback(() => {
+      if (context.viewport) {
+        const isOverflowX = context.viewport.offsetWidth < context.viewport.scrollWidth;
+        const isOverflowY = context.viewport.offsetHeight < context.viewport.scrollHeight;
+        setVisible(isHorizontal ? isOverflowX : isOverflowY);
+      }
+    }, 10);
+    $57acba87d6e25586$var$useResizeObserver(context.viewport, handleResize);
+    $57acba87d6e25586$var$useResizeObserver(context.content, handleResize);
+    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+      present: forceMount || visible
+    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
+      "data-state": visible ? "visible" : "hidden"
+    }, scrollbarProps, {
+      ref: forwardedRef
+    })));
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarVisible = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {orientation = "vertical"} = props, scrollbarProps = __rest(props, ["orientation"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const thumbRef = (0, import_react16.useRef)(null);
+    const pointerOffsetRef = (0, import_react16.useRef)(0);
+    const [sizes, setSizes] = (0, import_react16.useState)({
+      content: 0,
+      viewport: 0,
+      scrollbar: {
+        size: 0,
+        paddingStart: 0,
+        paddingEnd: 0
+      }
+    });
+    const thumbRatio = $57acba87d6e25586$var$getThumbRatio(sizes.viewport, sizes.content);
+    const commonProps = __assign(__assign({}, scrollbarProps), {
+      sizes,
+      onSizesChange: setSizes,
+      hasThumb: Boolean(thumbRatio > 0 && thumbRatio < 1),
+      onThumbChange: (thumb) => thumbRef.current = thumb,
+      onThumbPointerUp: () => pointerOffsetRef.current = 0,
+      onThumbPointerDown: (pointerPos) => pointerOffsetRef.current = pointerPos
+    });
+    function getScrollPosition(pointerPos, dir) {
+      return $57acba87d6e25586$var$getScrollPositionFromPointer(pointerPos, pointerOffsetRef.current, sizes, dir);
+    }
+    if (orientation === "horizontal")
+      return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarX, _extends({}, commonProps, {
+        ref: forwardedRef,
+        onThumbPositionChange: () => {
+          if (context.viewport && thumbRef.current) {
+            const scrollPos = context.viewport.scrollLeft;
+            const offset2 = $57acba87d6e25586$var$getThumbOffsetFromScroll(scrollPos, sizes, context.dir);
+            thumbRef.current.style.transform = `translate3d(${offset2}px, 0, 0)`;
+          }
+        },
+        onWheelScroll: (scrollPos) => {
+          if (context.viewport)
+            context.viewport.scrollLeft = scrollPos;
+        },
+        onDragScroll: (pointerPos) => {
+          if (context.viewport)
+            context.viewport.scrollLeft = getScrollPosition(pointerPos, context.dir);
+        }
+      }));
+    if (orientation === "vertical")
+      return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarY, _extends({}, commonProps, {
+        ref: forwardedRef,
+        onThumbPositionChange: () => {
+          if (context.viewport && thumbRef.current) {
+            const scrollPos = context.viewport.scrollTop;
+            const offset2 = $57acba87d6e25586$var$getThumbOffsetFromScroll(scrollPos, sizes);
+            thumbRef.current.style.transform = `translate3d(0, ${offset2}px, 0)`;
+          }
+        },
+        onWheelScroll: (scrollPos) => {
+          if (context.viewport)
+            context.viewport.scrollTop = scrollPos;
+        },
+        onDragScroll: (pointerPos) => {
+          if (context.viewport)
+            context.viewport.scrollTop = getScrollPosition(pointerPos);
+        }
+      }));
+    return null;
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarX = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {sizes, onSizesChange} = props, scrollbarProps = __rest(props, ["sizes", "onSizesChange"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const [computedStyle, setComputedStyle] = (0, import_react16.useState)();
+    const ref = (0, import_react16.useRef)(null);
+    const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onScrollbarXChange);
+    (0, import_react16.useEffect)(() => {
+      if (ref.current)
+        setComputedStyle(getComputedStyle(ref.current));
+    }, [
+      ref
+    ]);
+    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
+      "data-orientation": "horizontal"
+    }, scrollbarProps, {
+      ref: composeRefs,
+      sizes,
+      style: __assign({
+        bottom: 0,
+        left: context.dir === "rtl" ? "var(--radix-scroll-area-corner-width)" : 0,
+        right: context.dir === "ltr" ? "var(--radix-scroll-area-corner-width)" : 0,
+        ["--radix-scroll-area-thumb-width"]: $57acba87d6e25586$var$getThumbSize(sizes) + "px"
+      }, props.style),
+      onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.x),
+      onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.x),
+      onWheelScroll: (event, maxScrollPos) => {
+        if (context.viewport) {
+          const scrollPos = context.viewport.scrollLeft + event.deltaX;
+          props.onWheelScroll(scrollPos);
+          if ($57acba87d6e25586$var$isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos))
+            event.preventDefault();
+        }
+      },
+      onResize: () => {
+        if (ref.current && context.viewport && computedStyle)
+          onSizesChange({
+            content: context.viewport.scrollWidth,
+            viewport: context.viewport.offsetWidth,
+            scrollbar: {
+              size: ref.current.clientWidth,
+              paddingStart: $57acba87d6e25586$var$toInt(computedStyle.paddingLeft),
+              paddingEnd: $57acba87d6e25586$var$toInt(computedStyle.paddingRight)
+            }
+          });
+      }
+    }));
+  });
+  var $57acba87d6e25586$var$ScrollAreaScrollbarY = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {sizes, onSizesChange} = props, scrollbarProps = __rest(props, ["sizes", "onSizesChange"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
+    const [computedStyle, setComputedStyle] = (0, import_react16.useState)();
+    const ref = (0, import_react16.useRef)(null);
+    const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onScrollbarYChange);
+    (0, import_react16.useEffect)(() => {
+      if (ref.current)
+        setComputedStyle(getComputedStyle(ref.current));
+    }, [
+      ref
+    ]);
+    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
+      "data-orientation": "vertical"
+    }, scrollbarProps, {
+      ref: composeRefs,
+      sizes,
+      style: __assign({
+        top: 0,
+        right: context.dir === "ltr" ? 0 : void 0,
+        left: context.dir === "rtl" ? 0 : void 0,
+        bottom: "var(--radix-scroll-area-corner-height)",
+        ["--radix-scroll-area-thumb-height"]: $57acba87d6e25586$var$getThumbSize(sizes) + "px"
+      }, props.style),
+      onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.y),
+      onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.y),
+      onWheelScroll: (event, maxScrollPos) => {
+        if (context.viewport) {
+          const scrollPos = context.viewport.scrollTop + event.deltaY;
+          props.onWheelScroll(scrollPos);
+          if ($57acba87d6e25586$var$isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos))
+            event.preventDefault();
+        }
+      },
+      onResize: () => {
+        if (ref.current && context.viewport && computedStyle)
+          onSizesChange({
+            content: context.viewport.scrollHeight,
+            viewport: context.viewport.offsetHeight,
+            scrollbar: {
+              size: ref.current.clientHeight,
+              paddingStart: $57acba87d6e25586$var$toInt(computedStyle.paddingTop),
+              paddingEnd: $57acba87d6e25586$var$toInt(computedStyle.paddingBottom)
+            }
+          });
+      }
+    }));
+  });
+  var [$57acba87d6e25586$var$ScrollbarProvider, $57acba87d6e25586$var$useScrollbarContext] = $57acba87d6e25586$var$createScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME);
+  var $57acba87d6e25586$var$ScrollAreaScrollbarImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {__scopeScrollArea, sizes, hasThumb, onThumbChange, onThumbPointerUp, onThumbPointerDown, onThumbPositionChange, onDragScroll, onWheelScroll, onResize} = props, scrollbarProps = __rest(props, ["__scopeScrollArea", "sizes", "hasThumb", "onThumbChange", "onThumbPointerUp", "onThumbPointerDown", "onThumbPositionChange", "onDragScroll", "onWheelScroll", "onResize"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, __scopeScrollArea);
+    const [scrollbar, setScrollbar] = (0, import_react16.useState)(null);
+    const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => setScrollbar(node));
+    const rectRef = (0, import_react16.useRef)(null);
+    const prevWebkitUserSelectRef = (0, import_react16.useRef)("");
+    const viewport = context.viewport;
+    const maxScrollPos = sizes.content - sizes.viewport;
+    const handleWheelScroll = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onWheelScroll);
+    const handleThumbPositionChange = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbPositionChange);
+    const handleResize = $57acba87d6e25586$var$useDebounceCallback(onResize, 10);
+    function handleDragScroll(event) {
+      if (rectRef.current) {
+        const x = event.clientX - rectRef.current.left;
+        const y = event.clientY - rectRef.current.top;
+        onDragScroll({
+          x,
+          y
+        });
+      }
+    }
+    (0, import_react16.useEffect)(() => {
+      const handleWheel = (event) => {
+        const element = event.target;
+        const isScrollbarWheel = scrollbar === null || scrollbar === void 0 ? void 0 : scrollbar.contains(element);
+        if (isScrollbarWheel)
+          handleWheelScroll(event, maxScrollPos);
+      };
+      document.addEventListener("wheel", handleWheel, {
+        passive: false
+      });
+      return () => document.removeEventListener("wheel", handleWheel, {
+        passive: false
+      });
+    }, [
+      viewport,
+      scrollbar,
+      maxScrollPos,
+      handleWheelScroll
+    ]);
+    (0, import_react16.useEffect)(handleThumbPositionChange, [
+      sizes,
+      handleThumbPositionChange
+    ]);
+    $57acba87d6e25586$var$useResizeObserver(scrollbar, handleResize);
+    $57acba87d6e25586$var$useResizeObserver(context.content, handleResize);
+    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollbarProvider, {
+      scope: __scopeScrollArea,
+      scrollbar,
+      hasThumb,
+      onThumbChange: $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbChange),
+      onThumbPointerUp: $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbPointerUp),
+      onThumbPositionChange: handleThumbPositionChange,
+      onThumbPointerDown: $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbPointerDown)
+    }, /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, scrollbarProps, {
+      ref: composeRefs,
+      style: __assign({
+        position: "absolute"
+      }, scrollbarProps.style),
+      onPointerDown: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerDown, (event) => {
+        const mainPointer = 0;
+        if (event.button === mainPointer) {
+          const element = event.target;
+          element.setPointerCapture(event.pointerId);
+          rectRef.current = scrollbar.getBoundingClientRect();
+          prevWebkitUserSelectRef.current = document.body.style.webkitUserSelect;
+          document.body.style.webkitUserSelect = "none";
+          if (context.viewport)
+            context.viewport.style.scrollBehavior = "auto";
+          handleDragScroll(event);
+        }
+      }),
+      onPointerMove: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerMove, handleDragScroll),
+      onPointerUp: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerUp, (event) => {
+        const element = event.target;
+        if (element.hasPointerCapture(event.pointerId))
+          element.releasePointerCapture(event.pointerId);
+        document.body.style.webkitUserSelect = prevWebkitUserSelectRef.current;
+        if (context.viewport)
+          context.viewport.style.scrollBehavior = "";
+        rectRef.current = null;
+      })
+    })));
+  });
+  var $57acba87d6e25586$var$THUMB_NAME = "ScrollAreaThumb";
+  var $57acba87d6e25586$export$9fba1154677d7cd2 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {forceMount} = props, thumbProps = __rest(props, ["forceMount"]);
+    const scrollbarContext = $57acba87d6e25586$var$useScrollbarContext($57acba87d6e25586$var$THUMB_NAME, props.__scopeScrollArea);
+    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+      present: forceMount || scrollbarContext.hasThumb
+    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaThumbImpl, _extends({
+      ref: forwardedRef
+    }, thumbProps)));
+  });
+  var $57acba87d6e25586$var$ScrollAreaThumbImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {__scopeScrollArea, style} = props, thumbProps = __rest(props, ["__scopeScrollArea", "style"]);
+    const scrollAreaContext = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$THUMB_NAME, __scopeScrollArea);
+    const scrollbarContext = $57acba87d6e25586$var$useScrollbarContext($57acba87d6e25586$var$THUMB_NAME, __scopeScrollArea);
+    const {onThumbPositionChange} = scrollbarContext;
+    const composedRef = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => scrollbarContext.onThumbChange(node));
+    const removeUnlinkedScrollListenerRef = (0, import_react16.useRef)();
+    const debounceScrollEnd = $57acba87d6e25586$var$useDebounceCallback(() => {
+      if (removeUnlinkedScrollListenerRef.current) {
+        removeUnlinkedScrollListenerRef.current();
+        removeUnlinkedScrollListenerRef.current = void 0;
+      }
+    }, 100);
+    (0, import_react16.useEffect)(() => {
+      const viewport = scrollAreaContext.viewport;
+      if (viewport) {
+        const handleScroll = () => {
+          debounceScrollEnd();
+          if (!removeUnlinkedScrollListenerRef.current) {
+            const listener = $57acba87d6e25586$var$addUnlinkedScrollListener(viewport, onThumbPositionChange);
+            removeUnlinkedScrollListenerRef.current = listener;
+            onThumbPositionChange();
+          }
+        };
+        onThumbPositionChange();
+        viewport.addEventListener("scroll", handleScroll);
+        return () => viewport.removeEventListener("scroll", handleScroll);
+      }
+    }, [
+      scrollAreaContext.viewport,
+      debounceScrollEnd,
+      onThumbPositionChange
+    ]);
+    return /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      "data-state": scrollbarContext.hasThumb ? "visible" : "hidden"
+    }, thumbProps, {
+      ref: composedRef,
+      style: __assign({
+        width: "var(--radix-scroll-area-thumb-width)",
+        height: "var(--radix-scroll-area-thumb-height)"
+      }, style),
+      onPointerDownCapture: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerDownCapture, (event) => {
+        const thumb = event.target;
+        const thumbRect = thumb.getBoundingClientRect();
+        const x = event.clientX - thumbRect.left;
+        const y = event.clientY - thumbRect.top;
+        scrollbarContext.onThumbPointerDown({
+          x,
+          y
+        });
+      }),
+      onPointerUp: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerUp, scrollbarContext.onThumbPointerUp)
+    }));
+  });
+  var $57acba87d6e25586$var$CORNER_NAME = "ScrollAreaCorner";
+  var $57acba87d6e25586$export$56969d565df7cc4b = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$CORNER_NAME, props.__scopeScrollArea);
+    const hasBothScrollbarsVisible = Boolean(context.scrollbarX && context.scrollbarY);
+    const hasCorner = context.type !== "scroll" && hasBothScrollbarsVisible;
+    return hasCorner ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaCornerImpl, _extends({}, props, {
+      ref: forwardedRef
+    })) : null;
+  });
+  var $57acba87d6e25586$var$ScrollAreaCornerImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+    const {__scopeScrollArea} = props, cornerProps = __rest(props, ["__scopeScrollArea"]);
+    const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$CORNER_NAME, __scopeScrollArea);
+    const [width1, setWidth] = (0, import_react16.useState)(0);
+    const [height1, setHeight] = (0, import_react16.useState)(0);
+    const hasSize = Boolean(width1 && height1);
+    $57acba87d6e25586$var$useResizeObserver(context.scrollbarX, () => {
+      var _context$scrollbarX;
+      const height = ((_context$scrollbarX = context.scrollbarX) === null || _context$scrollbarX === void 0 ? void 0 : _context$scrollbarX.offsetHeight) || 0;
+      context.onCornerHeightChange(height);
+      setHeight(height);
+    });
+    $57acba87d6e25586$var$useResizeObserver(context.scrollbarY, () => {
+      var _context$scrollbarY;
+      const width = ((_context$scrollbarY = context.scrollbarY) === null || _context$scrollbarY === void 0 ? void 0 : _context$scrollbarY.offsetWidth) || 0;
+      context.onCornerWidthChange(width);
+      setWidth(width);
+    });
+    return hasSize ? /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, cornerProps, {
+      ref: forwardedRef,
+      style: __assign({
+        width: width1,
+        height: height1,
+        position: "absolute",
+        right: context.dir === "ltr" ? 0 : void 0,
+        left: context.dir === "rtl" ? 0 : void 0,
+        bottom: 0
+      }, props.style)
+    })) : null;
+  });
+  function $57acba87d6e25586$var$toInt(value) {
+    return value ? parseInt(value, 10) : 0;
+  }
+  function $57acba87d6e25586$var$getThumbRatio(viewportSize, contentSize) {
+    const ratio = viewportSize / contentSize;
+    return isNaN(ratio) ? 0 : ratio;
+  }
+  function $57acba87d6e25586$var$getThumbSize(sizes) {
+    const ratio = $57acba87d6e25586$var$getThumbRatio(sizes.viewport, sizes.content);
+    const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
+    const thumbSize = (sizes.scrollbar.size - scrollbarPadding) * ratio;
+    return Math.max(thumbSize, 18);
+  }
+  function $57acba87d6e25586$var$getScrollPositionFromPointer(pointerPos, pointerOffset, sizes, dir = "ltr") {
+    const thumbSizePx = $57acba87d6e25586$var$getThumbSize(sizes);
+    const thumbCenter = thumbSizePx / 2;
+    const offset2 = pointerOffset || thumbCenter;
+    const thumbOffsetFromEnd = thumbSizePx - offset2;
+    const minPointerPos = sizes.scrollbar.paddingStart + offset2;
+    const maxPointerPos = sizes.scrollbar.size - sizes.scrollbar.paddingEnd - thumbOffsetFromEnd;
+    const maxScrollPos = sizes.content - sizes.viewport;
+    const scrollRange = dir === "ltr" ? [
+      0,
+      maxScrollPos
+    ] : [
+      maxScrollPos * -1,
+      0
+    ];
+    const interpolate = $57acba87d6e25586$var$linearScale([
+      minPointerPos,
+      maxPointerPos
+    ], scrollRange);
+    return interpolate(pointerPos);
+  }
+  function $57acba87d6e25586$var$getThumbOffsetFromScroll(scrollPos, sizes, dir = "ltr") {
+    const thumbSizePx = $57acba87d6e25586$var$getThumbSize(sizes);
+    const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
+    const scrollbar = sizes.scrollbar.size - scrollbarPadding;
+    const maxScrollPos = sizes.content - sizes.viewport;
+    const maxThumbPos = scrollbar - thumbSizePx;
+    const scrollClampRange = dir === "ltr" ? [
+      0,
+      maxScrollPos
+    ] : [
+      maxScrollPos * -1,
+      0
+    ];
+    const scrollWithoutMomentum = $ae6933e535247d3d$export$7d15b64cf5a3a4c4(scrollPos, scrollClampRange);
+    const interpolate = $57acba87d6e25586$var$linearScale([
+      0,
+      maxScrollPos
+    ], [
+      0,
+      maxThumbPos
+    ]);
+    return interpolate(scrollWithoutMomentum);
+  }
+  function $57acba87d6e25586$var$linearScale(input, output) {
+    return (value) => {
+      if (input[0] === input[1] || output[0] === output[1])
+        return output[0];
+      const ratio = (output[1] - output[0]) / (input[1] - input[0]);
+      return output[0] + ratio * (value - input[0]);
+    };
+  }
+  function $57acba87d6e25586$var$isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos) {
+    return scrollPos > 0 && scrollPos < maxScrollPos;
+  }
+  var $57acba87d6e25586$var$addUnlinkedScrollListener = (node, handler = () => {
+  }) => {
+    let prevPosition = {
+      left: node.scrollLeft,
+      top: node.scrollTop
+    };
+    let rAF = 0;
+    (function loop() {
+      const position = {
+        left: node.scrollLeft,
+        top: node.scrollTop
+      };
+      const isHorizontalScroll = prevPosition.left !== position.left;
+      const isVerticalScroll = prevPosition.top !== position.top;
+      if (isHorizontalScroll || isVerticalScroll)
+        handler();
+      prevPosition = position;
+      rAF = window.requestAnimationFrame(loop);
+    })();
+    return () => window.cancelAnimationFrame(rAF);
+  };
+  function $57acba87d6e25586$var$useDebounceCallback(callback, delay) {
+    const handleCallback = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(callback);
+    const debounceTimerRef = (0, import_react16.useRef)(0);
+    (0, import_react16.useEffect)(() => () => window.clearTimeout(debounceTimerRef.current), []);
+    return (0, import_react16.useCallback)(() => {
+      window.clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = window.setTimeout(handleCallback, delay);
+    }, [
+      handleCallback,
+      delay
+    ]);
+  }
+  function $57acba87d6e25586$var$useResizeObserver(element, onResize) {
+    const handleResize = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onResize);
+    $9f79659886946c16$export$e5c5a5f917a5871c(() => {
+      let rAF = 0;
+      if (element) {
+        const resizeObserver = new ResizeObserver(() => {
+          cancelAnimationFrame(rAF);
+          rAF = window.requestAnimationFrame(handleResize);
+        });
+        resizeObserver.observe(element);
+        return () => {
+          window.cancelAnimationFrame(rAF);
+          resizeObserver.unobserve(element);
+        };
+      }
+    }, [
+      element,
+      handleResize
+    ]);
+  }
+  var $57acba87d6e25586$export$be92b6f5f03c0fe9 = $57acba87d6e25586$export$ccf8d8d7bbf3c2cc;
+  var $57acba87d6e25586$export$d5c6c08dc2d3ca7 = $57acba87d6e25586$export$a21cbf9f11fca853;
+  var $57acba87d6e25586$export$ac61190d9fc311a9 = $57acba87d6e25586$export$56969d565df7cc4b;
+
+  // components/ui/scroll-area.tsx
+  var ScrollArea = React9.forwardRef((_a, ref) => {
+    var {className, children} = _a, props = __rest(_a, ["className", "children"]);
+    return /* @__PURE__ */ React9.createElement($57acba87d6e25586$export$be92b6f5f03c0fe9, __assign({
+      ref,
+      className: cn("relative overflow-hidden", className)
+    }, props), /* @__PURE__ */ React9.createElement($57acba87d6e25586$export$d5c6c08dc2d3ca7, {
+      className: "h-full w-full rounded-[inherit]"
+    }, children), /* @__PURE__ */ React9.createElement(ScrollBar, null), /* @__PURE__ */ React9.createElement($57acba87d6e25586$export$ac61190d9fc311a9, null));
+  });
+  ScrollArea.displayName = $57acba87d6e25586$export$be92b6f5f03c0fe9.displayName;
+  var ScrollBar = React9.forwardRef((_a, ref) => {
+    var {className, orientation = "vertical"} = _a, props = __rest(_a, ["className", "orientation"]);
+    return /* @__PURE__ */ React9.createElement($57acba87d6e25586$export$2fabd85d0eba3c57, __assign({
+      ref,
+      orientation,
+      className: cn("flex touch-none select-none transition-colors", orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]", orientation === "horizontal" && "h-2.5 border-t border-t-transparent p-[1px]", className)
+    }, props), /* @__PURE__ */ React9.createElement($57acba87d6e25586$export$9fba1154677d7cd2, {
+      className: cn("relative rounded-full bg-border", orientation === "vertical" && "flex-1")
+    }));
+  });
+  ScrollBar.displayName = $57acba87d6e25586$export$2fabd85d0eba3c57.displayName;
+
+  // src/Approval/SignMessageScreen.tsx
   function SignMessageScreen({request, onApprove}) {
     const handleSignMessage = async (request2) => {
       const dummyKeypair = getDummyKeypair();
@@ -28493,16 +29581,40 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement("button", {
-      onClick: () => handleSignMessage(request)
-    }, "SignMessage"), /* @__PURE__ */ import_react7.default.createElement("button", {
-      onClick: () => {
-      }
-    }, "Reject"));
+    return /* @__PURE__ */ import_react17.default.createElement("div", {
+      className: "flex flex-col mx-auto max-w-sm min-h-screen"
+    }, /* @__PURE__ */ import_react17.default.createElement("div", {
+      className: "flex-grow flex-col space-y-4"
+    }, /* @__PURE__ */ import_react17.default.createElement(ApprovalHeader, {
+      title: "Sign Message",
+      description: "A website is requesting you to sign a message.",
+      origin: request.origin
+    }), /* @__PURE__ */ import_react17.default.createElement(Separator, {
+      className: "mb-4"
+    }), /* @__PURE__ */ import_react17.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Sign this message"), /* @__PURE__ */ import_react17.default.createElement("div", {
+      className: "p-4 bg-gray-100 rounded-md shadow"
+    }, /* @__PURE__ */ import_react17.default.createElement(ScrollArea, {
+      className: "h-[50px]"
+    }, /* @__PURE__ */ import_react17.default.createElement("p", {
+      className: "text-sm text-muted-foreground mt-2"
+    }, "Hello Solana!"))), /* @__PURE__ */ import_react17.default.createElement(Separator, {
+      className: "my-4"
+    }), /* @__PURE__ */ import_react17.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Wallet"), /* @__PURE__ */ import_react17.default.createElement(WalletDisplay, {
+      publicKey: getDummyKeypair().publicKey
+    })), /* @__PURE__ */ import_react17.default.createElement(ApprovalFooter, {
+      onCancel: () => {
+      },
+      onConfirm: () => handleSignMessage(request),
+      confirmText: "Sign Message"
+    }));
   }
 
   // src/Approval/SignTransactionScreen.tsx
-  var import_react8 = __toModule(require_react());
+  var import_react18 = __toModule(require_react());
   var import_bs584 = __toModule(require_bs583());
 
   // src/util/signTransaction.ts
@@ -28533,16 +29645,54 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement("button", {
-      onClick: () => handleSignTransaction(request)
-    }, "SignTransaction"), /* @__PURE__ */ import_react8.default.createElement("button", {
-      onClick: () => {
-      }
-    }, "Reject"));
+    return /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex flex-col mx-auto max-w-sm min-h-screen"
+    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex-grow flex-col space-y-4"
+    }, /* @__PURE__ */ import_react18.default.createElement(ApprovalHeader, {
+      title: "Sign Transaction",
+      description: "A website is requesting you to approve a transaction.",
+      origin: request.origin
+    }), /* @__PURE__ */ import_react18.default.createElement(Separator, {
+      className: "mb-4"
+    }), /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Estimated Changes"), /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex justify-between"
+    }, /* @__PURE__ */ import_react18.default.createElement("span", {
+      className: "font-bold"
+    }, "Network fee"), /* @__PURE__ */ import_react18.default.createElement("span", null, "< 0.00001 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex justify-between"
+    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex flex-row"
+    }, /* @__PURE__ */ import_react18.default.createElement(SendHorizontal, null), /* @__PURE__ */ import_react18.default.createElement("span", {
+      className: "font-bold ml-3"
+    }, "Sent")), /* @__PURE__ */ import_react18.default.createElement("span", {
+      className: "text-red-500 font-semibold"
+    }, "0.5 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex justify-between"
+    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "flex flex-row"
+    }, /* @__PURE__ */ import_react18.default.createElement(Download, null), /* @__PURE__ */ import_react18.default.createElement("span", {
+      className: "font-bold ml-3"
+    }, "Received")), /* @__PURE__ */ import_react18.default.createElement("span", {
+      className: "text-green-500 font-semibold"
+    }, "13.43 USDC")), /* @__PURE__ */ import_react18.default.createElement(Separator, {
+      className: "my-4"
+    }), /* @__PURE__ */ import_react18.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Wallet"), /* @__PURE__ */ import_react18.default.createElement(WalletDisplay, {
+      publicKey: getDummyKeypair().publicKey
+    })), /* @__PURE__ */ import_react18.default.createElement(ApprovalFooter, {
+      onCancel: () => {
+      },
+      onConfirm: () => handleSignTransaction(request),
+      confirmText: "Sign Transaction"
+    }));
   }
 
   // src/Approval/SignAndSendTransactionScreen.tsx
-  var import_react9 = __toModule(require_react());
+  var import_react19 = __toModule(require_react());
   var import_bs585 = __toModule(require_bs583());
 
   // src/util/signAndSendTransaction.ts
@@ -28602,9 +29752,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("button", {
+    return /* @__PURE__ */ import_react19.default.createElement("div", null, /* @__PURE__ */ import_react19.default.createElement("button", {
       onClick: () => handleSignAndSendTransaction(request)
-    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react9.default.createElement("button", {
+    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react19.default.createElement("button", {
       onClick: () => {
       }
     }, "Reject"));
@@ -28614,34 +29764,34 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   function getRequestScreenComponent(request, onApprove) {
     switch (request.method) {
       case WalletRequestMethod.SOLANA_CONNECT:
-        return /* @__PURE__ */ import_react10.default.createElement(ConnectScreen, {
+        return /* @__PURE__ */ import_react20.default.createElement(ConnectScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
-        return /* @__PURE__ */ import_react10.default.createElement(SignMessageScreen, {
+        return /* @__PURE__ */ import_react20.default.createElement(SignMessageScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
-        return /* @__PURE__ */ import_react10.default.createElement(SignAndSendTransactionScreen, {
+        return /* @__PURE__ */ import_react20.default.createElement(SignAndSendTransactionScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
-        return /* @__PURE__ */ import_react10.default.createElement(SignTransactionScreen, {
+        return /* @__PURE__ */ import_react20.default.createElement(SignTransactionScreen, {
           request,
           onApprove
         });
       default:
-        return /* @__PURE__ */ import_react10.default.createElement("div", null, " loading ");
+        return /* @__PURE__ */ import_react20.default.createElement("div", null, " loading ");
     }
   }
   function ApprovalScreen() {
-    const [requestQueue, setRequestQueue] = (0, import_react10.useState)([]);
-    const [randomID, setRandomID] = (0, import_react10.useState)(Math.random());
-    const [message, setMessage] = (0, import_react10.useState)("Empty");
-    (0, import_react10.useEffect)(() => {
+    const [requestQueue, setRequestQueue] = (0, import_react20.useState)([]);
+    const [randomID, setRandomID] = (0, import_react20.useState)(Math.random());
+    const [message, setMessage] = (0, import_react20.useState)("Empty");
+    (0, import_react20.useEffect)(() => {
       function handleWalletRequest(request) {
         console.log("Approval Screen Request Received: ", request);
         if (request.type === "approval-tab-request") {
@@ -28657,24 +29807,20 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, []);
     const handleApprove = (response) => {
       var _a, _b;
-      const currentRequest = requestQueue[0];
       if (!((_b = (_a = response.origin) == null ? void 0 : _a.tab) == null ? void 0 : _b.id)) {
         throw new Error("Request has no origin sender metadata");
       }
       const originTabId = response.origin.tab.id;
-      browser.tabs.sendMessage(originTabId, response).then(() => browser.tabs.update(originTabId, {active: true}));
+      browser.tabs.sendMessage(originTabId, response).then(() => browser.tabs.update(originTabId, {active: true})).then(() => window.close());
     };
     const handleReject = () => {
     };
-    const logRequests = () => {
-      console.log(requestQueue);
-    };
     console.log(requestQueue);
-    return /* @__PURE__ */ import_react10.default.createElement("div", {
+    return /* @__PURE__ */ import_react20.default.createElement("div", {
       className: "p-6"
     }, requestQueue.length > 0 ? getRequestScreenComponent(requestQueue[0], handleApprove) : null);
   }
 
   // src/approval.tsx
-  import_react_dom2.default.render(/* @__PURE__ */ import_react11.default.createElement(import_react11.default.StrictMode, null, /* @__PURE__ */ import_react11.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
+  import_react_dom3.default.render(/* @__PURE__ */ import_react21.default.createElement(import_react21.default.StrictMode, null, /* @__PURE__ */ import_react21.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
 })();

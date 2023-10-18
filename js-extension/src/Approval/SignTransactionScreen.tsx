@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import ApprovalFooter from "./ApprovalFooter";
 import ApprovalHeader from "./ApprovalHeader";
 import WalletDisplay from "./WalletDisplay";
+import { Download, SendHorizontal } from "lucide-react";
 
 type Props = Readonly<{
   request: SignTransactionRequestEncoded;
@@ -63,8 +64,19 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
         </div>
 
         <div className="flex justify-between">
-          <span className="font-bold">Network fee</span>
-          <span>{"< 0.00001 SOL"}</span>
+          <div className="flex flex-row">
+            <SendHorizontal />
+            <span className="font-bold ml-3">Sent</span>
+          </div>
+          <span className="text-red-500 font-semibold">{"0.5 SOL"}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <div className="flex flex-row">
+            <Download />
+            <span className="font-bold ml-3">Received</span>
+          </div>
+          <span className="text-green-500 font-semibold">{"13.43 USDC"}</span>
         </div>
 
         <Separator className="my-4" />
