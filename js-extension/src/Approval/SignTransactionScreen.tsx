@@ -53,6 +53,7 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
           title="Sign Transaction"
           description="A website is requesting you to approve a transaction."
           origin={request.origin}
+          includeTitle={true}
         />
 
         <Separator className="mb-4" />
@@ -81,14 +82,14 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
 
         <Separator className="my-4" />
 
-        <div className="text-lg font-bold">Wallet</div>
+        <div className="text-lg font-bold">as:</div>
         <WalletDisplay publicKey={getDummyKeypair().publicKey} />
       </div>
 
       <ApprovalFooter
         onCancel={() => {}}
         onConfirm={() => handleSignTransaction(request)}
-        confirmText={"Sign Transaction"}
+        confirmText={"Confirm"}
       />
     </div>
   );

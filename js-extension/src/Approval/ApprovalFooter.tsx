@@ -14,11 +14,11 @@ export default function ApprovalFooter({
   confirmText
 }: FooterProps) {
   return (
-    <div className="mt-auto flex justify-between pb-32">
-      <Button className="flex-1 mr-2" variant="outline" onClick={onCancel}>
+    <div className="mt-auto flex justify-evenly pb-32 space-x-2">
+      <Button className="rounded-full w-2/5 mr-2" onClick={onCancel}>
         Cancel
       </Button>
-      <Button className="flex-1" onClick={onConfirm}>
+      <Button className="rounded-full w-2/5 px-4" onClick={onConfirm}>
         {confirmText}
       </Button>
     </div>

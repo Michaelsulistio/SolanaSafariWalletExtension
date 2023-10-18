@@ -55,29 +55,21 @@ export default function ConnectScreen({ request, onApprove }: Props) {
 
   return (
     <div className="flex flex-col mx-auto max-w-sm min-h-screen">
-      <div className="flex-grow flex-col space-y-4">
+      <div className="flex-grow flex-col space-y-4 pt-16">
         <ApprovalHeader
           title="Connect"
           description="A website is requesting to connect to your wallet"
           origin={request.origin}
+          displayTitle={false}
         />
 
-        <Separator className="mb-4" />
-
-        <div className="space-y-1">
-          <div className="text-lg font-bold">Permissions: </div>
-          <div className="text-sm pl-0 text-muted-foreground">
-            • View your wallet's public key.
-          </div>
-          <div className="text-sm pl-0 text-muted-foreground">
-            • Request approval for transactions.
-          </div>
+        <div className="flex flex-col justify-center items-center">
+          <div className="text-sm font-bold pb-4">as:</div>
+          <WalletDisplay publicKey={getDummyKeypair().publicKey} />
         </div>
-
-        <Separator className="my-4" />
-
-        <div className="text-lg font-bold">Wallet</div>
-        <WalletDisplay publicKey={getDummyKeypair().publicKey} />
+      </div>
+      <div className="text-sm text-center pb-8">
+        You'll share your public wallet adddress
       </div>
       <ApprovalFooter
         onCancel={() => {}}

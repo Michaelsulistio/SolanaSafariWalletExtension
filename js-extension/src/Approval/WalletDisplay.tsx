@@ -10,11 +10,11 @@ type Props = Readonly<{
 export default function WalletDisplay({ publicKey }: Props) {
   return (
     <div className="flex items-center">
-      <WalletIcon className="mr-4" />
-      <div className="flex flex-col">
-        <div className="font-semibold">Main Wallet</div>{" "}
-        <div className="text-sm text-gray-500">0x1234567780000</div>{" "}
-      </div>
+      <WalletIcon className="mr-2" />
+      <span className="font-bold">
+        Main Wallet{" "}
+        <span className="text-sm font-medium text-gray-500">XNH4...1Wsj</span>
+      </span>
     </div>
   );
 }

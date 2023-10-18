@@ -54,6 +54,7 @@ export default function SignMessageScreen({ request, onApprove }: Props) {
           title="Sign Message"
           description="A website is requesting you to sign a message."
           origin={request.origin}
+          displayTitle={true}
         />
 
         <Separator className="mb-4" />
