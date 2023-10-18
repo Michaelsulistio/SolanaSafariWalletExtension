@@ -89,24 +89,18 @@ export default function ApprovalScreen() {
   }, []);
 
   const handleApprove = (response: BaseWalletResponseEncoded) => {
-    // Get current request
-    const currentRequest = requestQueue[0];
-
     if (!response.origin?.tab?.id) {
       throw new Error("Request has no origin sender metadata");
     }
     const originTabId = response.origin.tab.id;
     browser.tabs
       .sendMessage(originTabId, response) // TODO: Only `update` and `close` tab if its the last request in queue
-      .then(() => browser.tabs.update(originTabId, { active: true }));
-    // .then(() => window.close());
+      .then(() => browser.tabs.update(originTabId, { active: true }))
+      .then(() => window.close());
   };
 
   const handleReject = () => {};
 
-  const logRequests = () => {
-    console.log(requestQueue);
-  };
   console.log(requestQueue);
   return (
     <div className="p-6">

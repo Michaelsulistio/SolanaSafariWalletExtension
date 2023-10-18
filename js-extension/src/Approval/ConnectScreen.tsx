@@ -8,22 +8,9 @@ import {
 import getDummyKeypair from "../util/getDummyKeypair";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter
-} from "@/components/ui/card";
+import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import OriginHeader from "./OriginHeader";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "@/components/ui/accordion";
 
 type Props = Readonly<{
   request: ConnectRequest;
@@ -91,10 +78,10 @@ export default function ConnectScreen({ request, onApprove }: Props) {
       </div>
       <div className="mt-auto flex justify-between pb-32">
         <Button className="flex-1 mr-2" variant="outline">
-          Reject
+          Cancel
         </Button>
         <Button className="flex-1" onClick={() => handleConnect(request)}>
-          Approve
+          Connect
         </Button>
       </div>
     </div>

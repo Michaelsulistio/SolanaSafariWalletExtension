@@ -15,7 +15,7 @@ const OriginHeader: React.FC<HeaderProps> = ({ favIconUrl, title, url }) => {
       <img
         src={faviconSrc}
         alt="FavIcon"
-        className="w-20 h-20" // Adjust size as required
+        className="w-20 h-20 bg-gray-800 rounded-full p-2" // Added bg-gray-800 for dark background, rounded-full for circular shape, and p-2 for padding
       />
 
       {/* Title */}
