@@ -20076,7 +20076,7 @@
   })(WalletRequestMethod || (WalletRequestMethod = {}));
 
   // src/Approval/ConnectScreen.tsx
-  var import_react10 = __toModule(require_react());
+  var import_react8 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/lib/index.browser.esm.js
   var import_buffer = __toModule(require_buffer());
@@ -26652,192 +26652,87 @@
     return Keypair.fromSecretKey(secretKey);
   }
 
-  // components/ui/separator.tsx
-  var React = __toModule(require_react());
-
-  // node_modules/@babel/runtime/helpers/esm/extends.js
-  function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends.apply(this, arguments);
-  }
-
-  // node_modules/@radix-ui/react-separator/dist/index.mjs
-  var import_react4 = __toModule(require_react());
-
-  // node_modules/@radix-ui/react-primitive/dist/index.mjs
-  var import_react3 = __toModule(require_react());
-  var import_react_dom = __toModule(require_react_dom());
-
-  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  // src/Approval/WalletDisplay.tsx
   var import_react2 = __toModule(require_react());
 
-  // node_modules/@radix-ui/react-compose-refs/dist/index.mjs
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
   var import_react = __toModule(require_react());
-  function $6ed0406888f73fc4$var$setRef(ref, value) {
-    if (typeof ref === "function")
-      ref(value);
-    else if (ref !== null && ref !== void 0)
-      ref.current = value;
-  }
-  function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
-    return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
-  }
-  function $6ed0406888f73fc4$export$c7b2cbe3552a0d05(...refs) {
-    return (0, import_react.useCallback)($6ed0406888f73fc4$export$43e446d32b3d21af(...refs), refs);
-  }
 
-  // node_modules/@radix-ui/react-slot/dist/index.mjs
-  var $5e63c961fc1ce211$export$8c6ed5c666ac1360 = /* @__PURE__ */ (0, import_react2.forwardRef)((props, forwardedRef) => {
-    const {children} = props, slotProps = __rest(props, ["children"]);
-    const childrenArray = import_react2.Children.toArray(children);
-    const slottable = childrenArray.find($5e63c961fc1ce211$var$isSlottable);
-    if (slottable) {
-      const newElement = slottable.props.children;
-      const newChildren = childrenArray.map((child) => {
-        if (child === slottable) {
-          if (import_react2.Children.count(newElement) > 1)
-            return import_react2.Children.only(null);
-          return /* @__PURE__ */ (0, import_react2.isValidElement)(newElement) ? newElement.props.children : null;
-        } else
-          return child;
-      });
-      return /* @__PURE__ */ (0, import_react2.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
-        ref: forwardedRef
-      }), /* @__PURE__ */ (0, import_react2.isValidElement)(newElement) ? /* @__PURE__ */ (0, import_react2.cloneElement)(newElement, void 0, newChildren) : null);
-    }
-    return /* @__PURE__ */ (0, import_react2.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
-      ref: forwardedRef
-    }), children);
-  });
-  $5e63c961fc1ce211$export$8c6ed5c666ac1360.displayName = "Slot";
-  var $5e63c961fc1ce211$var$SlotClone = /* @__PURE__ */ (0, import_react2.forwardRef)((props, forwardedRef) => {
-    const {children} = props, slotProps = __rest(props, ["children"]);
-    if (/* @__PURE__ */ (0, import_react2.isValidElement)(children))
-      return /* @__PURE__ */ (0, import_react2.cloneElement)(children, __assign(__assign({}, $5e63c961fc1ce211$var$mergeProps(slotProps, children.props)), {
-        ref: forwardedRef ? $6ed0406888f73fc4$export$43e446d32b3d21af(forwardedRef, children.ref) : children.ref
-      }));
-    return import_react2.Children.count(children) > 1 ? import_react2.Children.only(null) : null;
-  });
-  $5e63c961fc1ce211$var$SlotClone.displayName = "SlotClone";
-  var $5e63c961fc1ce211$export$d9f1ccf0bdb05d45 = ({children}) => {
-    return /* @__PURE__ */ (0, import_react2.createElement)(import_react2.Fragment, null, children);
+  // node_modules/lucide-react/dist/esm/defaultAttributes.js
+  var defaultAttributes = {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
   };
-  function $5e63c961fc1ce211$var$isSlottable(child) {
-    return /* @__PURE__ */ (0, import_react2.isValidElement)(child) && child.type === $5e63c961fc1ce211$export$d9f1ccf0bdb05d45;
-  }
-  function $5e63c961fc1ce211$var$mergeProps(slotProps, childProps) {
-    const overrideProps = __assign({}, childProps);
-    for (const propName in childProps) {
-      const slotPropValue = slotProps[propName];
-      const childPropValue = childProps[propName];
-      const isHandler = /^on[A-Z]/.test(propName);
-      if (isHandler) {
-        if (slotPropValue && childPropValue)
-          overrideProps[propName] = (...args) => {
-            childPropValue(...args);
-            slotPropValue(...args);
-          };
-        else if (slotPropValue)
-          overrideProps[propName] = slotPropValue;
-      } else if (propName === "style")
-        overrideProps[propName] = __assign(__assign({}, slotPropValue), childPropValue);
-      else if (propName === "className")
-        overrideProps[propName] = [
-          slotPropValue,
-          childPropValue
-        ].filter(Boolean).join(" ");
-    }
-    return __assign(__assign({}, slotProps), overrideProps);
-  }
 
-  // node_modules/@radix-ui/react-primitive/dist/index.mjs
-  var $8927f6f2acc4f386$var$NODES = [
-    "a",
-    "button",
-    "div",
-    "form",
-    "h2",
-    "h3",
-    "img",
-    "input",
-    "label",
-    "li",
-    "nav",
-    "ol",
-    "p",
-    "span",
-    "svg",
-    "ul"
-  ];
-  var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
-    const Node = /* @__PURE__ */ (0, import_react3.forwardRef)((props, forwardedRef) => {
-      const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
-      const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
-      (0, import_react3.useEffect)(() => {
-        window[Symbol.for("radix-ui")] = true;
-      }, []);
-      return /* @__PURE__ */ (0, import_react3.createElement)(Comp, _extends({}, primitiveProps, {
-        ref: forwardedRef
-      }));
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
+  var toKebabCase = (string2) => string2.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+  var createLucideIcon = (iconName, iconNode) => {
+    const Component = (0, import_react.forwardRef)((_a, ref) => {
+      var {color = "currentColor", size = 24, strokeWidth = 2, absoluteStrokeWidth, children} = _a, rest = __rest(_a, ["color", "size", "strokeWidth", "absoluteStrokeWidth", "children"]);
+      return (0, import_react.createElement)("svg", __assign(__assign(__assign({
+        ref
+      }, defaultAttributes), {
+        width: size,
+        height: size,
+        stroke: color,
+        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+        className: `lucide lucide-${toKebabCase(iconName)}`
+      }), rest), [
+        ...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)),
+        ...(Array.isArray(children) ? children : [children]) || []
+      ]);
     });
-    Node.displayName = `Primitive.${node}`;
-    return __assign(__assign({}, primitive), {
-      [node]: Node
-    });
-  }, {});
-
-  // node_modules/@radix-ui/react-separator/dist/index.mjs
-  var $89eedd556c436f6a$var$DEFAULT_ORIENTATION = "horizontal";
-  var $89eedd556c436f6a$var$ORIENTATIONS = [
-    "horizontal",
-    "vertical"
-  ];
-  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react4.forwardRef)((props, forwardedRef) => {
-    const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
-    const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
-    const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-    const semanticProps = decorative ? {
-      role: "none"
-    } : {
-      "aria-orientation": ariaOrientation,
-      role: "separator"
-    };
-    return /* @__PURE__ */ (0, import_react4.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
-      "data-orientation": orientation
-    }, semanticProps, domProps, {
-      ref: forwardedRef
-    }));
-  });
-  $89eedd556c436f6a$export$1ff3c3f08ae963c0.propTypes = {
-    orientation(props, propName, componentName) {
-      const propValue = props[propName];
-      const strVal = String(propValue);
-      if (propValue && !$89eedd556c436f6a$var$isValidOrientation(propValue))
-        return new Error($89eedd556c436f6a$var$getInvalidOrientationError(strVal, componentName));
-      return null;
-    }
+    Component.displayName = `${iconName}`;
+    return Component;
   };
-  function $89eedd556c436f6a$var$getInvalidOrientationError(value, componentName) {
-    return `Invalid prop \`orientation\` of value \`${value}\` supplied to \`${componentName}\`, expected one of:
-  - horizontal
-  - vertical
 
-Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
+  // node_modules/lucide-react/dist/esm/icons/download.js
+  var Download = createLucideIcon("Download", [
+    ["path", {d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h"}],
+    ["polyline", {points: "7 10 12 15 17 10", key: "2ggqvy"}],
+    ["line", {x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/loader-2.js
+  var Loader2 = createLucideIcon("Loader2", [
+    ["path", {d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/send-horizontal.js
+  var SendHorizontal = createLucideIcon("SendHorizontal", [
+    ["path", {d: "m3 3 3 9-3 9 19-9Z", key: "1aobqy"}],
+    ["path", {d: "M6 12h16", key: "s4cdu5"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/wallet.js
+  var Wallet = createLucideIcon("Wallet", [
+    ["path", {d: "M21 12V7H5a2 2 0 0 1 0-4h14v4", key: "195gfw"}],
+    ["path", {d: "M3 5v14a2 2 0 0 0 2 2h16v-5", key: "195n9w"}],
+    ["path", {d: "M18 12a2 2 0 0 0 0 4h4v-4Z", key: "vllfpd"}]
+  ]);
+
+  // src/Approval/WalletDisplay.tsx
+  function WalletDisplay({publicKey: publicKey2}) {
+    return /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "flex items-center"
+    }, /* @__PURE__ */ import_react2.default.createElement(Wallet, {
+      className: "mr-2"
+    }), /* @__PURE__ */ import_react2.default.createElement("span", {
+      className: "font-bold"
+    }, "Main Wallet", " ", /* @__PURE__ */ import_react2.default.createElement("span", {
+      className: "text-sm font-medium text-gray-500"
+    }, "XNH4...1Wsj")));
   }
-  function $89eedd556c436f6a$var$isValidOrientation(orientation) {
-    return $89eedd556c436f6a$var$ORIENTATIONS.includes(orientation);
-  }
-  var $89eedd556c436f6a$export$be92b6f5f03c0fe9 = $89eedd556c436f6a$export$1ff3c3f08ae963c0;
+
+  // components/ui/card.tsx
+  var React2 = __toModule(require_react());
 
   // node_modules/clsx/dist/clsx.mjs
   function r(e) {
@@ -28241,139 +28136,50 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     return twMerge(clsx(inputs));
   }
 
-  // components/ui/separator.tsx
-  var Separator = React.forwardRef((_a, ref) => {
-    var {className, orientation = "horizontal", decorative = true} = _a, props = __rest(_a, ["className", "orientation", "decorative"]);
-    return /* @__PURE__ */ React.createElement($89eedd556c436f6a$export$be92b6f5f03c0fe9, __assign({
-      ref,
-      decorative,
-      orientation,
-      className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className)
-    }, props));
-  });
-  Separator.displayName = $89eedd556c436f6a$export$be92b6f5f03c0fe9.displayName;
-
-  // src/Approval/WalletDisplay.tsx
-  var import_react6 = __toModule(require_react());
-
-  // node_modules/lucide-react/dist/esm/createLucideIcon.js
-  var import_react5 = __toModule(require_react());
-
-  // node_modules/lucide-react/dist/esm/defaultAttributes.js
-  var defaultAttributes = {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  };
-
-  // node_modules/lucide-react/dist/esm/createLucideIcon.js
-  var toKebabCase = (string2) => string2.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-  var createLucideIcon = (iconName, iconNode) => {
-    const Component = (0, import_react5.forwardRef)((_a, ref) => {
-      var {color = "currentColor", size = 24, strokeWidth = 2, absoluteStrokeWidth, children} = _a, rest = __rest(_a, ["color", "size", "strokeWidth", "absoluteStrokeWidth", "children"]);
-      return (0, import_react5.createElement)("svg", __assign(__assign(__assign({
-        ref
-      }, defaultAttributes), {
-        width: size,
-        height: size,
-        stroke: color,
-        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
-        className: `lucide lucide-${toKebabCase(iconName)}`
-      }), rest), [
-        ...iconNode.map(([tag, attrs]) => (0, import_react5.createElement)(tag, attrs)),
-        ...(Array.isArray(children) ? children : [children]) || []
-      ]);
-    });
-    Component.displayName = `${iconName}`;
-    return Component;
-  };
-
-  // node_modules/lucide-react/dist/esm/icons/download.js
-  var Download = createLucideIcon("Download", [
-    ["path", {d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h"}],
-    ["polyline", {points: "7 10 12 15 17 10", key: "2ggqvy"}],
-    ["line", {x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je"}]
-  ]);
-
-  // node_modules/lucide-react/dist/esm/icons/send-horizontal.js
-  var SendHorizontal = createLucideIcon("SendHorizontal", [
-    ["path", {d: "m3 3 3 9-3 9 19-9Z", key: "1aobqy"}],
-    ["path", {d: "M6 12h16", key: "s4cdu5"}]
-  ]);
-
-  // node_modules/lucide-react/dist/esm/icons/wallet.js
-  var Wallet = createLucideIcon("Wallet", [
-    ["path", {d: "M21 12V7H5a2 2 0 0 1 0-4h14v4", key: "195gfw"}],
-    ["path", {d: "M3 5v14a2 2 0 0 0 2 2h16v-5", key: "195n9w"}],
-    ["path", {d: "M18 12a2 2 0 0 0 0 4h4v-4Z", key: "vllfpd"}]
-  ]);
-
-  // src/Approval/WalletDisplay.tsx
-  function WalletDisplay({publicKey: publicKey2}) {
-    return /* @__PURE__ */ import_react6.default.createElement("div", {
-      className: "flex items-center"
-    }, /* @__PURE__ */ import_react6.default.createElement(Wallet, {
-      className: "mr-4"
-    }), /* @__PURE__ */ import_react6.default.createElement("div", {
-      className: "flex flex-col"
-    }, /* @__PURE__ */ import_react6.default.createElement("div", {
-      className: "font-semibold"
-    }, "Main Wallet"), " ", /* @__PURE__ */ import_react6.default.createElement("div", {
-      className: "text-sm text-gray-500"
-    }, "0x1234567780000"), " "));
-  }
-
   // components/ui/card.tsx
-  var React3 = __toModule(require_react());
-  var Card = React3.forwardRef((_a, ref) => {
+  var Card = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("div", __assign({
+    return /* @__PURE__ */ React2.createElement("div", __assign({
       ref,
       className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
     }, props));
   });
   Card.displayName = "Card";
-  var CardHeader = React3.forwardRef((_a, ref) => {
+  var CardHeader = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("div", __assign({
+    return /* @__PURE__ */ React2.createElement("div", __assign({
       ref,
       className: cn("flex flex-col space-y-1.5", className)
     }, props));
   });
   CardHeader.displayName = "CardHeader";
-  var CardTitle = React3.forwardRef((_a, ref) => {
+  var CardTitle = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("h3", __assign({
+    return /* @__PURE__ */ React2.createElement("h3", __assign({
       ref,
       className: cn("text-2xl font-semibold leading-none tracking-tight", className)
     }, props));
   });
   CardTitle.displayName = "CardTitle";
-  var CardDescription = React3.forwardRef((_a, ref) => {
+  var CardDescription = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("p", __assign({
+    return /* @__PURE__ */ React2.createElement("p", __assign({
       ref,
       className: cn("text-sm text-muted-foreground", className)
     }, props));
   });
   CardDescription.displayName = "CardDescription";
-  var CardContent = React3.forwardRef((_a, ref) => {
+  var CardContent = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("div", __assign({
+    return /* @__PURE__ */ React2.createElement("div", __assign({
       ref,
       className: cn("p-6 pt-0", className)
     }, props));
   });
   CardContent.displayName = "CardContent";
-  var CardFooter = React3.forwardRef((_a, ref) => {
+  var CardFooter = React2.forwardRef((_a, ref) => {
     var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React3.createElement("div", __assign({
+    return /* @__PURE__ */ React2.createElement("div", __assign({
       ref,
       className: cn("flex items-center p-6 pt-0", className)
     }, props));
@@ -28381,40 +28187,150 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   CardFooter.displayName = "CardFooter";
 
   // src/Approval/ApprovalHeader.tsx
-  var import_react8 = __toModule(require_react());
+  var import_react4 = __toModule(require_react());
 
   // src/Approval/OriginHeader.tsx
-  var import_react7 = __toModule(require_react());
+  var import_react3 = __toModule(require_react());
   var OriginHeader = ({favIconUrl, title, url}) => {
     const faviconSrc = favIconUrl || `${url}/favicon.ico`;
-    return /* @__PURE__ */ import_react7.default.createElement("div", {
+    return /* @__PURE__ */ import_react3.default.createElement("div", {
       className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
-    }, /* @__PURE__ */ import_react7.default.createElement("img", {
-      src: faviconSrc,
+    }, /* @__PURE__ */ import_react3.default.createElement("img", {
+      src: "https://jup.ag/favicon.ico",
       alt: "FavIcon",
       className: "w-20 h-20 bg-gray-800 rounded-full p-2"
-    }), /* @__PURE__ */ import_react7.default.createElement("span", {
+    }), /* @__PURE__ */ import_react3.default.createElement("span", {
       className: "font-semibold"
-    }, title), /* @__PURE__ */ import_react7.default.createElement("span", {
+    }, title), /* @__PURE__ */ import_react3.default.createElement("span", {
       className: "text-sm text-center text-gray-500"
     }, url));
   };
   var OriginHeader_default = OriginHeader;
 
   // src/Approval/ApprovalHeader.tsx
-  function ApprovalHeader({title, description, origin}) {
+  function getBaseUrl(url) {
+    if (!url) {
+      return void 0;
+    }
+    const match = url.match(/(https?:\/\/[^\/]+\/)/);
+    return match ? match[1] : void 0;
+  }
+  function ApprovalHeader({
+    title,
+    description,
+    origin,
+    displayTitle
+  }) {
     var _a, _b, _c;
-    return /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(CardTitle, {
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, displayTitle ? /* @__PURE__ */ import_react4.default.createElement(CardHeader, null, /* @__PURE__ */ import_react4.default.createElement(CardTitle, {
       className: "text-xxl"
-    }, title), /* @__PURE__ */ import_react8.default.createElement(CardDescription, null, description)), /* @__PURE__ */ import_react8.default.createElement(OriginHeader_default, {
+    }, title), /* @__PURE__ */ import_react4.default.createElement(CardDescription, null, description)) : null, /* @__PURE__ */ import_react4.default.createElement(OriginHeader_default, {
       title: (_a = origin == null ? void 0 : origin.tab) == null ? void 0 : _a.title,
-      url: (_b = origin == null ? void 0 : origin.tab) == null ? void 0 : _b.url,
+      url: getBaseUrl((_b = origin == null ? void 0 : origin.tab) == null ? void 0 : _b.url),
       favIconUrl: (_c = origin == null ? void 0 : origin.tab) == null ? void 0 : _c.favIconUrl
     }));
   }
 
   // components/ui/button.tsx
-  var React6 = __toModule(require_react());
+  var React5 = __toModule(require_react());
+
+  // node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends.apply(this, arguments);
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var import_react6 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-compose-refs/dist/index.mjs
+  var import_react5 = __toModule(require_react());
+  function $6ed0406888f73fc4$var$setRef(ref, value) {
+    if (typeof ref === "function")
+      ref(value);
+    else if (ref !== null && ref !== void 0)
+      ref.current = value;
+  }
+  function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
+    return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
+  }
+  function $6ed0406888f73fc4$export$c7b2cbe3552a0d05(...refs) {
+    return (0, import_react5.useCallback)($6ed0406888f73fc4$export$43e446d32b3d21af(...refs), refs);
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var $5e63c961fc1ce211$export$8c6ed5c666ac1360 = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    const childrenArray = import_react6.Children.toArray(children);
+    const slottable = childrenArray.find($5e63c961fc1ce211$var$isSlottable);
+    if (slottable) {
+      const newElement = slottable.props.children;
+      const newChildren = childrenArray.map((child) => {
+        if (child === slottable) {
+          if (import_react6.Children.count(newElement) > 1)
+            return import_react6.Children.only(null);
+          return /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? newElement.props.children : null;
+        } else
+          return child;
+      });
+      return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+        ref: forwardedRef
+      }), /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? /* @__PURE__ */ (0, import_react6.cloneElement)(newElement, void 0, newChildren) : null);
+    }
+    return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+      ref: forwardedRef
+    }), children);
+  });
+  $5e63c961fc1ce211$export$8c6ed5c666ac1360.displayName = "Slot";
+  var $5e63c961fc1ce211$var$SlotClone = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    if (/* @__PURE__ */ (0, import_react6.isValidElement)(children))
+      return /* @__PURE__ */ (0, import_react6.cloneElement)(children, __assign(__assign({}, $5e63c961fc1ce211$var$mergeProps(slotProps, children.props)), {
+        ref: forwardedRef ? $6ed0406888f73fc4$export$43e446d32b3d21af(forwardedRef, children.ref) : children.ref
+      }));
+    return import_react6.Children.count(children) > 1 ? import_react6.Children.only(null) : null;
+  });
+  $5e63c961fc1ce211$var$SlotClone.displayName = "SlotClone";
+  var $5e63c961fc1ce211$export$d9f1ccf0bdb05d45 = ({children}) => {
+    return /* @__PURE__ */ (0, import_react6.createElement)(import_react6.Fragment, null, children);
+  };
+  function $5e63c961fc1ce211$var$isSlottable(child) {
+    return /* @__PURE__ */ (0, import_react6.isValidElement)(child) && child.type === $5e63c961fc1ce211$export$d9f1ccf0bdb05d45;
+  }
+  function $5e63c961fc1ce211$var$mergeProps(slotProps, childProps) {
+    const overrideProps = __assign({}, childProps);
+    for (const propName in childProps) {
+      const slotPropValue = slotProps[propName];
+      const childPropValue = childProps[propName];
+      const isHandler = /^on[A-Z]/.test(propName);
+      if (isHandler) {
+        if (slotPropValue && childPropValue)
+          overrideProps[propName] = (...args) => {
+            childPropValue(...args);
+            slotPropValue(...args);
+          };
+        else if (slotPropValue)
+          overrideProps[propName] = slotPropValue;
+      } else if (propName === "style")
+        overrideProps[propName] = __assign(__assign({}, slotPropValue), childPropValue);
+      else if (propName === "className")
+        overrideProps[propName] = [
+          slotPropValue,
+          childPropValue
+        ].filter(Boolean).join(" ");
+    }
+    return __assign(__assign({}, slotProps), overrideProps);
+  }
 
   // node_modules/class-variance-authority/dist/index.mjs
   var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
@@ -28479,10 +28395,10 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       size: "default"
     }
   });
-  var Button = React6.forwardRef((_a, ref) => {
+  var Button = React5.forwardRef((_a, ref) => {
     var {className, variant, size, asChild = false} = _a, props = __rest(_a, ["className", "variant", "size", "asChild"]);
     const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : "button";
-    return /* @__PURE__ */ React6.createElement(Comp, __assign({
+    return /* @__PURE__ */ React5.createElement(Comp, __assign({
       className: cn(buttonVariants({variant, size, className})),
       ref
     }, props));
@@ -28490,22 +28406,35 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   Button.displayName = "Button";
 
   // src/Approval/ApprovalFooter.tsx
-  var import_react9 = __toModule(require_react());
+  var import_react7 = __toModule(require_react());
   function ApprovalFooter({
     onCancel,
     onConfirm,
     confirmText
   }) {
-    return /* @__PURE__ */ import_react9.default.createElement("div", {
-      className: "mt-auto flex justify-between pb-32"
-    }, /* @__PURE__ */ import_react9.default.createElement(Button, {
-      className: "flex-1 mr-2",
-      variant: "outline",
-      onClick: onCancel
-    }, "Cancel"), /* @__PURE__ */ import_react9.default.createElement(Button, {
-      className: "flex-1",
-      onClick: onConfirm
-    }, confirmText));
+    const [isConfirmLoading, setIsConfirmLoading] = (0, import_react7.useState)(false);
+    const [isCancelLoading, setIsCancelLoading] = (0, import_react7.useState)(false);
+    const handleCancel = () => {
+      setIsCancelLoading(true);
+      onCancel();
+    };
+    const handleConfirm = () => {
+      setIsConfirmLoading(true);
+      onConfirm();
+    };
+    return /* @__PURE__ */ import_react7.default.createElement("div", {
+      className: "mt-auto flex justify-evenly pb-32 space-x-2"
+    }, /* @__PURE__ */ import_react7.default.createElement(Button, {
+      className: "rounded-full w-2/5 mr-2",
+      onClick: handleCancel
+    }, isCancelLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
+      className: "h-4 w-4 animate-spin"
+    }) : "Cancel"), /* @__PURE__ */ import_react7.default.createElement(Button, {
+      className: "rounded-full w-2/5 px-4",
+      onClick: handleConfirm
+    }, isConfirmLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
+      className: "h-4 w-4 animate-spin"
+    }) : confirmText));
   }
 
   // src/Approval/ConnectScreen.tsx
@@ -28538,31 +28467,24 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react10.default.createElement("div", {
+    return /* @__PURE__ */ import_react8.default.createElement("div", {
       className: "flex flex-col mx-auto max-w-sm min-h-screen"
-    }, /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "flex-grow flex-col space-y-4"
-    }, /* @__PURE__ */ import_react10.default.createElement(ApprovalHeader, {
+    }, /* @__PURE__ */ import_react8.default.createElement("div", {
+      className: "flex-grow flex-col space-y-4 pt-16"
+    }, /* @__PURE__ */ import_react8.default.createElement(ApprovalHeader, {
       title: "Connect",
       description: "A website is requesting to connect to your wallet",
-      origin: request.origin
-    }), /* @__PURE__ */ import_react10.default.createElement(Separator, {
-      className: "mb-4"
-    }), /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "space-y-1"
-    }, /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "text-lg font-bold"
-    }, "Permissions: "), /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "text-sm pl-0 text-muted-foreground"
-    }, "\u2022 View your wallet's public key."), /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "text-sm pl-0 text-muted-foreground"
-    }, "\u2022 Request approval for transactions.")), /* @__PURE__ */ import_react10.default.createElement(Separator, {
-      className: "my-4"
-    }), /* @__PURE__ */ import_react10.default.createElement("div", {
-      className: "text-lg font-bold"
-    }, "Wallet"), /* @__PURE__ */ import_react10.default.createElement(WalletDisplay, {
+      origin: request.origin,
+      displayTitle: false
+    }), /* @__PURE__ */ import_react8.default.createElement("div", {
+      className: "flex flex-col justify-center items-center"
+    }, /* @__PURE__ */ import_react8.default.createElement("div", {
+      className: "text-sm font-bold pb-4"
+    }, "as:"), /* @__PURE__ */ import_react8.default.createElement(WalletDisplay, {
       publicKey: getDummyKeypair().publicKey
-    })), /* @__PURE__ */ import_react10.default.createElement(ApprovalFooter, {
+    }))), /* @__PURE__ */ import_react8.default.createElement("div", {
+      className: "text-sm text-center pb-8"
+    }, "You'll share your public wallet adddress"), /* @__PURE__ */ import_react8.default.createElement(ApprovalFooter, {
       onCancel: () => {
       },
       onConfirm: () => handleConnect(request),
@@ -28587,6 +28509,105 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
 
   // src/Approval/SignMessageScreen.tsx
   var import_bs583 = __toModule(require_bs583());
+
+  // components/ui/separator.tsx
+  var React8 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var import_react10 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-primitive/dist/index.mjs
+  var import_react9 = __toModule(require_react());
+  var import_react_dom = __toModule(require_react_dom());
+  var $8927f6f2acc4f386$var$NODES = [
+    "a",
+    "button",
+    "div",
+    "form",
+    "h2",
+    "h3",
+    "img",
+    "input",
+    "label",
+    "li",
+    "nav",
+    "ol",
+    "p",
+    "span",
+    "svg",
+    "ul"
+  ];
+  var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
+    const Node = /* @__PURE__ */ (0, import_react9.forwardRef)((props, forwardedRef) => {
+      const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
+      const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
+      (0, import_react9.useEffect)(() => {
+        window[Symbol.for("radix-ui")] = true;
+      }, []);
+      return /* @__PURE__ */ (0, import_react9.createElement)(Comp, _extends({}, primitiveProps, {
+        ref: forwardedRef
+      }));
+    });
+    Node.displayName = `Primitive.${node}`;
+    return __assign(__assign({}, primitive), {
+      [node]: Node
+    });
+  }, {});
+
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var $89eedd556c436f6a$var$DEFAULT_ORIENTATION = "horizontal";
+  var $89eedd556c436f6a$var$ORIENTATIONS = [
+    "horizontal",
+    "vertical"
+  ];
+  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react10.forwardRef)((props, forwardedRef) => {
+    const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
+    const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
+    const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+    const semanticProps = decorative ? {
+      role: "none"
+    } : {
+      "aria-orientation": ariaOrientation,
+      role: "separator"
+    };
+    return /* @__PURE__ */ (0, import_react10.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      "data-orientation": orientation
+    }, semanticProps, domProps, {
+      ref: forwardedRef
+    }));
+  });
+  $89eedd556c436f6a$export$1ff3c3f08ae963c0.propTypes = {
+    orientation(props, propName, componentName) {
+      const propValue = props[propName];
+      const strVal = String(propValue);
+      if (propValue && !$89eedd556c436f6a$var$isValidOrientation(propValue))
+        return new Error($89eedd556c436f6a$var$getInvalidOrientationError(strVal, componentName));
+      return null;
+    }
+  };
+  function $89eedd556c436f6a$var$getInvalidOrientationError(value, componentName) {
+    return `Invalid prop \`orientation\` of value \`${value}\` supplied to \`${componentName}\`, expected one of:
+  - horizontal
+  - vertical
+
+Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
+  }
+  function $89eedd556c436f6a$var$isValidOrientation(orientation) {
+    return $89eedd556c436f6a$var$ORIENTATIONS.includes(orientation);
+  }
+  var $89eedd556c436f6a$export$be92b6f5f03c0fe9 = $89eedd556c436f6a$export$1ff3c3f08ae963c0;
+
+  // components/ui/separator.tsx
+  var Separator = React8.forwardRef((_a, ref) => {
+    var {className, orientation = "horizontal", decorative = true} = _a, props = __rest(_a, ["className", "orientation", "decorative"]);
+    return /* @__PURE__ */ React8.createElement($89eedd556c436f6a$export$be92b6f5f03c0fe9, __assign({
+      ref,
+      decorative,
+      orientation,
+      className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className)
+    }, props));
+  });
+  Separator.displayName = $89eedd556c436f6a$export$be92b6f5f03c0fe9.displayName;
 
   // components/ui/scroll-area.tsx
   var React9 = __toModule(require_react());
@@ -29588,7 +29609,8 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, /* @__PURE__ */ import_react17.default.createElement(ApprovalHeader, {
       title: "Sign Message",
       description: "A website is requesting you to sign a message.",
-      origin: request.origin
+      origin: request.origin,
+      displayTitle: true
     }), /* @__PURE__ */ import_react17.default.createElement(Separator, {
       className: "mb-4"
     }), /* @__PURE__ */ import_react17.default.createElement("div", {
@@ -29617,24 +29639,35 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   var import_react18 = __toModule(require_react());
   var import_bs584 = __toModule(require_bs583());
 
-  // src/util/signTransaction.ts
-  async function signTransaction(transaction, keypair) {
-    transaction.sign({
-      publicKey: keypair.publicKey,
-      secretKey: keypair.secretKey
-    });
+  // src/util/signVersionedTransaction.ts
+  async function signVersionedTransaction(transaction, keypair) {
+    transaction.sign([
+      {
+        publicKey: keypair.publicKey,
+        secretKey: keypair.secretKey
+      }
+    ]);
     return transaction.serialize();
   }
 
   // src/Approval/SignTransactionScreen.tsx
   function SignTransactionScreen({request, onApprove}) {
     const handleSignTransaction = async (request2) => {
+      console.log("In sign transaction");
       const dummyKeypair = getDummyKeypair();
       const input = request2.input;
-      const signedTxBytes = await signTransaction(Transaction.from(import_bs584.default.decode(input.transaction)), dummyKeypair);
+      const txBytes = import_bs584.default.decode(input.transaction);
+      const numOfSignatures = txBytes[0];
+      const txHeaderLength = 1 + numOfSignatures * 64;
+      console.log(txBytes, txBytes.length);
+      const versionedMessage = VersionedMessage.deserialize(txBytes.slice(txHeaderLength, txBytes.length));
+      const versionedTx = new VersionedTransaction(versionedMessage);
+      const signedTxBytes = await signVersionedTransaction(new VersionedTransaction(versionedMessage), dummyKeypair);
+      console.log("In sign transaction 2");
       if (!request2.origin) {
         throw new Error("Sender origin is missing: " + request2);
       }
+      console.log("In sign transaction 3");
       onApprove({
         type: "wallet-response",
         method: request2.method,
@@ -29652,7 +29685,8 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, /* @__PURE__ */ import_react18.default.createElement(ApprovalHeader, {
       title: "Sign Transaction",
       description: "A website is requesting you to approve a transaction.",
-      origin: request.origin
+      origin: request.origin,
+      displayTitle: true
     }), /* @__PURE__ */ import_react18.default.createElement(Separator, {
       className: "mb-4"
     }), /* @__PURE__ */ import_react18.default.createElement("div", {
@@ -29669,7 +29703,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       className: "font-bold ml-3"
     }, "Sent")), /* @__PURE__ */ import_react18.default.createElement("span", {
       className: "text-red-500 font-semibold"
-    }, "0.5 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, "0.01 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "flex justify-between"
     }, /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "flex flex-row"
@@ -29677,17 +29711,17 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       className: "font-bold ml-3"
     }, "Received")), /* @__PURE__ */ import_react18.default.createElement("span", {
       className: "text-green-500 font-semibold"
-    }, "13.43 USDC")), /* @__PURE__ */ import_react18.default.createElement(Separator, {
+    }, "0.236 USDC")), /* @__PURE__ */ import_react18.default.createElement(Separator, {
       className: "my-4"
     }), /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "Wallet"), /* @__PURE__ */ import_react18.default.createElement(WalletDisplay, {
+    }, "as:"), /* @__PURE__ */ import_react18.default.createElement(WalletDisplay, {
       publicKey: getDummyKeypair().publicKey
     })), /* @__PURE__ */ import_react18.default.createElement(ApprovalFooter, {
       onCancel: () => {
       },
       onConfirm: () => handleSignTransaction(request),
-      confirmText: "Sign Transaction"
+      confirmText: "Confirm"
     }));
   }
 
@@ -29807,9 +29841,11 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, []);
     const handleApprove = (response) => {
       var _a, _b;
+      console.log("In handle Approve");
       if (!((_b = (_a = response.origin) == null ? void 0 : _a.tab) == null ? void 0 : _b.id)) {
         throw new Error("Request has no origin sender metadata");
       }
+      console.log("In handle Approve 2");
       const originTabId = response.origin.tab.id;
       browser.tabs.sendMessage(originTabId, response).then(() => browser.tabs.update(originTabId, {active: true})).then(() => window.close());
     };

@@ -7,14 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB54E8762ACD07D200A6E21D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E8752ACD07D200A6E21D /* AppDelegate.swift */; };
 		FB54E87A2ACD07D200A6E21D /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8782ACD07D200A6E21D /* Main.html */; };
 		FB54E87C2ACD07D200A6E21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87B2ACD07D200A6E21D /* Icon.png */; };
 		FB54E87E2ACD07D200A6E21D /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87D2ACD07D200A6E21D /* Style.css */; };
-		FB54E8802ACD07D200A6E21D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E87F2ACD07D200A6E21D /* SceneDelegate.swift */; };
-		FB54E8822ACD07D200A6E21D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E8812ACD07D200A6E21D /* ViewController.swift */; };
-		FB54E8852ACD07D200A6E21D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8832ACD07D200A6E21D /* LaunchScreen.storyboard */; };
-		FB54E8882ACD07D200A6E21D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8862ACD07D200A6E21D /* Main.storyboard */; };
 		FB54E8942ACD07D300A6E21D /* SolanaSafariWalletExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E8932ACD07D300A6E21D /* SolanaSafariWalletExtensionTests.swift */; };
 		FB54E89E2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E89D2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests.swift */; };
 		FB54E8A02ACD07D300A6E21D /* SolanaSafariWalletExtensionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB54E89F2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITestsLaunchTests.swift */; };
@@ -23,7 +18,6 @@
 		FB54E8AE2ACD07D300A6E21D /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8AD2ACD07D300A6E21D /* _locales */; };
 		FB54E8B02ACD07D300A6E21D /* images in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8AF2ACD07D300A6E21D /* images */; };
 		FB54E8B22ACD07D300A6E21D /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8B12ACD07D300A6E21D /* manifest.json */; };
-		FB54E8BE2ACD07D300A6E21D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8892ACD07D300A6E21D /* Assets.xcassets */; };
 		FB54E8D92ACD082600A6E21D /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8D12ACD082600A6E21D /* popup.html */; };
 		FB54E8E32ACD0FB600A6E21D /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8DF2ACD0FB600A6E21D /* popup.js */; };
 		FB54E8E42ACD0FB600A6E21D /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8E02ACD0FB600A6E21D /* background.js */; };
@@ -32,6 +26,10 @@
 		FBD7450E2ADA094C003D5E6B /* approval.html in Resources */ = {isa = PBXBuildFile; fileRef = FBD7450D2ADA094B003D5E6B /* approval.html */; };
 		FBD745102ADA1757003D5E6B /* approval.js in Resources */ = {isa = PBXBuildFile; fileRef = FBD7450F2ADA1757003D5E6B /* approval.js */; };
 		FBD745122ADA5521003D5E6B /* output.css in Resources */ = {isa = PBXBuildFile; fileRef = FBD745112ADA5521003D5E6B /* output.css */; };
+		FBD7454C2AE090C9003D5E6B /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7454B2AE090C9003D5E6B /* MainApp.swift */; };
+		FBD7454E2AE090DD003D5E6B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7454D2AE090DD003D5E6B /* ContentView.swift */; };
+		FBD745502AE0913A003D5E6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD7454F2AE0913A003D5E6B /* Assets.xcassets */; };
+		FBD745522AE0913F003D5E6B /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = FBD745512AE0913F003D5E6B /* Preview Content */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,16 +72,9 @@
 
 /* Begin PBXFileReference section */
 		FB54E8722ACD07D200A6E21D /* SolanaSafariWalletExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolanaSafariWalletExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB54E8752ACD07D200A6E21D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB54E8792ACD07D200A6E21D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
 		FB54E87B2ACD07D200A6E21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FB54E87D2ACD07D200A6E21D /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
-		FB54E87F2ACD07D200A6E21D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FB54E8812ACD07D200A6E21D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FB54E8842ACD07D200A6E21D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FB54E8872ACD07D200A6E21D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FB54E8892ACD07D300A6E21D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FB54E88A2ACD07D300A6E21D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB54E88F2ACD07D300A6E21D /* SolanaSafariWalletExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolanaSafariWalletExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB54E8932ACD07D300A6E21D /* SolanaSafariWalletExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaSafariWalletExtensionTests.swift; sourceTree = "<group>"; };
 		FB54E8992ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolanaSafariWalletExtensionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +94,10 @@
 		FBD7450D2ADA094B003D5E6B /* approval.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = approval.html; sourceTree = "<group>"; };
 		FBD7450F2ADA1757003D5E6B /* approval.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = approval.js; sourceTree = "<group>"; };
 		FBD745112ADA5521003D5E6B /* output.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = output.css; sourceTree = "<group>"; };
+		FBD7454B2AE090C9003D5E6B /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
+		FBD7454D2AE090DD003D5E6B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FBD7454F2AE0913A003D5E6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../TestSwifUIApp/TestSwifUIApp/Assets.xcassets; sourceTree = "<group>"; };
+		FBD745512AE0913F003D5E6B /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,13 +157,10 @@
 		FB54E8742ACD07D200A6E21D /* SolanaSafariWalletExtension */ = {
 			isa = PBXGroup;
 			children = (
-				FB54E8752ACD07D200A6E21D /* AppDelegate.swift */,
-				FB54E87F2ACD07D200A6E21D /* SceneDelegate.swift */,
-				FB54E8812ACD07D200A6E21D /* ViewController.swift */,
-				FB54E8832ACD07D200A6E21D /* LaunchScreen.storyboard */,
-				FB54E8862ACD07D200A6E21D /* Main.storyboard */,
-				FB54E8892ACD07D300A6E21D /* Assets.xcassets */,
-				FB54E88A2ACD07D300A6E21D /* Info.plist */,
+				FBD7454B2AE090C9003D5E6B /* MainApp.swift */,
+				FBD7454D2AE090DD003D5E6B /* ContentView.swift */,
+				FBD7454F2AE0913A003D5E6B /* Assets.xcassets */,
+				FBD745512AE0913F003D5E6B /* Preview Content */,
 				FB54E8772ACD07D200A6E21D /* Resources */,
 			);
 			path = SolanaSafariWalletExtension;
@@ -365,10 +357,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB54E87C2ACD07D200A6E21D /* Icon.png in Resources */,
-				FB54E8882ACD07D200A6E21D /* Main.storyboard in Resources */,
-				FB54E8852ACD07D200A6E21D /* LaunchScreen.storyboard in Resources */,
+				FBD745522AE0913F003D5E6B /* Preview Content in Resources */,
 				FB54E87A2ACD07D200A6E21D /* Main.html in Resources */,
-				FB54E8BE2ACD07D300A6E21D /* Assets.xcassets in Resources */,
+				FBD745502AE0913A003D5E6B /* Assets.xcassets in Resources */,
 				FB54E87E2ACD07D200A6E21D /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,9 +403,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB54E8822ACD07D200A6E21D /* ViewController.swift in Sources */,
-				FB54E8762ACD07D200A6E21D /* AppDelegate.swift in Sources */,
-				FB54E8802ACD07D200A6E21D /* SceneDelegate.swift in Sources */,
+				FBD7454E2AE090DD003D5E6B /* ContentView.swift in Sources */,
+				FBD7454C2AE090C9003D5E6B /* MainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,22 +460,6 @@
 				FB54E8792ACD07D200A6E21D /* Base */,
 			);
 			name = Main.html;
-			sourceTree = "<group>";
-		};
-		FB54E8832ACD07D200A6E21D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB54E8842ACD07D200A6E21D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		FB54E8862ACD07D200A6E21D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB54E8872ACD07D200A6E21D /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -676,7 +650,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SolanaSafariWalletExtension;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -712,7 +685,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SolanaSafariWalletExtension;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
