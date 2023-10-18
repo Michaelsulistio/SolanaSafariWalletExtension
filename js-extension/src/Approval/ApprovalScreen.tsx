@@ -109,16 +109,14 @@ export default function ApprovalScreen() {
   };
   console.log(requestQueue);
   return (
-    <ErrorBoundary>
-      <div>
-        <div>My Random ID: {randomID}</div>
-        <div>Messages: {message}</div>
-        <button onClick={logRequests}>Log Requests</button>
-        <div>Request Queue Size: {requestQueue.length}</div>
-        {requestQueue.length > 0
-          ? getRequestScreenComponent(requestQueue[0], handleApprove)
-          : null}
-      </div>
-    </ErrorBoundary>
+    <div className="p-6">
+      {/* <div>My Random ID: {randomID}</div>
+      <div>Messages: {message}</div>
+      <button onClick={logRequests}>Log Requests</button>
+      <div>Request Queue Size: {requestQueue.length}</div> */}
+      {requestQueue.length > 0
+        ? getRequestScreenComponent(requestQueue[0], handleApprove)
+        : null}
+    </div>
   );
 }

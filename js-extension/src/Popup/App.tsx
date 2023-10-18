@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "../Card/Card";
 
 export default function App() {
   const cardStyle = {
@@ -55,7 +54,7 @@ export default function App() {
         <button onClick={tabsClick1}>Tabs 1</button>
         <button onClick={tabsClick2}>Tabs 2</button>
         <button onClick={tabsClick3}>Tabs 3</button>
-        <Card title="Card 1" content="Body 1" />
+        {/* <Card title="Card 1" content="Body 1" /> */}
       </div>
     </div>
   );

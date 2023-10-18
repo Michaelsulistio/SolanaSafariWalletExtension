@@ -135,7 +135,7 @@
     exports.StrictMode = 60108;
     exports.Profiler = 60114;
     var q = 60109;
-    var r = 60110;
+    var r2 = 60110;
     var t = 60112;
     exports.Suspense = 60113;
     var u = 60115;
@@ -148,7 +148,7 @@
       exports.StrictMode = w("react.strict_mode");
       exports.Profiler = w("react.profiler");
       q = w("react.provider");
-      r = w("react.context");
+      r2 = w("react.context");
       t = w("react.forward_ref");
       exports.Suspense = w("react.suspense");
       u = w("react.memo");
@@ -365,7 +365,7 @@
     };
     exports.createContext = function(a, b) {
       b === void 0 && (b = null);
-      a = {$$typeof: r, _calculateChangedBits: b, _currentValue: a, _currentValue2: a, _threadCount: 0, Provider: null, Consumer: null};
+      a = {$$typeof: r2, _calculateChangedBits: b, _currentValue: a, _currentValue2: a, _threadCount: 0, Provider: null, Consumer: null};
       a.Provider = {$$typeof: q, _context: a};
       return a.Consumer = a;
     };
@@ -564,11 +564,11 @@
           a[0] = c;
           a:
             for (var d = 0, e = a.length; d < e; ) {
-              var m = 2 * (d + 1) - 1, n = a[m], v = m + 1, r = a[v];
+              var m = 2 * (d + 1) - 1, n = a[m], v = m + 1, r2 = a[v];
               if (n !== void 0 && 0 > I(n, c))
-                r !== void 0 && 0 > I(r, n) ? (a[d] = r, a[v] = c, d = v) : (a[d] = n, a[m] = c, d = m);
-              else if (r !== void 0 && 0 > I(r, c))
-                a[d] = r, a[v] = c, d = v;
+                r2 !== void 0 && 0 > I(r2, n) ? (a[d] = r2, a[v] = c, d = v) : (a[d] = n, a[m] = c, d = m);
+              else if (r2 !== void 0 && 0 > I(r2, c))
+                a[d] = r2, a[v] = c, d = v;
               else
                 break a;
             }
@@ -763,7 +763,7 @@
     "use strict";
     var aa = require_react();
     var m = require_object_assign();
-    var r = require_scheduler();
+    var r2 = require_scheduler();
     function y(a) {
       for (var b = "https://reactjs.org/docs/error-decoder.html?invariant=" + a, c = 1; c < arguments.length; c++)
         b += "&args[]=" + encodeURIComponent(arguments[c]);
@@ -1738,7 +1738,7 @@
             if (b = $b(c), b !== null) {
               a.blockedOn = b;
               hc(a.lanePriority, function() {
-                r.unstable_runWithPriority(a.priority, function() {
+                r2.unstable_runWithPriority(a.priority, function() {
                   gc(c);
                 });
               });
@@ -1791,7 +1791,7 @@
       oc.forEach(zc);
     }
     function Bc(a, b) {
-      a.blockedOn === b && (a.blockedOn = null, ic || (ic = true, r.unstable_scheduleCallback(r.unstable_NormalPriority, Ac)));
+      a.blockedOn === b && (a.blockedOn = null, ic || (ic = true, r2.unstable_scheduleCallback(r2.unstable_NormalPriority, Ac)));
     }
     function Cc(a) {
       function b(b2) {
@@ -1903,7 +1903,7 @@
         da(e, [d]);
       }
     }
-    var Qc = r.unstable_now;
+    var Qc = r2.unstable_now;
     Qc();
     var F = 8;
     function Rc(a) {
@@ -2060,8 +2060,8 @@
     function ad(a) {
       return a === 0 ? 32 : 31 - (bd(a) / cd | 0) | 0;
     }
-    var dd = r.unstable_UserBlockingPriority;
-    var ed = r.unstable_runWithPriority;
+    var dd = r2.unstable_UserBlockingPriority;
+    var ed = r2.unstable_runWithPriority;
     var fd = true;
     function gd(a, b, c, d) {
       Kb || Ib();
@@ -3063,18 +3063,18 @@
     }
     var Lf = null;
     var Mf = null;
-    var Nf = r.unstable_runWithPriority;
-    var Of = r.unstable_scheduleCallback;
-    var Pf = r.unstable_cancelCallback;
-    var Qf = r.unstable_shouldYield;
-    var Rf = r.unstable_requestPaint;
-    var Sf = r.unstable_now;
-    var Tf = r.unstable_getCurrentPriorityLevel;
-    var Uf = r.unstable_ImmediatePriority;
-    var Vf = r.unstable_UserBlockingPriority;
-    var Wf = r.unstable_NormalPriority;
-    var Xf = r.unstable_LowPriority;
-    var Yf = r.unstable_IdlePriority;
+    var Nf = r2.unstable_runWithPriority;
+    var Of = r2.unstable_scheduleCallback;
+    var Pf = r2.unstable_cancelCallback;
+    var Qf = r2.unstable_shouldYield;
+    var Rf = r2.unstable_requestPaint;
+    var Sf = r2.unstable_now;
+    var Tf = r2.unstable_getCurrentPriorityLevel;
+    var Uf = r2.unstable_ImmediatePriority;
+    var Vf = r2.unstable_UserBlockingPriority;
+    var Wf = r2.unstable_NormalPriority;
+    var Xf = r2.unstable_LowPriority;
+    var Yf = r2.unstable_IdlePriority;
     var Zf = {};
     var $f = Rf !== void 0 ? Rf : function() {
     };
@@ -9055,15 +9055,15 @@
     }
     exports.toBytes = toBytes;
     function concatBytes(...arrays) {
-      const r = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
+      const r2 = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
       let pad = 0;
       arrays.forEach((a) => {
         if (!u8a(a))
           throw new Error("Uint8Array expected");
-        r.set(a, pad);
+        r2.set(a, pad);
         pad += a.length;
       });
-      return r;
+      return r2;
     }
     exports.concatBytes = concatBytes;
     var Hash = class {
@@ -9684,15 +9684,15 @@
     }
     exports.ensureBytes = ensureBytes;
     function concatBytes(...arrays) {
-      const r = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
+      const r2 = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
       let pad = 0;
       arrays.forEach((a) => {
         if (!u8a(a))
           throw new Error("Uint8Array expected");
-        r.set(a, pad);
+        r2.set(a, pad);
         pad += a.length;
       });
-      return r;
+      return r2;
     }
     exports.concatBytes = concatBytes;
     function equalBytes(b1, b2) {
@@ -9864,10 +9864,10 @@
       let x = _0n, y = _1n, u = _1n, v = _0n;
       while (a !== _0n) {
         const q = b / a;
-        const r = b % a;
+        const r2 = b % a;
         const m = x - u * q;
         const n = y - v * q;
-        b = a, a = r, x = u, y = v, u = m, v = n;
+        b = a, a = r2, x = u, y = v, u = m, v = n;
       }
       const gcd = b;
       if (gcd !== _1n)
@@ -9895,7 +9895,7 @@
       return function tonelliSlow(Fp, n) {
         if (Fp.pow(n, legendreC) === Fp.neg(Fp.ONE))
           throw new Error("Cannot find square root");
-        let r = S;
+        let r2 = S;
         let g = Fp.pow(Fp.mul(Fp.ONE, Z), Q);
         let x = Fp.pow(n, Q1div2);
         let b = Fp.pow(n, Q);
@@ -9903,16 +9903,16 @@
           if (Fp.eql(b, Fp.ZERO))
             return Fp.ZERO;
           let m = 1;
-          for (let t2 = Fp.sqr(b); m < r; m++) {
+          for (let t2 = Fp.sqr(b); m < r2; m++) {
             if (Fp.eql(t2, Fp.ONE))
               break;
             t2 = Fp.sqr(t2);
           }
-          const ge = Fp.pow(g, _1n << BigInt(r - m - 1));
+          const ge = Fp.pow(g, _1n << BigInt(r2 - m - 1));
           g = Fp.sqr(ge);
           x = Fp.mul(x, ge);
           b = Fp.mul(b, g);
-          r = m;
+          r2 = m;
         }
         return x;
       };
@@ -10549,10 +10549,10 @@
         if (prehash)
           msg = prehash(msg);
         const {prefix, scalar, pointBytes} = getExtendedPublicKey(privKey);
-        const r = hashDomainToScalar(options.context, prefix, msg);
-        const R = G.multiply(r).toRawBytes();
+        const r2 = hashDomainToScalar(options.context, prefix, msg);
+        const R = G.multiply(r2).toRawBytes();
         const k = hashDomainToScalar(options.context, R, pointBytes, msg);
-        const s = modN(r + k * scalar);
+        const s = modN(r2 + k * scalar);
         assertGE0(s);
         const res = ut.concatBytes(R, ut.numberToBytesLE(s, Fp.BYTES));
         return (0, utils_js_1.ensureBytes)("result", res, nByteLength * 2);
@@ -11097,10 +11097,10 @@
       const {d} = exports.ed25519.CURVE;
       const P = exports.ed25519.CURVE.Fp.ORDER;
       const mod = exports.ed25519.CURVE.Fp.create;
-      const r = mod(SQRT_M1 * r0 * r0);
-      const Ns = mod((r + _1n) * ONE_MINUS_D_SQ);
+      const r2 = mod(SQRT_M1 * r0 * r0);
+      const Ns = mod((r2 + _1n) * ONE_MINUS_D_SQ);
       let c = BigInt(-1);
-      const D = mod((c - d * r) * mod(r + d));
+      const D = mod((c - d * r2) * mod(r2 + d));
       let {isValid: Ns_D_is_sq, value: s} = uvRatio(Ns, D);
       let s_ = mod(s * r0);
       if (!(0, modular_js_1.isNegativeLE)(s_, P))
@@ -11108,8 +11108,8 @@
       if (!Ns_D_is_sq)
         s = s_;
       if (!Ns_D_is_sq)
-        c = r;
-      const Nt = mod(c * (r - _1n) * D_MINUS_ONE_SQ - D);
+        c = r2;
+      const Nt = mod(c * (r2 - _1n) * D_MINUS_ONE_SQ - D);
       const s2 = s * s;
       const W0 = mod((s + s) * D);
       const W1 = mod(Nt * SQRT_AD_MINUS_ONE);
@@ -11410,11 +11410,11 @@
         }
       }
       function parseHexByte(string2, lowerBound, index) {
-        var r = parseHex4Bits(string2, index);
+        var r2 = parseHex4Bits(string2, index);
         if (index - 1 >= lowerBound) {
-          r |= parseHex4Bits(string2, index - 1) << 4;
+          r2 |= parseHex4Bits(string2, index - 1) << 4;
         }
-        return r;
+        return r2;
       }
       BN2.prototype._parseHex = function _parseHex(number2, start, endian) {
         this.length = Math.ceil((number2.length - start) / 6);
@@ -11454,12 +11454,12 @@
         this._strip();
       };
       function parseBase(str, start, end, mul) {
-        var r = 0;
+        var r2 = 0;
         var b = 0;
         var len = Math.min(str.length, end);
         for (var i = start; i < len; i++) {
           var c = str.charCodeAt(i) - 48;
-          r *= mul;
+          r2 *= mul;
           if (c >= 49) {
             b = c - 49 + 10;
           } else if (c >= 17) {
@@ -11468,9 +11468,9 @@
             b = c;
           }
           assert3(c >= 0 && b < mul, "Invalid character");
-          r += b;
+          r2 += b;
         }
-        return r;
+        return r2;
       }
       BN2.prototype._parseBase = function _parseBase(number2, base, start) {
         this.words = [0];
@@ -11527,9 +11527,9 @@
         move(dest, this);
       };
       BN2.prototype.clone = function clone() {
-        var r = new BN2(null);
-        this.copy(r);
-        return r;
+        var r2 = new BN2(null);
+        this.copy(r2);
+        return r2;
       };
       BN2.prototype._expand = function _expand(size) {
         while (this.length < size) {
@@ -11708,12 +11708,12 @@
           var c = this.clone();
           c.negative = 0;
           while (!c.isZero()) {
-            var r = c.modrn(groupBase).toString(base);
+            var r2 = c.modrn(groupBase).toString(base);
             c = c.idivn(groupBase);
             if (!c.isZero()) {
-              out = zeros[groupSize - r.length] + r + out;
+              out = zeros[groupSize - r2.length] + r2 + out;
             } else {
-              out = r + out;
+              out = r2 + out;
             }
           }
           if (this.isZero()) {
@@ -11835,51 +11835,51 @@
       } else {
         BN2.prototype._countBits = function _countBits(w) {
           var t = w;
-          var r = 0;
+          var r2 = 0;
           if (t >= 4096) {
-            r += 13;
+            r2 += 13;
             t >>>= 13;
           }
           if (t >= 64) {
-            r += 7;
+            r2 += 7;
             t >>>= 7;
           }
           if (t >= 8) {
-            r += 4;
+            r2 += 4;
             t >>>= 4;
           }
           if (t >= 2) {
-            r += 2;
+            r2 += 2;
             t >>>= 2;
           }
-          return r + t;
+          return r2 + t;
         };
       }
       BN2.prototype._zeroBits = function _zeroBits(w) {
         if (w === 0)
           return 26;
         var t = w;
-        var r = 0;
+        var r2 = 0;
         if ((t & 8191) === 0) {
-          r += 13;
+          r2 += 13;
           t >>>= 13;
         }
         if ((t & 127) === 0) {
-          r += 7;
+          r2 += 7;
           t >>>= 7;
         }
         if ((t & 15) === 0) {
-          r += 4;
+          r2 += 4;
           t >>>= 4;
         }
         if ((t & 3) === 0) {
-          r += 2;
+          r2 += 2;
           t >>>= 2;
         }
         if ((t & 1) === 0) {
-          r++;
+          r2++;
         }
-        return r;
+        return r2;
       };
       BN2.prototype.bitLength = function bitLength() {
         var w = this.words[this.length - 1];
@@ -11898,14 +11898,14 @@
       BN2.prototype.zeroBits = function zeroBits() {
         if (this.isZero())
           return 0;
-        var r = 0;
+        var r2 = 0;
         for (var i = 0; i < this.length; i++) {
           var b = this._zeroBits(this.words[i]);
-          r += b;
+          r2 += b;
           if (b !== 26)
             break;
         }
-        return r;
+        return r2;
       };
       BN2.prototype.byteLength = function byteLength() {
         return Math.ceil(this.bitLength() / 8);
@@ -12051,17 +12051,17 @@
         return this._strip();
       };
       BN2.prototype.iadd = function iadd(num) {
-        var r;
+        var r2;
         if (this.negative !== 0 && num.negative === 0) {
           this.negative = 0;
-          r = this.isub(num);
+          r2 = this.isub(num);
           this.negative ^= 1;
           return this._normSign();
         } else if (this.negative === 0 && num.negative !== 0) {
           num.negative = 0;
-          r = this.isub(num);
+          r2 = this.isub(num);
           num.negative = 1;
-          return r._normSign();
+          return r2._normSign();
         }
         var a, b;
         if (this.length > num.length) {
@@ -12073,14 +12073,14 @@
         }
         var carry = 0;
         for (var i = 0; i < b.length; i++) {
-          r = (a.words[i] | 0) + (b.words[i] | 0) + carry;
-          this.words[i] = r & 67108863;
-          carry = r >>> 26;
+          r2 = (a.words[i] | 0) + (b.words[i] | 0) + carry;
+          this.words[i] = r2 & 67108863;
+          carry = r2 >>> 26;
         }
         for (; carry !== 0 && i < a.length; i++) {
-          r = (a.words[i] | 0) + carry;
-          this.words[i] = r & 67108863;
-          carry = r >>> 26;
+          r2 = (a.words[i] | 0) + carry;
+          this.words[i] = r2 & 67108863;
+          carry = r2 >>> 26;
         }
         this.length = a.length;
         if (carry !== 0) {
@@ -12113,9 +12113,9 @@
       BN2.prototype.isub = function isub(num) {
         if (num.negative !== 0) {
           num.negative = 0;
-          var r = this.iadd(num);
+          var r2 = this.iadd(num);
           num.negative = 1;
-          return r._normSign();
+          return r2._normSign();
         } else if (this.negative !== 0) {
           this.negative = 0;
           this.iadd(num);
@@ -12139,14 +12139,14 @@
         }
         var carry = 0;
         for (var i = 0; i < b.length; i++) {
-          r = (a.words[i] | 0) - (b.words[i] | 0) + carry;
-          carry = r >> 26;
-          this.words[i] = r & 67108863;
+          r2 = (a.words[i] | 0) - (b.words[i] | 0) + carry;
+          carry = r2 >> 26;
+          this.words[i] = r2 & 67108863;
         }
         for (; carry !== 0 && i < a.length; i++) {
-          r = (a.words[i] | 0) + carry;
-          carry = r >> 26;
-          this.words[i] = r & 67108863;
+          r2 = (a.words[i] | 0) + carry;
+          carry = r2 >> 26;
+          this.words[i] = r2 & 67108863;
         }
         if (carry === 0 && i < a.length && a !== this) {
           for (; i < a.length; i++) {
@@ -12169,9 +12169,9 @@
         len = len - 1 | 0;
         var a = self.words[0] | 0;
         var b = num.words[0] | 0;
-        var r = a * b;
-        var lo = r & 67108863;
-        var carry = r / 67108864 | 0;
+        var r2 = a * b;
+        var lo = r2 & 67108863;
+        var carry = r2 / 67108864 | 0;
         out.words[0] = lo;
         for (var k = 1; k < len; k++) {
           var ncarry = carry >>> 26;
@@ -12181,9 +12181,9 @@
             var i = k - j | 0;
             a = self.words[i] | 0;
             b = num.words[j] | 0;
-            r = a * b + rword;
-            ncarry += r / 67108864 | 0;
-            rword = r & 67108863;
+            r2 = a * b + rword;
+            ncarry += r2 / 67108864 | 0;
+            rword = r2 & 67108863;
           }
           out.words[k] = rword | 0;
           carry = ncarry | 0;
@@ -12764,9 +12764,9 @@
             var i = k - j;
             var a = self.words[i] | 0;
             var b = num.words[j] | 0;
-            var r = a * b;
-            var lo = r & 67108863;
-            ncarry = ncarry + (r / 67108864 | 0) | 0;
+            var r2 = a * b;
+            var lo = r2 & 67108863;
+            ncarry = ncarry + (r2 / 67108864 | 0) | 0;
             lo = lo + rword | 0;
             rword = lo & 67108863;
             ncarry = ncarry + (lo >>> 26) | 0;
@@ -13007,17 +13007,17 @@
       };
       BN2.prototype.iushln = function iushln(bits) {
         assert3(typeof bits === "number" && bits >= 0);
-        var r = bits % 26;
-        var s = (bits - r) / 26;
-        var carryMask = 67108863 >>> 26 - r << 26 - r;
+        var r2 = bits % 26;
+        var s = (bits - r2) / 26;
+        var carryMask = 67108863 >>> 26 - r2 << 26 - r2;
         var i;
-        if (r !== 0) {
+        if (r2 !== 0) {
           var carry = 0;
           for (i = 0; i < this.length; i++) {
             var newCarry = this.words[i] & carryMask;
-            var c = (this.words[i] | 0) - newCarry << r;
+            var c = (this.words[i] | 0) - newCarry << r2;
             this.words[i] = c | carry;
-            carry = newCarry >>> 26 - r;
+            carry = newCarry >>> 26 - r2;
           }
           if (carry) {
             this.words[i] = carry;
@@ -13047,9 +13047,9 @@
         } else {
           h = 0;
         }
-        var r = bits % 26;
-        var s = Math.min((bits - r) / 26, this.length);
-        var mask2 = 67108863 ^ 67108863 >>> r << r;
+        var r2 = bits % 26;
+        var s = Math.min((bits - r2) / 26, this.length);
+        var mask2 = 67108863 ^ 67108863 >>> r2 << r2;
         var maskedWords = extended;
         h -= s;
         h = Math.max(0, h);
@@ -13072,7 +13072,7 @@
         var carry = 0;
         for (i = this.length - 1; i >= 0 && (carry !== 0 || i >= h); i--) {
           var word = this.words[i] | 0;
-          this.words[i] = carry << 26 - r | word >>> r;
+          this.words[i] = carry << 26 - r2 | word >>> r2;
           carry = word & mask2;
         }
         if (maskedWords && carry !== 0) {
@@ -13102,9 +13102,9 @@
       };
       BN2.prototype.testn = function testn(bit) {
         assert3(typeof bit === "number" && bit >= 0);
-        var r = bit % 26;
-        var s = (bit - r) / 26;
-        var q = 1 << r;
+        var r2 = bit % 26;
+        var s = (bit - r2) / 26;
+        var q = 1 << r2;
         if (this.length <= s)
           return false;
         var w = this.words[s];
@@ -13112,18 +13112,18 @@
       };
       BN2.prototype.imaskn = function imaskn(bits) {
         assert3(typeof bits === "number" && bits >= 0);
-        var r = bits % 26;
-        var s = (bits - r) / 26;
+        var r2 = bits % 26;
+        var s = (bits - r2) / 26;
         assert3(this.negative === 0, "imaskn works only with positive numbers");
         if (this.length <= s) {
           return this;
         }
-        if (r !== 0) {
+        if (r2 !== 0) {
           s++;
         }
         this.length = Math.min(s, this.length);
-        if (r !== 0) {
-          var mask2 = 67108863 ^ 67108863 >>> r << r;
+        if (r2 !== 0) {
+          var mask2 = 67108863 ^ 67108863 >>> r2 << r2;
           this.words[this.length - 1] &= mask2;
         }
         return this._strip();
@@ -13552,12 +13552,12 @@
           while (b.isEven()) {
             b.iushrn(1);
           }
-          var r = a.cmp(b);
-          if (r < 0) {
+          var r2 = a.cmp(b);
+          if (r2 < 0) {
             var t = a;
             a = b;
             b = t;
-          } else if (r === 0 || b.cmpn(1) === 0) {
+          } else if (r2 === 0 || b.cmpn(1) === 0) {
             break;
           }
           a.isub(b);
@@ -13578,9 +13578,9 @@
       };
       BN2.prototype.bincn = function bincn(bit) {
         assert3(typeof bit === "number");
-        var r = bit % 26;
-        var s = (bit - r) / 26;
-        var q = 1 << r;
+        var r2 = bit % 26;
+        var s = (bit - r2) / 26;
+        var q = 1 << r2;
         if (this.length <= s) {
           this._expand(s + 1);
           this.words[s] |= q;
@@ -13784,28 +13784,28 @@
         return tmp;
       };
       MPrime.prototype.ireduce = function ireduce(num) {
-        var r = num;
+        var r2 = num;
         var rlen;
         do {
-          this.split(r, this.tmp);
-          r = this.imulK(r);
-          r = r.iadd(this.tmp);
-          rlen = r.bitLength();
+          this.split(r2, this.tmp);
+          r2 = this.imulK(r2);
+          r2 = r2.iadd(this.tmp);
+          rlen = r2.bitLength();
         } while (rlen > this.n);
-        var cmp = rlen < this.n ? -1 : r.ucmp(this.p);
+        var cmp = rlen < this.n ? -1 : r2.ucmp(this.p);
         if (cmp === 0) {
-          r.words[0] = 0;
-          r.length = 1;
+          r2.words[0] = 0;
+          r2.length = 1;
         } else if (cmp > 0) {
-          r.isub(this.p);
+          r2.isub(this.p);
         } else {
-          if (r.strip !== void 0) {
-            r.strip();
+          if (r2.strip !== void 0) {
+            r2.strip();
           } else {
-            r._strip();
+            r2._strip();
           }
         }
-        return r;
+        return r2;
       };
       MPrime.prototype.split = function split(input, out) {
         input.iushrn(this.n, 0, out);
@@ -14013,7 +14013,7 @@
           z.redIAdd(nOne);
         }
         var c = this.pow(z, q);
-        var r = this.pow(a, q.addn(1).iushrn(1));
+        var r2 = this.pow(a, q.addn(1).iushrn(1));
         var t = this.pow(a, q);
         var m = s;
         while (t.cmp(one) !== 0) {
@@ -14023,12 +14023,12 @@
           }
           assert3(i < m);
           var b = this.pow(c, new BN2(1).iushln(m - i - 1));
-          r = r.redMul(b);
+          r2 = r2.redMul(b);
           c = b.redSqr();
           t = t.redMul(c);
           m = i;
         }
-        return r;
+        return r2;
       };
       Red.prototype.invm = function invm(a) {
         var inv = a._invmp(this.m);
@@ -14083,8 +14083,8 @@
         return res;
       };
       Red.prototype.convertTo = function convertTo(num) {
-        var r = num.umod(this.m);
-        return r === num ? r.clone() : r;
+        var r2 = num.umod(this.m);
+        return r2 === num ? r2.clone() : r2;
       };
       Red.prototype.convertFrom = function convertFrom(num) {
         var res = num.clone();
@@ -14112,9 +14112,9 @@
         return this.imod(num.ushln(this.shift));
       };
       Mont.prototype.convertFrom = function convertFrom(num) {
-        var r = this.imod(num.mul(this.rinv));
-        r.red = null;
-        return r;
+        var r2 = this.imod(num.mul(this.rinv));
+        r2.red = null;
+        return r2;
       };
       Mont.prototype.imul = function imul(a, b) {
         if (a.isZero() || b.isZero()) {
@@ -14994,14 +14994,14 @@
       o["default"] = v;
     });
     var __decorate = exports && exports.__decorate || function(decorators, target, key, desc) {
-      var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+      var c = arguments.length, r2 = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-        r = Reflect.decorate(decorators, target, key, desc);
+        r2 = Reflect.decorate(decorators, target, key, desc);
       else
         for (var i = decorators.length - 1; i >= 0; i--)
           if (d = decorators[i])
-            r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-      return c > 3 && r && Object.defineProperty(target, key, r), r;
+            r2 = (c < 3 ? d(r2) : c > 3 ? d(target, key, r2) : d(target, key)) || r2;
+      return c > 3 && r2 && Object.defineProperty(target, key, r2), r2;
     };
     var __importStar = exports && exports.__importStar || function(mod) {
       if (mod && mod.__esModule)
@@ -17450,12 +17450,12 @@
       module.exports = _regeneratorRuntime = function _regeneratorRuntime2() {
         return e;
       }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
-        t2[e2] = r2.value;
+      var t, e = {}, r2 = Object.prototype, n = r2.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r3) {
+        t2[e2] = r3.value;
       }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
-      function define2(t2, e2, r2) {
+      function define2(t2, e2, r3) {
         return Object.defineProperty(t2, e2, {
-          value: r2,
+          value: r3,
           enumerable: true,
           configurable: true,
           writable: true
@@ -17464,21 +17464,21 @@
       try {
         define2({}, "");
       } catch (t2) {
-        define2 = function define3(t3, e2, r2) {
-          return t3[e2] = r2;
+        define2 = function define3(t3, e2, r3) {
+          return t3[e2] = r3;
         };
       }
-      function wrap(t2, e2, r2, n2) {
+      function wrap(t2, e2, r3, n2) {
         var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
         return o(a2, "_invoke", {
-          value: makeInvokeMethod(t2, r2, c2)
+          value: makeInvokeMethod(t2, r3, c2)
         }), a2;
       }
-      function tryCatch(t2, e2, r2) {
+      function tryCatch(t2, e2, r3) {
         try {
           return {
             type: "normal",
-            arg: t2.call(e2, r2)
+            arg: t2.call(e2, r3)
           };
         } catch (t3) {
           return {
@@ -17500,7 +17500,7 @@
         return this;
       });
       var d = Object.getPrototypeOf, v = d && d(d(values([])));
-      v && v !== r && n.call(v, a) && (p = v);
+      v && v !== r2 && n.call(v, a) && (p = v);
       var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
       function defineIteratorMethods(t2) {
         ["next", "throw", "return"].forEach(function(e2) {
@@ -17510,8 +17510,8 @@
         });
       }
       function AsyncIterator(t2, e2) {
-        function invoke(r3, o2, i2, a2) {
-          var c2 = tryCatch(t2[r3], t2, o2);
+        function invoke(r4, o2, i2, a2) {
+          var c2 = tryCatch(t2[r4], t2, o2);
           if (c2.type !== "throw") {
             var u2 = c2.arg, h2 = u2.value;
             return h2 && _typeof(h2) == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
@@ -17526,19 +17526,19 @@
           }
           a2(c2.arg);
         }
-        var r2;
+        var r3;
         o(this, "_invoke", {
           value: function value(t3, n2) {
             function callInvokeWithMethodAndArg() {
-              return new e2(function(e3, r3) {
-                invoke(t3, n2, e3, r3);
+              return new e2(function(e3, r4) {
+                invoke(t3, n2, e3, r4);
               });
             }
-            return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+            return r3 = r3 ? r3.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
           }
         });
       }
-      function makeInvokeMethod(e2, r2, n2) {
+      function makeInvokeMethod(e2, r3, n2) {
         var o2 = h;
         return function(i2, a2) {
           if (o2 === f)
@@ -17570,7 +17570,7 @@
             } else
               n2.method === "return" && n2.abrupt("return", n2.arg);
             o2 = f;
-            var p2 = tryCatch(e2, r2, n2);
+            var p2 = tryCatch(e2, r3, n2);
             if (p2.type === "normal") {
               if (o2 = n2.done ? s : l, p2.arg === y)
                 continue;
@@ -17583,15 +17583,15 @@
           }
         };
       }
-      function maybeInvokeDelegate(e2, r2) {
-        var n2 = r2.method, o2 = e2.iterator[n2];
+      function maybeInvokeDelegate(e2, r3) {
+        var n2 = r3.method, o2 = e2.iterator[n2];
         if (o2 === t)
-          return r2.delegate = null, n2 === "throw" && e2.iterator["return"] && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
-        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+          return r3.delegate = null, n2 === "throw" && e2.iterator["return"] && (r3.method = "return", r3.arg = t, maybeInvokeDelegate(e2, r3), r3.method === "throw") || n2 !== "return" && (r3.method = "throw", r3.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r3.arg);
         if (i2.type === "throw")
-          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+          return r3.method = "throw", r3.arg = i2.arg, r3.delegate = null, y;
         var a2 = i2.arg;
-        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+        return a2 ? a2.done ? (r3[e2.resultName] = a2.value, r3.next = e2.nextLoc, r3.method !== "return" && (r3.method = "next", r3.arg = t), r3.delegate = null, y) : a2 : (r3.method = "throw", r3.arg = new TypeError("iterator result is not an object"), r3.delegate = null, y);
       }
       function pushTryEntry(t2) {
         var e2 = {
@@ -17610,9 +17610,9 @@
       }
       function values(e2) {
         if (e2 || e2 === "") {
-          var r2 = e2[a];
-          if (r2)
-            return r2.call(e2);
+          var r3 = e2[a];
+          if (r3)
+            return r3.call(e2);
           if (typeof e2.next == "function")
             return e2;
           if (!isNaN(e2.length)) {
@@ -17644,10 +17644,10 @@
         };
       }, defineIteratorMethods(AsyncIterator.prototype), define2(AsyncIterator.prototype, c, function() {
         return this;
-      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r3, n2, o2, i2) {
         i2 === void 0 && (i2 = Promise);
-        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
-        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+        var a2 = new AsyncIterator(wrap(t2, r3, n2, o2), i2);
+        return e.isGeneratorFunction(r3) ? a2 : a2.next().then(function(t3) {
           return t3.done ? t3.value : a2.next();
         });
       }, defineIteratorMethods(g), define2(g, u, "Generator"), define2(g, a, function() {
@@ -17655,12 +17655,12 @@
       }), define2(g, "toString", function() {
         return "[object Generator]";
       }), e.keys = function(t2) {
-        var e2 = Object(t2), r2 = [];
+        var e2 = Object(t2), r3 = [];
         for (var n2 in e2)
-          r2.push(n2);
-        return r2.reverse(), function next() {
-          for (; r2.length; ) {
-            var t3 = r2.pop();
+          r3.push(n2);
+        return r3.reverse(), function next() {
+          for (; r3.length; ) {
+            var t3 = r3.pop();
             if (t3 in e2)
               return next.value = t3, next.done = false, next;
           }
@@ -17670,8 +17670,8 @@
         constructor: Context,
         reset: function reset(e2) {
           if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = false, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
-            for (var r2 in this)
-              r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+            for (var r3 in this)
+              r3.charAt(0) === "t" && n.call(this, r3) && !isNaN(+r3.slice(1)) && (this[r3] = t);
         },
         stop: function stop() {
           this.done = true;
@@ -17683,9 +17683,9 @@
         dispatchException: function dispatchException(e2) {
           if (this.done)
             throw e2;
-          var r2 = this;
+          var r3 = this;
           function handle(n2, o3) {
-            return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+            return a2.type = "throw", a2.arg = e2, r3.next = n2, o3 && (r3.method = "next", r3.arg = t), !!o3;
           }
           for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
             var i2 = this.tryEntries[o2], a2 = i2.completion;
@@ -17711,8 +17711,8 @@
           }
         },
         abrupt: function abrupt(t2, e2) {
-          for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
-            var o2 = this.tryEntries[r2];
+          for (var r3 = this.tryEntries.length - 1; r3 >= 0; --r3) {
+            var o2 = this.tryEntries[r3];
             if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
               var i2 = o2;
               break;
@@ -17729,29 +17729,29 @@
         },
         finish: function finish(t2) {
           for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
-            var r2 = this.tryEntries[e2];
-            if (r2.finallyLoc === t2)
-              return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+            var r3 = this.tryEntries[e2];
+            if (r3.finallyLoc === t2)
+              return this.complete(r3.completion, r3.afterLoc), resetTryEntry(r3), y;
           }
         },
         catch: function _catch(t2) {
           for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
-            var r2 = this.tryEntries[e2];
-            if (r2.tryLoc === t2) {
-              var n2 = r2.completion;
+            var r3 = this.tryEntries[e2];
+            if (r3.tryLoc === t2) {
+              var n2 = r3.completion;
               if (n2.type === "throw") {
                 var o2 = n2.arg;
-                resetTryEntry(r2);
+                resetTryEntry(r3);
               }
               return o2;
             }
           }
           throw new Error("illegal catch attempt");
         },
-        delegateYield: function delegateYield(e2, r2, n2) {
+        delegateYield: function delegateYield(e2, r3, n2) {
           return this.delegate = {
             iterator: values(e2),
-            resultName: r2,
+            resultName: r3,
             nextLoc: n2
           }, this.method === "next" && (this.arg = t), y;
         }
@@ -18838,11 +18838,11 @@
           throw new E("Invalid signature tag");
         if (data[1] !== l - 2)
           throw new E("Invalid signature: incorrect length");
-        const {d: r, l: sBytes} = exports.DER._parseInt(data.subarray(2));
+        const {d: r2, l: sBytes} = exports.DER._parseInt(data.subarray(2));
         const {d: s, l: rBytesLeft} = exports.DER._parseInt(sBytes);
         if (rBytesLeft.length)
           throw new E("Invalid signature: left bytes after parsing");
-        return {r, s};
+        return {r: r2, s};
       },
       hexFromSig(sig) {
         const slice = (s2) => Number.parseInt(s2[0], 16) & 8 ? "00" + s2 : s2;
@@ -18851,12 +18851,12 @@
           return hex.length & 1 ? `0${hex}` : hex;
         };
         const s = slice(h(sig.s));
-        const r = slice(h(sig.r));
+        const r2 = slice(h(sig.r));
         const shl = s.length / 2;
-        const rhl = r.length / 2;
+        const rhl = r2.length / 2;
         const sl = h(shl);
         const rl = h(rhl);
-        return `30${h(rhl + shl + 4)}02${rl}${r}02${sl}${s}`;
+        return `30${h(rhl + shl + 4)}02${rl}${r2}02${sl}${s}`;
       }
     };
     var _0n = BigInt(0);
@@ -19274,8 +19274,8 @@
       }
       const slcNum = (b, from, to) => ut.bytesToNumberBE(b.slice(from, to));
       class Signature {
-        constructor(r, s, recovery) {
-          this.r = r;
+        constructor(r2, s, recovery) {
+          this.r = r2;
           this.s = s;
           this.recovery = recovery;
           this.assertValidity();
@@ -19286,8 +19286,8 @@
           return new Signature(slcNum(hex, 0, l), slcNum(hex, l, 2 * l));
         }
         static fromDER(hex) {
-          const {r, s} = exports.DER.toSig((0, utils_js_1.ensureBytes)("DER", hex));
-          return new Signature(r, s);
+          const {r: r2, s} = exports.DER.toSig((0, utils_js_1.ensureBytes)("DER", hex));
+          return new Signature(r2, s);
         }
         assertValidity() {
           if (!isWithinCurveOrder(this.r))
@@ -19299,11 +19299,11 @@
           return new Signature(this.r, this.s, recovery);
         }
         recoverPublicKey(msgHash) {
-          const {r, s, recovery: rec} = this;
+          const {r: r2, s, recovery: rec} = this;
           const h = bits2int_modN((0, utils_js_1.ensureBytes)("msgHash", msgHash));
           if (rec == null || ![0, 1, 2, 3].includes(rec))
             throw new Error("recovery id invalid");
-          const radj = rec === 2 || rec === 3 ? r + CURVE.n : r;
+          const radj = rec === 2 || rec === 3 ? r2 + CURVE.n : r2;
           if (radj >= Fp.ORDER)
             throw new Error("recovery id 2 or 3 invalid");
           const prefix = (rec & 1) === 0 ? "02" : "03";
@@ -19420,19 +19420,19 @@
             return;
           const ik = invN(k);
           const q = Point.BASE.multiply(k).toAffine();
-          const r = modN(q.x);
-          if (r === _0n)
+          const r2 = modN(q.x);
+          if (r2 === _0n)
             return;
-          const s = modN(ik * modN(m + r * d));
+          const s = modN(ik * modN(m + r2 * d));
           if (s === _0n)
             return;
-          let recovery = (q.x === r ? 0 : 2) | Number(q.y & _1n);
+          let recovery = (q.x === r2 ? 0 : 2) | Number(q.y & _1n);
           let normS = s;
           if (lowS && isBiggerThanHalfOrder(s)) {
             normS = normalizeS(s);
             recovery ^= 1;
           }
-          return new Signature(r, normS, recovery);
+          return new Signature(r2, normS, recovery);
         }
         return {seed, k2sig};
       }
@@ -19465,8 +19465,8 @@
               _sig = Signature.fromCompact(sg);
             }
           } else if (typeof sg === "object" && typeof sg.r === "bigint" && typeof sg.s === "bigint") {
-            const {r: r2, s: s2} = sg;
-            _sig = new Signature(r2, s2);
+            const {r: r3, s: s2} = sg;
+            _sig = new Signature(r3, s2);
           } else {
             throw new Error("PARSE");
           }
@@ -19480,16 +19480,16 @@
           return false;
         if (prehash)
           msgHash = CURVE.hash(msgHash);
-        const {r, s} = _sig;
+        const {r: r2, s} = _sig;
         const h = bits2int_modN(msgHash);
         const is2 = invN(s);
         const u1 = modN(h * is2);
-        const u2 = modN(r * is2);
+        const u2 = modN(r2 * is2);
         const R = (_a = Point.BASE.multiplyAndAddUnsafe(P, u1, u2)) == null ? void 0 : _a.toAffine();
         if (!R)
           return false;
         const v = modN(R.x);
-        return v === r;
+        return v === r2;
       }
       return {
         CURVE,
@@ -19847,15 +19847,15 @@
       const pub = (0, utils_js_1.ensureBytes)("publicKey", publicKey2, 32);
       try {
         const P = lift_x((0, utils_js_1.bytesToNumberBE)(pub));
-        const r = (0, utils_js_1.bytesToNumberBE)(sig.subarray(0, 32));
-        if (!fe(r))
+        const r2 = (0, utils_js_1.bytesToNumberBE)(sig.subarray(0, 32));
+        if (!fe(r2))
           return false;
         const s = (0, utils_js_1.bytesToNumberBE)(sig.subarray(32, 64));
         if (!ge(s))
           return false;
-        const e = challenge(numTo32b(r), pointToBytes(P), m);
+        const e = challenge(numTo32b(r2), pointToBytes(P), m);
         const R = GmulAdd(P, s, modN(-e));
-        if (!R || !R.hasEvenY() || R.toAffine().x !== r)
+        if (!R || !R.hasEvenY() || R.toAffine().x !== r2)
           return false;
         return true;
       } catch (error) {
@@ -20060,11 +20060,11 @@
   });
 
   // src/approval.tsx
-  var import_react7 = __toModule(require_react());
-  var import_react_dom = __toModule(require_react_dom());
+  var import_react11 = __toModule(require_react());
+  var import_react_dom2 = __toModule(require_react_dom());
 
   // src/Approval/ApprovalScreen.tsx
-  var import_react6 = __toModule(require_react());
+  var import_react10 = __toModule(require_react());
 
   // src/types/messageTypes.ts
   var WalletRequestMethod;
@@ -20076,7 +20076,7 @@
   })(WalletRequestMethod || (WalletRequestMethod = {}));
 
   // src/Approval/ConnectScreen.tsx
-  var import_react = __toModule(require_react());
+  var import_react6 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/lib/index.browser.esm.js
   var import_buffer = __toModule(require_buffer());
@@ -20163,8 +20163,8 @@
     if (!isIterable(result)) {
       result = [result];
     }
-    for (const r of result) {
-      const failure = toFailure(r, context, struct2, value);
+    for (const r2 of result) {
+      const failure = toFailure(r2, context, struct2, value);
       if (failure) {
         yield failure;
       }
@@ -26652,8 +26652,1750 @@
     return Keypair.fromSecretKey(secretKey);
   }
 
+  // components/ui/button.tsx
+  var React = __toModule(require_react());
+
+  // node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends.apply(this, arguments);
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var import_react2 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-compose-refs/dist/index.mjs
+  var import_react = __toModule(require_react());
+  function $6ed0406888f73fc4$var$setRef(ref, value) {
+    if (typeof ref === "function")
+      ref(value);
+    else if (ref !== null && ref !== void 0)
+      ref.current = value;
+  }
+  function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
+    return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var $5e63c961fc1ce211$export$8c6ed5c666ac1360 = /* @__PURE__ */ (0, import_react2.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    const childrenArray = import_react2.Children.toArray(children);
+    const slottable = childrenArray.find($5e63c961fc1ce211$var$isSlottable);
+    if (slottable) {
+      const newElement = slottable.props.children;
+      const newChildren = childrenArray.map((child) => {
+        if (child === slottable) {
+          if (import_react2.Children.count(newElement) > 1)
+            return import_react2.Children.only(null);
+          return /* @__PURE__ */ (0, import_react2.isValidElement)(newElement) ? newElement.props.children : null;
+        } else
+          return child;
+      });
+      return /* @__PURE__ */ (0, import_react2.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+        ref: forwardedRef
+      }), /* @__PURE__ */ (0, import_react2.isValidElement)(newElement) ? /* @__PURE__ */ (0, import_react2.cloneElement)(newElement, void 0, newChildren) : null);
+    }
+    return /* @__PURE__ */ (0, import_react2.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+      ref: forwardedRef
+    }), children);
+  });
+  $5e63c961fc1ce211$export$8c6ed5c666ac1360.displayName = "Slot";
+  var $5e63c961fc1ce211$var$SlotClone = /* @__PURE__ */ (0, import_react2.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    if (/* @__PURE__ */ (0, import_react2.isValidElement)(children))
+      return /* @__PURE__ */ (0, import_react2.cloneElement)(children, __assign(__assign({}, $5e63c961fc1ce211$var$mergeProps(slotProps, children.props)), {
+        ref: forwardedRef ? $6ed0406888f73fc4$export$43e446d32b3d21af(forwardedRef, children.ref) : children.ref
+      }));
+    return import_react2.Children.count(children) > 1 ? import_react2.Children.only(null) : null;
+  });
+  $5e63c961fc1ce211$var$SlotClone.displayName = "SlotClone";
+  var $5e63c961fc1ce211$export$d9f1ccf0bdb05d45 = ({children}) => {
+    return /* @__PURE__ */ (0, import_react2.createElement)(import_react2.Fragment, null, children);
+  };
+  function $5e63c961fc1ce211$var$isSlottable(child) {
+    return /* @__PURE__ */ (0, import_react2.isValidElement)(child) && child.type === $5e63c961fc1ce211$export$d9f1ccf0bdb05d45;
+  }
+  function $5e63c961fc1ce211$var$mergeProps(slotProps, childProps) {
+    const overrideProps = __assign({}, childProps);
+    for (const propName in childProps) {
+      const slotPropValue = slotProps[propName];
+      const childPropValue = childProps[propName];
+      const isHandler = /^on[A-Z]/.test(propName);
+      if (isHandler) {
+        if (slotPropValue && childPropValue)
+          overrideProps[propName] = (...args) => {
+            childPropValue(...args);
+            slotPropValue(...args);
+          };
+        else if (slotPropValue)
+          overrideProps[propName] = slotPropValue;
+      } else if (propName === "style")
+        overrideProps[propName] = __assign(__assign({}, slotPropValue), childPropValue);
+      else if (propName === "className")
+        overrideProps[propName] = [
+          slotPropValue,
+          childPropValue
+        ].filter(Boolean).join(" ");
+    }
+    return __assign(__assign({}, slotProps), overrideProps);
+  }
+
+  // node_modules/clsx/dist/clsx.mjs
+  function r(e) {
+    var t, f, n = "";
+    if (typeof e == "string" || typeof e == "number")
+      n += e;
+    else if (typeof e == "object")
+      if (Array.isArray(e))
+        for (t = 0; t < e.length; t++)
+          e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+      else
+        for (t in e)
+          e[t] && (n && (n += " "), n += t);
+    return n;
+  }
+  function clsx() {
+    for (var e, t, f = 0, n = ""; f < arguments.length; )
+      (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
+    return n;
+  }
+
+  // node_modules/class-variance-authority/dist/index.mjs
+  var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
+  var cx = clsx;
+  var cva = (base, config) => {
+    return (props) => {
+      var ref;
+      if ((config === null || config === void 0 ? void 0 : config.variants) == null)
+        return cx(base, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+      const {variants, defaultVariants} = config;
+      const getVariantClassNames = Object.keys(variants).map((variant) => {
+        const variantProp = props === null || props === void 0 ? void 0 : props[variant];
+        const defaultVariantProp = defaultVariants === null || defaultVariants === void 0 ? void 0 : defaultVariants[variant];
+        if (variantProp === null)
+          return null;
+        const variantKey = falsyToString(variantProp) || falsyToString(defaultVariantProp);
+        return variants[variant][variantKey];
+      });
+      const propsWithoutUndefined = props && Object.entries(props).reduce((acc, param) => {
+        let [key, value] = param;
+        if (value === void 0) {
+          return acc;
+        }
+        acc[key] = value;
+        return acc;
+      }, {});
+      const getCompoundVariantClassNames = config === null || config === void 0 ? void 0 : (ref = config.compoundVariants) === null || ref === void 0 ? void 0 : ref.reduce((acc, param1) => {
+        let {class: cvClass, className: cvClassName} = param1, compoundVariantOptions = __rest(param1, ["class", "className"]);
+        return Object.entries(compoundVariantOptions).every((param) => {
+          let [key, value] = param;
+          return Array.isArray(value) ? value.includes(__assign(__assign({}, defaultVariants), propsWithoutUndefined)[key]) : __assign(__assign({}, defaultVariants), propsWithoutUndefined)[key] === value;
+        }) ? [
+          ...acc,
+          cvClass,
+          cvClassName
+        ] : acc;
+      }, []);
+      return cx(base, getVariantClassNames, getCompoundVariantClassNames, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+    };
+  };
+
+  // node_modules/tailwind-merge/dist/lib/tw-join.mjs
+  function twJoin() {
+    var index = 0;
+    var argument;
+    var resolvedValue;
+    var string2 = "";
+    while (index < arguments.length) {
+      if (argument = arguments[index++]) {
+        if (resolvedValue = toValue(argument)) {
+          string2 && (string2 += " ");
+          string2 += resolvedValue;
+        }
+      }
+    }
+    return string2;
+  }
+  function toValue(mix) {
+    if (typeof mix === "string") {
+      return mix;
+    }
+    var resolvedValue;
+    var string2 = "";
+    for (var k = 0; k < mix.length; k++) {
+      if (mix[k]) {
+        if (resolvedValue = toValue(mix[k])) {
+          string2 && (string2 += " ");
+          string2 += resolvedValue;
+        }
+      }
+    }
+    return string2;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/class-utils.mjs
+  var CLASS_PART_SEPARATOR = "-";
+  function createClassUtils(config) {
+    var classMap = createClassMap(config);
+    var conflictingClassGroups = config.conflictingClassGroups, _config$conflictingCl = config.conflictingClassGroupModifiers, conflictingClassGroupModifiers = _config$conflictingCl === void 0 ? {} : _config$conflictingCl;
+    function getClassGroupId(className) {
+      var classParts = className.split(CLASS_PART_SEPARATOR);
+      if (classParts[0] === "" && classParts.length !== 1) {
+        classParts.shift();
+      }
+      return getGroupRecursive(classParts, classMap) || getGroupIdForArbitraryProperty(className);
+    }
+    function getConflictingClassGroupIds(classGroupId, hasPostfixModifier) {
+      var conflicts = conflictingClassGroups[classGroupId] || [];
+      if (hasPostfixModifier && conflictingClassGroupModifiers[classGroupId]) {
+        return [].concat(conflicts, conflictingClassGroupModifiers[classGroupId]);
+      }
+      return conflicts;
+    }
+    return {
+      getClassGroupId,
+      getConflictingClassGroupIds
+    };
+  }
+  function getGroupRecursive(classParts, classPartObject) {
+    var _a;
+    if (classParts.length === 0) {
+      return classPartObject.classGroupId;
+    }
+    var currentClassPart = classParts[0];
+    var nextClassPartObject = classPartObject.nextPart.get(currentClassPart);
+    var classGroupFromNextClassPart = nextClassPartObject ? getGroupRecursive(classParts.slice(1), nextClassPartObject) : void 0;
+    if (classGroupFromNextClassPart) {
+      return classGroupFromNextClassPart;
+    }
+    if (classPartObject.validators.length === 0) {
+      return void 0;
+    }
+    var classRest = classParts.join(CLASS_PART_SEPARATOR);
+    return (_a = classPartObject.validators.find(function(_ref) {
+      var validator = _ref.validator;
+      return validator(classRest);
+    })) == null ? void 0 : _a.classGroupId;
+  }
+  var arbitraryPropertyRegex = /^\[(.+)\]$/;
+  function getGroupIdForArbitraryProperty(className) {
+    if (arbitraryPropertyRegex.test(className)) {
+      var arbitraryPropertyClassName = arbitraryPropertyRegex.exec(className)[1];
+      var property = arbitraryPropertyClassName == null ? void 0 : arbitraryPropertyClassName.substring(0, arbitraryPropertyClassName.indexOf(":"));
+      if (property) {
+        return "arbitrary.." + property;
+      }
+    }
+  }
+  function createClassMap(config) {
+    var theme = config.theme, prefix = config.prefix;
+    var classMap = {
+      nextPart: new Map(),
+      validators: []
+    };
+    var prefixedClassGroupEntries = getPrefixedClassGroupEntries(Object.entries(config.classGroups), prefix);
+    prefixedClassGroupEntries.forEach(function(_ref2) {
+      var classGroupId = _ref2[0], classGroup = _ref2[1];
+      processClassesRecursively(classGroup, classMap, classGroupId, theme);
+    });
+    return classMap;
+  }
+  function processClassesRecursively(classGroup, classPartObject, classGroupId, theme) {
+    classGroup.forEach(function(classDefinition) {
+      if (typeof classDefinition === "string") {
+        var classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
+        classPartObjectToEdit.classGroupId = classGroupId;
+        return;
+      }
+      if (typeof classDefinition === "function") {
+        if (isThemeGetter(classDefinition)) {
+          processClassesRecursively(classDefinition(theme), classPartObject, classGroupId, theme);
+          return;
+        }
+        classPartObject.validators.push({
+          validator: classDefinition,
+          classGroupId
+        });
+        return;
+      }
+      Object.entries(classDefinition).forEach(function(_ref3) {
+        var key = _ref3[0], classGroup2 = _ref3[1];
+        processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme);
+      });
+    });
+  }
+  function getPart(classPartObject, path) {
+    var currentClassPartObject = classPartObject;
+    path.split(CLASS_PART_SEPARATOR).forEach(function(pathPart) {
+      if (!currentClassPartObject.nextPart.has(pathPart)) {
+        currentClassPartObject.nextPart.set(pathPart, {
+          nextPart: new Map(),
+          validators: []
+        });
+      }
+      currentClassPartObject = currentClassPartObject.nextPart.get(pathPart);
+    });
+    return currentClassPartObject;
+  }
+  function isThemeGetter(func) {
+    return func.isThemeGetter;
+  }
+  function getPrefixedClassGroupEntries(classGroupEntries, prefix) {
+    if (!prefix) {
+      return classGroupEntries;
+    }
+    return classGroupEntries.map(function(_ref4) {
+      var classGroupId = _ref4[0], classGroup = _ref4[1];
+      var prefixedClassGroup = classGroup.map(function(classDefinition) {
+        if (typeof classDefinition === "string") {
+          return prefix + classDefinition;
+        }
+        if (typeof classDefinition === "object") {
+          return Object.fromEntries(Object.entries(classDefinition).map(function(_ref5) {
+            var key = _ref5[0], value = _ref5[1];
+            return [prefix + key, value];
+          }));
+        }
+        return classDefinition;
+      });
+      return [classGroupId, prefixedClassGroup];
+    });
+  }
+
+  // node_modules/tailwind-merge/dist/lib/lru-cache.mjs
+  function createLruCache(maxCacheSize) {
+    if (maxCacheSize < 1) {
+      return {
+        get: function get() {
+          return void 0;
+        },
+        set: function set() {
+        }
+      };
+    }
+    var cacheSize = 0;
+    var cache = new Map();
+    var previousCache = new Map();
+    function update(key, value) {
+      cache.set(key, value);
+      cacheSize++;
+      if (cacheSize > maxCacheSize) {
+        cacheSize = 0;
+        previousCache = cache;
+        cache = new Map();
+      }
+    }
+    return {
+      get: function get(key) {
+        var value = cache.get(key);
+        if (value !== void 0) {
+          return value;
+        }
+        if ((value = previousCache.get(key)) !== void 0) {
+          update(key, value);
+          return value;
+        }
+      },
+      set: function set(key, value) {
+        if (cache.has(key)) {
+          cache.set(key, value);
+        } else {
+          update(key, value);
+        }
+      }
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/modifier-utils.mjs
+  var IMPORTANT_MODIFIER = "!";
+  function createSplitModifiers(config) {
+    var separator = config.separator || ":";
+    var isSeparatorSingleCharacter = separator.length === 1;
+    var firstSeparatorCharacter = separator[0];
+    var separatorLength = separator.length;
+    return function splitModifiers(className) {
+      var modifiers = [];
+      var bracketDepth = 0;
+      var modifierStart = 0;
+      var postfixModifierPosition;
+      for (var index = 0; index < className.length; index++) {
+        var currentCharacter = className[index];
+        if (bracketDepth === 0) {
+          if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
+            modifiers.push(className.slice(modifierStart, index));
+            modifierStart = index + separatorLength;
+            continue;
+          }
+          if (currentCharacter === "/") {
+            postfixModifierPosition = index;
+            continue;
+          }
+        }
+        if (currentCharacter === "[") {
+          bracketDepth++;
+        } else if (currentCharacter === "]") {
+          bracketDepth--;
+        }
+      }
+      var baseClassNameWithImportantModifier = modifiers.length === 0 ? className : className.substring(modifierStart);
+      var hasImportantModifier = baseClassNameWithImportantModifier.startsWith(IMPORTANT_MODIFIER);
+      var baseClassName = hasImportantModifier ? baseClassNameWithImportantModifier.substring(1) : baseClassNameWithImportantModifier;
+      var maybePostfixModifierPosition = postfixModifierPosition && postfixModifierPosition > modifierStart ? postfixModifierPosition - modifierStart : void 0;
+      return {
+        modifiers,
+        hasImportantModifier,
+        baseClassName,
+        maybePostfixModifierPosition
+      };
+    };
+  }
+  function sortModifiers(modifiers) {
+    if (modifiers.length <= 1) {
+      return modifiers;
+    }
+    var sortedModifiers = [];
+    var unsortedModifiers = [];
+    modifiers.forEach(function(modifier) {
+      var isArbitraryVariant = modifier[0] === "[";
+      if (isArbitraryVariant) {
+        sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort().concat([modifier]));
+        unsortedModifiers = [];
+      } else {
+        unsortedModifiers.push(modifier);
+      }
+    });
+    sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort());
+    return sortedModifiers;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/config-utils.mjs
+  function createConfigUtils(config) {
+    return __assign({
+      cache: createLruCache(config.cacheSize),
+      splitModifiers: createSplitModifiers(config)
+    }, createClassUtils(config));
+  }
+
+  // node_modules/tailwind-merge/dist/lib/merge-classlist.mjs
+  var SPLIT_CLASSES_REGEX = /\s+/;
+  function mergeClassList(classList, configUtils) {
+    var splitModifiers = configUtils.splitModifiers, getClassGroupId = configUtils.getClassGroupId, getConflictingClassGroupIds = configUtils.getConflictingClassGroupIds;
+    var classGroupsInConflict = new Set();
+    return classList.trim().split(SPLIT_CLASSES_REGEX).map(function(originalClassName) {
+      var _splitModifiers = splitModifiers(originalClassName), modifiers = _splitModifiers.modifiers, hasImportantModifier = _splitModifiers.hasImportantModifier, baseClassName = _splitModifiers.baseClassName, maybePostfixModifierPosition = _splitModifiers.maybePostfixModifierPosition;
+      var classGroupId = getClassGroupId(maybePostfixModifierPosition ? baseClassName.substring(0, maybePostfixModifierPosition) : baseClassName);
+      var hasPostfixModifier = Boolean(maybePostfixModifierPosition);
+      if (!classGroupId) {
+        if (!maybePostfixModifierPosition) {
+          return {
+            isTailwindClass: false,
+            originalClassName
+          };
+        }
+        classGroupId = getClassGroupId(baseClassName);
+        if (!classGroupId) {
+          return {
+            isTailwindClass: false,
+            originalClassName
+          };
+        }
+        hasPostfixModifier = false;
+      }
+      var variantModifier = sortModifiers(modifiers).join(":");
+      var modifierId = hasImportantModifier ? variantModifier + IMPORTANT_MODIFIER : variantModifier;
+      return {
+        isTailwindClass: true,
+        modifierId,
+        classGroupId,
+        originalClassName,
+        hasPostfixModifier
+      };
+    }).reverse().filter(function(parsed) {
+      if (!parsed.isTailwindClass) {
+        return true;
+      }
+      var modifierId = parsed.modifierId, classGroupId = parsed.classGroupId, hasPostfixModifier = parsed.hasPostfixModifier;
+      var classId = modifierId + classGroupId;
+      if (classGroupsInConflict.has(classId)) {
+        return false;
+      }
+      classGroupsInConflict.add(classId);
+      getConflictingClassGroupIds(classGroupId, hasPostfixModifier).forEach(function(group) {
+        return classGroupsInConflict.add(modifierId + group);
+      });
+      return true;
+    }).reverse().map(function(parsed) {
+      return parsed.originalClassName;
+    }).join(" ");
+  }
+
+  // node_modules/tailwind-merge/dist/lib/create-tailwind-merge.mjs
+  function createTailwindMerge() {
+    for (var _len = arguments.length, createConfig = new Array(_len), _key = 0; _key < _len; _key++) {
+      createConfig[_key] = arguments[_key];
+    }
+    var configUtils;
+    var cacheGet;
+    var cacheSet;
+    var functionToCall = initTailwindMerge;
+    function initTailwindMerge(classList) {
+      var firstCreateConfig = createConfig[0], restCreateConfig = createConfig.slice(1);
+      var config = restCreateConfig.reduce(function(previousConfig, createConfigCurrent) {
+        return createConfigCurrent(previousConfig);
+      }, firstCreateConfig());
+      configUtils = createConfigUtils(config);
+      cacheGet = configUtils.cache.get;
+      cacheSet = configUtils.cache.set;
+      functionToCall = tailwindMerge;
+      return tailwindMerge(classList);
+    }
+    function tailwindMerge(classList) {
+      var cachedResult = cacheGet(classList);
+      if (cachedResult) {
+        return cachedResult;
+      }
+      var result = mergeClassList(classList, configUtils);
+      cacheSet(classList, result);
+      return result;
+    }
+    return function callTailwindMerge() {
+      return functionToCall(twJoin.apply(null, arguments));
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/from-theme.mjs
+  function fromTheme(key) {
+    var themeGetter = function themeGetter2(theme) {
+      return theme[key] || [];
+    };
+    themeGetter.isThemeGetter = true;
+    return themeGetter;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/validators.mjs
+  var arbitraryValueRegex = /^\[(?:([a-z-]+):)?(.+)\]$/i;
+  var fractionRegex = /^\d+\/\d+$/;
+  var stringLengths = /* @__PURE__ */ new Set(["px", "full", "screen"]);
+  var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
+  var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
+  var shadowRegex = /^-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
+  function isLength(value) {
+    return isNumber(value) || stringLengths.has(value) || fractionRegex.test(value) || isArbitraryLength(value);
+  }
+  function isArbitraryLength(value) {
+    return getIsArbitraryValue(value, "length", isLengthOnly);
+  }
+  function isArbitrarySize(value) {
+    return getIsArbitraryValue(value, "size", isNever);
+  }
+  function isArbitraryPosition(value) {
+    return getIsArbitraryValue(value, "position", isNever);
+  }
+  function isArbitraryUrl(value) {
+    return getIsArbitraryValue(value, "url", isUrl);
+  }
+  function isArbitraryNumber(value) {
+    return getIsArbitraryValue(value, "number", isNumber);
+  }
+  function isNumber(value) {
+    return !Number.isNaN(Number(value));
+  }
+  function isPercent(value) {
+    return value.endsWith("%") && isNumber(value.slice(0, -1));
+  }
+  function isInteger(value) {
+    return isIntegerOnly(value) || getIsArbitraryValue(value, "number", isIntegerOnly);
+  }
+  function isArbitraryValue(value) {
+    return arbitraryValueRegex.test(value);
+  }
+  function isAny() {
+    return true;
+  }
+  function isTshirtSize(value) {
+    return tshirtUnitRegex.test(value);
+  }
+  function isArbitraryShadow(value) {
+    return getIsArbitraryValue(value, "", isShadow);
+  }
+  function getIsArbitraryValue(value, label, testValue) {
+    var result = arbitraryValueRegex.exec(value);
+    if (result) {
+      if (result[1]) {
+        return result[1] === label;
+      }
+      return testValue(result[2]);
+    }
+    return false;
+  }
+  function isLengthOnly(value) {
+    return lengthUnitRegex.test(value);
+  }
+  function isNever() {
+    return false;
+  }
+  function isUrl(value) {
+    return value.startsWith("url(");
+  }
+  function isIntegerOnly(value) {
+    return Number.isInteger(Number(value));
+  }
+  function isShadow(value) {
+    return shadowRegex.test(value);
+  }
+
+  // node_modules/tailwind-merge/dist/lib/default-config.mjs
+  function getDefaultConfig() {
+    var colors = fromTheme("colors");
+    var spacing = fromTheme("spacing");
+    var blur = fromTheme("blur");
+    var brightness = fromTheme("brightness");
+    var borderColor = fromTheme("borderColor");
+    var borderRadius = fromTheme("borderRadius");
+    var borderSpacing = fromTheme("borderSpacing");
+    var borderWidth = fromTheme("borderWidth");
+    var contrast = fromTheme("contrast");
+    var grayscale = fromTheme("grayscale");
+    var hueRotate = fromTheme("hueRotate");
+    var invert = fromTheme("invert");
+    var gap = fromTheme("gap");
+    var gradientColorStops = fromTheme("gradientColorStops");
+    var gradientColorStopPositions = fromTheme("gradientColorStopPositions");
+    var inset = fromTheme("inset");
+    var margin = fromTheme("margin");
+    var opacity = fromTheme("opacity");
+    var padding = fromTheme("padding");
+    var saturate = fromTheme("saturate");
+    var scale = fromTheme("scale");
+    var sepia = fromTheme("sepia");
+    var skew = fromTheme("skew");
+    var space = fromTheme("space");
+    var translate = fromTheme("translate");
+    var getOverscroll = function getOverscroll2() {
+      return ["auto", "contain", "none"];
+    };
+    var getOverflow = function getOverflow2() {
+      return ["auto", "hidden", "clip", "visible", "scroll"];
+    };
+    var getSpacingWithAutoAndArbitrary = function getSpacingWithAutoAndArbitrary2() {
+      return ["auto", isArbitraryValue, spacing];
+    };
+    var getSpacingWithArbitrary = function getSpacingWithArbitrary2() {
+      return [isArbitraryValue, spacing];
+    };
+    var getLengthWithEmpty = function getLengthWithEmpty2() {
+      return ["", isLength];
+    };
+    var getNumberWithAutoAndArbitrary = function getNumberWithAutoAndArbitrary2() {
+      return ["auto", isNumber, isArbitraryValue];
+    };
+    var getPositions = function getPositions2() {
+      return ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
+    };
+    var getLineStyles = function getLineStyles2() {
+      return ["solid", "dashed", "dotted", "double", "none"];
+    };
+    var getBlendModes = function getBlendModes2() {
+      return ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity", "plus-lighter"];
+    };
+    var getAlign = function getAlign2() {
+      return ["start", "end", "center", "between", "around", "evenly", "stretch"];
+    };
+    var getZeroAndEmpty = function getZeroAndEmpty2() {
+      return ["", "0", isArbitraryValue];
+    };
+    var getBreaks = function getBreaks2() {
+      return ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
+    };
+    var getNumber = function getNumber2() {
+      return [isNumber, isArbitraryNumber];
+    };
+    var getNumberAndArbitrary = function getNumberAndArbitrary2() {
+      return [isNumber, isArbitraryValue];
+    };
+    return {
+      cacheSize: 500,
+      theme: {
+        colors: [isAny],
+        spacing: [isLength],
+        blur: ["none", "", isTshirtSize, isArbitraryValue],
+        brightness: getNumber(),
+        borderColor: [colors],
+        borderRadius: ["none", "", "full", isTshirtSize, isArbitraryValue],
+        borderSpacing: getSpacingWithArbitrary(),
+        borderWidth: getLengthWithEmpty(),
+        contrast: getNumber(),
+        grayscale: getZeroAndEmpty(),
+        hueRotate: getNumberAndArbitrary(),
+        invert: getZeroAndEmpty(),
+        gap: getSpacingWithArbitrary(),
+        gradientColorStops: [colors],
+        gradientColorStopPositions: [isPercent, isArbitraryLength],
+        inset: getSpacingWithAutoAndArbitrary(),
+        margin: getSpacingWithAutoAndArbitrary(),
+        opacity: getNumber(),
+        padding: getSpacingWithArbitrary(),
+        saturate: getNumber(),
+        scale: getNumber(),
+        sepia: getZeroAndEmpty(),
+        skew: getNumberAndArbitrary(),
+        space: getSpacingWithArbitrary(),
+        translate: getSpacingWithArbitrary()
+      },
+      classGroups: {
+        aspect: [{
+          aspect: ["auto", "square", "video", isArbitraryValue]
+        }],
+        container: ["container"],
+        columns: [{
+          columns: [isTshirtSize]
+        }],
+        "break-after": [{
+          "break-after": getBreaks()
+        }],
+        "break-before": [{
+          "break-before": getBreaks()
+        }],
+        "break-inside": [{
+          "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"]
+        }],
+        "box-decoration": [{
+          "box-decoration": ["slice", "clone"]
+        }],
+        box: [{
+          box: ["border", "content"]
+        }],
+        display: ["block", "inline-block", "inline", "flex", "inline-flex", "table", "inline-table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row-group", "table-row", "flow-root", "grid", "inline-grid", "contents", "list-item", "hidden"],
+        float: [{
+          float: ["right", "left", "none"]
+        }],
+        clear: [{
+          clear: ["left", "right", "both", "none"]
+        }],
+        isolation: ["isolate", "isolation-auto"],
+        "object-fit": [{
+          object: ["contain", "cover", "fill", "none", "scale-down"]
+        }],
+        "object-position": [{
+          object: [].concat(getPositions(), [isArbitraryValue])
+        }],
+        overflow: [{
+          overflow: getOverflow()
+        }],
+        "overflow-x": [{
+          "overflow-x": getOverflow()
+        }],
+        "overflow-y": [{
+          "overflow-y": getOverflow()
+        }],
+        overscroll: [{
+          overscroll: getOverscroll()
+        }],
+        "overscroll-x": [{
+          "overscroll-x": getOverscroll()
+        }],
+        "overscroll-y": [{
+          "overscroll-y": getOverscroll()
+        }],
+        position: ["static", "fixed", "absolute", "relative", "sticky"],
+        inset: [{
+          inset: [inset]
+        }],
+        "inset-x": [{
+          "inset-x": [inset]
+        }],
+        "inset-y": [{
+          "inset-y": [inset]
+        }],
+        start: [{
+          start: [inset]
+        }],
+        end: [{
+          end: [inset]
+        }],
+        top: [{
+          top: [inset]
+        }],
+        right: [{
+          right: [inset]
+        }],
+        bottom: [{
+          bottom: [inset]
+        }],
+        left: [{
+          left: [inset]
+        }],
+        visibility: ["visible", "invisible", "collapse"],
+        z: [{
+          z: ["auto", isInteger]
+        }],
+        basis: [{
+          basis: getSpacingWithAutoAndArbitrary()
+        }],
+        "flex-direction": [{
+          flex: ["row", "row-reverse", "col", "col-reverse"]
+        }],
+        "flex-wrap": [{
+          flex: ["wrap", "wrap-reverse", "nowrap"]
+        }],
+        flex: [{
+          flex: ["1", "auto", "initial", "none", isArbitraryValue]
+        }],
+        grow: [{
+          grow: getZeroAndEmpty()
+        }],
+        shrink: [{
+          shrink: getZeroAndEmpty()
+        }],
+        order: [{
+          order: ["first", "last", "none", isInteger]
+        }],
+        "grid-cols": [{
+          "grid-cols": [isAny]
+        }],
+        "col-start-end": [{
+          col: ["auto", {
+            span: ["full", isInteger]
+          }, isArbitraryValue]
+        }],
+        "col-start": [{
+          "col-start": getNumberWithAutoAndArbitrary()
+        }],
+        "col-end": [{
+          "col-end": getNumberWithAutoAndArbitrary()
+        }],
+        "grid-rows": [{
+          "grid-rows": [isAny]
+        }],
+        "row-start-end": [{
+          row: ["auto", {
+            span: [isInteger]
+          }, isArbitraryValue]
+        }],
+        "row-start": [{
+          "row-start": getNumberWithAutoAndArbitrary()
+        }],
+        "row-end": [{
+          "row-end": getNumberWithAutoAndArbitrary()
+        }],
+        "grid-flow": [{
+          "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"]
+        }],
+        "auto-cols": [{
+          "auto-cols": ["auto", "min", "max", "fr", isArbitraryValue]
+        }],
+        "auto-rows": [{
+          "auto-rows": ["auto", "min", "max", "fr", isArbitraryValue]
+        }],
+        gap: [{
+          gap: [gap]
+        }],
+        "gap-x": [{
+          "gap-x": [gap]
+        }],
+        "gap-y": [{
+          "gap-y": [gap]
+        }],
+        "justify-content": [{
+          justify: ["normal"].concat(getAlign())
+        }],
+        "justify-items": [{
+          "justify-items": ["start", "end", "center", "stretch"]
+        }],
+        "justify-self": [{
+          "justify-self": ["auto", "start", "end", "center", "stretch"]
+        }],
+        "align-content": [{
+          content: ["normal"].concat(getAlign(), ["baseline"])
+        }],
+        "align-items": [{
+          items: ["start", "end", "center", "baseline", "stretch"]
+        }],
+        "align-self": [{
+          self: ["auto", "start", "end", "center", "stretch", "baseline"]
+        }],
+        "place-content": [{
+          "place-content": [].concat(getAlign(), ["baseline"])
+        }],
+        "place-items": [{
+          "place-items": ["start", "end", "center", "baseline", "stretch"]
+        }],
+        "place-self": [{
+          "place-self": ["auto", "start", "end", "center", "stretch"]
+        }],
+        p: [{
+          p: [padding]
+        }],
+        px: [{
+          px: [padding]
+        }],
+        py: [{
+          py: [padding]
+        }],
+        ps: [{
+          ps: [padding]
+        }],
+        pe: [{
+          pe: [padding]
+        }],
+        pt: [{
+          pt: [padding]
+        }],
+        pr: [{
+          pr: [padding]
+        }],
+        pb: [{
+          pb: [padding]
+        }],
+        pl: [{
+          pl: [padding]
+        }],
+        m: [{
+          m: [margin]
+        }],
+        mx: [{
+          mx: [margin]
+        }],
+        my: [{
+          my: [margin]
+        }],
+        ms: [{
+          ms: [margin]
+        }],
+        me: [{
+          me: [margin]
+        }],
+        mt: [{
+          mt: [margin]
+        }],
+        mr: [{
+          mr: [margin]
+        }],
+        mb: [{
+          mb: [margin]
+        }],
+        ml: [{
+          ml: [margin]
+        }],
+        "space-x": [{
+          "space-x": [space]
+        }],
+        "space-x-reverse": ["space-x-reverse"],
+        "space-y": [{
+          "space-y": [space]
+        }],
+        "space-y-reverse": ["space-y-reverse"],
+        w: [{
+          w: ["auto", "min", "max", "fit", isArbitraryValue, spacing]
+        }],
+        "min-w": [{
+          "min-w": ["min", "max", "fit", isArbitraryValue, isLength]
+        }],
+        "max-w": [{
+          "max-w": ["0", "none", "full", "min", "max", "fit", "prose", {
+            screen: [isTshirtSize]
+          }, isTshirtSize, isArbitraryValue]
+        }],
+        h: [{
+          h: [isArbitraryValue, spacing, "auto", "min", "max", "fit"]
+        }],
+        "min-h": [{
+          "min-h": ["min", "max", "fit", isArbitraryValue, isLength]
+        }],
+        "max-h": [{
+          "max-h": [isArbitraryValue, spacing, "min", "max", "fit"]
+        }],
+        "font-size": [{
+          text: ["base", isTshirtSize, isArbitraryLength]
+        }],
+        "font-smoothing": ["antialiased", "subpixel-antialiased"],
+        "font-style": ["italic", "not-italic"],
+        "font-weight": [{
+          font: ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black", isArbitraryNumber]
+        }],
+        "font-family": [{
+          font: [isAny]
+        }],
+        "fvn-normal": ["normal-nums"],
+        "fvn-ordinal": ["ordinal"],
+        "fvn-slashed-zero": ["slashed-zero"],
+        "fvn-figure": ["lining-nums", "oldstyle-nums"],
+        "fvn-spacing": ["proportional-nums", "tabular-nums"],
+        "fvn-fraction": ["diagonal-fractions", "stacked-fractons"],
+        tracking: [{
+          tracking: ["tighter", "tight", "normal", "wide", "wider", "widest", isArbitraryValue]
+        }],
+        "line-clamp": [{
+          "line-clamp": ["none", isNumber, isArbitraryNumber]
+        }],
+        leading: [{
+          leading: ["none", "tight", "snug", "normal", "relaxed", "loose", isArbitraryValue, isLength]
+        }],
+        "list-image": [{
+          "list-image": ["none", isArbitraryValue]
+        }],
+        "list-style-type": [{
+          list: ["none", "disc", "decimal", isArbitraryValue]
+        }],
+        "list-style-position": [{
+          list: ["inside", "outside"]
+        }],
+        "placeholder-color": [{
+          placeholder: [colors]
+        }],
+        "placeholder-opacity": [{
+          "placeholder-opacity": [opacity]
+        }],
+        "text-alignment": [{
+          text: ["left", "center", "right", "justify", "start", "end"]
+        }],
+        "text-color": [{
+          text: [colors]
+        }],
+        "text-opacity": [{
+          "text-opacity": [opacity]
+        }],
+        "text-decoration": ["underline", "overline", "line-through", "no-underline"],
+        "text-decoration-style": [{
+          decoration: [].concat(getLineStyles(), ["wavy"])
+        }],
+        "text-decoration-thickness": [{
+          decoration: ["auto", "from-font", isLength]
+        }],
+        "underline-offset": [{
+          "underline-offset": ["auto", isArbitraryValue, isLength]
+        }],
+        "text-decoration-color": [{
+          decoration: [colors]
+        }],
+        "text-transform": ["uppercase", "lowercase", "capitalize", "normal-case"],
+        "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
+        indent: [{
+          indent: getSpacingWithArbitrary()
+        }],
+        "vertical-align": [{
+          align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", isArbitraryValue]
+        }],
+        whitespace: [{
+          whitespace: ["normal", "nowrap", "pre", "pre-line", "pre-wrap", "break-spaces"]
+        }],
+        break: [{
+          break: ["normal", "words", "all", "keep"]
+        }],
+        hyphens: [{
+          hyphens: ["none", "manual", "auto"]
+        }],
+        content: [{
+          content: ["none", isArbitraryValue]
+        }],
+        "bg-attachment": [{
+          bg: ["fixed", "local", "scroll"]
+        }],
+        "bg-clip": [{
+          "bg-clip": ["border", "padding", "content", "text"]
+        }],
+        "bg-opacity": [{
+          "bg-opacity": [opacity]
+        }],
+        "bg-origin": [{
+          "bg-origin": ["border", "padding", "content"]
+        }],
+        "bg-position": [{
+          bg: [].concat(getPositions(), [isArbitraryPosition])
+        }],
+        "bg-repeat": [{
+          bg: ["no-repeat", {
+            repeat: ["", "x", "y", "round", "space"]
+          }]
+        }],
+        "bg-size": [{
+          bg: ["auto", "cover", "contain", isArbitrarySize]
+        }],
+        "bg-image": [{
+          bg: ["none", {
+            "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
+          }, isArbitraryUrl]
+        }],
+        "bg-color": [{
+          bg: [colors]
+        }],
+        "gradient-from-pos": [{
+          from: [gradientColorStopPositions]
+        }],
+        "gradient-via-pos": [{
+          via: [gradientColorStopPositions]
+        }],
+        "gradient-to-pos": [{
+          to: [gradientColorStopPositions]
+        }],
+        "gradient-from": [{
+          from: [gradientColorStops]
+        }],
+        "gradient-via": [{
+          via: [gradientColorStops]
+        }],
+        "gradient-to": [{
+          to: [gradientColorStops]
+        }],
+        rounded: [{
+          rounded: [borderRadius]
+        }],
+        "rounded-s": [{
+          "rounded-s": [borderRadius]
+        }],
+        "rounded-e": [{
+          "rounded-e": [borderRadius]
+        }],
+        "rounded-t": [{
+          "rounded-t": [borderRadius]
+        }],
+        "rounded-r": [{
+          "rounded-r": [borderRadius]
+        }],
+        "rounded-b": [{
+          "rounded-b": [borderRadius]
+        }],
+        "rounded-l": [{
+          "rounded-l": [borderRadius]
+        }],
+        "rounded-ss": [{
+          "rounded-ss": [borderRadius]
+        }],
+        "rounded-se": [{
+          "rounded-se": [borderRadius]
+        }],
+        "rounded-ee": [{
+          "rounded-ee": [borderRadius]
+        }],
+        "rounded-es": [{
+          "rounded-es": [borderRadius]
+        }],
+        "rounded-tl": [{
+          "rounded-tl": [borderRadius]
+        }],
+        "rounded-tr": [{
+          "rounded-tr": [borderRadius]
+        }],
+        "rounded-br": [{
+          "rounded-br": [borderRadius]
+        }],
+        "rounded-bl": [{
+          "rounded-bl": [borderRadius]
+        }],
+        "border-w": [{
+          border: [borderWidth]
+        }],
+        "border-w-x": [{
+          "border-x": [borderWidth]
+        }],
+        "border-w-y": [{
+          "border-y": [borderWidth]
+        }],
+        "border-w-s": [{
+          "border-s": [borderWidth]
+        }],
+        "border-w-e": [{
+          "border-e": [borderWidth]
+        }],
+        "border-w-t": [{
+          "border-t": [borderWidth]
+        }],
+        "border-w-r": [{
+          "border-r": [borderWidth]
+        }],
+        "border-w-b": [{
+          "border-b": [borderWidth]
+        }],
+        "border-w-l": [{
+          "border-l": [borderWidth]
+        }],
+        "border-opacity": [{
+          "border-opacity": [opacity]
+        }],
+        "border-style": [{
+          border: [].concat(getLineStyles(), ["hidden"])
+        }],
+        "divide-x": [{
+          "divide-x": [borderWidth]
+        }],
+        "divide-x-reverse": ["divide-x-reverse"],
+        "divide-y": [{
+          "divide-y": [borderWidth]
+        }],
+        "divide-y-reverse": ["divide-y-reverse"],
+        "divide-opacity": [{
+          "divide-opacity": [opacity]
+        }],
+        "divide-style": [{
+          divide: getLineStyles()
+        }],
+        "border-color": [{
+          border: [borderColor]
+        }],
+        "border-color-x": [{
+          "border-x": [borderColor]
+        }],
+        "border-color-y": [{
+          "border-y": [borderColor]
+        }],
+        "border-color-t": [{
+          "border-t": [borderColor]
+        }],
+        "border-color-r": [{
+          "border-r": [borderColor]
+        }],
+        "border-color-b": [{
+          "border-b": [borderColor]
+        }],
+        "border-color-l": [{
+          "border-l": [borderColor]
+        }],
+        "divide-color": [{
+          divide: [borderColor]
+        }],
+        "outline-style": [{
+          outline: [""].concat(getLineStyles())
+        }],
+        "outline-offset": [{
+          "outline-offset": [isArbitraryValue, isLength]
+        }],
+        "outline-w": [{
+          outline: [isLength]
+        }],
+        "outline-color": [{
+          outline: [colors]
+        }],
+        "ring-w": [{
+          ring: getLengthWithEmpty()
+        }],
+        "ring-w-inset": ["ring-inset"],
+        "ring-color": [{
+          ring: [colors]
+        }],
+        "ring-opacity": [{
+          "ring-opacity": [opacity]
+        }],
+        "ring-offset-w": [{
+          "ring-offset": [isLength]
+        }],
+        "ring-offset-color": [{
+          "ring-offset": [colors]
+        }],
+        shadow: [{
+          shadow: ["", "inner", "none", isTshirtSize, isArbitraryShadow]
+        }],
+        "shadow-color": [{
+          shadow: [isAny]
+        }],
+        opacity: [{
+          opacity: [opacity]
+        }],
+        "mix-blend": [{
+          "mix-blend": getBlendModes()
+        }],
+        "bg-blend": [{
+          "bg-blend": getBlendModes()
+        }],
+        filter: [{
+          filter: ["", "none"]
+        }],
+        blur: [{
+          blur: [blur]
+        }],
+        brightness: [{
+          brightness: [brightness]
+        }],
+        contrast: [{
+          contrast: [contrast]
+        }],
+        "drop-shadow": [{
+          "drop-shadow": ["", "none", isTshirtSize, isArbitraryValue]
+        }],
+        grayscale: [{
+          grayscale: [grayscale]
+        }],
+        "hue-rotate": [{
+          "hue-rotate": [hueRotate]
+        }],
+        invert: [{
+          invert: [invert]
+        }],
+        saturate: [{
+          saturate: [saturate]
+        }],
+        sepia: [{
+          sepia: [sepia]
+        }],
+        "backdrop-filter": [{
+          "backdrop-filter": ["", "none"]
+        }],
+        "backdrop-blur": [{
+          "backdrop-blur": [blur]
+        }],
+        "backdrop-brightness": [{
+          "backdrop-brightness": [brightness]
+        }],
+        "backdrop-contrast": [{
+          "backdrop-contrast": [contrast]
+        }],
+        "backdrop-grayscale": [{
+          "backdrop-grayscale": [grayscale]
+        }],
+        "backdrop-hue-rotate": [{
+          "backdrop-hue-rotate": [hueRotate]
+        }],
+        "backdrop-invert": [{
+          "backdrop-invert": [invert]
+        }],
+        "backdrop-opacity": [{
+          "backdrop-opacity": [opacity]
+        }],
+        "backdrop-saturate": [{
+          "backdrop-saturate": [saturate]
+        }],
+        "backdrop-sepia": [{
+          "backdrop-sepia": [sepia]
+        }],
+        "border-collapse": [{
+          border: ["collapse", "separate"]
+        }],
+        "border-spacing": [{
+          "border-spacing": [borderSpacing]
+        }],
+        "border-spacing-x": [{
+          "border-spacing-x": [borderSpacing]
+        }],
+        "border-spacing-y": [{
+          "border-spacing-y": [borderSpacing]
+        }],
+        "table-layout": [{
+          table: ["auto", "fixed"]
+        }],
+        caption: [{
+          caption: ["top", "bottom"]
+        }],
+        transition: [{
+          transition: ["none", "all", "", "colors", "opacity", "shadow", "transform", isArbitraryValue]
+        }],
+        duration: [{
+          duration: getNumberAndArbitrary()
+        }],
+        ease: [{
+          ease: ["linear", "in", "out", "in-out", isArbitraryValue]
+        }],
+        delay: [{
+          delay: getNumberAndArbitrary()
+        }],
+        animate: [{
+          animate: ["none", "spin", "ping", "pulse", "bounce", isArbitraryValue]
+        }],
+        transform: [{
+          transform: ["", "gpu", "none"]
+        }],
+        scale: [{
+          scale: [scale]
+        }],
+        "scale-x": [{
+          "scale-x": [scale]
+        }],
+        "scale-y": [{
+          "scale-y": [scale]
+        }],
+        rotate: [{
+          rotate: [isInteger, isArbitraryValue]
+        }],
+        "translate-x": [{
+          "translate-x": [translate]
+        }],
+        "translate-y": [{
+          "translate-y": [translate]
+        }],
+        "skew-x": [{
+          "skew-x": [skew]
+        }],
+        "skew-y": [{
+          "skew-y": [skew]
+        }],
+        "transform-origin": [{
+          origin: ["center", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left", isArbitraryValue]
+        }],
+        accent: [{
+          accent: ["auto", colors]
+        }],
+        appearance: ["appearance-none"],
+        cursor: [{
+          cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", isArbitraryValue]
+        }],
+        "caret-color": [{
+          caret: [colors]
+        }],
+        "pointer-events": [{
+          "pointer-events": ["none", "auto"]
+        }],
+        resize: [{
+          resize: ["none", "y", "x", ""]
+        }],
+        "scroll-behavior": [{
+          scroll: ["auto", "smooth"]
+        }],
+        "scroll-m": [{
+          "scroll-m": getSpacingWithArbitrary()
+        }],
+        "scroll-mx": [{
+          "scroll-mx": getSpacingWithArbitrary()
+        }],
+        "scroll-my": [{
+          "scroll-my": getSpacingWithArbitrary()
+        }],
+        "scroll-ms": [{
+          "scroll-ms": getSpacingWithArbitrary()
+        }],
+        "scroll-me": [{
+          "scroll-me": getSpacingWithArbitrary()
+        }],
+        "scroll-mt": [{
+          "scroll-mt": getSpacingWithArbitrary()
+        }],
+        "scroll-mr": [{
+          "scroll-mr": getSpacingWithArbitrary()
+        }],
+        "scroll-mb": [{
+          "scroll-mb": getSpacingWithArbitrary()
+        }],
+        "scroll-ml": [{
+          "scroll-ml": getSpacingWithArbitrary()
+        }],
+        "scroll-p": [{
+          "scroll-p": getSpacingWithArbitrary()
+        }],
+        "scroll-px": [{
+          "scroll-px": getSpacingWithArbitrary()
+        }],
+        "scroll-py": [{
+          "scroll-py": getSpacingWithArbitrary()
+        }],
+        "scroll-ps": [{
+          "scroll-ps": getSpacingWithArbitrary()
+        }],
+        "scroll-pe": [{
+          "scroll-pe": getSpacingWithArbitrary()
+        }],
+        "scroll-pt": [{
+          "scroll-pt": getSpacingWithArbitrary()
+        }],
+        "scroll-pr": [{
+          "scroll-pr": getSpacingWithArbitrary()
+        }],
+        "scroll-pb": [{
+          "scroll-pb": getSpacingWithArbitrary()
+        }],
+        "scroll-pl": [{
+          "scroll-pl": getSpacingWithArbitrary()
+        }],
+        "snap-align": [{
+          snap: ["start", "end", "center", "align-none"]
+        }],
+        "snap-stop": [{
+          snap: ["normal", "always"]
+        }],
+        "snap-type": [{
+          snap: ["none", "x", "y", "both"]
+        }],
+        "snap-strictness": [{
+          snap: ["mandatory", "proximity"]
+        }],
+        touch: [{
+          touch: ["auto", "none", "pinch-zoom", "manipulation", {
+            pan: ["x", "left", "right", "y", "up", "down"]
+          }]
+        }],
+        select: [{
+          select: ["none", "text", "all", "auto"]
+        }],
+        "will-change": [{
+          "will-change": ["auto", "scroll", "contents", "transform", isArbitraryValue]
+        }],
+        fill: [{
+          fill: [colors, "none"]
+        }],
+        "stroke-w": [{
+          stroke: [isLength, isArbitraryNumber]
+        }],
+        stroke: [{
+          stroke: [colors, "none"]
+        }],
+        sr: ["sr-only", "not-sr-only"]
+      },
+      conflictingClassGroups: {
+        overflow: ["overflow-x", "overflow-y"],
+        overscroll: ["overscroll-x", "overscroll-y"],
+        inset: ["inset-x", "inset-y", "start", "end", "top", "right", "bottom", "left"],
+        "inset-x": ["right", "left"],
+        "inset-y": ["top", "bottom"],
+        flex: ["basis", "grow", "shrink"],
+        gap: ["gap-x", "gap-y"],
+        p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
+        px: ["pr", "pl"],
+        py: ["pt", "pb"],
+        m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
+        mx: ["mr", "ml"],
+        my: ["mt", "mb"],
+        "font-size": ["leading"],
+        "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
+        "fvn-ordinal": ["fvn-normal"],
+        "fvn-slashed-zero": ["fvn-normal"],
+        "fvn-figure": ["fvn-normal"],
+        "fvn-spacing": ["fvn-normal"],
+        "fvn-fraction": ["fvn-normal"],
+        rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
+        "rounded-s": ["rounded-ss", "rounded-es"],
+        "rounded-e": ["rounded-se", "rounded-ee"],
+        "rounded-t": ["rounded-tl", "rounded-tr"],
+        "rounded-r": ["rounded-tr", "rounded-br"],
+        "rounded-b": ["rounded-br", "rounded-bl"],
+        "rounded-l": ["rounded-tl", "rounded-bl"],
+        "border-spacing": ["border-spacing-x", "border-spacing-y"],
+        "border-w": ["border-w-s", "border-w-e", "border-w-t", "border-w-r", "border-w-b", "border-w-l"],
+        "border-w-x": ["border-w-r", "border-w-l"],
+        "border-w-y": ["border-w-t", "border-w-b"],
+        "border-color": ["border-color-t", "border-color-r", "border-color-b", "border-color-l"],
+        "border-color-x": ["border-color-r", "border-color-l"],
+        "border-color-y": ["border-color-t", "border-color-b"],
+        "scroll-m": ["scroll-mx", "scroll-my", "scroll-ms", "scroll-me", "scroll-mt", "scroll-mr", "scroll-mb", "scroll-ml"],
+        "scroll-mx": ["scroll-mr", "scroll-ml"],
+        "scroll-my": ["scroll-mt", "scroll-mb"],
+        "scroll-p": ["scroll-px", "scroll-py", "scroll-ps", "scroll-pe", "scroll-pt", "scroll-pr", "scroll-pb", "scroll-pl"],
+        "scroll-px": ["scroll-pr", "scroll-pl"],
+        "scroll-py": ["scroll-pt", "scroll-pb"]
+      },
+      conflictingClassGroupModifiers: {
+        "font-size": ["leading"]
+      }
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/tw-merge.mjs
+  var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
+
+  // lib/utils.ts
+  function cn(...inputs) {
+    return twMerge(clsx(inputs));
+  }
+
+  // components/ui/button.tsx
+  var buttonVariants = cva("inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  });
+  var Button = React.forwardRef((_a, ref) => {
+    var {className, variant, size, asChild = false} = _a, props = __rest(_a, ["className", "variant", "size", "asChild"]);
+    const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : "button";
+    return /* @__PURE__ */ React.createElement(Comp, __assign({
+      className: cn(buttonVariants({variant, size, className})),
+      ref
+    }, props));
+  });
+  Button.displayName = "Button";
+
+  // components/ui/card.tsx
+  var React2 = __toModule(require_react());
+  var Card = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
+    }, props));
+  });
+  Card.displayName = "Card";
+  var CardHeader = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("flex flex-col space-y-1.5", className)
+    }, props));
+  });
+  CardHeader.displayName = "CardHeader";
+  var CardTitle = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("h3", __assign({
+      ref,
+      className: cn("text-2xl font-semibold leading-none tracking-tight", className)
+    }, props));
+  });
+  CardTitle.displayName = "CardTitle";
+  var CardDescription = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("p", __assign({
+      ref,
+      className: cn("text-sm text-muted-foreground", className)
+    }, props));
+  });
+  CardDescription.displayName = "CardDescription";
+  var CardContent = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("p-6 pt-0", className)
+    }, props));
+  });
+  CardContent.displayName = "CardContent";
+  var CardFooter = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("flex items-center p-6 pt-0", className)
+    }, props));
+  });
+  CardFooter.displayName = "CardFooter";
+
+  // components/ui/separator.tsx
+  var React3 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var import_react4 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-primitive/dist/index.mjs
+  var import_react3 = __toModule(require_react());
+  var import_react_dom = __toModule(require_react_dom());
+  var $8927f6f2acc4f386$var$NODES = [
+    "a",
+    "button",
+    "div",
+    "form",
+    "h2",
+    "h3",
+    "img",
+    "input",
+    "label",
+    "li",
+    "nav",
+    "ol",
+    "p",
+    "span",
+    "svg",
+    "ul"
+  ];
+  var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
+    const Node = /* @__PURE__ */ (0, import_react3.forwardRef)((props, forwardedRef) => {
+      const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
+      const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
+      (0, import_react3.useEffect)(() => {
+        window[Symbol.for("radix-ui")] = true;
+      }, []);
+      return /* @__PURE__ */ (0, import_react3.createElement)(Comp, _extends({}, primitiveProps, {
+        ref: forwardedRef
+      }));
+    });
+    Node.displayName = `Primitive.${node}`;
+    return __assign(__assign({}, primitive), {
+      [node]: Node
+    });
+  }, {});
+
+  // node_modules/@radix-ui/react-separator/dist/index.mjs
+  var $89eedd556c436f6a$var$DEFAULT_ORIENTATION = "horizontal";
+  var $89eedd556c436f6a$var$ORIENTATIONS = [
+    "horizontal",
+    "vertical"
+  ];
+  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react4.forwardRef)((props, forwardedRef) => {
+    const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
+    const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
+    const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+    const semanticProps = decorative ? {
+      role: "none"
+    } : {
+      "aria-orientation": ariaOrientation,
+      role: "separator"
+    };
+    return /* @__PURE__ */ (0, import_react4.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+      "data-orientation": orientation
+    }, semanticProps, domProps, {
+      ref: forwardedRef
+    }));
+  });
+  $89eedd556c436f6a$export$1ff3c3f08ae963c0.propTypes = {
+    orientation(props, propName, componentName) {
+      const propValue = props[propName];
+      const strVal = String(propValue);
+      if (propValue && !$89eedd556c436f6a$var$isValidOrientation(propValue))
+        return new Error($89eedd556c436f6a$var$getInvalidOrientationError(strVal, componentName));
+      return null;
+    }
+  };
+  function $89eedd556c436f6a$var$getInvalidOrientationError(value, componentName) {
+    return `Invalid prop \`orientation\` of value \`${value}\` supplied to \`${componentName}\`, expected one of:
+  - horizontal
+  - vertical
+
+Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
+  }
+  function $89eedd556c436f6a$var$isValidOrientation(orientation) {
+    return $89eedd556c436f6a$var$ORIENTATIONS.includes(orientation);
+  }
+  var $89eedd556c436f6a$export$be92b6f5f03c0fe9 = $89eedd556c436f6a$export$1ff3c3f08ae963c0;
+
+  // components/ui/separator.tsx
+  var Separator = React3.forwardRef((_a, ref) => {
+    var {className, orientation = "horizontal", decorative = true} = _a, props = __rest(_a, ["className", "orientation", "decorative"]);
+    return /* @__PURE__ */ React3.createElement($89eedd556c436f6a$export$be92b6f5f03c0fe9, __assign({
+      ref,
+      decorative,
+      orientation,
+      className: cn("shrink-0 bg-border", orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]", className)
+    }, props));
+  });
+  Separator.displayName = $89eedd556c436f6a$export$be92b6f5f03c0fe9.displayName;
+
+  // src/Approval/OriginHeader.tsx
+  var import_react5 = __toModule(require_react());
+  var OriginHeader = ({favIconUrl, title, url}) => {
+    const faviconSrc = favIconUrl || `${url}/favicon.ico`;
+    return /* @__PURE__ */ import_react5.default.createElement("div", {
+      className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
+    }, /* @__PURE__ */ import_react5.default.createElement("img", {
+      src: faviconSrc,
+      alt: "FavIcon",
+      className: "w-20 h-20"
+    }), /* @__PURE__ */ import_react5.default.createElement("span", {
+      className: "font-semibold"
+    }, title), /* @__PURE__ */ import_react5.default.createElement("span", {
+      className: "text-sm text-gray-500"
+    }, url));
+  };
+  var OriginHeader_default = OriginHeader;
+
   // src/Approval/ConnectScreen.tsx
   function ConnectScreen({request, onApprove}) {
+    var _a, _b, _c, _d, _e, _f;
     const handleConnect = (request2) => {
       const dummyKeypair = getDummyKeypair();
       const account = {
@@ -26682,16 +28424,41 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", {
+    return /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "flex flex-col mx-auto max-w-sm min-h-screen"
+    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "flex-grow flex-col space-y-4"
+    }, /* @__PURE__ */ import_react6.default.createElement(CardHeader, null, /* @__PURE__ */ import_react6.default.createElement(CardTitle, {
+      className: "text-xxl"
+    }, "Connect"), /* @__PURE__ */ import_react6.default.createElement(CardDescription, null, "A website is requesting to connect your wallet.")), /* @__PURE__ */ import_react6.default.createElement(OriginHeader_default, {
+      title: (_b = (_a = request.origin) == null ? void 0 : _a.tab) == null ? void 0 : _b.title,
+      url: (_d = (_c = request.origin) == null ? void 0 : _c.tab) == null ? void 0 : _d.url,
+      favIconUrl: (_f = (_e = request.origin) == null ? void 0 : _e.tab) == null ? void 0 : _f.favIconUrl
+    }), /* @__PURE__ */ import_react6.default.createElement(Separator, {
+      className: "mb-4"
+    }), /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "space-y-1"
+    }, /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "text-lg font-bold"
+    }, "Permissions: "), /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "text-sm pl-0 text-muted-foreground"
+    }, "\u2022 View your wallet's public key."), /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "text-sm pl-0 text-muted-foreground"
+    }, "\u2022 Request approval for transactions.")), /* @__PURE__ */ import_react6.default.createElement(Separator, {
+      className: "my-4"
+    })), /* @__PURE__ */ import_react6.default.createElement("div", {
+      className: "mt-auto flex justify-between pb-32"
+    }, /* @__PURE__ */ import_react6.default.createElement(Button, {
+      className: "flex-1 mr-2",
+      variant: "outline"
+    }, "Reject"), /* @__PURE__ */ import_react6.default.createElement(Button, {
+      className: "flex-1",
       onClick: () => handleConnect(request)
-    }, "Connect"), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: () => {
-      }
-    }, "Reject"));
+    }, "Approve")));
   }
 
   // src/Approval/SignMessageScreen.tsx
-  var import_react2 = __toModule(require_react());
+  var import_react7 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/src/utils/ed25519.ts
   var import_ed255192 = __toModule(require_ed25519());
@@ -26726,38 +28493,16 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("button", {
+    return /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement("button", {
       onClick: () => handleSignMessage(request)
-    }, "SignMessage"), /* @__PURE__ */ import_react2.default.createElement("button", {
+    }, "SignMessage"), /* @__PURE__ */ import_react7.default.createElement("button", {
       onClick: () => {
       }
     }, "Reject"));
   }
 
-  // src/Approval/ErrorBoundary.tsx
-  var import_react3 = __toModule(require_react());
-  var ErrorBoundary = class extends import_react3.default.Component {
-    constructor(props) {
-      super(props);
-      this.state = {hasError: false, errorInfo: null};
-    }
-    static getDerivedStateFromError(error) {
-      return {hasError: true};
-    }
-    componentDidCatch(error, errorInfo) {
-      console.error("ErrorBoundary caught an error:", error, errorInfo);
-    }
-    render() {
-      if (this.state.hasError) {
-        return /* @__PURE__ */ import_react3.default.createElement("h1", null, "Something went wrong.");
-      }
-      return this.props.children;
-    }
-  };
-  var ErrorBoundary_default = ErrorBoundary;
-
   // src/Approval/SignTransactionScreen.tsx
-  var import_react4 = __toModule(require_react());
+  var import_react8 = __toModule(require_react());
   var import_bs584 = __toModule(require_bs583());
 
   // src/util/signTransaction.ts
@@ -26788,16 +28533,16 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("button", {
+    return /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => handleSignTransaction(request)
-    }, "SignTransaction"), /* @__PURE__ */ import_react4.default.createElement("button", {
+    }, "SignTransaction"), /* @__PURE__ */ import_react8.default.createElement("button", {
       onClick: () => {
       }
     }, "Reject"));
   }
 
   // src/Approval/SignAndSendTransactionScreen.tsx
-  var import_react5 = __toModule(require_react());
+  var import_react9 = __toModule(require_react());
   var import_bs585 = __toModule(require_bs583());
 
   // src/util/signAndSendTransaction.ts
@@ -26857,9 +28602,9 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("button", {
+    return /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("button", {
       onClick: () => handleSignAndSendTransaction(request)
-    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react5.default.createElement("button", {
+    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react9.default.createElement("button", {
       onClick: () => {
       }
     }, "Reject"));
@@ -26869,34 +28614,34 @@
   function getRequestScreenComponent(request, onApprove) {
     switch (request.method) {
       case WalletRequestMethod.SOLANA_CONNECT:
-        return /* @__PURE__ */ import_react6.default.createElement(ConnectScreen, {
+        return /* @__PURE__ */ import_react10.default.createElement(ConnectScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
-        return /* @__PURE__ */ import_react6.default.createElement(SignMessageScreen, {
+        return /* @__PURE__ */ import_react10.default.createElement(SignMessageScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
-        return /* @__PURE__ */ import_react6.default.createElement(SignAndSendTransactionScreen, {
+        return /* @__PURE__ */ import_react10.default.createElement(SignAndSendTransactionScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
-        return /* @__PURE__ */ import_react6.default.createElement(SignTransactionScreen, {
+        return /* @__PURE__ */ import_react10.default.createElement(SignTransactionScreen, {
           request,
           onApprove
         });
       default:
-        return /* @__PURE__ */ import_react6.default.createElement("div", null, " loading ");
+        return /* @__PURE__ */ import_react10.default.createElement("div", null, " loading ");
     }
   }
   function ApprovalScreen() {
-    const [requestQueue, setRequestQueue] = (0, import_react6.useState)([]);
-    const [randomID, setRandomID] = (0, import_react6.useState)(Math.random());
-    const [message, setMessage] = (0, import_react6.useState)("Empty");
-    (0, import_react6.useEffect)(() => {
+    const [requestQueue, setRequestQueue] = (0, import_react10.useState)([]);
+    const [randomID, setRandomID] = (0, import_react10.useState)(Math.random());
+    const [message, setMessage] = (0, import_react10.useState)("Empty");
+    (0, import_react10.useEffect)(() => {
       function handleWalletRequest(request) {
         console.log("Approval Screen Request Received: ", request);
         if (request.type === "approval-tab-request") {
@@ -26925,11 +28670,11 @@
       console.log(requestQueue);
     };
     console.log(requestQueue);
-    return /* @__PURE__ */ import_react6.default.createElement(ErrorBoundary_default, null, /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("div", null, "My Random ID: ", randomID), /* @__PURE__ */ import_react6.default.createElement("div", null, "Messages: ", message), /* @__PURE__ */ import_react6.default.createElement("button", {
-      onClick: logRequests
-    }, "Log Requests"), /* @__PURE__ */ import_react6.default.createElement("div", null, "Request Queue Size: ", requestQueue.length), requestQueue.length > 0 ? getRequestScreenComponent(requestQueue[0], handleApprove) : null));
+    return /* @__PURE__ */ import_react10.default.createElement("div", {
+      className: "p-6"
+    }, requestQueue.length > 0 ? getRequestScreenComponent(requestQueue[0], handleApprove) : null);
   }
 
   // src/approval.tsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react7.default.createElement(import_react7.default.StrictMode, null, /* @__PURE__ */ import_react7.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
+  import_react_dom2.default.render(/* @__PURE__ */ import_react11.default.createElement(import_react11.default.StrictMode, null, /* @__PURE__ */ import_react11.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
 })();
