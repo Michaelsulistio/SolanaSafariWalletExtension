@@ -17,7 +17,6 @@ struct OnboardingView: View {
                 .fontWeight(.medium)
             
             // Buttons
-            VStack(spacing: 20) {
                 NavigationLink(destination: WalletView()) {
                     Text("Create wallet")
                         .padding()
@@ -27,16 +26,6 @@ struct OnboardingView: View {
                         .cornerRadius(8)
                 }
 
-                NavigationLink(destination: WalletView()) {
-                    Text("Use existing")
-                        .padding()
-                        .frame(maxWidth: .infinity) // Stretch to the parent's width
-                        .background(Color.gray)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-            }
-            .padding(.horizontal) // Add horizontal padding to the VStack to ensure some spacing from the screen edges
             
             Spacer()
         }
