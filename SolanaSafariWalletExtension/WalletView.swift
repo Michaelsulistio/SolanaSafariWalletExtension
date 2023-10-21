@@ -3,86 +3,50 @@ import SwiftUI
 struct WalletView: View {
     
     var body: some View {
-        VStack(spacing: 10) {
-            HStack(spacing: 0) {
-                ZStack(alignment: .leading) {
-                    Image("WalletLogo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-
-                    Circle()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(Color.black)
-                        .overlay(
-                            Image(systemName: "chevron.down")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 8, height: 8)
-                                .font(Font.title.weight(.bold))
-                                .foregroundColor(.white)
-                                .padding(.top, 2)
-                        )
-                        .offset(x: 42) 
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                
-
-                HStack(alignment: .center) {
-                    Text("XNH4...1Wsj")
-                        .font(.system(size: 12))
-                        .foregroundColor(.black)
-
-                    Image(systemName: "doc.on.doc")
-                        .font(.caption)
-                        .foregroundColor(.black)
-                }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal, 10)  // Adds 10 points of horizontal padding
-                .padding(.vertical, 6)
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(50)
-                
-                
-                VStack(alignment: .trailing) {
-                    Image(systemName: "qrcode.viewfinder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing) // Ensure the HStack expands fully across the width
-            }
-            .frame(maxWidth: .infinity) // Ensure the HStack expands fully across the width
-            .padding(.bottom, 12) // Some padding to give the shadow space to show
-            .padding(.horizontal)
-            .background(Color(.systemBackground))
+        VStack(alignment: .leading, spacing: 10) {
+            
+            WalletTopBarView()
             
             
             Text("Main Wallet")
-                .font(.subheadline)
-                .fontWeight(.bold)
+                .font(.title2)
+                .fontWeight(.semibold)
                 .foregroundColor(.black)
+                .padding(.top)
 
         
 
                         
             // Balance Section
-            VStack(alignment: .center, spacing: 8) {
-                Text("Balance")
-                    .font(.title3)
-                    .foregroundColor(.gray)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Current Balance")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
                 Text("$0.00")
-                    .font(.system(size: 48))
-                    .fontWeight(.bold)
+                    .font(.system(size: 44))
+                    .fontWeight(.semibold)
             }
-            .padding(.horizontal)
+            .padding(.top)
 
-            Spacer(minLength: 40) // Adds some space
+            Divider()
+            
+            Text("Tokens").font(.subheadline).fontWeight(.semibold) .foregroundColor(.secondary).padding(.top)
 
+            VStack(spacing: 32) {
+                TokenRowView(tokenImage: "SolToken", tokenName: "Solana", tokenAmount: "0", tokenSymbol: "SOL", usdAmount: "0.00")
+                
+                TokenRowView(tokenImage: "USDCToken", tokenName: "USDC", tokenAmount: "0", tokenSymbol: "USDC", usdAmount: "0.00")
+            }
+            
+            Spacer()
+            
+            Divider()
+            
+            Text("Footer bar")
         }
         .padding(.bottom)
+        .padding(.horizontal)
         .background(Color(.systemBackground))
         .navigationBarBackButtonHidden(true)  // Hide the back button
     }
