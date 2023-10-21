@@ -17,7 +17,7 @@ struct OnboardingView: View {
                 .fontWeight(.medium)
             
             // Buttons
-                NavigationLink(destination: WalletView()) {
+                NavigationLink(destination: WalletTabView()) {
                     Text("Create wallet")
                         .padding()
                         .frame(maxWidth: .infinity) // Stretch to the parent's width

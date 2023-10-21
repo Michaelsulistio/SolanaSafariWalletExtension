@@ -1,91 +1,51 @@
 import SwiftUI
 
 struct WalletHomeView: View {
-    @State private var walletCreated = false
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                // Header Bar
-                HStack {
-                    Spacer()
-                    Text("Safari Web Extension Wallet")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                    Spacer()
-                }
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .padding(.top, geometry.safeAreaInsets.top)
-                
-                Spacer()
-                
-                if walletCreated {
-                    WalletInfoView()
-                } else {
-                    Button(action: {
-                        // Handle wallet creation action
-                        print("Wallet creation button tapped!")
-                        walletCreated.toggle()
-                    }) {
-                        Text("Create Wallet")
-                            .font(.title2)
-                            .fontWeight(.medium)
-                            .padding(.vertical)
-                            .padding(.horizontal, 40)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                }
-                
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.systemBackground))
-            .edgesIgnoringSafeArea(.all)
-        }
-    }
-}
+        VStack(alignment: .leading, spacing: 10) {
+            
+            WalletTopBarView()
+            
+            
+            Text("Main Wallet")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(.black)
+                .padding(.top)
 
-struct WalletInfoView: View {
-    var body: some View {
-        VStack(spacing: 20) {
-            // Wallet Name and Subtitle
-            VStack(alignment: .center, spacing: 8) {
-                Text("Wallet Name")
-                    .font(.title2)
-                    .fontWeight(.medium)
-                Text("0x...")
+        
+
+                        
+            // Balance Section
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Current Balance")
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                Text("$0.00")
+                    .font(.system(size: 44))
+                    .fontWeight(.semibold)
             }
+            .padding(.vertical);
+
+            Divider()
             
-            // Balance
-            Text("Balance: 0.0")
-                .font(.title)
-            
-            // Airdrop and Send buttons
-            HStack(spacing: 20) {
-                Button("Airdrop") {
-                    print("Airdrop tapped!")
-                }
-                .padding()
-                .background(Color.green)
-                .foregroundColor(.white)
-                .cornerRadius(8)
+            Text("Tokens").font(.subheadline).fontWeight(.semibold) .foregroundColor(.secondary).padding(.top)
+
+            VStack(spacing: 32) {
+                TokenRowView(tokenImage: "SolToken", tokenName: "Solana", tokenAmount: "0", tokenSymbol: "SOL", usdAmount: "0.00")
                 
-                Button("Send") {
-                    print("Send tapped!")
-                }
-                .padding()
-                .background(Color.red)
-                .foregroundColor(.white)
-                .cornerRadius(8)
+                TokenRowView(tokenImage: "USDCToken", tokenName: "USDC", tokenAmount: "0", tokenSymbol: "USDC", usdAmount: "0.00")
             }
+            
+            Spacer()
+            
+            Divider()
         }
+        .padding(.bottom)
+        .padding(.horizontal)
+        .background(Color(.systemBackground))
     }
 }
 
