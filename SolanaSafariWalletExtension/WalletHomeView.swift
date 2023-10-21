@@ -41,6 +41,31 @@ struct WalletHomeView: View {
             
             Spacer()
             
+            HStack() {
+                Spacer()
+                Button(action: {
+                    // Action when button is tapped
+                }) {
+                    HStack(alignment: .center, spacing: 4) {
+                        Text("Send")
+                            .foregroundColor(Color.white)
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                        
+                        Image(systemName: "arrow.up")
+                            .foregroundColor(Color.white)
+                            .font(.subheadline.weight(.heavy))
+                    }
+                    .padding(.horizontal, 20)  // Horizontal padding for the content inside the button
+                    .padding(.vertical, 14)     // Vertical padding for the content inside the button
+                    .background(Color.black)
+                    .cornerRadius(100)          // To get fully rounded corners, the corner radius should be half the height
+                }
+                .padding(.bottom)
+            }
+
+
+            
             Divider()
         }
         .padding(.bottom)

@@ -12,7 +12,7 @@ struct WalletTabItemView: View {
                 .scaledToFit()
                 .frame(width: 24, height: 24) // Adjust based on your preference
             Text(buttonTitle)
-                .font(.caption2)
+                .font(.title3)
                 .foregroundColor(Color.primary)
         }
         .padding(8)  // Adjust this value to make sure the entire button including background is 72x58

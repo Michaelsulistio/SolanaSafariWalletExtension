@@ -45,7 +45,7 @@ struct WalletTopBarView: View {
                     .foregroundColor(.black)
             }
             .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.horizontal, 10)  // Adds 10 points of horizontal padding
+            .padding(.horizontal, 10)  
             .padding(.vertical, 6)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(50)
@@ -57,10 +57,10 @@ struct WalletTopBarView: View {
                     .scaledToFit()
                     .frame(width: 24, height: 24)
             }
-            .frame(maxWidth: .infinity, alignment: .trailing) // Ensure the HStack expands fully across the width
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .frame(maxWidth: .infinity) // Ensure the HStack expands fully across the width
-        .padding(.bottom, 12) // Some padding to give the shadow space to show
+        .frame(maxWidth: .infinity)
+        .padding(.bottom, 12)
         .background(Color(.systemBackground))
     }
 }
