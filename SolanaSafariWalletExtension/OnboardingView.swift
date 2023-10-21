@@ -25,7 +25,6 @@ struct OnboardingView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-
             
             Spacer()
         }

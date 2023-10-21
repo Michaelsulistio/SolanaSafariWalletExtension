@@ -14,8 +14,6 @@ struct WalletHomeView: View {
                 .foregroundColor(.black)
                 .padding(.top)
 
-        
-
                         
             // Balance Section
             VStack(alignment: .leading, spacing: 8) {
@@ -32,7 +30,7 @@ struct WalletHomeView: View {
             Divider()
             
             Text("Tokens").font(.subheadline).fontWeight(.semibold) .foregroundColor(.secondary).padding(.top)
-
+            
             VStack(spacing: 32) {
                 TokenRowView(tokenImage: "SolToken", tokenName: "Solana", tokenAmount: "0", tokenSymbol: "SOL", usdAmount: "0.00")
                 
@@ -56,10 +54,10 @@ struct WalletHomeView: View {
                             .foregroundColor(Color.white)
                             .font(.subheadline.weight(.heavy))
                     }
-                    .padding(.horizontal, 20)  // Horizontal padding for the content inside the button
-                    .padding(.vertical, 14)     // Vertical padding for the content inside the button
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 14)
                     .background(Color.black)
-                    .cornerRadius(100)          // To get fully rounded corners, the corner radius should be half the height
+                    .cornerRadius(100)
                 }
                 .padding(.bottom)
             }

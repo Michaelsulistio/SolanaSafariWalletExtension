@@ -24,7 +24,7 @@ struct WalletTabView: View {
                 }
                 .tag(2)
 
-            Text("Settings View")
+            KeypairView()
                 .tabItem {
                     WalletTabItemView(iconName: "Settings", buttonTitle: "Settings", isSelected: selectedTab == 3)
                 }
