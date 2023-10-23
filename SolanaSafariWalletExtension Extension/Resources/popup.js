@@ -7116,16 +7116,12 @@
         console.log("tab promise fulfilled");
       });
     };
-    const tabsClick2 = () => {
-      console.log("Tabs Click 2");
-      browser.tabs.create();
-    };
-    const tabsClick3 = () => {
-      console.log("Tabs Click 3");
-      browser.tabs.create();
-    };
-    const tabsClick4 = () => {
-      console.log("Tabs Click 4");
+    const fetchKeypair = () => {
+      console.log("Keypair fetch click");
+      browser.runtime.sendNativeMessage("id", "fetch-keypair", function(response) {
+        console.log("Received sendNativeMessage response:");
+        console.log(response);
+      });
     };
     return /* @__PURE__ */ import_react.default.createElement("div", {
       style: cardStyle
@@ -7134,12 +7130,10 @@
     }, /* @__PURE__ */ import_react.default.createElement("h1", null, "React App Popup"), /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: getCurrentTabs
     }, "Get Current Tabs"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: fetchKeypair
+    }, "Fetch Keypair"), /* @__PURE__ */ import_react.default.createElement("button", {
       onClick: tabsClick1
-    }, "Tabs 1"), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: tabsClick2
-    }, "Tabs 2"), /* @__PURE__ */ import_react.default.createElement("button", {
-      onClick: tabsClick3
-    }, "Tabs 3")));
+    }, "Tabs 1")));
   }
 
   // src/popup.tsx

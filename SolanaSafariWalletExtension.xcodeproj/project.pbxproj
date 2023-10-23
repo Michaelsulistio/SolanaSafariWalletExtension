@@ -11,6 +11,13 @@
 		FB46E4BD2AE3BC4B00879F4F /* KeypairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */; };
 		FB46E4C12AE6F55F00879F4F /* Base58Swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB46E4C02AE6F55F00879F4F /* Base58Swift */; };
 		FB46E4C32AE6FD1C00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
+		FB46E4E72AE71EB300879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
+		FB46E4E82AE71EB600879F4F /* KeypairUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */; };
+		FB46E4E92AE720EA00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
+		FB46E4EA2AE720EB00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
+		FB46E4EB2AE720EE00879F4F /* KeypairUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */; };
+		FB46E4EC2AE720EF00879F4F /* KeypairUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */; };
+		FB46E4EF2AE721CB00879F4F /* Base58Swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB46E4EE2AE721CB00879F4F /* Base58Swift */; };
 		FB54E87A2ACD07D200A6E21D /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8782ACD07D200A6E21D /* Main.html */; };
 		FB54E87C2ACD07D200A6E21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87B2ACD07D200A6E21D /* Icon.png */; };
 		FB54E87E2ACD07D200A6E21D /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87D2ACD07D200A6E21D /* Style.css */; };
@@ -68,6 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		FB46E4E32AE71E7500879F4F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB54E8C42ACD07D300A6E21D /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +102,7 @@
 		FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairUtil.swift; sourceTree = "<group>"; };
 		FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairView.swift; sourceTree = "<group>"; };
 		FB46E4C22AE6FD1C00879F4F /* Keypair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypair.swift; sourceTree = "<group>"; };
+		FB46E4F02AE7229F00879F4F /* SolanaSafariWalletExtension Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SolanaSafariWalletExtension Extension.entitlements"; sourceTree = "<group>"; };
 		FB54E8722ACD07D200A6E21D /* SolanaSafariWalletExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolanaSafariWalletExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB54E8792ACD07D200A6E21D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
 		FB54E87B2ACD07D200A6E21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -148,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB46E4EF2AE721CB00879F4F /* Base58Swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +182,13 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		FB46E4ED2AE721CB00879F4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FB54E8692ACD07D200A6E21D = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +198,7 @@
 				FB54E89C2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests */,
 				FB54E8A92ACD07D300A6E21D /* SolanaSafariWalletExtension Extension */,
 				FB54E8732ACD07D200A6E21D /* Products */,
+				FB46E4ED2AE721CB00879F4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +263,7 @@
 		FB54E8A92ACD07D300A6E21D /* SolanaSafariWalletExtension Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FB46E4F02AE7229F00879F4F /* SolanaSafariWalletExtension Extension.entitlements */,
 				FB54E8AA2ACD07D300A6E21D /* SafariWebExtensionHandler.swift */,
 				FB54E8BD2ACD07D300A6E21D /* Info.plist */,
 				FB54E8AC2ACD07D300A6E21D /* Resources */,
@@ -280,6 +308,7 @@
 				FB54E86F2ACD07D200A6E21D /* Frameworks */,
 				FB54E8702ACD07D200A6E21D /* Resources */,
 				FB54E8C42ACD07D300A6E21D /* Embed Foundation Extensions */,
+				FB46E4E32AE71E7500879F4F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,6 +372,9 @@
 			dependencies = (
 			);
 			name = "SolanaSafariWalletExtension Extension";
+			packageProductDependencies = (
+				FB46E4EE2AE721CB00879F4F /* Base58Swift */,
+			);
 			productName = "SolanaSafariWalletExtension Extension";
 			productReference = FB54E8A52ACD07D300A6E21D /* SolanaSafariWalletExtension Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -469,6 +501,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB54E8942ACD07D300A6E21D /* SolanaSafariWalletExtensionTests.swift in Sources */,
+				FB46E4EB2AE720EE00879F4F /* KeypairUtil.swift in Sources */,
+				FB46E4E92AE720EA00879F4F /* Keypair.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,8 +510,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB46E4EA2AE720EB00879F4F /* Keypair.swift in Sources */,
 				FB54E89E2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests.swift in Sources */,
 				FB54E8A02ACD07D300A6E21D /* SolanaSafariWalletExtensionUITestsLaunchTests.swift in Sources */,
+				FB46E4EC2AE720EF00879F4F /* KeypairUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +522,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB54E8AB2ACD07D300A6E21D /* SafariWebExtensionHandler.swift in Sources */,
+				FB46E4E82AE71EB600879F4F /* KeypairUtil.swift in Sources */,
+				FB46E4E72AE71EB300879F4F /* Keypair.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,8 +676,10 @@
 		FB54E8C22ACD07D300A6E21D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SolanaSafariWalletExtension Extension/SolanaSafariWalletExtension Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RGVU8D5XP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SolanaSafariWalletExtension Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "SolanaSafariWalletExtension Extension";
@@ -667,8 +707,10 @@
 		FB54E8C32ACD07D300A6E21D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SolanaSafariWalletExtension Extension/SolanaSafariWalletExtension Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5RGVU8D5XP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SolanaSafariWalletExtension Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "SolanaSafariWalletExtension Extension";
@@ -898,6 +940,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		FB46E4C02AE6F55F00879F4F /* Base58Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB46E4BF2AE6F55F00879F4F /* XCRemoteSwiftPackageReference "Base58Swift" */;
+			productName = Base58Swift;
+		};
+		FB46E4EE2AE721CB00879F4F /* Base58Swift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB46E4BF2AE6F55F00879F4F /* XCRemoteSwiftPackageReference "Base58Swift" */;
 			productName = Base58Swift;
