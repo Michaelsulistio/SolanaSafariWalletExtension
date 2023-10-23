@@ -1,37 +1,37 @@
 import SwiftUI
 import CryptoKit
+import Base58Swift
 
 struct KeypairView: View {
-    @State private var privateKey: Curve25519.Signing.PrivateKey?
-    @State private var publicKey: Curve25519.Signing.PublicKey?
+    @State private var keypair: Keypair?;
 
     var body: some View {
         VStack(spacing: 20) {
             Button("Generate Keypair") {
-                let keypair = generateEd25519KeyPair()
-                privateKey = keypair.privateKey
-                publicKey = keypair.publicKey
+                keypair = generateEd25519KeyPair()
+            }
+            
+            Button("Get Keypair") {
+                keypair = fetchStoredKeypair() ?? keypair
             }
             
             Button("Log stored keypairs") {
                 logKeypairFromUserDefaults();
             }
             
-            if let unwrappedPrivateKey = privateKey, let unwrappedPublicKey = publicKey {
+            if let keypair {
                 Button("Store Keypair") {
-                    storeKeyPair(privateKey: unwrappedPrivateKey, publicKey: unwrappedPublicKey)
+                    storeKeyPair(keypair)
                 }
             }
             
             
-            
-            
             Group {
-                Text("Private Key:")
+                Text("Public Key:")
                     .bold()
                 
-                if let privateKeyData = privateKey?.rawRepresentation {
-                    Text(privateKeyData.base64EncodedString())
+                if let keypair {
+                    Text(keypair.publicKeyToBase58String())
                         .font(.footnote)
                         .padding()
                         .background(Color.gray.opacity(0.2))
@@ -40,13 +40,13 @@ struct KeypairView: View {
                     Text("Not Generated")
                 }
             }
-            
+
             Group {
-                Text("Public Key:")
+                Text("Private Key:")
                     .bold()
                 
-                if let publicKeyData = publicKey?.rawRepresentation {
-                    Text(publicKeyData.base64EncodedString())
+                if let keypair {
+                    Text(keypair.privateKeyToBase58String())
                         .font(.footnote)
                         .padding()
                         .background(Color.gray.opacity(0.2))

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB46E4BB2AE3B58C00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* Keypair.swift */; };
+		FB46E4BB2AE3B58C00879F4F /* KeypairUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */; };
 		FB46E4BD2AE3BC4B00879F4F /* KeypairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */; };
+		FB46E4C12AE6F55F00879F4F /* Base58Swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB46E4C02AE6F55F00879F4F /* Base58Swift */; };
+		FB46E4C32AE6FD1C00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
 		FB54E87A2ACD07D200A6E21D /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = FB54E8782ACD07D200A6E21D /* Main.html */; };
 		FB54E87C2ACD07D200A6E21D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87B2ACD07D200A6E21D /* Icon.png */; };
 		FB54E87E2ACD07D200A6E21D /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = FB54E87D2ACD07D200A6E21D /* Style.css */; };
@@ -80,8 +82,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FB46E4BA2AE3B58C00879F4F /* Keypair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypair.swift; sourceTree = "<group>"; };
+		FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairUtil.swift; sourceTree = "<group>"; };
 		FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairView.swift; sourceTree = "<group>"; };
+		FB46E4C22AE6FD1C00879F4F /* Keypair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypair.swift; sourceTree = "<group>"; };
 		FB54E8722ACD07D200A6E21D /* SolanaSafariWalletExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolanaSafariWalletExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB54E8792ACD07D200A6E21D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
 		FB54E87B2ACD07D200A6E21D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB46E4C12AE6F55F00879F4F /* Base58Swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,9 +154,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB46E4BE2AE6F05B00879F4F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */,
+				FB46E4C22AE6FD1C00879F4F /* Keypair.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		FB54E8692ACD07D200A6E21D = {
 			isa = PBXGroup;
 			children = (
+				FB46E4BE2AE6F05B00879F4F /* Shared */,
 				FB54E8742ACD07D200A6E21D /* SolanaSafariWalletExtension */,
 				FB54E8922ACD07D300A6E21D /* SolanaSafariWalletExtensionTests */,
 				FB54E89C2ACD07D300A6E21D /* SolanaSafariWalletExtensionUITests */,
@@ -183,7 +197,6 @@
 				FBD745572AE09D2E003D5E6B /* WalletHomeView.swift */,
 				FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */,
 				FBD7455D2AE3304A003D5E6B /* WalletTopBarView.swift */,
-				FB46E4BA2AE3B58C00879F4F /* Keypair.swift */,
 				FBD745642AE39738003D5E6B /* WalletTabView.swift */,
 				FBD745612AE39546003D5E6B /* WalletTabItemView.swift */,
 				FBD7454F2AE0913A003D5E6B /* Assets.xcassets */,
@@ -275,6 +288,7 @@
 			);
 			name = SolanaSafariWalletExtension;
 			packageProductDependencies = (
+				FB46E4C02AE6F55F00879F4F /* Base58Swift */,
 			);
 			productName = SolanaSafariWalletExtension;
 			productReference = FB54E8722ACD07D200A6E21D /* SolanaSafariWalletExtension.app */;
@@ -369,6 +383,7 @@
 			);
 			mainGroup = FB54E8692ACD07D200A6E21D;
 			packageReferences = (
+				FB46E4BF2AE6F55F00879F4F /* XCRemoteSwiftPackageReference "Base58Swift" */,
 			);
 			productRefGroup = FB54E8732ACD07D200A6E21D /* Products */;
 			projectDirPath = "";
@@ -435,9 +450,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD7455A2AE0A15B003D5E6B /* MainView.swift in Sources */,
+				FB46E4C32AE6FD1C00879F4F /* Keypair.swift in Sources */,
 				FBD745582AE09D2E003D5E6B /* WalletHomeView.swift in Sources */,
 				FBD745622AE39546003D5E6B /* WalletTabItemView.swift in Sources */,
-				FB46E4BB2AE3B58C00879F4F /* Keypair.swift in Sources */,
+				FB46E4BB2AE3B58C00879F4F /* KeypairUtil.swift in Sources */,
 				FBD7455E2AE3304A003D5E6B /* WalletTopBarView.swift in Sources */,
 				FBD745672AE39935003D5E6B /* BlankView.swift in Sources */,
 				FBD745602AE334DE003D5E6B /* TokenRowView.swift in Sources */,
@@ -868,6 +884,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB46E4BF2AE6F55F00879F4F /* XCRemoteSwiftPackageReference "Base58Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/keefertaylor/Base58Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB46E4C02AE6F55F00879F4F /* Base58Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB46E4BF2AE6F55F00879F4F /* XCRemoteSwiftPackageReference "Base58Swift" */;
+			productName = Base58Swift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB54E86A2ACD07D200A6E21D /* Project object */;
 }
