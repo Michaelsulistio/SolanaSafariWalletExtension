@@ -31,18 +31,16 @@ export default function App() {
       });
   };
 
-  const tabsClick2 = () => {
-    console.log("Tabs Click 2");
-    browser.tabs.create();
-  };
-
-  const tabsClick3 = () => {
-    console.log("Tabs Click 3");
-    browser.tabs.create();
-  };
-
-  const tabsClick4 = () => {
-    console.log("Tabs Click 4");
+  const fetchKeypair = () => {
+    console.log("Keypair fetch click");
+    browser.runtime.sendNativeMessage(
+      "id",
+      "fetch-keypair",
+      function (response: any) {
+        console.log("Received sendNativeMessage response:");
+        console.log(response);
+      }
+    );
   };
 
   return (
@@ -50,11 +48,8 @@ export default function App() {
       <div style={contentStyle}>
         <h1>React App Popup</h1>
         <button onClick={getCurrentTabs}>Get Current Tabs</button>
-
+        <button onClick={fetchKeypair}>Fetch Keypair</button>
         <button onClick={tabsClick1}>Tabs 1</button>
-        <button onClick={tabsClick2}>Tabs 2</button>
-        <button onClick={tabsClick3}>Tabs 3</button>
-        {/* <Card title="Card 1" content="Body 1" /> */}
       </div>
     </div>
   );
