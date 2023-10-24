@@ -7,6 +7,10 @@ type Props = Readonly<{
   walletAddress: String;
 }>;
 
+function truncateWalletAddress(walletAddress: String) {
+  return `${walletAddress.slice(0, 3)}...${walletAddress.slice(3, 6)}`;
+}
+
 export default function WalletDisplay({ walletAddress }: Props) {
   return (
     <div className="flex items-center">
@@ -14,7 +18,7 @@ export default function WalletDisplay({ walletAddress }: Props) {
       <span className="font-bold">
         Main Wallet{" "}
         <span className="text-sm font-medium text-gray-500">
-          {walletAddress}
+          {truncateWalletAddress(walletAddress)}
         </span>
       </span>
     </div>
