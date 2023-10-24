@@ -347,20 +347,12 @@ class SafariExtensionDemoWallet implements Wallet {
         }
       }
 
-      const transactions = inputs.map(({ transaction }) =>
-        Transaction.from(transaction)
-      );
-
-      const keyPair = getKeypairForAccount(this.#accounts[0]);
-      const signedTransactions = await signAllTransactions(
-        transactions,
-        keyPair
+      const signedTransactions = await Promise.all(
+        inputs.map((input) => this.#solanaSignTransaction(input))
       );
 
       outputs.push(
-        ...signedTransactions.map((signedTransaction) => ({
-          signedTransaction
-        }))
+        ...signedTransactions.map((singleSignedOutput) => singleSignedOutput[0])
       );
     }
 
