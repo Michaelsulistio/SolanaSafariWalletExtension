@@ -15,6 +15,6 @@ export const injectApp = () => {
 
     console.log(`injectApp: complete`);
   } catch (error) {
-    console.error("Light: Provider injection failed.", error);
+    console.error("Provider injection failed.", error);
   }
 };

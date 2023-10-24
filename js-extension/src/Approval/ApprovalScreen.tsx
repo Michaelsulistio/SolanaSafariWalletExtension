@@ -95,7 +95,6 @@ export default function ApprovalScreen() {
 
   const handleReject = () => {};
 
-  console.log(requestQueue);
   return (
     <div className="p-6">
       {requestQueue.length > 0

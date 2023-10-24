@@ -4,11 +4,11 @@ import {
   ConnectResponseEncoded,
   WalletAccountEncoded
 } from "../types/messageTypes";
-import getDummyKeypair from "../util/getDummyKeypair";
 
 import WalletDisplay from "./WalletDisplay";
 import ApprovalHeader from "./ApprovalHeader";
 import ApprovalFooter from "./ApprovalFooter";
+import useDummyKeypair from "./useNativeKeypair";
 
 type Props = Readonly<{
   request: ConnectRequest;
@@ -16,8 +16,12 @@ type Props = Readonly<{
 }>;
 
 export default function ConnectScreen({ request, onApprove }: Props) {
-  const handleConnect = (request: ConnectRequest) => {
-    const dummyKeypair = getDummyKeypair();
+  const dummyKeypair = useDummyKeypair();
+  const handleConnect = async (request: ConnectRequest) => {
+    if (!dummyKeypair) {
+      return;
+    }
+
     const account: WalletAccountEncoded = {
       address: dummyKeypair.publicKey.toBase58(),
       publicKey: dummyKeypair.publicKey.toBase58(),
@@ -60,7 +64,9 @@ export default function ConnectScreen({ request, onApprove }: Props) {
 
         <div className="flex flex-col justify-center items-center">
           <div className="text-sm font-bold pb-4">as:</div>
-          <WalletDisplay publicKey={getDummyKeypair().publicKey} />
+          <WalletDisplay
+            walletAddress={dummyKeypair?.publicKey.toBase58() ?? "Loading..."}
+          />
         </div>
       </div>
       <div className="text-sm text-center pb-8">
