@@ -20145,6 +20145,9 @@
   ]);
 
   // src/Approval/WalletDisplay.tsx
+  function truncateWalletAddress(walletAddress) {
+    return `${walletAddress.slice(0, 3)}...${walletAddress.slice(3, 6)}`;
+  }
   function WalletDisplay({walletAddress}) {
     return /* @__PURE__ */ import_react2.default.createElement("div", {
       className: "flex items-center"
@@ -20154,7 +20157,7 @@
       className: "font-bold"
     }, "Main Wallet", " ", /* @__PURE__ */ import_react2.default.createElement("span", {
       className: "text-sm font-medium text-gray-500"
-    }, walletAddress)));
+    }, truncateWalletAddress(walletAddress))));
   }
 
   // components/ui/card.tsx
@@ -28459,9 +28462,7 @@
           console.error("Unexpected response format from native message");
         }
       };
-      setTimeout(() => {
-        fetchKeypair();
-      }, 5e3);
+      fetchKeypair();
     }, []);
     return keypair;
   };

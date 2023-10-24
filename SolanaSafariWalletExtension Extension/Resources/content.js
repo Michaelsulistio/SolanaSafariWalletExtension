@@ -42,7 +42,7 @@
     const walletRequest = event.detail;
     forwardToBackgroundScript(walletRequest);
   });
-  browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+  browser.runtime.onMessage.addListener(async (message, _sender, _sendResponse) => {
     console.log("Content Script Runtime Listener: ", message);
     if (message.type === "wallet-response") {
       forwardToPageScript(message);
