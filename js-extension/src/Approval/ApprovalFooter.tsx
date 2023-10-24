@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import { BaseWalletResponseEncoded } from "../types/messageTypes";
 import { Loader2 } from "lucide-react";
 
 type FooterProps = Readonly<{
@@ -20,15 +19,11 @@ export default function ApprovalFooter({
   const handleCancel = () => {
     setIsCancelLoading(true);
     onCancel();
-    // After processing (e.g., after a promise resolves), you might need:
-    // setIsLoading(false);
   };
 
   const handleConfirm = () => {
     setIsConfirmLoading(true);
     onConfirm();
-    // After processing (e.g., after a promise resolves), you might need:
-    // setIsLoading(false);
   };
 
   return (

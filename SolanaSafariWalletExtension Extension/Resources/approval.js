@@ -29653,21 +29653,13 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   // src/Approval/SignTransactionScreen.tsx
   function SignTransactionScreen({request, onApprove}) {
     const handleSignTransaction = async (request2) => {
-      console.log("In sign transaction");
       const dummyKeypair = getDummyKeypair();
       const input = request2.input;
       const txBytes = import_bs584.default.decode(input.transaction);
-      const numOfSignatures = txBytes[0];
-      const txHeaderLength = 1 + numOfSignatures * 64;
-      console.log(txBytes, txBytes.length);
-      const versionedMessage = VersionedMessage.deserialize(txBytes.slice(txHeaderLength, txBytes.length));
-      const versionedTx = new VersionedTransaction(versionedMessage);
-      const signedTxBytes = await signVersionedTransaction(new VersionedTransaction(versionedMessage), dummyKeypair);
-      console.log("In sign transaction 2");
+      const signedTxBytes = await signVersionedTransaction(VersionedTransaction.deserialize(txBytes), dummyKeypair);
       if (!request2.origin) {
         throw new Error("Sender origin is missing: " + request2);
       }
-      console.log("In sign transaction 3");
       onApprove({
         type: "wallet-response",
         method: request2.method,
@@ -29730,12 +29722,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   var import_bs585 = __toModule(require_bs583());
 
   // src/util/signAndSendTransaction.ts
-  async function signAndSendTransaction(transactionBytes, keypair, network, options) {
-    const versionedMessage = VersionedMessage.deserialize(transactionBytes);
-    console.log(versionedMessage.header);
-    console.log(versionedMessage.version);
-    console.log(versionedMessage.recentBlockhash);
-    const tx = new VersionedTransaction(versionedMessage);
+  async function signAndSendTransaction(tx, keypair, network, options) {
     tx.sign([
       {
         publicKey: keypair.publicKey,
@@ -29774,8 +29761,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         throw new Error("Sender origin is missing: " + request2);
       }
       const dummyKeypair = getDummyKeypair();
+      const txBytes = import_bs585.default.decode(request2.input.transaction);
       const input = request2.input;
-      const {signature: signature2} = await signAndSendTransaction(import_bs585.default.decode(input.transaction), dummyKeypair, getClusterForChain(input.chain), input.options);
+      const {signature: signature2} = await signAndSendTransaction(VersionedTransaction.deserialize(txBytes), dummyKeypair, getClusterForChain(input.chain), input.options);
       onApprove({
         type: "wallet-response",
         method: request2.method,
@@ -29823,8 +29811,6 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   }
   function ApprovalScreen() {
     const [requestQueue, setRequestQueue] = (0, import_react20.useState)([]);
-    const [randomID, setRandomID] = (0, import_react20.useState)(Math.random());
-    const [message, setMessage] = (0, import_react20.useState)("Empty");
     (0, import_react20.useEffect)(() => {
       function handleWalletRequest(request) {
         console.log("Approval Screen Request Received: ", request);
@@ -29841,11 +29827,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, []);
     const handleApprove = (response) => {
       var _a, _b;
-      console.log("In handle Approve");
       if (!((_b = (_a = response.origin) == null ? void 0 : _a.tab) == null ? void 0 : _b.id)) {
         throw new Error("Request has no origin sender metadata");
       }
-      console.log("In handle Approve 2");
       const originTabId = response.origin.tab.id;
       browser.tabs.sendMessage(originTabId, response).then(() => browser.tabs.update(originTabId, {active: true})).then(() => window.close());
     };

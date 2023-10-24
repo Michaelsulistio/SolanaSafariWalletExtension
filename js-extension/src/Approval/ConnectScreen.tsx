@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   ConnectRequest,
-  ConnectResponse,
   ConnectResponseEncoded,
   WalletAccountEncoded
 } from "../types/messageTypes";
 import getDummyKeypair from "../util/getDummyKeypair";
 
-import { Button } from "@/components/ui/button";
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import OriginHeader from "./OriginHeader";
 import WalletDisplay from "./WalletDisplay";
 import ApprovalHeader from "./ApprovalHeader";
 import ApprovalFooter from "./ApprovalFooter";

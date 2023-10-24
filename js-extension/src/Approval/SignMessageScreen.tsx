@@ -1,16 +1,12 @@
 import React from "react";
 import {
-  SignMessageRequest,
   SignMessageRequestEncoded,
   SignMessageResponseEncoded
 } from "../types/messageTypes";
 import getDummyKeypair from "../util/getDummyKeypair";
 import signMessage from "../util/signMessage";
 import bs58 from "bs58";
-import { Button } from "@/components/ui/button";
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import OriginHeader from "./OriginHeader";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import WalletDisplay from "./WalletDisplay";
 import ApprovalHeader from "./ApprovalHeader";

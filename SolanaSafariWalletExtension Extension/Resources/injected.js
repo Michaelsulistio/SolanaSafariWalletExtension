@@ -17017,7 +17017,7 @@
     SolanaSignMessage
   ];
   var _address, _publicKey, _chains, _features, _label, _icon;
-  var _MyWalletWalletAccount = class {
+  var _SafariExtensionDemoWalletAccount = class {
     constructor({
       address,
       publicKey: publicKey2,
@@ -17030,7 +17030,7 @@
       _features.set(this, void 0);
       _label.set(this, void 0);
       _icon.set(this, void 0);
-      if (new.target === _MyWalletWalletAccount) {
+      if (new.target === _SafariExtensionDemoWalletAccount) {
         Object.freeze(this);
       }
       __privateSet(this, _address, address);
@@ -17059,7 +17059,7 @@
       return __privateGet(this, _icon);
     }
   };
-  var MyWalletWalletAccount = _MyWalletWalletAccount;
+  var SafariExtensionDemoWalletAccount = _SafariExtensionDemoWalletAccount;
   _address = new WeakMap();
   _publicKey = new WeakMap();
   _chains = new WeakMap();
@@ -17074,7 +17074,7 @@
   var wallet;
   var registered = false;
   function get() {
-    return wallet != null ? wallet : wallet = new MyWallet();
+    return wallet != null ? wallet : wallet = new SafariExtensionDemoWallet();
   }
   function register() {
     try {
@@ -17092,7 +17092,7 @@
     return false;
   }
   var _messageClient, _name, _version, _icon2, _listeners, _accounts, _chains2, _connected, _disconnected, _standardEventsOn, _standardEventsOff, _standardEventsEmit, _standardConnect, _standardDisconnect, _solanaSignAndSendTransaction, _solanaSignIn, _solanaSignMessage, _solanaSignTransaction;
-  var _MyWallet = class {
+  var _SafariExtensionDemoWallet = class {
     constructor() {
       _messageClient.set(this, void 0);
       _name.set(this, "Safari Web Extension Wallet");
@@ -17108,7 +17108,7 @@
       ]);
       _connected.set(this, (accounts) => {
         console.log("connected");
-        __privateSet(this, _accounts, accounts.map((account) => new MyWalletWalletAccount(account)));
+        __privateSet(this, _accounts, accounts.map((account) => new SafariExtensionDemoWalletAccount(account)));
         console.log(__privateGet(this, _accounts));
         __privateGet(this, _standardEventsEmit).call(this, "change", {accounts: this.accounts});
       });
@@ -17257,7 +17257,7 @@
         return outputs;
       });
       __privateSet(this, _messageClient, new message_client_default());
-      if (new.target === _MyWallet) {
+      if (new.target === _SafariExtensionDemoWallet) {
         Object.freeze(this);
       }
     }
@@ -17311,7 +17311,7 @@
       };
     }
   };
-  var MyWallet = _MyWallet;
+  var SafariExtensionDemoWallet = _SafariExtensionDemoWallet;
   _messageClient = new WeakMap();
   _name = new WeakMap();
   _version = new WeakMap();

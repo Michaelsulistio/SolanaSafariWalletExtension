@@ -1,8 +1,8 @@
 import type { WalletAccount } from "@wallet-standard/base";
-import { MyWalletWalletAccount } from "../wallet/account";
+import { SafariExtensionDemoWalletAccount } from "../wallet/account";
 import getKeypairForAccount from "./getKeypairForAccount";
 
-export default function getAccounts(): MyWalletWalletAccount[] {
+export default function getAccounts(): SafariExtensionDemoWalletAccount[] {
   const randomKeypair = getKeypairForAccount(null as any as WalletAccount);
   const account: WalletAccount = {
     address: randomKeypair.publicKey.toBase58(),
@@ -16,5 +16,5 @@ export default function getAccounts(): MyWalletWalletAccount[] {
     features: [],
     label: "Sample Safari Extension Wallet"
   };
-  return [new MyWalletWalletAccount(account)];
+  return [new SafariExtensionDemoWalletAccount(account)];
 }

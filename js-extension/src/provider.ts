@@ -33,22 +33,18 @@ import {
   StandardEventsOnMethod
 } from "@wallet-standard/features";
 import getKeypairForAccount from "./util/getKeypairForAccount";
-import {
-  SolanaChain,
-  getClusterForChain,
-  isSolanaChain
-} from "./wallet/solana";
+import { SolanaChain, isSolanaChain } from "./wallet/solana";
 import { Transaction } from "@solana/web3.js";
 import signAllTransactions from "./util/signAllTransactions";
 import MessageClient from "./wallet/message-client";
 import { WalletRequestMethod } from "./types/messageTypes";
-import { MyWalletWalletAccount } from "./wallet/account";
+import { SafariExtensionDemoWalletAccount } from "./wallet/account";
 import { icon } from "./wallet/icon";
-let wallet: MyWallet;
+let wallet: SafariExtensionDemoWallet;
 let registered = false;
 
 export function get(): Wallet {
-  return (wallet ??= new MyWallet());
+  return (wallet ??= new SafariExtensionDemoWallet());
 }
 
 export function register(): boolean {
@@ -69,7 +65,7 @@ export function register(): boolean {
 }
 
 /** @internal */
-class MyWallet implements Wallet {
+class SafariExtensionDemoWallet implements Wallet {
   // Custom State
   readonly #messageClient: MessageClient;
 
@@ -80,7 +76,8 @@ class MyWallet implements Wallet {
   readonly #listeners: {
     [E in StandardEventsNames]?: StandardEventsListeners[E][];
   } = {};
-  #accounts: Wallet["accounts"] & readonly MyWalletWalletAccount[] = [];
+  #accounts: Wallet["accounts"] & readonly SafariExtensionDemoWalletAccount[] =
+    [];
   #chains: Wallet["chains"] = [
     "solana:mainnet",
     "solana:devnet",
@@ -151,7 +148,7 @@ class MyWallet implements Wallet {
 
   constructor() {
     this.#messageClient = new MessageClient();
-    if (new.target === MyWallet) {
+    if (new.target === SafariExtensionDemoWallet) {
       Object.freeze(this);
     }
   }
@@ -160,7 +157,7 @@ class MyWallet implements Wallet {
     console.log("connected");
 
     this.#accounts = accounts.map(
-      (account) => new MyWalletWalletAccount(account)
+      (account) => new SafariExtensionDemoWalletAccount(account)
     );
     console.log(this.#accounts);
     this.#standardEventsEmit("change", { accounts: this.accounts });

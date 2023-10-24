@@ -15,7 +15,7 @@ const features = [
   SolanaSignMessage
 ] as const;
 
-export class MyWalletWalletAccount implements WalletAccount {
+export class SafariExtensionDemoWalletAccount implements WalletAccount {
   readonly #address: WalletAccount["address"];
   readonly #publicKey: WalletAccount["publicKey"];
   readonly #chains: WalletAccount["chains"];
@@ -53,7 +53,7 @@ export class MyWalletWalletAccount implements WalletAccount {
     label,
     icon
   }: Omit<WalletAccount, "chains" | "features">) {
-    if (new.target === MyWalletWalletAccount) {
+    if (new.target === SafariExtensionDemoWalletAccount) {
       Object.freeze(this);
     }
 

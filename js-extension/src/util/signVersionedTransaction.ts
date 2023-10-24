@@ -1,9 +1,4 @@
-import {
-  Keypair,
-  Signer,
-  Transaction,
-  VersionedTransaction
-} from "@solana/web3.js";
+import { Keypair, VersionedTransaction } from "@solana/web3.js";
 
 export default async function signVersionedTransaction(
   transaction: VersionedTransaction,

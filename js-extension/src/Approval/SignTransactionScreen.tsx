@@ -5,13 +5,7 @@ import {
 } from "../types/messageTypes";
 import getDummyKeypair from "../util/getDummyKeypair";
 import bs58 from "bs58";
-import signTransaction from "../util/signTransaction";
-import {
-  Transaction,
-  VersionedMessage,
-  VersionedTransaction
-} from "@solana/web3.js";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { VersionedTransaction } from "@solana/web3.js";
 import { Separator } from "@/components/ui/separator";
 import ApprovalFooter from "./ApprovalFooter";
 import ApprovalHeader from "./ApprovalHeader";
@@ -28,34 +22,18 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
   const handleSignTransaction = async (
     request: SignTransactionRequestEncoded
   ) => {
-    console.log("In sign transaction");
     const dummyKeypair = getDummyKeypair();
-
     const input = request.input;
-
     const txBytes = bs58.decode(input.transaction);
 
-    // Asuming single byte variant
-    const numOfSignatures = txBytes[0];
-    const txHeaderLength = 1 + numOfSignatures * 64;
-
-    console.log(txBytes, txBytes.length);
-
-    const versionedMessage = VersionedMessage.deserialize(
-      txBytes.slice(txHeaderLength, txBytes.length)
-    );
-    const versionedTx = new VersionedTransaction(versionedMessage);
-
     const signedTxBytes = await signVersionedTransaction(
-      new VersionedTransaction(versionedMessage),
+      VersionedTransaction.deserialize(txBytes),
       dummyKeypair
     );
-    console.log("In sign transaction 2");
 
     if (!request.origin) {
       throw new Error("Sender origin is missing: " + request);
     }
-    console.log("In sign transaction 3");
 
     onApprove({
       type: "wallet-response",

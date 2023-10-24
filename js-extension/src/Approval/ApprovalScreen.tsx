@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  BaseWalletRequest,
   WalletRequestMethod,
   ConnectRequest,
-  BaseWalletResponse,
-  SignMessageRequest,
   BaseWalletRequestEncoded,
   BaseWalletResponseEncoded,
   SignTransactionRequestEncoded,
@@ -13,7 +10,6 @@ import {
 } from "../types/messageTypes";
 import ConnectScreen from "./ConnectScreen";
 import SignMessageScreen from "./SignMessageScreen";
-import ErrorBoundary from "./ErrorBoundary";
 import SignTransactionScreen from "./SignTransactionScreen";
 import SignAndSendTransactionScreen from "./SignAndSendTransactionScreen";
 
@@ -59,12 +55,9 @@ export default function ApprovalScreen() {
   const [requestQueue, setRequestQueue] = useState<
     Array<BaseWalletRequestEncoded>
   >([]);
-  const [randomID, setRandomID] = useState<number>(Math.random());
-  const [message, setMessage] = useState<String>("Empty");
-
   // This effect achieves two things:
   //    1. Initializes the wallet request listener for the approval tab
-  //    2. Signals to background that the approval tab is ready to receive requests
+  //    2. Signals to background that this listener, and thus the approval tab, is ready to receive requests
   useEffect(() => {
     function handleWalletRequest(request: BaseWalletRequestEncoded) {
       console.log("Approval Screen Request Received: ", request);
@@ -89,12 +82,9 @@ export default function ApprovalScreen() {
   }, []);
 
   const handleApprove = (response: BaseWalletResponseEncoded) => {
-    console.log("In handle Approve");
-
     if (!response.origin?.tab?.id) {
       throw new Error("Request has no origin sender metadata");
     }
-    console.log("In handle Approve 2");
 
     const originTabId = response.origin.tab.id;
     browser.tabs
@@ -108,10 +98,6 @@ export default function ApprovalScreen() {
   console.log(requestQueue);
   return (
     <div className="p-6">
-      {/* <div>My Random ID: {randomID}</div>
-      <div>Messages: {message}</div>
-      <button onClick={logRequests}>Log Requests</button>
-      <div>Request Queue Size: {requestQueue.length}</div> */}
       {requestQueue.length > 0
         ? getRequestScreenComponent(requestQueue[0], handleApprove)
         : null}
