@@ -8,6 +8,7 @@ import bs58 from "bs58";
 import signAndSendTransaction from "../util/signAndSendTransaction";
 import { VersionedTransaction } from "@solana/web3.js";
 import { SolanaChain, getClusterForChain } from "../wallet/solana";
+import useDummyKeypair from "./useDummyKeypair";
 
 type Props = Readonly<{
   request: SignAndSendTransactionRequestEncoded;
@@ -18,13 +19,17 @@ export default function SignAndSendTransactionScreen({
   request,
   onApprove
 }: Props) {
+  const dummyKeypair = useDummyKeypair();
+
   const handleSignAndSendTransaction = async (
     request: SignAndSendTransactionRequestEncoded
   ) => {
     if (!request.origin) {
       throw new Error("Sender origin is missing: " + request);
     }
-    const dummyKeypair = getDummyKeypair();
+    if (!dummyKeypair) {
+      return;
+    }
     const txBytes = bs58.decode(request.input.transaction);
 
     const input = request.input;

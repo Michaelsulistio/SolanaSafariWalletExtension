@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import WalletDisplay from "./WalletDisplay";
 import ApprovalHeader from "./ApprovalHeader";
 import ApprovalFooter from "./ApprovalFooter";
+import useDummyKeypair from "./useDummyKeypair";
 
 type Props = Readonly<{
   request: SignMessageRequestEncoded;
@@ -18,8 +19,12 @@ type Props = Readonly<{
 }>;
 
 export default function SignMessageScreen({ request, onApprove }: Props) {
+  const dummyKeypair = useDummyKeypair();
+
   const handleSignMessage = async (request: SignMessageRequestEncoded) => {
-    const dummyKeypair = getDummyKeypair();
+    if (!dummyKeypair) {
+      return;
+    }
 
     const input = request.input;
     const { signature } = await signMessage(
@@ -65,7 +70,9 @@ export default function SignMessageScreen({ request, onApprove }: Props) {
         <Separator className="my-4" />
 
         <div className="text-lg font-bold">Wallet</div>
-        <WalletDisplay publicKey={getDummyKeypair().publicKey} />
+        <WalletDisplay
+          walletAddress={dummyKeypair?.publicKey.toBase58() ?? "Loading.."}
+        />
       </div>
 
       <ApprovalFooter

@@ -8,7 +8,7 @@ import {
 import WalletDisplay from "./WalletDisplay";
 import ApprovalHeader from "./ApprovalHeader";
 import ApprovalFooter from "./ApprovalFooter";
-import useDummyKeypair from "./useNativeKeypair";
+import useDummyKeypair from "./useDummyKeypair";
 
 type Props = Readonly<{
   request: ConnectRequest;

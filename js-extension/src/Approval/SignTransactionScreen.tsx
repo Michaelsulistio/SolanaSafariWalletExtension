@@ -12,6 +12,7 @@ import ApprovalHeader from "./ApprovalHeader";
 import WalletDisplay from "./WalletDisplay";
 import { Download, SendHorizontal } from "lucide-react";
 import signVersionedTransaction from "../util/signVersionedTransaction";
+import useDummyKeypair from "./useDummyKeypair";
 
 type Props = Readonly<{
   request: SignTransactionRequestEncoded;
@@ -19,10 +20,15 @@ type Props = Readonly<{
 }>;
 
 export default function SignTransactionScreen({ request, onApprove }: Props) {
+  const dummyKeypair = useDummyKeypair();
+
   const handleSignTransaction = async (
     request: SignTransactionRequestEncoded
   ) => {
-    const dummyKeypair = getDummyKeypair();
+    if (!dummyKeypair) {
+      return;
+    }
+
     const input = request.input;
     const txBytes = bs58.decode(input.transaction);
 
@@ -83,7 +89,9 @@ export default function SignTransactionScreen({ request, onApprove }: Props) {
         <Separator className="my-4" />
 
         <div className="text-lg font-bold">as:</div>
-        <WalletDisplay publicKey={getDummyKeypair().publicKey} />
+        <WalletDisplay
+          walletAddress={dummyKeypair?.publicKey.toBase58() ?? "Loading..."}
+        />
       </div>
 
       <ApprovalFooter

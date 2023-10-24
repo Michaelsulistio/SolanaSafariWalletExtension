@@ -20060,11 +20060,11 @@
   });
 
   // src/approval.tsx
-  var import_react21 = __toModule(require_react());
+  var import_react22 = __toModule(require_react());
   var import_react_dom3 = __toModule(require_react_dom());
 
   // src/Approval/ApprovalScreen.tsx
-  var import_react20 = __toModule(require_react());
+  var import_react21 = __toModule(require_react());
 
   // src/types/messageTypes.ts
   var WalletRequestMethod;
@@ -20076,7 +20076,1792 @@
   })(WalletRequestMethod || (WalletRequestMethod = {}));
 
   // src/Approval/ConnectScreen.tsx
-  var import_react8 = __toModule(require_react());
+  var import_react9 = __toModule(require_react());
+
+  // src/Approval/WalletDisplay.tsx
+  var import_react2 = __toModule(require_react());
+
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
+  var import_react = __toModule(require_react());
+
+  // node_modules/lucide-react/dist/esm/defaultAttributes.js
+  var defaultAttributes = {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+
+  // node_modules/lucide-react/dist/esm/createLucideIcon.js
+  var toKebabCase = (string2) => string2.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+  var createLucideIcon = (iconName, iconNode) => {
+    const Component = (0, import_react.forwardRef)((_a, ref) => {
+      var {color = "currentColor", size = 24, strokeWidth = 2, absoluteStrokeWidth, children} = _a, rest = __rest(_a, ["color", "size", "strokeWidth", "absoluteStrokeWidth", "children"]);
+      return (0, import_react.createElement)("svg", __assign(__assign(__assign({
+        ref
+      }, defaultAttributes), {
+        width: size,
+        height: size,
+        stroke: color,
+        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+        className: `lucide lucide-${toKebabCase(iconName)}`
+      }), rest), [
+        ...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)),
+        ...(Array.isArray(children) ? children : [children]) || []
+      ]);
+    });
+    Component.displayName = `${iconName}`;
+    return Component;
+  };
+
+  // node_modules/lucide-react/dist/esm/icons/download.js
+  var Download = createLucideIcon("Download", [
+    ["path", {d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h"}],
+    ["polyline", {points: "7 10 12 15 17 10", key: "2ggqvy"}],
+    ["line", {x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/loader-2.js
+  var Loader2 = createLucideIcon("Loader2", [
+    ["path", {d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/send-horizontal.js
+  var SendHorizontal = createLucideIcon("SendHorizontal", [
+    ["path", {d: "m3 3 3 9-3 9 19-9Z", key: "1aobqy"}],
+    ["path", {d: "M6 12h16", key: "s4cdu5"}]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/wallet.js
+  var Wallet = createLucideIcon("Wallet", [
+    ["path", {d: "M21 12V7H5a2 2 0 0 1 0-4h14v4", key: "195gfw"}],
+    ["path", {d: "M3 5v14a2 2 0 0 0 2 2h16v-5", key: "195n9w"}],
+    ["path", {d: "M18 12a2 2 0 0 0 0 4h4v-4Z", key: "vllfpd"}]
+  ]);
+
+  // src/Approval/WalletDisplay.tsx
+  function WalletDisplay({walletAddress}) {
+    return /* @__PURE__ */ import_react2.default.createElement("div", {
+      className: "flex items-center"
+    }, /* @__PURE__ */ import_react2.default.createElement(Wallet, {
+      className: "mr-2"
+    }), /* @__PURE__ */ import_react2.default.createElement("span", {
+      className: "font-bold"
+    }, "Main Wallet", " ", /* @__PURE__ */ import_react2.default.createElement("span", {
+      className: "text-sm font-medium text-gray-500"
+    }, walletAddress)));
+  }
+
+  // components/ui/card.tsx
+  var React2 = __toModule(require_react());
+
+  // node_modules/clsx/dist/clsx.mjs
+  function r(e) {
+    var t, f, n = "";
+    if (typeof e == "string" || typeof e == "number")
+      n += e;
+    else if (typeof e == "object")
+      if (Array.isArray(e))
+        for (t = 0; t < e.length; t++)
+          e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+      else
+        for (t in e)
+          e[t] && (n && (n += " "), n += t);
+    return n;
+  }
+  function clsx() {
+    for (var e, t, f = 0, n = ""; f < arguments.length; )
+      (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
+    return n;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/tw-join.mjs
+  function twJoin() {
+    var index = 0;
+    var argument;
+    var resolvedValue;
+    var string2 = "";
+    while (index < arguments.length) {
+      if (argument = arguments[index++]) {
+        if (resolvedValue = toValue(argument)) {
+          string2 && (string2 += " ");
+          string2 += resolvedValue;
+        }
+      }
+    }
+    return string2;
+  }
+  function toValue(mix) {
+    if (typeof mix === "string") {
+      return mix;
+    }
+    var resolvedValue;
+    var string2 = "";
+    for (var k = 0; k < mix.length; k++) {
+      if (mix[k]) {
+        if (resolvedValue = toValue(mix[k])) {
+          string2 && (string2 += " ");
+          string2 += resolvedValue;
+        }
+      }
+    }
+    return string2;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/class-utils.mjs
+  var CLASS_PART_SEPARATOR = "-";
+  function createClassUtils(config) {
+    var classMap = createClassMap(config);
+    var conflictingClassGroups = config.conflictingClassGroups, _config$conflictingCl = config.conflictingClassGroupModifiers, conflictingClassGroupModifiers = _config$conflictingCl === void 0 ? {} : _config$conflictingCl;
+    function getClassGroupId(className) {
+      var classParts = className.split(CLASS_PART_SEPARATOR);
+      if (classParts[0] === "" && classParts.length !== 1) {
+        classParts.shift();
+      }
+      return getGroupRecursive(classParts, classMap) || getGroupIdForArbitraryProperty(className);
+    }
+    function getConflictingClassGroupIds(classGroupId, hasPostfixModifier) {
+      var conflicts = conflictingClassGroups[classGroupId] || [];
+      if (hasPostfixModifier && conflictingClassGroupModifiers[classGroupId]) {
+        return [].concat(conflicts, conflictingClassGroupModifiers[classGroupId]);
+      }
+      return conflicts;
+    }
+    return {
+      getClassGroupId,
+      getConflictingClassGroupIds
+    };
+  }
+  function getGroupRecursive(classParts, classPartObject) {
+    var _a;
+    if (classParts.length === 0) {
+      return classPartObject.classGroupId;
+    }
+    var currentClassPart = classParts[0];
+    var nextClassPartObject = classPartObject.nextPart.get(currentClassPart);
+    var classGroupFromNextClassPart = nextClassPartObject ? getGroupRecursive(classParts.slice(1), nextClassPartObject) : void 0;
+    if (classGroupFromNextClassPart) {
+      return classGroupFromNextClassPart;
+    }
+    if (classPartObject.validators.length === 0) {
+      return void 0;
+    }
+    var classRest = classParts.join(CLASS_PART_SEPARATOR);
+    return (_a = classPartObject.validators.find(function(_ref) {
+      var validator = _ref.validator;
+      return validator(classRest);
+    })) == null ? void 0 : _a.classGroupId;
+  }
+  var arbitraryPropertyRegex = /^\[(.+)\]$/;
+  function getGroupIdForArbitraryProperty(className) {
+    if (arbitraryPropertyRegex.test(className)) {
+      var arbitraryPropertyClassName = arbitraryPropertyRegex.exec(className)[1];
+      var property = arbitraryPropertyClassName == null ? void 0 : arbitraryPropertyClassName.substring(0, arbitraryPropertyClassName.indexOf(":"));
+      if (property) {
+        return "arbitrary.." + property;
+      }
+    }
+  }
+  function createClassMap(config) {
+    var theme = config.theme, prefix = config.prefix;
+    var classMap = {
+      nextPart: new Map(),
+      validators: []
+    };
+    var prefixedClassGroupEntries = getPrefixedClassGroupEntries(Object.entries(config.classGroups), prefix);
+    prefixedClassGroupEntries.forEach(function(_ref2) {
+      var classGroupId = _ref2[0], classGroup = _ref2[1];
+      processClassesRecursively(classGroup, classMap, classGroupId, theme);
+    });
+    return classMap;
+  }
+  function processClassesRecursively(classGroup, classPartObject, classGroupId, theme) {
+    classGroup.forEach(function(classDefinition) {
+      if (typeof classDefinition === "string") {
+        var classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
+        classPartObjectToEdit.classGroupId = classGroupId;
+        return;
+      }
+      if (typeof classDefinition === "function") {
+        if (isThemeGetter(classDefinition)) {
+          processClassesRecursively(classDefinition(theme), classPartObject, classGroupId, theme);
+          return;
+        }
+        classPartObject.validators.push({
+          validator: classDefinition,
+          classGroupId
+        });
+        return;
+      }
+      Object.entries(classDefinition).forEach(function(_ref3) {
+        var key = _ref3[0], classGroup2 = _ref3[1];
+        processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme);
+      });
+    });
+  }
+  function getPart(classPartObject, path) {
+    var currentClassPartObject = classPartObject;
+    path.split(CLASS_PART_SEPARATOR).forEach(function(pathPart) {
+      if (!currentClassPartObject.nextPart.has(pathPart)) {
+        currentClassPartObject.nextPart.set(pathPart, {
+          nextPart: new Map(),
+          validators: []
+        });
+      }
+      currentClassPartObject = currentClassPartObject.nextPart.get(pathPart);
+    });
+    return currentClassPartObject;
+  }
+  function isThemeGetter(func) {
+    return func.isThemeGetter;
+  }
+  function getPrefixedClassGroupEntries(classGroupEntries, prefix) {
+    if (!prefix) {
+      return classGroupEntries;
+    }
+    return classGroupEntries.map(function(_ref4) {
+      var classGroupId = _ref4[0], classGroup = _ref4[1];
+      var prefixedClassGroup = classGroup.map(function(classDefinition) {
+        if (typeof classDefinition === "string") {
+          return prefix + classDefinition;
+        }
+        if (typeof classDefinition === "object") {
+          return Object.fromEntries(Object.entries(classDefinition).map(function(_ref5) {
+            var key = _ref5[0], value = _ref5[1];
+            return [prefix + key, value];
+          }));
+        }
+        return classDefinition;
+      });
+      return [classGroupId, prefixedClassGroup];
+    });
+  }
+
+  // node_modules/tailwind-merge/dist/lib/lru-cache.mjs
+  function createLruCache(maxCacheSize) {
+    if (maxCacheSize < 1) {
+      return {
+        get: function get() {
+          return void 0;
+        },
+        set: function set() {
+        }
+      };
+    }
+    var cacheSize = 0;
+    var cache = new Map();
+    var previousCache = new Map();
+    function update(key, value) {
+      cache.set(key, value);
+      cacheSize++;
+      if (cacheSize > maxCacheSize) {
+        cacheSize = 0;
+        previousCache = cache;
+        cache = new Map();
+      }
+    }
+    return {
+      get: function get(key) {
+        var value = cache.get(key);
+        if (value !== void 0) {
+          return value;
+        }
+        if ((value = previousCache.get(key)) !== void 0) {
+          update(key, value);
+          return value;
+        }
+      },
+      set: function set(key, value) {
+        if (cache.has(key)) {
+          cache.set(key, value);
+        } else {
+          update(key, value);
+        }
+      }
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/modifier-utils.mjs
+  var IMPORTANT_MODIFIER = "!";
+  function createSplitModifiers(config) {
+    var separator = config.separator || ":";
+    var isSeparatorSingleCharacter = separator.length === 1;
+    var firstSeparatorCharacter = separator[0];
+    var separatorLength = separator.length;
+    return function splitModifiers(className) {
+      var modifiers = [];
+      var bracketDepth = 0;
+      var modifierStart = 0;
+      var postfixModifierPosition;
+      for (var index = 0; index < className.length; index++) {
+        var currentCharacter = className[index];
+        if (bracketDepth === 0) {
+          if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
+            modifiers.push(className.slice(modifierStart, index));
+            modifierStart = index + separatorLength;
+            continue;
+          }
+          if (currentCharacter === "/") {
+            postfixModifierPosition = index;
+            continue;
+          }
+        }
+        if (currentCharacter === "[") {
+          bracketDepth++;
+        } else if (currentCharacter === "]") {
+          bracketDepth--;
+        }
+      }
+      var baseClassNameWithImportantModifier = modifiers.length === 0 ? className : className.substring(modifierStart);
+      var hasImportantModifier = baseClassNameWithImportantModifier.startsWith(IMPORTANT_MODIFIER);
+      var baseClassName = hasImportantModifier ? baseClassNameWithImportantModifier.substring(1) : baseClassNameWithImportantModifier;
+      var maybePostfixModifierPosition = postfixModifierPosition && postfixModifierPosition > modifierStart ? postfixModifierPosition - modifierStart : void 0;
+      return {
+        modifiers,
+        hasImportantModifier,
+        baseClassName,
+        maybePostfixModifierPosition
+      };
+    };
+  }
+  function sortModifiers(modifiers) {
+    if (modifiers.length <= 1) {
+      return modifiers;
+    }
+    var sortedModifiers = [];
+    var unsortedModifiers = [];
+    modifiers.forEach(function(modifier) {
+      var isArbitraryVariant = modifier[0] === "[";
+      if (isArbitraryVariant) {
+        sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort().concat([modifier]));
+        unsortedModifiers = [];
+      } else {
+        unsortedModifiers.push(modifier);
+      }
+    });
+    sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort());
+    return sortedModifiers;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/config-utils.mjs
+  function createConfigUtils(config) {
+    return __assign({
+      cache: createLruCache(config.cacheSize),
+      splitModifiers: createSplitModifiers(config)
+    }, createClassUtils(config));
+  }
+
+  // node_modules/tailwind-merge/dist/lib/merge-classlist.mjs
+  var SPLIT_CLASSES_REGEX = /\s+/;
+  function mergeClassList(classList, configUtils) {
+    var splitModifiers = configUtils.splitModifiers, getClassGroupId = configUtils.getClassGroupId, getConflictingClassGroupIds = configUtils.getConflictingClassGroupIds;
+    var classGroupsInConflict = new Set();
+    return classList.trim().split(SPLIT_CLASSES_REGEX).map(function(originalClassName) {
+      var _splitModifiers = splitModifiers(originalClassName), modifiers = _splitModifiers.modifiers, hasImportantModifier = _splitModifiers.hasImportantModifier, baseClassName = _splitModifiers.baseClassName, maybePostfixModifierPosition = _splitModifiers.maybePostfixModifierPosition;
+      var classGroupId = getClassGroupId(maybePostfixModifierPosition ? baseClassName.substring(0, maybePostfixModifierPosition) : baseClassName);
+      var hasPostfixModifier = Boolean(maybePostfixModifierPosition);
+      if (!classGroupId) {
+        if (!maybePostfixModifierPosition) {
+          return {
+            isTailwindClass: false,
+            originalClassName
+          };
+        }
+        classGroupId = getClassGroupId(baseClassName);
+        if (!classGroupId) {
+          return {
+            isTailwindClass: false,
+            originalClassName
+          };
+        }
+        hasPostfixModifier = false;
+      }
+      var variantModifier = sortModifiers(modifiers).join(":");
+      var modifierId = hasImportantModifier ? variantModifier + IMPORTANT_MODIFIER : variantModifier;
+      return {
+        isTailwindClass: true,
+        modifierId,
+        classGroupId,
+        originalClassName,
+        hasPostfixModifier
+      };
+    }).reverse().filter(function(parsed) {
+      if (!parsed.isTailwindClass) {
+        return true;
+      }
+      var modifierId = parsed.modifierId, classGroupId = parsed.classGroupId, hasPostfixModifier = parsed.hasPostfixModifier;
+      var classId = modifierId + classGroupId;
+      if (classGroupsInConflict.has(classId)) {
+        return false;
+      }
+      classGroupsInConflict.add(classId);
+      getConflictingClassGroupIds(classGroupId, hasPostfixModifier).forEach(function(group) {
+        return classGroupsInConflict.add(modifierId + group);
+      });
+      return true;
+    }).reverse().map(function(parsed) {
+      return parsed.originalClassName;
+    }).join(" ");
+  }
+
+  // node_modules/tailwind-merge/dist/lib/create-tailwind-merge.mjs
+  function createTailwindMerge() {
+    for (var _len = arguments.length, createConfig = new Array(_len), _key = 0; _key < _len; _key++) {
+      createConfig[_key] = arguments[_key];
+    }
+    var configUtils;
+    var cacheGet;
+    var cacheSet;
+    var functionToCall = initTailwindMerge;
+    function initTailwindMerge(classList) {
+      var firstCreateConfig = createConfig[0], restCreateConfig = createConfig.slice(1);
+      var config = restCreateConfig.reduce(function(previousConfig, createConfigCurrent) {
+        return createConfigCurrent(previousConfig);
+      }, firstCreateConfig());
+      configUtils = createConfigUtils(config);
+      cacheGet = configUtils.cache.get;
+      cacheSet = configUtils.cache.set;
+      functionToCall = tailwindMerge;
+      return tailwindMerge(classList);
+    }
+    function tailwindMerge(classList) {
+      var cachedResult = cacheGet(classList);
+      if (cachedResult) {
+        return cachedResult;
+      }
+      var result = mergeClassList(classList, configUtils);
+      cacheSet(classList, result);
+      return result;
+    }
+    return function callTailwindMerge() {
+      return functionToCall(twJoin.apply(null, arguments));
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/from-theme.mjs
+  function fromTheme(key) {
+    var themeGetter = function themeGetter2(theme) {
+      return theme[key] || [];
+    };
+    themeGetter.isThemeGetter = true;
+    return themeGetter;
+  }
+
+  // node_modules/tailwind-merge/dist/lib/validators.mjs
+  var arbitraryValueRegex = /^\[(?:([a-z-]+):)?(.+)\]$/i;
+  var fractionRegex = /^\d+\/\d+$/;
+  var stringLengths = /* @__PURE__ */ new Set(["px", "full", "screen"]);
+  var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
+  var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
+  var shadowRegex = /^-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
+  function isLength(value) {
+    return isNumber(value) || stringLengths.has(value) || fractionRegex.test(value) || isArbitraryLength(value);
+  }
+  function isArbitraryLength(value) {
+    return getIsArbitraryValue(value, "length", isLengthOnly);
+  }
+  function isArbitrarySize(value) {
+    return getIsArbitraryValue(value, "size", isNever);
+  }
+  function isArbitraryPosition(value) {
+    return getIsArbitraryValue(value, "position", isNever);
+  }
+  function isArbitraryUrl(value) {
+    return getIsArbitraryValue(value, "url", isUrl);
+  }
+  function isArbitraryNumber(value) {
+    return getIsArbitraryValue(value, "number", isNumber);
+  }
+  function isNumber(value) {
+    return !Number.isNaN(Number(value));
+  }
+  function isPercent(value) {
+    return value.endsWith("%") && isNumber(value.slice(0, -1));
+  }
+  function isInteger(value) {
+    return isIntegerOnly(value) || getIsArbitraryValue(value, "number", isIntegerOnly);
+  }
+  function isArbitraryValue(value) {
+    return arbitraryValueRegex.test(value);
+  }
+  function isAny() {
+    return true;
+  }
+  function isTshirtSize(value) {
+    return tshirtUnitRegex.test(value);
+  }
+  function isArbitraryShadow(value) {
+    return getIsArbitraryValue(value, "", isShadow);
+  }
+  function getIsArbitraryValue(value, label, testValue) {
+    var result = arbitraryValueRegex.exec(value);
+    if (result) {
+      if (result[1]) {
+        return result[1] === label;
+      }
+      return testValue(result[2]);
+    }
+    return false;
+  }
+  function isLengthOnly(value) {
+    return lengthUnitRegex.test(value);
+  }
+  function isNever() {
+    return false;
+  }
+  function isUrl(value) {
+    return value.startsWith("url(");
+  }
+  function isIntegerOnly(value) {
+    return Number.isInteger(Number(value));
+  }
+  function isShadow(value) {
+    return shadowRegex.test(value);
+  }
+
+  // node_modules/tailwind-merge/dist/lib/default-config.mjs
+  function getDefaultConfig() {
+    var colors = fromTheme("colors");
+    var spacing = fromTheme("spacing");
+    var blur = fromTheme("blur");
+    var brightness = fromTheme("brightness");
+    var borderColor = fromTheme("borderColor");
+    var borderRadius = fromTheme("borderRadius");
+    var borderSpacing = fromTheme("borderSpacing");
+    var borderWidth = fromTheme("borderWidth");
+    var contrast = fromTheme("contrast");
+    var grayscale = fromTheme("grayscale");
+    var hueRotate = fromTheme("hueRotate");
+    var invert = fromTheme("invert");
+    var gap = fromTheme("gap");
+    var gradientColorStops = fromTheme("gradientColorStops");
+    var gradientColorStopPositions = fromTheme("gradientColorStopPositions");
+    var inset = fromTheme("inset");
+    var margin = fromTheme("margin");
+    var opacity = fromTheme("opacity");
+    var padding = fromTheme("padding");
+    var saturate = fromTheme("saturate");
+    var scale = fromTheme("scale");
+    var sepia = fromTheme("sepia");
+    var skew = fromTheme("skew");
+    var space = fromTheme("space");
+    var translate = fromTheme("translate");
+    var getOverscroll = function getOverscroll2() {
+      return ["auto", "contain", "none"];
+    };
+    var getOverflow = function getOverflow2() {
+      return ["auto", "hidden", "clip", "visible", "scroll"];
+    };
+    var getSpacingWithAutoAndArbitrary = function getSpacingWithAutoAndArbitrary2() {
+      return ["auto", isArbitraryValue, spacing];
+    };
+    var getSpacingWithArbitrary = function getSpacingWithArbitrary2() {
+      return [isArbitraryValue, spacing];
+    };
+    var getLengthWithEmpty = function getLengthWithEmpty2() {
+      return ["", isLength];
+    };
+    var getNumberWithAutoAndArbitrary = function getNumberWithAutoAndArbitrary2() {
+      return ["auto", isNumber, isArbitraryValue];
+    };
+    var getPositions = function getPositions2() {
+      return ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
+    };
+    var getLineStyles = function getLineStyles2() {
+      return ["solid", "dashed", "dotted", "double", "none"];
+    };
+    var getBlendModes = function getBlendModes2() {
+      return ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity", "plus-lighter"];
+    };
+    var getAlign = function getAlign2() {
+      return ["start", "end", "center", "between", "around", "evenly", "stretch"];
+    };
+    var getZeroAndEmpty = function getZeroAndEmpty2() {
+      return ["", "0", isArbitraryValue];
+    };
+    var getBreaks = function getBreaks2() {
+      return ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
+    };
+    var getNumber = function getNumber2() {
+      return [isNumber, isArbitraryNumber];
+    };
+    var getNumberAndArbitrary = function getNumberAndArbitrary2() {
+      return [isNumber, isArbitraryValue];
+    };
+    return {
+      cacheSize: 500,
+      theme: {
+        colors: [isAny],
+        spacing: [isLength],
+        blur: ["none", "", isTshirtSize, isArbitraryValue],
+        brightness: getNumber(),
+        borderColor: [colors],
+        borderRadius: ["none", "", "full", isTshirtSize, isArbitraryValue],
+        borderSpacing: getSpacingWithArbitrary(),
+        borderWidth: getLengthWithEmpty(),
+        contrast: getNumber(),
+        grayscale: getZeroAndEmpty(),
+        hueRotate: getNumberAndArbitrary(),
+        invert: getZeroAndEmpty(),
+        gap: getSpacingWithArbitrary(),
+        gradientColorStops: [colors],
+        gradientColorStopPositions: [isPercent, isArbitraryLength],
+        inset: getSpacingWithAutoAndArbitrary(),
+        margin: getSpacingWithAutoAndArbitrary(),
+        opacity: getNumber(),
+        padding: getSpacingWithArbitrary(),
+        saturate: getNumber(),
+        scale: getNumber(),
+        sepia: getZeroAndEmpty(),
+        skew: getNumberAndArbitrary(),
+        space: getSpacingWithArbitrary(),
+        translate: getSpacingWithArbitrary()
+      },
+      classGroups: {
+        aspect: [{
+          aspect: ["auto", "square", "video", isArbitraryValue]
+        }],
+        container: ["container"],
+        columns: [{
+          columns: [isTshirtSize]
+        }],
+        "break-after": [{
+          "break-after": getBreaks()
+        }],
+        "break-before": [{
+          "break-before": getBreaks()
+        }],
+        "break-inside": [{
+          "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"]
+        }],
+        "box-decoration": [{
+          "box-decoration": ["slice", "clone"]
+        }],
+        box: [{
+          box: ["border", "content"]
+        }],
+        display: ["block", "inline-block", "inline", "flex", "inline-flex", "table", "inline-table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row-group", "table-row", "flow-root", "grid", "inline-grid", "contents", "list-item", "hidden"],
+        float: [{
+          float: ["right", "left", "none"]
+        }],
+        clear: [{
+          clear: ["left", "right", "both", "none"]
+        }],
+        isolation: ["isolate", "isolation-auto"],
+        "object-fit": [{
+          object: ["contain", "cover", "fill", "none", "scale-down"]
+        }],
+        "object-position": [{
+          object: [].concat(getPositions(), [isArbitraryValue])
+        }],
+        overflow: [{
+          overflow: getOverflow()
+        }],
+        "overflow-x": [{
+          "overflow-x": getOverflow()
+        }],
+        "overflow-y": [{
+          "overflow-y": getOverflow()
+        }],
+        overscroll: [{
+          overscroll: getOverscroll()
+        }],
+        "overscroll-x": [{
+          "overscroll-x": getOverscroll()
+        }],
+        "overscroll-y": [{
+          "overscroll-y": getOverscroll()
+        }],
+        position: ["static", "fixed", "absolute", "relative", "sticky"],
+        inset: [{
+          inset: [inset]
+        }],
+        "inset-x": [{
+          "inset-x": [inset]
+        }],
+        "inset-y": [{
+          "inset-y": [inset]
+        }],
+        start: [{
+          start: [inset]
+        }],
+        end: [{
+          end: [inset]
+        }],
+        top: [{
+          top: [inset]
+        }],
+        right: [{
+          right: [inset]
+        }],
+        bottom: [{
+          bottom: [inset]
+        }],
+        left: [{
+          left: [inset]
+        }],
+        visibility: ["visible", "invisible", "collapse"],
+        z: [{
+          z: ["auto", isInteger]
+        }],
+        basis: [{
+          basis: getSpacingWithAutoAndArbitrary()
+        }],
+        "flex-direction": [{
+          flex: ["row", "row-reverse", "col", "col-reverse"]
+        }],
+        "flex-wrap": [{
+          flex: ["wrap", "wrap-reverse", "nowrap"]
+        }],
+        flex: [{
+          flex: ["1", "auto", "initial", "none", isArbitraryValue]
+        }],
+        grow: [{
+          grow: getZeroAndEmpty()
+        }],
+        shrink: [{
+          shrink: getZeroAndEmpty()
+        }],
+        order: [{
+          order: ["first", "last", "none", isInteger]
+        }],
+        "grid-cols": [{
+          "grid-cols": [isAny]
+        }],
+        "col-start-end": [{
+          col: ["auto", {
+            span: ["full", isInteger]
+          }, isArbitraryValue]
+        }],
+        "col-start": [{
+          "col-start": getNumberWithAutoAndArbitrary()
+        }],
+        "col-end": [{
+          "col-end": getNumberWithAutoAndArbitrary()
+        }],
+        "grid-rows": [{
+          "grid-rows": [isAny]
+        }],
+        "row-start-end": [{
+          row: ["auto", {
+            span: [isInteger]
+          }, isArbitraryValue]
+        }],
+        "row-start": [{
+          "row-start": getNumberWithAutoAndArbitrary()
+        }],
+        "row-end": [{
+          "row-end": getNumberWithAutoAndArbitrary()
+        }],
+        "grid-flow": [{
+          "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"]
+        }],
+        "auto-cols": [{
+          "auto-cols": ["auto", "min", "max", "fr", isArbitraryValue]
+        }],
+        "auto-rows": [{
+          "auto-rows": ["auto", "min", "max", "fr", isArbitraryValue]
+        }],
+        gap: [{
+          gap: [gap]
+        }],
+        "gap-x": [{
+          "gap-x": [gap]
+        }],
+        "gap-y": [{
+          "gap-y": [gap]
+        }],
+        "justify-content": [{
+          justify: ["normal"].concat(getAlign())
+        }],
+        "justify-items": [{
+          "justify-items": ["start", "end", "center", "stretch"]
+        }],
+        "justify-self": [{
+          "justify-self": ["auto", "start", "end", "center", "stretch"]
+        }],
+        "align-content": [{
+          content: ["normal"].concat(getAlign(), ["baseline"])
+        }],
+        "align-items": [{
+          items: ["start", "end", "center", "baseline", "stretch"]
+        }],
+        "align-self": [{
+          self: ["auto", "start", "end", "center", "stretch", "baseline"]
+        }],
+        "place-content": [{
+          "place-content": [].concat(getAlign(), ["baseline"])
+        }],
+        "place-items": [{
+          "place-items": ["start", "end", "center", "baseline", "stretch"]
+        }],
+        "place-self": [{
+          "place-self": ["auto", "start", "end", "center", "stretch"]
+        }],
+        p: [{
+          p: [padding]
+        }],
+        px: [{
+          px: [padding]
+        }],
+        py: [{
+          py: [padding]
+        }],
+        ps: [{
+          ps: [padding]
+        }],
+        pe: [{
+          pe: [padding]
+        }],
+        pt: [{
+          pt: [padding]
+        }],
+        pr: [{
+          pr: [padding]
+        }],
+        pb: [{
+          pb: [padding]
+        }],
+        pl: [{
+          pl: [padding]
+        }],
+        m: [{
+          m: [margin]
+        }],
+        mx: [{
+          mx: [margin]
+        }],
+        my: [{
+          my: [margin]
+        }],
+        ms: [{
+          ms: [margin]
+        }],
+        me: [{
+          me: [margin]
+        }],
+        mt: [{
+          mt: [margin]
+        }],
+        mr: [{
+          mr: [margin]
+        }],
+        mb: [{
+          mb: [margin]
+        }],
+        ml: [{
+          ml: [margin]
+        }],
+        "space-x": [{
+          "space-x": [space]
+        }],
+        "space-x-reverse": ["space-x-reverse"],
+        "space-y": [{
+          "space-y": [space]
+        }],
+        "space-y-reverse": ["space-y-reverse"],
+        w: [{
+          w: ["auto", "min", "max", "fit", isArbitraryValue, spacing]
+        }],
+        "min-w": [{
+          "min-w": ["min", "max", "fit", isArbitraryValue, isLength]
+        }],
+        "max-w": [{
+          "max-w": ["0", "none", "full", "min", "max", "fit", "prose", {
+            screen: [isTshirtSize]
+          }, isTshirtSize, isArbitraryValue]
+        }],
+        h: [{
+          h: [isArbitraryValue, spacing, "auto", "min", "max", "fit"]
+        }],
+        "min-h": [{
+          "min-h": ["min", "max", "fit", isArbitraryValue, isLength]
+        }],
+        "max-h": [{
+          "max-h": [isArbitraryValue, spacing, "min", "max", "fit"]
+        }],
+        "font-size": [{
+          text: ["base", isTshirtSize, isArbitraryLength]
+        }],
+        "font-smoothing": ["antialiased", "subpixel-antialiased"],
+        "font-style": ["italic", "not-italic"],
+        "font-weight": [{
+          font: ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black", isArbitraryNumber]
+        }],
+        "font-family": [{
+          font: [isAny]
+        }],
+        "fvn-normal": ["normal-nums"],
+        "fvn-ordinal": ["ordinal"],
+        "fvn-slashed-zero": ["slashed-zero"],
+        "fvn-figure": ["lining-nums", "oldstyle-nums"],
+        "fvn-spacing": ["proportional-nums", "tabular-nums"],
+        "fvn-fraction": ["diagonal-fractions", "stacked-fractons"],
+        tracking: [{
+          tracking: ["tighter", "tight", "normal", "wide", "wider", "widest", isArbitraryValue]
+        }],
+        "line-clamp": [{
+          "line-clamp": ["none", isNumber, isArbitraryNumber]
+        }],
+        leading: [{
+          leading: ["none", "tight", "snug", "normal", "relaxed", "loose", isArbitraryValue, isLength]
+        }],
+        "list-image": [{
+          "list-image": ["none", isArbitraryValue]
+        }],
+        "list-style-type": [{
+          list: ["none", "disc", "decimal", isArbitraryValue]
+        }],
+        "list-style-position": [{
+          list: ["inside", "outside"]
+        }],
+        "placeholder-color": [{
+          placeholder: [colors]
+        }],
+        "placeholder-opacity": [{
+          "placeholder-opacity": [opacity]
+        }],
+        "text-alignment": [{
+          text: ["left", "center", "right", "justify", "start", "end"]
+        }],
+        "text-color": [{
+          text: [colors]
+        }],
+        "text-opacity": [{
+          "text-opacity": [opacity]
+        }],
+        "text-decoration": ["underline", "overline", "line-through", "no-underline"],
+        "text-decoration-style": [{
+          decoration: [].concat(getLineStyles(), ["wavy"])
+        }],
+        "text-decoration-thickness": [{
+          decoration: ["auto", "from-font", isLength]
+        }],
+        "underline-offset": [{
+          "underline-offset": ["auto", isArbitraryValue, isLength]
+        }],
+        "text-decoration-color": [{
+          decoration: [colors]
+        }],
+        "text-transform": ["uppercase", "lowercase", "capitalize", "normal-case"],
+        "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
+        indent: [{
+          indent: getSpacingWithArbitrary()
+        }],
+        "vertical-align": [{
+          align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", isArbitraryValue]
+        }],
+        whitespace: [{
+          whitespace: ["normal", "nowrap", "pre", "pre-line", "pre-wrap", "break-spaces"]
+        }],
+        break: [{
+          break: ["normal", "words", "all", "keep"]
+        }],
+        hyphens: [{
+          hyphens: ["none", "manual", "auto"]
+        }],
+        content: [{
+          content: ["none", isArbitraryValue]
+        }],
+        "bg-attachment": [{
+          bg: ["fixed", "local", "scroll"]
+        }],
+        "bg-clip": [{
+          "bg-clip": ["border", "padding", "content", "text"]
+        }],
+        "bg-opacity": [{
+          "bg-opacity": [opacity]
+        }],
+        "bg-origin": [{
+          "bg-origin": ["border", "padding", "content"]
+        }],
+        "bg-position": [{
+          bg: [].concat(getPositions(), [isArbitraryPosition])
+        }],
+        "bg-repeat": [{
+          bg: ["no-repeat", {
+            repeat: ["", "x", "y", "round", "space"]
+          }]
+        }],
+        "bg-size": [{
+          bg: ["auto", "cover", "contain", isArbitrarySize]
+        }],
+        "bg-image": [{
+          bg: ["none", {
+            "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
+          }, isArbitraryUrl]
+        }],
+        "bg-color": [{
+          bg: [colors]
+        }],
+        "gradient-from-pos": [{
+          from: [gradientColorStopPositions]
+        }],
+        "gradient-via-pos": [{
+          via: [gradientColorStopPositions]
+        }],
+        "gradient-to-pos": [{
+          to: [gradientColorStopPositions]
+        }],
+        "gradient-from": [{
+          from: [gradientColorStops]
+        }],
+        "gradient-via": [{
+          via: [gradientColorStops]
+        }],
+        "gradient-to": [{
+          to: [gradientColorStops]
+        }],
+        rounded: [{
+          rounded: [borderRadius]
+        }],
+        "rounded-s": [{
+          "rounded-s": [borderRadius]
+        }],
+        "rounded-e": [{
+          "rounded-e": [borderRadius]
+        }],
+        "rounded-t": [{
+          "rounded-t": [borderRadius]
+        }],
+        "rounded-r": [{
+          "rounded-r": [borderRadius]
+        }],
+        "rounded-b": [{
+          "rounded-b": [borderRadius]
+        }],
+        "rounded-l": [{
+          "rounded-l": [borderRadius]
+        }],
+        "rounded-ss": [{
+          "rounded-ss": [borderRadius]
+        }],
+        "rounded-se": [{
+          "rounded-se": [borderRadius]
+        }],
+        "rounded-ee": [{
+          "rounded-ee": [borderRadius]
+        }],
+        "rounded-es": [{
+          "rounded-es": [borderRadius]
+        }],
+        "rounded-tl": [{
+          "rounded-tl": [borderRadius]
+        }],
+        "rounded-tr": [{
+          "rounded-tr": [borderRadius]
+        }],
+        "rounded-br": [{
+          "rounded-br": [borderRadius]
+        }],
+        "rounded-bl": [{
+          "rounded-bl": [borderRadius]
+        }],
+        "border-w": [{
+          border: [borderWidth]
+        }],
+        "border-w-x": [{
+          "border-x": [borderWidth]
+        }],
+        "border-w-y": [{
+          "border-y": [borderWidth]
+        }],
+        "border-w-s": [{
+          "border-s": [borderWidth]
+        }],
+        "border-w-e": [{
+          "border-e": [borderWidth]
+        }],
+        "border-w-t": [{
+          "border-t": [borderWidth]
+        }],
+        "border-w-r": [{
+          "border-r": [borderWidth]
+        }],
+        "border-w-b": [{
+          "border-b": [borderWidth]
+        }],
+        "border-w-l": [{
+          "border-l": [borderWidth]
+        }],
+        "border-opacity": [{
+          "border-opacity": [opacity]
+        }],
+        "border-style": [{
+          border: [].concat(getLineStyles(), ["hidden"])
+        }],
+        "divide-x": [{
+          "divide-x": [borderWidth]
+        }],
+        "divide-x-reverse": ["divide-x-reverse"],
+        "divide-y": [{
+          "divide-y": [borderWidth]
+        }],
+        "divide-y-reverse": ["divide-y-reverse"],
+        "divide-opacity": [{
+          "divide-opacity": [opacity]
+        }],
+        "divide-style": [{
+          divide: getLineStyles()
+        }],
+        "border-color": [{
+          border: [borderColor]
+        }],
+        "border-color-x": [{
+          "border-x": [borderColor]
+        }],
+        "border-color-y": [{
+          "border-y": [borderColor]
+        }],
+        "border-color-t": [{
+          "border-t": [borderColor]
+        }],
+        "border-color-r": [{
+          "border-r": [borderColor]
+        }],
+        "border-color-b": [{
+          "border-b": [borderColor]
+        }],
+        "border-color-l": [{
+          "border-l": [borderColor]
+        }],
+        "divide-color": [{
+          divide: [borderColor]
+        }],
+        "outline-style": [{
+          outline: [""].concat(getLineStyles())
+        }],
+        "outline-offset": [{
+          "outline-offset": [isArbitraryValue, isLength]
+        }],
+        "outline-w": [{
+          outline: [isLength]
+        }],
+        "outline-color": [{
+          outline: [colors]
+        }],
+        "ring-w": [{
+          ring: getLengthWithEmpty()
+        }],
+        "ring-w-inset": ["ring-inset"],
+        "ring-color": [{
+          ring: [colors]
+        }],
+        "ring-opacity": [{
+          "ring-opacity": [opacity]
+        }],
+        "ring-offset-w": [{
+          "ring-offset": [isLength]
+        }],
+        "ring-offset-color": [{
+          "ring-offset": [colors]
+        }],
+        shadow: [{
+          shadow: ["", "inner", "none", isTshirtSize, isArbitraryShadow]
+        }],
+        "shadow-color": [{
+          shadow: [isAny]
+        }],
+        opacity: [{
+          opacity: [opacity]
+        }],
+        "mix-blend": [{
+          "mix-blend": getBlendModes()
+        }],
+        "bg-blend": [{
+          "bg-blend": getBlendModes()
+        }],
+        filter: [{
+          filter: ["", "none"]
+        }],
+        blur: [{
+          blur: [blur]
+        }],
+        brightness: [{
+          brightness: [brightness]
+        }],
+        contrast: [{
+          contrast: [contrast]
+        }],
+        "drop-shadow": [{
+          "drop-shadow": ["", "none", isTshirtSize, isArbitraryValue]
+        }],
+        grayscale: [{
+          grayscale: [grayscale]
+        }],
+        "hue-rotate": [{
+          "hue-rotate": [hueRotate]
+        }],
+        invert: [{
+          invert: [invert]
+        }],
+        saturate: [{
+          saturate: [saturate]
+        }],
+        sepia: [{
+          sepia: [sepia]
+        }],
+        "backdrop-filter": [{
+          "backdrop-filter": ["", "none"]
+        }],
+        "backdrop-blur": [{
+          "backdrop-blur": [blur]
+        }],
+        "backdrop-brightness": [{
+          "backdrop-brightness": [brightness]
+        }],
+        "backdrop-contrast": [{
+          "backdrop-contrast": [contrast]
+        }],
+        "backdrop-grayscale": [{
+          "backdrop-grayscale": [grayscale]
+        }],
+        "backdrop-hue-rotate": [{
+          "backdrop-hue-rotate": [hueRotate]
+        }],
+        "backdrop-invert": [{
+          "backdrop-invert": [invert]
+        }],
+        "backdrop-opacity": [{
+          "backdrop-opacity": [opacity]
+        }],
+        "backdrop-saturate": [{
+          "backdrop-saturate": [saturate]
+        }],
+        "backdrop-sepia": [{
+          "backdrop-sepia": [sepia]
+        }],
+        "border-collapse": [{
+          border: ["collapse", "separate"]
+        }],
+        "border-spacing": [{
+          "border-spacing": [borderSpacing]
+        }],
+        "border-spacing-x": [{
+          "border-spacing-x": [borderSpacing]
+        }],
+        "border-spacing-y": [{
+          "border-spacing-y": [borderSpacing]
+        }],
+        "table-layout": [{
+          table: ["auto", "fixed"]
+        }],
+        caption: [{
+          caption: ["top", "bottom"]
+        }],
+        transition: [{
+          transition: ["none", "all", "", "colors", "opacity", "shadow", "transform", isArbitraryValue]
+        }],
+        duration: [{
+          duration: getNumberAndArbitrary()
+        }],
+        ease: [{
+          ease: ["linear", "in", "out", "in-out", isArbitraryValue]
+        }],
+        delay: [{
+          delay: getNumberAndArbitrary()
+        }],
+        animate: [{
+          animate: ["none", "spin", "ping", "pulse", "bounce", isArbitraryValue]
+        }],
+        transform: [{
+          transform: ["", "gpu", "none"]
+        }],
+        scale: [{
+          scale: [scale]
+        }],
+        "scale-x": [{
+          "scale-x": [scale]
+        }],
+        "scale-y": [{
+          "scale-y": [scale]
+        }],
+        rotate: [{
+          rotate: [isInteger, isArbitraryValue]
+        }],
+        "translate-x": [{
+          "translate-x": [translate]
+        }],
+        "translate-y": [{
+          "translate-y": [translate]
+        }],
+        "skew-x": [{
+          "skew-x": [skew]
+        }],
+        "skew-y": [{
+          "skew-y": [skew]
+        }],
+        "transform-origin": [{
+          origin: ["center", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left", isArbitraryValue]
+        }],
+        accent: [{
+          accent: ["auto", colors]
+        }],
+        appearance: ["appearance-none"],
+        cursor: [{
+          cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", isArbitraryValue]
+        }],
+        "caret-color": [{
+          caret: [colors]
+        }],
+        "pointer-events": [{
+          "pointer-events": ["none", "auto"]
+        }],
+        resize: [{
+          resize: ["none", "y", "x", ""]
+        }],
+        "scroll-behavior": [{
+          scroll: ["auto", "smooth"]
+        }],
+        "scroll-m": [{
+          "scroll-m": getSpacingWithArbitrary()
+        }],
+        "scroll-mx": [{
+          "scroll-mx": getSpacingWithArbitrary()
+        }],
+        "scroll-my": [{
+          "scroll-my": getSpacingWithArbitrary()
+        }],
+        "scroll-ms": [{
+          "scroll-ms": getSpacingWithArbitrary()
+        }],
+        "scroll-me": [{
+          "scroll-me": getSpacingWithArbitrary()
+        }],
+        "scroll-mt": [{
+          "scroll-mt": getSpacingWithArbitrary()
+        }],
+        "scroll-mr": [{
+          "scroll-mr": getSpacingWithArbitrary()
+        }],
+        "scroll-mb": [{
+          "scroll-mb": getSpacingWithArbitrary()
+        }],
+        "scroll-ml": [{
+          "scroll-ml": getSpacingWithArbitrary()
+        }],
+        "scroll-p": [{
+          "scroll-p": getSpacingWithArbitrary()
+        }],
+        "scroll-px": [{
+          "scroll-px": getSpacingWithArbitrary()
+        }],
+        "scroll-py": [{
+          "scroll-py": getSpacingWithArbitrary()
+        }],
+        "scroll-ps": [{
+          "scroll-ps": getSpacingWithArbitrary()
+        }],
+        "scroll-pe": [{
+          "scroll-pe": getSpacingWithArbitrary()
+        }],
+        "scroll-pt": [{
+          "scroll-pt": getSpacingWithArbitrary()
+        }],
+        "scroll-pr": [{
+          "scroll-pr": getSpacingWithArbitrary()
+        }],
+        "scroll-pb": [{
+          "scroll-pb": getSpacingWithArbitrary()
+        }],
+        "scroll-pl": [{
+          "scroll-pl": getSpacingWithArbitrary()
+        }],
+        "snap-align": [{
+          snap: ["start", "end", "center", "align-none"]
+        }],
+        "snap-stop": [{
+          snap: ["normal", "always"]
+        }],
+        "snap-type": [{
+          snap: ["none", "x", "y", "both"]
+        }],
+        "snap-strictness": [{
+          snap: ["mandatory", "proximity"]
+        }],
+        touch: [{
+          touch: ["auto", "none", "pinch-zoom", "manipulation", {
+            pan: ["x", "left", "right", "y", "up", "down"]
+          }]
+        }],
+        select: [{
+          select: ["none", "text", "all", "auto"]
+        }],
+        "will-change": [{
+          "will-change": ["auto", "scroll", "contents", "transform", isArbitraryValue]
+        }],
+        fill: [{
+          fill: [colors, "none"]
+        }],
+        "stroke-w": [{
+          stroke: [isLength, isArbitraryNumber]
+        }],
+        stroke: [{
+          stroke: [colors, "none"]
+        }],
+        sr: ["sr-only", "not-sr-only"]
+      },
+      conflictingClassGroups: {
+        overflow: ["overflow-x", "overflow-y"],
+        overscroll: ["overscroll-x", "overscroll-y"],
+        inset: ["inset-x", "inset-y", "start", "end", "top", "right", "bottom", "left"],
+        "inset-x": ["right", "left"],
+        "inset-y": ["top", "bottom"],
+        flex: ["basis", "grow", "shrink"],
+        gap: ["gap-x", "gap-y"],
+        p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
+        px: ["pr", "pl"],
+        py: ["pt", "pb"],
+        m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
+        mx: ["mr", "ml"],
+        my: ["mt", "mb"],
+        "font-size": ["leading"],
+        "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
+        "fvn-ordinal": ["fvn-normal"],
+        "fvn-slashed-zero": ["fvn-normal"],
+        "fvn-figure": ["fvn-normal"],
+        "fvn-spacing": ["fvn-normal"],
+        "fvn-fraction": ["fvn-normal"],
+        rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
+        "rounded-s": ["rounded-ss", "rounded-es"],
+        "rounded-e": ["rounded-se", "rounded-ee"],
+        "rounded-t": ["rounded-tl", "rounded-tr"],
+        "rounded-r": ["rounded-tr", "rounded-br"],
+        "rounded-b": ["rounded-br", "rounded-bl"],
+        "rounded-l": ["rounded-tl", "rounded-bl"],
+        "border-spacing": ["border-spacing-x", "border-spacing-y"],
+        "border-w": ["border-w-s", "border-w-e", "border-w-t", "border-w-r", "border-w-b", "border-w-l"],
+        "border-w-x": ["border-w-r", "border-w-l"],
+        "border-w-y": ["border-w-t", "border-w-b"],
+        "border-color": ["border-color-t", "border-color-r", "border-color-b", "border-color-l"],
+        "border-color-x": ["border-color-r", "border-color-l"],
+        "border-color-y": ["border-color-t", "border-color-b"],
+        "scroll-m": ["scroll-mx", "scroll-my", "scroll-ms", "scroll-me", "scroll-mt", "scroll-mr", "scroll-mb", "scroll-ml"],
+        "scroll-mx": ["scroll-mr", "scroll-ml"],
+        "scroll-my": ["scroll-mt", "scroll-mb"],
+        "scroll-p": ["scroll-px", "scroll-py", "scroll-ps", "scroll-pe", "scroll-pt", "scroll-pr", "scroll-pb", "scroll-pl"],
+        "scroll-px": ["scroll-pr", "scroll-pl"],
+        "scroll-py": ["scroll-pt", "scroll-pb"]
+      },
+      conflictingClassGroupModifiers: {
+        "font-size": ["leading"]
+      }
+    };
+  }
+
+  // node_modules/tailwind-merge/dist/lib/tw-merge.mjs
+  var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
+
+  // lib/utils.ts
+  function cn(...inputs) {
+    return twMerge(clsx(inputs));
+  }
+
+  // components/ui/card.tsx
+  var Card = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
+    }, props));
+  });
+  Card.displayName = "Card";
+  var CardHeader = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("flex flex-col space-y-1.5", className)
+    }, props));
+  });
+  CardHeader.displayName = "CardHeader";
+  var CardTitle = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("h3", __assign({
+      ref,
+      className: cn("text-2xl font-semibold leading-none tracking-tight", className)
+    }, props));
+  });
+  CardTitle.displayName = "CardTitle";
+  var CardDescription = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("p", __assign({
+      ref,
+      className: cn("text-sm text-muted-foreground", className)
+    }, props));
+  });
+  CardDescription.displayName = "CardDescription";
+  var CardContent = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("p-6 pt-0", className)
+    }, props));
+  });
+  CardContent.displayName = "CardContent";
+  var CardFooter = React2.forwardRef((_a, ref) => {
+    var {className} = _a, props = __rest(_a, ["className"]);
+    return /* @__PURE__ */ React2.createElement("div", __assign({
+      ref,
+      className: cn("flex items-center p-6 pt-0", className)
+    }, props));
+  });
+  CardFooter.displayName = "CardFooter";
+
+  // src/Approval/ApprovalHeader.tsx
+  var import_react4 = __toModule(require_react());
+
+  // src/Approval/OriginHeader.tsx
+  var import_react3 = __toModule(require_react());
+  var OriginHeader = ({favIconUrl, title, url}) => {
+    const faviconSrc = favIconUrl || `${url}/favicon.ico`;
+    return /* @__PURE__ */ import_react3.default.createElement("div", {
+      className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
+    }, /* @__PURE__ */ import_react3.default.createElement("img", {
+      src: "https://jup.ag/favicon.ico",
+      alt: "FavIcon",
+      className: "w-20 h-20 bg-gray-800 rounded-full p-2"
+    }), /* @__PURE__ */ import_react3.default.createElement("span", {
+      className: "font-semibold"
+    }, title), /* @__PURE__ */ import_react3.default.createElement("span", {
+      className: "text-sm text-center text-gray-500"
+    }, url));
+  };
+  var OriginHeader_default = OriginHeader;
+
+  // src/Approval/ApprovalHeader.tsx
+  function getBaseUrl(url) {
+    if (!url) {
+      return void 0;
+    }
+    const match = url.match(/(https?:\/\/[^\/]+\/)/);
+    return match ? match[1] : void 0;
+  }
+  function ApprovalHeader({
+    title,
+    description,
+    origin,
+    displayTitle
+  }) {
+    var _a, _b, _c;
+    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, displayTitle ? /* @__PURE__ */ import_react4.default.createElement(CardHeader, null, /* @__PURE__ */ import_react4.default.createElement(CardTitle, {
+      className: "text-xxl"
+    }, title), /* @__PURE__ */ import_react4.default.createElement(CardDescription, null, description)) : null, /* @__PURE__ */ import_react4.default.createElement(OriginHeader_default, {
+      title: (_a = origin == null ? void 0 : origin.tab) == null ? void 0 : _a.title,
+      url: getBaseUrl((_b = origin == null ? void 0 : origin.tab) == null ? void 0 : _b.url),
+      favIconUrl: (_c = origin == null ? void 0 : origin.tab) == null ? void 0 : _c.favIconUrl
+    }));
+  }
+
+  // components/ui/button.tsx
+  var React5 = __toModule(require_react());
+
+  // node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends.apply(this, arguments);
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var import_react6 = __toModule(require_react());
+
+  // node_modules/@radix-ui/react-compose-refs/dist/index.mjs
+  var import_react5 = __toModule(require_react());
+  function $6ed0406888f73fc4$var$setRef(ref, value) {
+    if (typeof ref === "function")
+      ref(value);
+    else if (ref !== null && ref !== void 0)
+      ref.current = value;
+  }
+  function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
+    return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
+  }
+  function $6ed0406888f73fc4$export$c7b2cbe3552a0d05(...refs) {
+    return (0, import_react5.useCallback)($6ed0406888f73fc4$export$43e446d32b3d21af(...refs), refs);
+  }
+
+  // node_modules/@radix-ui/react-slot/dist/index.mjs
+  var $5e63c961fc1ce211$export$8c6ed5c666ac1360 = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    const childrenArray = import_react6.Children.toArray(children);
+    const slottable = childrenArray.find($5e63c961fc1ce211$var$isSlottable);
+    if (slottable) {
+      const newElement = slottable.props.children;
+      const newChildren = childrenArray.map((child) => {
+        if (child === slottable) {
+          if (import_react6.Children.count(newElement) > 1)
+            return import_react6.Children.only(null);
+          return /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? newElement.props.children : null;
+        } else
+          return child;
+      });
+      return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+        ref: forwardedRef
+      }), /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? /* @__PURE__ */ (0, import_react6.cloneElement)(newElement, void 0, newChildren) : null);
+    }
+    return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
+      ref: forwardedRef
+    }), children);
+  });
+  $5e63c961fc1ce211$export$8c6ed5c666ac1360.displayName = "Slot";
+  var $5e63c961fc1ce211$var$SlotClone = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
+    const {children} = props, slotProps = __rest(props, ["children"]);
+    if (/* @__PURE__ */ (0, import_react6.isValidElement)(children))
+      return /* @__PURE__ */ (0, import_react6.cloneElement)(children, __assign(__assign({}, $5e63c961fc1ce211$var$mergeProps(slotProps, children.props)), {
+        ref: forwardedRef ? $6ed0406888f73fc4$export$43e446d32b3d21af(forwardedRef, children.ref) : children.ref
+      }));
+    return import_react6.Children.count(children) > 1 ? import_react6.Children.only(null) : null;
+  });
+  $5e63c961fc1ce211$var$SlotClone.displayName = "SlotClone";
+  var $5e63c961fc1ce211$export$d9f1ccf0bdb05d45 = ({children}) => {
+    return /* @__PURE__ */ (0, import_react6.createElement)(import_react6.Fragment, null, children);
+  };
+  function $5e63c961fc1ce211$var$isSlottable(child) {
+    return /* @__PURE__ */ (0, import_react6.isValidElement)(child) && child.type === $5e63c961fc1ce211$export$d9f1ccf0bdb05d45;
+  }
+  function $5e63c961fc1ce211$var$mergeProps(slotProps, childProps) {
+    const overrideProps = __assign({}, childProps);
+    for (const propName in childProps) {
+      const slotPropValue = slotProps[propName];
+      const childPropValue = childProps[propName];
+      const isHandler = /^on[A-Z]/.test(propName);
+      if (isHandler) {
+        if (slotPropValue && childPropValue)
+          overrideProps[propName] = (...args) => {
+            childPropValue(...args);
+            slotPropValue(...args);
+          };
+        else if (slotPropValue)
+          overrideProps[propName] = slotPropValue;
+      } else if (propName === "style")
+        overrideProps[propName] = __assign(__assign({}, slotPropValue), childPropValue);
+      else if (propName === "className")
+        overrideProps[propName] = [
+          slotPropValue,
+          childPropValue
+        ].filter(Boolean).join(" ");
+    }
+    return __assign(__assign({}, slotProps), overrideProps);
+  }
+
+  // node_modules/class-variance-authority/dist/index.mjs
+  var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
+  var cx = clsx;
+  var cva = (base, config) => {
+    return (props) => {
+      var ref;
+      if ((config === null || config === void 0 ? void 0 : config.variants) == null)
+        return cx(base, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+      const {variants, defaultVariants} = config;
+      const getVariantClassNames = Object.keys(variants).map((variant) => {
+        const variantProp = props === null || props === void 0 ? void 0 : props[variant];
+        const defaultVariantProp = defaultVariants === null || defaultVariants === void 0 ? void 0 : defaultVariants[variant];
+        if (variantProp === null)
+          return null;
+        const variantKey = falsyToString(variantProp) || falsyToString(defaultVariantProp);
+        return variants[variant][variantKey];
+      });
+      const propsWithoutUndefined = props && Object.entries(props).reduce((acc, param) => {
+        let [key, value] = param;
+        if (value === void 0) {
+          return acc;
+        }
+        acc[key] = value;
+        return acc;
+      }, {});
+      const getCompoundVariantClassNames = config === null || config === void 0 ? void 0 : (ref = config.compoundVariants) === null || ref === void 0 ? void 0 : ref.reduce((acc, param1) => {
+        let {class: cvClass, className: cvClassName} = param1, compoundVariantOptions = __rest(param1, ["class", "className"]);
+        return Object.entries(compoundVariantOptions).every((param) => {
+          let [key, value] = param;
+          return Array.isArray(value) ? value.includes(__assign(__assign({}, defaultVariants), propsWithoutUndefined)[key]) : __assign(__assign({}, defaultVariants), propsWithoutUndefined)[key] === value;
+        }) ? [
+          ...acc,
+          cvClass,
+          cvClassName
+        ] : acc;
+      }, []);
+      return cx(base, getVariantClassNames, getCompoundVariantClassNames, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
+    };
+  };
+
+  // components/ui/button.tsx
+  var buttonVariants = cva("inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  });
+  var Button = React5.forwardRef((_a, ref) => {
+    var {className, variant, size, asChild = false} = _a, props = __rest(_a, ["className", "variant", "size", "asChild"]);
+    const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : "button";
+    return /* @__PURE__ */ React5.createElement(Comp, __assign({
+      className: cn(buttonVariants({variant, size, className})),
+      ref
+    }, props));
+  });
+  Button.displayName = "Button";
+
+  // src/Approval/ApprovalFooter.tsx
+  var import_react7 = __toModule(require_react());
+  function ApprovalFooter({
+    onCancel,
+    onConfirm,
+    confirmText
+  }) {
+    const [isConfirmLoading, setIsConfirmLoading] = (0, import_react7.useState)(false);
+    const [isCancelLoading, setIsCancelLoading] = (0, import_react7.useState)(false);
+    const handleCancel = () => {
+      setIsCancelLoading(true);
+      onCancel();
+    };
+    const handleConfirm = () => {
+      setIsConfirmLoading(true);
+      onConfirm();
+    };
+    return /* @__PURE__ */ import_react7.default.createElement("div", {
+      className: "mt-auto flex justify-evenly pb-32 space-x-2"
+    }, /* @__PURE__ */ import_react7.default.createElement(Button, {
+      className: "rounded-full w-2/5 mr-2",
+      onClick: handleCancel
+    }, isCancelLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
+      className: "h-4 w-4 animate-spin"
+    }) : "Cancel"), /* @__PURE__ */ import_react7.default.createElement(Button, {
+      className: "rounded-full w-2/5 px-4",
+      onClick: handleConfirm
+    }, isConfirmLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
+      className: "h-4 w-4 animate-spin"
+    }) : confirmText));
+  }
 
   // node_modules/@solana/web3.js/lib/index.browser.esm.js
   var import_buffer = __toModule(require_buffer());
@@ -26642,1805 +28427,54 @@
     return url;
   }
 
-  // src/util/getDummyKeypair.ts
+  // src/Approval/useDummyKeypair.tsx
   var import_bs582 = __toModule(require_bs583());
-  var DUMMY_PUBLIC_KEY = "BtTKesmqAEaBoKBnwFKPFtJEGiJz2Q92bnAbqb6oWN2V";
-  var DUMMY_SECRET_KEY = "4z2CZjiaKXVFaPG5G3MRDCEfAKEXBVusN9ZPB8vY4fdTLi7o6gKJrUY2Gj88UgBcALVTyiXxsTxaj6SCL8dgboBP";
-  function getDummyKeypair() {
-    const publicKey2 = import_bs582.default.decode(DUMMY_PUBLIC_KEY);
-    const secretKey = import_bs582.default.decode(DUMMY_SECRET_KEY);
+  var import_react8 = __toModule(require_react());
+  function parseKeypairFromNativeResponse(response) {
+    const encodedPrivateKey = response.value.keypair.privateKey;
+    const encodedPublicKey = response.value.keypair.publicKey;
+    const privateKeyBytes = import_bs582.default.decode(encodedPrivateKey);
+    const publicKeyBytes = import_bs582.default.decode(encodedPublicKey);
+    const secretKey = new Uint8Array(64);
+    secretKey.set(privateKeyBytes, 0);
+    secretKey.set(publicKeyBytes, 32);
+    console.log("Secret Key Bytes: ", secretKey);
     return Keypair.fromSecretKey(secretKey);
   }
-
-  // src/Approval/WalletDisplay.tsx
-  var import_react2 = __toModule(require_react());
-
-  // node_modules/lucide-react/dist/esm/createLucideIcon.js
-  var import_react = __toModule(require_react());
-
-  // node_modules/lucide-react/dist/esm/defaultAttributes.js
-  var defaultAttributes = {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  };
-
-  // node_modules/lucide-react/dist/esm/createLucideIcon.js
-  var toKebabCase = (string2) => string2.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-  var createLucideIcon = (iconName, iconNode) => {
-    const Component = (0, import_react.forwardRef)((_a, ref) => {
-      var {color = "currentColor", size = 24, strokeWidth = 2, absoluteStrokeWidth, children} = _a, rest = __rest(_a, ["color", "size", "strokeWidth", "absoluteStrokeWidth", "children"]);
-      return (0, import_react.createElement)("svg", __assign(__assign(__assign({
-        ref
-      }, defaultAttributes), {
-        width: size,
-        height: size,
-        stroke: color,
-        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
-        className: `lucide lucide-${toKebabCase(iconName)}`
-      }), rest), [
-        ...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)),
-        ...(Array.isArray(children) ? children : [children]) || []
-      ]);
-    });
-    Component.displayName = `${iconName}`;
-    return Component;
-  };
-
-  // node_modules/lucide-react/dist/esm/icons/download.js
-  var Download = createLucideIcon("Download", [
-    ["path", {d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h"}],
-    ["polyline", {points: "7 10 12 15 17 10", key: "2ggqvy"}],
-    ["line", {x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je"}]
-  ]);
-
-  // node_modules/lucide-react/dist/esm/icons/loader-2.js
-  var Loader2 = createLucideIcon("Loader2", [
-    ["path", {d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald"}]
-  ]);
-
-  // node_modules/lucide-react/dist/esm/icons/send-horizontal.js
-  var SendHorizontal = createLucideIcon("SendHorizontal", [
-    ["path", {d: "m3 3 3 9-3 9 19-9Z", key: "1aobqy"}],
-    ["path", {d: "M6 12h16", key: "s4cdu5"}]
-  ]);
-
-  // node_modules/lucide-react/dist/esm/icons/wallet.js
-  var Wallet = createLucideIcon("Wallet", [
-    ["path", {d: "M21 12V7H5a2 2 0 0 1 0-4h14v4", key: "195gfw"}],
-    ["path", {d: "M3 5v14a2 2 0 0 0 2 2h16v-5", key: "195n9w"}],
-    ["path", {d: "M18 12a2 2 0 0 0 0 4h4v-4Z", key: "vllfpd"}]
-  ]);
-
-  // src/Approval/WalletDisplay.tsx
-  function WalletDisplay({publicKey: publicKey2}) {
-    return /* @__PURE__ */ import_react2.default.createElement("div", {
-      className: "flex items-center"
-    }, /* @__PURE__ */ import_react2.default.createElement(Wallet, {
-      className: "mr-2"
-    }), /* @__PURE__ */ import_react2.default.createElement("span", {
-      className: "font-bold"
-    }, "Main Wallet", " ", /* @__PURE__ */ import_react2.default.createElement("span", {
-      className: "text-sm font-medium text-gray-500"
-    }, "XNH4...1Wsj")));
-  }
-
-  // components/ui/card.tsx
-  var React2 = __toModule(require_react());
-
-  // node_modules/clsx/dist/clsx.mjs
-  function r(e) {
-    var t, f, n = "";
-    if (typeof e == "string" || typeof e == "number")
-      n += e;
-    else if (typeof e == "object")
-      if (Array.isArray(e))
-        for (t = 0; t < e.length; t++)
-          e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
-      else
-        for (t in e)
-          e[t] && (n && (n += " "), n += t);
-    return n;
-  }
-  function clsx() {
-    for (var e, t, f = 0, n = ""; f < arguments.length; )
-      (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
-    return n;
-  }
-
-  // node_modules/tailwind-merge/dist/lib/tw-join.mjs
-  function twJoin() {
-    var index = 0;
-    var argument;
-    var resolvedValue;
-    var string2 = "";
-    while (index < arguments.length) {
-      if (argument = arguments[index++]) {
-        if (resolvedValue = toValue(argument)) {
-          string2 && (string2 += " ");
-          string2 += resolvedValue;
-        }
-      }
-    }
-    return string2;
-  }
-  function toValue(mix) {
-    if (typeof mix === "string") {
-      return mix;
-    }
-    var resolvedValue;
-    var string2 = "";
-    for (var k = 0; k < mix.length; k++) {
-      if (mix[k]) {
-        if (resolvedValue = toValue(mix[k])) {
-          string2 && (string2 += " ");
-          string2 += resolvedValue;
-        }
-      }
-    }
-    return string2;
-  }
-
-  // node_modules/tailwind-merge/dist/lib/class-utils.mjs
-  var CLASS_PART_SEPARATOR = "-";
-  function createClassUtils(config) {
-    var classMap = createClassMap(config);
-    var conflictingClassGroups = config.conflictingClassGroups, _config$conflictingCl = config.conflictingClassGroupModifiers, conflictingClassGroupModifiers = _config$conflictingCl === void 0 ? {} : _config$conflictingCl;
-    function getClassGroupId(className) {
-      var classParts = className.split(CLASS_PART_SEPARATOR);
-      if (classParts[0] === "" && classParts.length !== 1) {
-        classParts.shift();
-      }
-      return getGroupRecursive(classParts, classMap) || getGroupIdForArbitraryProperty(className);
-    }
-    function getConflictingClassGroupIds(classGroupId, hasPostfixModifier) {
-      var conflicts = conflictingClassGroups[classGroupId] || [];
-      if (hasPostfixModifier && conflictingClassGroupModifiers[classGroupId]) {
-        return [].concat(conflicts, conflictingClassGroupModifiers[classGroupId]);
-      }
-      return conflicts;
-    }
-    return {
-      getClassGroupId,
-      getConflictingClassGroupIds
-    };
-  }
-  function getGroupRecursive(classParts, classPartObject) {
-    var _a;
-    if (classParts.length === 0) {
-      return classPartObject.classGroupId;
-    }
-    var currentClassPart = classParts[0];
-    var nextClassPartObject = classPartObject.nextPart.get(currentClassPart);
-    var classGroupFromNextClassPart = nextClassPartObject ? getGroupRecursive(classParts.slice(1), nextClassPartObject) : void 0;
-    if (classGroupFromNextClassPart) {
-      return classGroupFromNextClassPart;
-    }
-    if (classPartObject.validators.length === 0) {
-      return void 0;
-    }
-    var classRest = classParts.join(CLASS_PART_SEPARATOR);
-    return (_a = classPartObject.validators.find(function(_ref) {
-      var validator = _ref.validator;
-      return validator(classRest);
-    })) == null ? void 0 : _a.classGroupId;
-  }
-  var arbitraryPropertyRegex = /^\[(.+)\]$/;
-  function getGroupIdForArbitraryProperty(className) {
-    if (arbitraryPropertyRegex.test(className)) {
-      var arbitraryPropertyClassName = arbitraryPropertyRegex.exec(className)[1];
-      var property = arbitraryPropertyClassName == null ? void 0 : arbitraryPropertyClassName.substring(0, arbitraryPropertyClassName.indexOf(":"));
-      if (property) {
-        return "arbitrary.." + property;
-      }
-    }
-  }
-  function createClassMap(config) {
-    var theme = config.theme, prefix = config.prefix;
-    var classMap = {
-      nextPart: new Map(),
-      validators: []
-    };
-    var prefixedClassGroupEntries = getPrefixedClassGroupEntries(Object.entries(config.classGroups), prefix);
-    prefixedClassGroupEntries.forEach(function(_ref2) {
-      var classGroupId = _ref2[0], classGroup = _ref2[1];
-      processClassesRecursively(classGroup, classMap, classGroupId, theme);
-    });
-    return classMap;
-  }
-  function processClassesRecursively(classGroup, classPartObject, classGroupId, theme) {
-    classGroup.forEach(function(classDefinition) {
-      if (typeof classDefinition === "string") {
-        var classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
-        classPartObjectToEdit.classGroupId = classGroupId;
-        return;
-      }
-      if (typeof classDefinition === "function") {
-        if (isThemeGetter(classDefinition)) {
-          processClassesRecursively(classDefinition(theme), classPartObject, classGroupId, theme);
-          return;
-        }
-        classPartObject.validators.push({
-          validator: classDefinition,
-          classGroupId
-        });
-        return;
-      }
-      Object.entries(classDefinition).forEach(function(_ref3) {
-        var key = _ref3[0], classGroup2 = _ref3[1];
-        processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme);
-      });
-    });
-  }
-  function getPart(classPartObject, path) {
-    var currentClassPartObject = classPartObject;
-    path.split(CLASS_PART_SEPARATOR).forEach(function(pathPart) {
-      if (!currentClassPartObject.nextPart.has(pathPart)) {
-        currentClassPartObject.nextPart.set(pathPart, {
-          nextPart: new Map(),
-          validators: []
-        });
-      }
-      currentClassPartObject = currentClassPartObject.nextPart.get(pathPart);
-    });
-    return currentClassPartObject;
-  }
-  function isThemeGetter(func) {
-    return func.isThemeGetter;
-  }
-  function getPrefixedClassGroupEntries(classGroupEntries, prefix) {
-    if (!prefix) {
-      return classGroupEntries;
-    }
-    return classGroupEntries.map(function(_ref4) {
-      var classGroupId = _ref4[0], classGroup = _ref4[1];
-      var prefixedClassGroup = classGroup.map(function(classDefinition) {
-        if (typeof classDefinition === "string") {
-          return prefix + classDefinition;
-        }
-        if (typeof classDefinition === "object") {
-          return Object.fromEntries(Object.entries(classDefinition).map(function(_ref5) {
-            var key = _ref5[0], value = _ref5[1];
-            return [prefix + key, value];
-          }));
-        }
-        return classDefinition;
-      });
-      return [classGroupId, prefixedClassGroup];
-    });
-  }
-
-  // node_modules/tailwind-merge/dist/lib/lru-cache.mjs
-  function createLruCache(maxCacheSize) {
-    if (maxCacheSize < 1) {
-      return {
-        get: function get() {
-          return void 0;
-        },
-        set: function set() {
-        }
-      };
-    }
-    var cacheSize = 0;
-    var cache = new Map();
-    var previousCache = new Map();
-    function update(key, value) {
-      cache.set(key, value);
-      cacheSize++;
-      if (cacheSize > maxCacheSize) {
-        cacheSize = 0;
-        previousCache = cache;
-        cache = new Map();
-      }
-    }
-    return {
-      get: function get(key) {
-        var value = cache.get(key);
-        if (value !== void 0) {
-          return value;
-        }
-        if ((value = previousCache.get(key)) !== void 0) {
-          update(key, value);
-          return value;
-        }
-      },
-      set: function set(key, value) {
-        if (cache.has(key)) {
-          cache.set(key, value);
+  var useDummyKeypair = () => {
+    const [keypair, setKeypair] = (0, import_react8.useState)(null);
+    (0, import_react8.useEffect)(() => {
+      const fetchKeypair = async () => {
+        var _a;
+        const response = await browser.runtime.sendNativeMessage("id", "fetch-keypair");
+        console.log("In response: ", response);
+        if (((_a = response == null ? void 0 : response.value) == null ? void 0 : _a.keypair) && response.status === "success") {
+          const parsedKeypair = parseKeypairFromNativeResponse(response);
+          console.log("parsedPubKey: ", parsedKeypair.publicKey.toBase58());
+          setKeypair(parsedKeypair);
+        } else if (response && response.status === "error") {
+          console.error("Error fetching keypair:", response.message);
+          setKeypair(null);
         } else {
-          update(key, value);
+          console.error("Unexpected response format from native message");
         }
-      }
-    };
-  }
-
-  // node_modules/tailwind-merge/dist/lib/modifier-utils.mjs
-  var IMPORTANT_MODIFIER = "!";
-  function createSplitModifiers(config) {
-    var separator = config.separator || ":";
-    var isSeparatorSingleCharacter = separator.length === 1;
-    var firstSeparatorCharacter = separator[0];
-    var separatorLength = separator.length;
-    return function splitModifiers(className) {
-      var modifiers = [];
-      var bracketDepth = 0;
-      var modifierStart = 0;
-      var postfixModifierPosition;
-      for (var index = 0; index < className.length; index++) {
-        var currentCharacter = className[index];
-        if (bracketDepth === 0) {
-          if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
-            modifiers.push(className.slice(modifierStart, index));
-            modifierStart = index + separatorLength;
-            continue;
-          }
-          if (currentCharacter === "/") {
-            postfixModifierPosition = index;
-            continue;
-          }
-        }
-        if (currentCharacter === "[") {
-          bracketDepth++;
-        } else if (currentCharacter === "]") {
-          bracketDepth--;
-        }
-      }
-      var baseClassNameWithImportantModifier = modifiers.length === 0 ? className : className.substring(modifierStart);
-      var hasImportantModifier = baseClassNameWithImportantModifier.startsWith(IMPORTANT_MODIFIER);
-      var baseClassName = hasImportantModifier ? baseClassNameWithImportantModifier.substring(1) : baseClassNameWithImportantModifier;
-      var maybePostfixModifierPosition = postfixModifierPosition && postfixModifierPosition > modifierStart ? postfixModifierPosition - modifierStart : void 0;
-      return {
-        modifiers,
-        hasImportantModifier,
-        baseClassName,
-        maybePostfixModifierPosition
       };
-    };
-  }
-  function sortModifiers(modifiers) {
-    if (modifiers.length <= 1) {
-      return modifiers;
-    }
-    var sortedModifiers = [];
-    var unsortedModifiers = [];
-    modifiers.forEach(function(modifier) {
-      var isArbitraryVariant = modifier[0] === "[";
-      if (isArbitraryVariant) {
-        sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort().concat([modifier]));
-        unsortedModifiers = [];
-      } else {
-        unsortedModifiers.push(modifier);
-      }
-    });
-    sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort());
-    return sortedModifiers;
-  }
-
-  // node_modules/tailwind-merge/dist/lib/config-utils.mjs
-  function createConfigUtils(config) {
-    return __assign({
-      cache: createLruCache(config.cacheSize),
-      splitModifiers: createSplitModifiers(config)
-    }, createClassUtils(config));
-  }
-
-  // node_modules/tailwind-merge/dist/lib/merge-classlist.mjs
-  var SPLIT_CLASSES_REGEX = /\s+/;
-  function mergeClassList(classList, configUtils) {
-    var splitModifiers = configUtils.splitModifiers, getClassGroupId = configUtils.getClassGroupId, getConflictingClassGroupIds = configUtils.getConflictingClassGroupIds;
-    var classGroupsInConflict = new Set();
-    return classList.trim().split(SPLIT_CLASSES_REGEX).map(function(originalClassName) {
-      var _splitModifiers = splitModifiers(originalClassName), modifiers = _splitModifiers.modifiers, hasImportantModifier = _splitModifiers.hasImportantModifier, baseClassName = _splitModifiers.baseClassName, maybePostfixModifierPosition = _splitModifiers.maybePostfixModifierPosition;
-      var classGroupId = getClassGroupId(maybePostfixModifierPosition ? baseClassName.substring(0, maybePostfixModifierPosition) : baseClassName);
-      var hasPostfixModifier = Boolean(maybePostfixModifierPosition);
-      if (!classGroupId) {
-        if (!maybePostfixModifierPosition) {
-          return {
-            isTailwindClass: false,
-            originalClassName
-          };
-        }
-        classGroupId = getClassGroupId(baseClassName);
-        if (!classGroupId) {
-          return {
-            isTailwindClass: false,
-            originalClassName
-          };
-        }
-        hasPostfixModifier = false;
-      }
-      var variantModifier = sortModifiers(modifiers).join(":");
-      var modifierId = hasImportantModifier ? variantModifier + IMPORTANT_MODIFIER : variantModifier;
-      return {
-        isTailwindClass: true,
-        modifierId,
-        classGroupId,
-        originalClassName,
-        hasPostfixModifier
-      };
-    }).reverse().filter(function(parsed) {
-      if (!parsed.isTailwindClass) {
-        return true;
-      }
-      var modifierId = parsed.modifierId, classGroupId = parsed.classGroupId, hasPostfixModifier = parsed.hasPostfixModifier;
-      var classId = modifierId + classGroupId;
-      if (classGroupsInConflict.has(classId)) {
-        return false;
-      }
-      classGroupsInConflict.add(classId);
-      getConflictingClassGroupIds(classGroupId, hasPostfixModifier).forEach(function(group) {
-        return classGroupsInConflict.add(modifierId + group);
-      });
-      return true;
-    }).reverse().map(function(parsed) {
-      return parsed.originalClassName;
-    }).join(" ");
-  }
-
-  // node_modules/tailwind-merge/dist/lib/create-tailwind-merge.mjs
-  function createTailwindMerge() {
-    for (var _len = arguments.length, createConfig = new Array(_len), _key = 0; _key < _len; _key++) {
-      createConfig[_key] = arguments[_key];
-    }
-    var configUtils;
-    var cacheGet;
-    var cacheSet;
-    var functionToCall = initTailwindMerge;
-    function initTailwindMerge(classList) {
-      var firstCreateConfig = createConfig[0], restCreateConfig = createConfig.slice(1);
-      var config = restCreateConfig.reduce(function(previousConfig, createConfigCurrent) {
-        return createConfigCurrent(previousConfig);
-      }, firstCreateConfig());
-      configUtils = createConfigUtils(config);
-      cacheGet = configUtils.cache.get;
-      cacheSet = configUtils.cache.set;
-      functionToCall = tailwindMerge;
-      return tailwindMerge(classList);
-    }
-    function tailwindMerge(classList) {
-      var cachedResult = cacheGet(classList);
-      if (cachedResult) {
-        return cachedResult;
-      }
-      var result = mergeClassList(classList, configUtils);
-      cacheSet(classList, result);
-      return result;
-    }
-    return function callTailwindMerge() {
-      return functionToCall(twJoin.apply(null, arguments));
-    };
-  }
-
-  // node_modules/tailwind-merge/dist/lib/from-theme.mjs
-  function fromTheme(key) {
-    var themeGetter = function themeGetter2(theme) {
-      return theme[key] || [];
-    };
-    themeGetter.isThemeGetter = true;
-    return themeGetter;
-  }
-
-  // node_modules/tailwind-merge/dist/lib/validators.mjs
-  var arbitraryValueRegex = /^\[(?:([a-z-]+):)?(.+)\]$/i;
-  var fractionRegex = /^\d+\/\d+$/;
-  var stringLengths = /* @__PURE__ */ new Set(["px", "full", "screen"]);
-  var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
-  var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
-  var shadowRegex = /^-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
-  function isLength(value) {
-    return isNumber(value) || stringLengths.has(value) || fractionRegex.test(value) || isArbitraryLength(value);
-  }
-  function isArbitraryLength(value) {
-    return getIsArbitraryValue(value, "length", isLengthOnly);
-  }
-  function isArbitrarySize(value) {
-    return getIsArbitraryValue(value, "size", isNever);
-  }
-  function isArbitraryPosition(value) {
-    return getIsArbitraryValue(value, "position", isNever);
-  }
-  function isArbitraryUrl(value) {
-    return getIsArbitraryValue(value, "url", isUrl);
-  }
-  function isArbitraryNumber(value) {
-    return getIsArbitraryValue(value, "number", isNumber);
-  }
-  function isNumber(value) {
-    return !Number.isNaN(Number(value));
-  }
-  function isPercent(value) {
-    return value.endsWith("%") && isNumber(value.slice(0, -1));
-  }
-  function isInteger(value) {
-    return isIntegerOnly(value) || getIsArbitraryValue(value, "number", isIntegerOnly);
-  }
-  function isArbitraryValue(value) {
-    return arbitraryValueRegex.test(value);
-  }
-  function isAny() {
-    return true;
-  }
-  function isTshirtSize(value) {
-    return tshirtUnitRegex.test(value);
-  }
-  function isArbitraryShadow(value) {
-    return getIsArbitraryValue(value, "", isShadow);
-  }
-  function getIsArbitraryValue(value, label, testValue) {
-    var result = arbitraryValueRegex.exec(value);
-    if (result) {
-      if (result[1]) {
-        return result[1] === label;
-      }
-      return testValue(result[2]);
-    }
-    return false;
-  }
-  function isLengthOnly(value) {
-    return lengthUnitRegex.test(value);
-  }
-  function isNever() {
-    return false;
-  }
-  function isUrl(value) {
-    return value.startsWith("url(");
-  }
-  function isIntegerOnly(value) {
-    return Number.isInteger(Number(value));
-  }
-  function isShadow(value) {
-    return shadowRegex.test(value);
-  }
-
-  // node_modules/tailwind-merge/dist/lib/default-config.mjs
-  function getDefaultConfig() {
-    var colors = fromTheme("colors");
-    var spacing = fromTheme("spacing");
-    var blur = fromTheme("blur");
-    var brightness = fromTheme("brightness");
-    var borderColor = fromTheme("borderColor");
-    var borderRadius = fromTheme("borderRadius");
-    var borderSpacing = fromTheme("borderSpacing");
-    var borderWidth = fromTheme("borderWidth");
-    var contrast = fromTheme("contrast");
-    var grayscale = fromTheme("grayscale");
-    var hueRotate = fromTheme("hueRotate");
-    var invert = fromTheme("invert");
-    var gap = fromTheme("gap");
-    var gradientColorStops = fromTheme("gradientColorStops");
-    var gradientColorStopPositions = fromTheme("gradientColorStopPositions");
-    var inset = fromTheme("inset");
-    var margin = fromTheme("margin");
-    var opacity = fromTheme("opacity");
-    var padding = fromTheme("padding");
-    var saturate = fromTheme("saturate");
-    var scale = fromTheme("scale");
-    var sepia = fromTheme("sepia");
-    var skew = fromTheme("skew");
-    var space = fromTheme("space");
-    var translate = fromTheme("translate");
-    var getOverscroll = function getOverscroll2() {
-      return ["auto", "contain", "none"];
-    };
-    var getOverflow = function getOverflow2() {
-      return ["auto", "hidden", "clip", "visible", "scroll"];
-    };
-    var getSpacingWithAutoAndArbitrary = function getSpacingWithAutoAndArbitrary2() {
-      return ["auto", isArbitraryValue, spacing];
-    };
-    var getSpacingWithArbitrary = function getSpacingWithArbitrary2() {
-      return [isArbitraryValue, spacing];
-    };
-    var getLengthWithEmpty = function getLengthWithEmpty2() {
-      return ["", isLength];
-    };
-    var getNumberWithAutoAndArbitrary = function getNumberWithAutoAndArbitrary2() {
-      return ["auto", isNumber, isArbitraryValue];
-    };
-    var getPositions = function getPositions2() {
-      return ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
-    };
-    var getLineStyles = function getLineStyles2() {
-      return ["solid", "dashed", "dotted", "double", "none"];
-    };
-    var getBlendModes = function getBlendModes2() {
-      return ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity", "plus-lighter"];
-    };
-    var getAlign = function getAlign2() {
-      return ["start", "end", "center", "between", "around", "evenly", "stretch"];
-    };
-    var getZeroAndEmpty = function getZeroAndEmpty2() {
-      return ["", "0", isArbitraryValue];
-    };
-    var getBreaks = function getBreaks2() {
-      return ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
-    };
-    var getNumber = function getNumber2() {
-      return [isNumber, isArbitraryNumber];
-    };
-    var getNumberAndArbitrary = function getNumberAndArbitrary2() {
-      return [isNumber, isArbitraryValue];
-    };
-    return {
-      cacheSize: 500,
-      theme: {
-        colors: [isAny],
-        spacing: [isLength],
-        blur: ["none", "", isTshirtSize, isArbitraryValue],
-        brightness: getNumber(),
-        borderColor: [colors],
-        borderRadius: ["none", "", "full", isTshirtSize, isArbitraryValue],
-        borderSpacing: getSpacingWithArbitrary(),
-        borderWidth: getLengthWithEmpty(),
-        contrast: getNumber(),
-        grayscale: getZeroAndEmpty(),
-        hueRotate: getNumberAndArbitrary(),
-        invert: getZeroAndEmpty(),
-        gap: getSpacingWithArbitrary(),
-        gradientColorStops: [colors],
-        gradientColorStopPositions: [isPercent, isArbitraryLength],
-        inset: getSpacingWithAutoAndArbitrary(),
-        margin: getSpacingWithAutoAndArbitrary(),
-        opacity: getNumber(),
-        padding: getSpacingWithArbitrary(),
-        saturate: getNumber(),
-        scale: getNumber(),
-        sepia: getZeroAndEmpty(),
-        skew: getNumberAndArbitrary(),
-        space: getSpacingWithArbitrary(),
-        translate: getSpacingWithArbitrary()
-      },
-      classGroups: {
-        aspect: [{
-          aspect: ["auto", "square", "video", isArbitraryValue]
-        }],
-        container: ["container"],
-        columns: [{
-          columns: [isTshirtSize]
-        }],
-        "break-after": [{
-          "break-after": getBreaks()
-        }],
-        "break-before": [{
-          "break-before": getBreaks()
-        }],
-        "break-inside": [{
-          "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"]
-        }],
-        "box-decoration": [{
-          "box-decoration": ["slice", "clone"]
-        }],
-        box: [{
-          box: ["border", "content"]
-        }],
-        display: ["block", "inline-block", "inline", "flex", "inline-flex", "table", "inline-table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row-group", "table-row", "flow-root", "grid", "inline-grid", "contents", "list-item", "hidden"],
-        float: [{
-          float: ["right", "left", "none"]
-        }],
-        clear: [{
-          clear: ["left", "right", "both", "none"]
-        }],
-        isolation: ["isolate", "isolation-auto"],
-        "object-fit": [{
-          object: ["contain", "cover", "fill", "none", "scale-down"]
-        }],
-        "object-position": [{
-          object: [].concat(getPositions(), [isArbitraryValue])
-        }],
-        overflow: [{
-          overflow: getOverflow()
-        }],
-        "overflow-x": [{
-          "overflow-x": getOverflow()
-        }],
-        "overflow-y": [{
-          "overflow-y": getOverflow()
-        }],
-        overscroll: [{
-          overscroll: getOverscroll()
-        }],
-        "overscroll-x": [{
-          "overscroll-x": getOverscroll()
-        }],
-        "overscroll-y": [{
-          "overscroll-y": getOverscroll()
-        }],
-        position: ["static", "fixed", "absolute", "relative", "sticky"],
-        inset: [{
-          inset: [inset]
-        }],
-        "inset-x": [{
-          "inset-x": [inset]
-        }],
-        "inset-y": [{
-          "inset-y": [inset]
-        }],
-        start: [{
-          start: [inset]
-        }],
-        end: [{
-          end: [inset]
-        }],
-        top: [{
-          top: [inset]
-        }],
-        right: [{
-          right: [inset]
-        }],
-        bottom: [{
-          bottom: [inset]
-        }],
-        left: [{
-          left: [inset]
-        }],
-        visibility: ["visible", "invisible", "collapse"],
-        z: [{
-          z: ["auto", isInteger]
-        }],
-        basis: [{
-          basis: getSpacingWithAutoAndArbitrary()
-        }],
-        "flex-direction": [{
-          flex: ["row", "row-reverse", "col", "col-reverse"]
-        }],
-        "flex-wrap": [{
-          flex: ["wrap", "wrap-reverse", "nowrap"]
-        }],
-        flex: [{
-          flex: ["1", "auto", "initial", "none", isArbitraryValue]
-        }],
-        grow: [{
-          grow: getZeroAndEmpty()
-        }],
-        shrink: [{
-          shrink: getZeroAndEmpty()
-        }],
-        order: [{
-          order: ["first", "last", "none", isInteger]
-        }],
-        "grid-cols": [{
-          "grid-cols": [isAny]
-        }],
-        "col-start-end": [{
-          col: ["auto", {
-            span: ["full", isInteger]
-          }, isArbitraryValue]
-        }],
-        "col-start": [{
-          "col-start": getNumberWithAutoAndArbitrary()
-        }],
-        "col-end": [{
-          "col-end": getNumberWithAutoAndArbitrary()
-        }],
-        "grid-rows": [{
-          "grid-rows": [isAny]
-        }],
-        "row-start-end": [{
-          row: ["auto", {
-            span: [isInteger]
-          }, isArbitraryValue]
-        }],
-        "row-start": [{
-          "row-start": getNumberWithAutoAndArbitrary()
-        }],
-        "row-end": [{
-          "row-end": getNumberWithAutoAndArbitrary()
-        }],
-        "grid-flow": [{
-          "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"]
-        }],
-        "auto-cols": [{
-          "auto-cols": ["auto", "min", "max", "fr", isArbitraryValue]
-        }],
-        "auto-rows": [{
-          "auto-rows": ["auto", "min", "max", "fr", isArbitraryValue]
-        }],
-        gap: [{
-          gap: [gap]
-        }],
-        "gap-x": [{
-          "gap-x": [gap]
-        }],
-        "gap-y": [{
-          "gap-y": [gap]
-        }],
-        "justify-content": [{
-          justify: ["normal"].concat(getAlign())
-        }],
-        "justify-items": [{
-          "justify-items": ["start", "end", "center", "stretch"]
-        }],
-        "justify-self": [{
-          "justify-self": ["auto", "start", "end", "center", "stretch"]
-        }],
-        "align-content": [{
-          content: ["normal"].concat(getAlign(), ["baseline"])
-        }],
-        "align-items": [{
-          items: ["start", "end", "center", "baseline", "stretch"]
-        }],
-        "align-self": [{
-          self: ["auto", "start", "end", "center", "stretch", "baseline"]
-        }],
-        "place-content": [{
-          "place-content": [].concat(getAlign(), ["baseline"])
-        }],
-        "place-items": [{
-          "place-items": ["start", "end", "center", "baseline", "stretch"]
-        }],
-        "place-self": [{
-          "place-self": ["auto", "start", "end", "center", "stretch"]
-        }],
-        p: [{
-          p: [padding]
-        }],
-        px: [{
-          px: [padding]
-        }],
-        py: [{
-          py: [padding]
-        }],
-        ps: [{
-          ps: [padding]
-        }],
-        pe: [{
-          pe: [padding]
-        }],
-        pt: [{
-          pt: [padding]
-        }],
-        pr: [{
-          pr: [padding]
-        }],
-        pb: [{
-          pb: [padding]
-        }],
-        pl: [{
-          pl: [padding]
-        }],
-        m: [{
-          m: [margin]
-        }],
-        mx: [{
-          mx: [margin]
-        }],
-        my: [{
-          my: [margin]
-        }],
-        ms: [{
-          ms: [margin]
-        }],
-        me: [{
-          me: [margin]
-        }],
-        mt: [{
-          mt: [margin]
-        }],
-        mr: [{
-          mr: [margin]
-        }],
-        mb: [{
-          mb: [margin]
-        }],
-        ml: [{
-          ml: [margin]
-        }],
-        "space-x": [{
-          "space-x": [space]
-        }],
-        "space-x-reverse": ["space-x-reverse"],
-        "space-y": [{
-          "space-y": [space]
-        }],
-        "space-y-reverse": ["space-y-reverse"],
-        w: [{
-          w: ["auto", "min", "max", "fit", isArbitraryValue, spacing]
-        }],
-        "min-w": [{
-          "min-w": ["min", "max", "fit", isArbitraryValue, isLength]
-        }],
-        "max-w": [{
-          "max-w": ["0", "none", "full", "min", "max", "fit", "prose", {
-            screen: [isTshirtSize]
-          }, isTshirtSize, isArbitraryValue]
-        }],
-        h: [{
-          h: [isArbitraryValue, spacing, "auto", "min", "max", "fit"]
-        }],
-        "min-h": [{
-          "min-h": ["min", "max", "fit", isArbitraryValue, isLength]
-        }],
-        "max-h": [{
-          "max-h": [isArbitraryValue, spacing, "min", "max", "fit"]
-        }],
-        "font-size": [{
-          text: ["base", isTshirtSize, isArbitraryLength]
-        }],
-        "font-smoothing": ["antialiased", "subpixel-antialiased"],
-        "font-style": ["italic", "not-italic"],
-        "font-weight": [{
-          font: ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black", isArbitraryNumber]
-        }],
-        "font-family": [{
-          font: [isAny]
-        }],
-        "fvn-normal": ["normal-nums"],
-        "fvn-ordinal": ["ordinal"],
-        "fvn-slashed-zero": ["slashed-zero"],
-        "fvn-figure": ["lining-nums", "oldstyle-nums"],
-        "fvn-spacing": ["proportional-nums", "tabular-nums"],
-        "fvn-fraction": ["diagonal-fractions", "stacked-fractons"],
-        tracking: [{
-          tracking: ["tighter", "tight", "normal", "wide", "wider", "widest", isArbitraryValue]
-        }],
-        "line-clamp": [{
-          "line-clamp": ["none", isNumber, isArbitraryNumber]
-        }],
-        leading: [{
-          leading: ["none", "tight", "snug", "normal", "relaxed", "loose", isArbitraryValue, isLength]
-        }],
-        "list-image": [{
-          "list-image": ["none", isArbitraryValue]
-        }],
-        "list-style-type": [{
-          list: ["none", "disc", "decimal", isArbitraryValue]
-        }],
-        "list-style-position": [{
-          list: ["inside", "outside"]
-        }],
-        "placeholder-color": [{
-          placeholder: [colors]
-        }],
-        "placeholder-opacity": [{
-          "placeholder-opacity": [opacity]
-        }],
-        "text-alignment": [{
-          text: ["left", "center", "right", "justify", "start", "end"]
-        }],
-        "text-color": [{
-          text: [colors]
-        }],
-        "text-opacity": [{
-          "text-opacity": [opacity]
-        }],
-        "text-decoration": ["underline", "overline", "line-through", "no-underline"],
-        "text-decoration-style": [{
-          decoration: [].concat(getLineStyles(), ["wavy"])
-        }],
-        "text-decoration-thickness": [{
-          decoration: ["auto", "from-font", isLength]
-        }],
-        "underline-offset": [{
-          "underline-offset": ["auto", isArbitraryValue, isLength]
-        }],
-        "text-decoration-color": [{
-          decoration: [colors]
-        }],
-        "text-transform": ["uppercase", "lowercase", "capitalize", "normal-case"],
-        "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
-        indent: [{
-          indent: getSpacingWithArbitrary()
-        }],
-        "vertical-align": [{
-          align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", isArbitraryValue]
-        }],
-        whitespace: [{
-          whitespace: ["normal", "nowrap", "pre", "pre-line", "pre-wrap", "break-spaces"]
-        }],
-        break: [{
-          break: ["normal", "words", "all", "keep"]
-        }],
-        hyphens: [{
-          hyphens: ["none", "manual", "auto"]
-        }],
-        content: [{
-          content: ["none", isArbitraryValue]
-        }],
-        "bg-attachment": [{
-          bg: ["fixed", "local", "scroll"]
-        }],
-        "bg-clip": [{
-          "bg-clip": ["border", "padding", "content", "text"]
-        }],
-        "bg-opacity": [{
-          "bg-opacity": [opacity]
-        }],
-        "bg-origin": [{
-          "bg-origin": ["border", "padding", "content"]
-        }],
-        "bg-position": [{
-          bg: [].concat(getPositions(), [isArbitraryPosition])
-        }],
-        "bg-repeat": [{
-          bg: ["no-repeat", {
-            repeat: ["", "x", "y", "round", "space"]
-          }]
-        }],
-        "bg-size": [{
-          bg: ["auto", "cover", "contain", isArbitrarySize]
-        }],
-        "bg-image": [{
-          bg: ["none", {
-            "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
-          }, isArbitraryUrl]
-        }],
-        "bg-color": [{
-          bg: [colors]
-        }],
-        "gradient-from-pos": [{
-          from: [gradientColorStopPositions]
-        }],
-        "gradient-via-pos": [{
-          via: [gradientColorStopPositions]
-        }],
-        "gradient-to-pos": [{
-          to: [gradientColorStopPositions]
-        }],
-        "gradient-from": [{
-          from: [gradientColorStops]
-        }],
-        "gradient-via": [{
-          via: [gradientColorStops]
-        }],
-        "gradient-to": [{
-          to: [gradientColorStops]
-        }],
-        rounded: [{
-          rounded: [borderRadius]
-        }],
-        "rounded-s": [{
-          "rounded-s": [borderRadius]
-        }],
-        "rounded-e": [{
-          "rounded-e": [borderRadius]
-        }],
-        "rounded-t": [{
-          "rounded-t": [borderRadius]
-        }],
-        "rounded-r": [{
-          "rounded-r": [borderRadius]
-        }],
-        "rounded-b": [{
-          "rounded-b": [borderRadius]
-        }],
-        "rounded-l": [{
-          "rounded-l": [borderRadius]
-        }],
-        "rounded-ss": [{
-          "rounded-ss": [borderRadius]
-        }],
-        "rounded-se": [{
-          "rounded-se": [borderRadius]
-        }],
-        "rounded-ee": [{
-          "rounded-ee": [borderRadius]
-        }],
-        "rounded-es": [{
-          "rounded-es": [borderRadius]
-        }],
-        "rounded-tl": [{
-          "rounded-tl": [borderRadius]
-        }],
-        "rounded-tr": [{
-          "rounded-tr": [borderRadius]
-        }],
-        "rounded-br": [{
-          "rounded-br": [borderRadius]
-        }],
-        "rounded-bl": [{
-          "rounded-bl": [borderRadius]
-        }],
-        "border-w": [{
-          border: [borderWidth]
-        }],
-        "border-w-x": [{
-          "border-x": [borderWidth]
-        }],
-        "border-w-y": [{
-          "border-y": [borderWidth]
-        }],
-        "border-w-s": [{
-          "border-s": [borderWidth]
-        }],
-        "border-w-e": [{
-          "border-e": [borderWidth]
-        }],
-        "border-w-t": [{
-          "border-t": [borderWidth]
-        }],
-        "border-w-r": [{
-          "border-r": [borderWidth]
-        }],
-        "border-w-b": [{
-          "border-b": [borderWidth]
-        }],
-        "border-w-l": [{
-          "border-l": [borderWidth]
-        }],
-        "border-opacity": [{
-          "border-opacity": [opacity]
-        }],
-        "border-style": [{
-          border: [].concat(getLineStyles(), ["hidden"])
-        }],
-        "divide-x": [{
-          "divide-x": [borderWidth]
-        }],
-        "divide-x-reverse": ["divide-x-reverse"],
-        "divide-y": [{
-          "divide-y": [borderWidth]
-        }],
-        "divide-y-reverse": ["divide-y-reverse"],
-        "divide-opacity": [{
-          "divide-opacity": [opacity]
-        }],
-        "divide-style": [{
-          divide: getLineStyles()
-        }],
-        "border-color": [{
-          border: [borderColor]
-        }],
-        "border-color-x": [{
-          "border-x": [borderColor]
-        }],
-        "border-color-y": [{
-          "border-y": [borderColor]
-        }],
-        "border-color-t": [{
-          "border-t": [borderColor]
-        }],
-        "border-color-r": [{
-          "border-r": [borderColor]
-        }],
-        "border-color-b": [{
-          "border-b": [borderColor]
-        }],
-        "border-color-l": [{
-          "border-l": [borderColor]
-        }],
-        "divide-color": [{
-          divide: [borderColor]
-        }],
-        "outline-style": [{
-          outline: [""].concat(getLineStyles())
-        }],
-        "outline-offset": [{
-          "outline-offset": [isArbitraryValue, isLength]
-        }],
-        "outline-w": [{
-          outline: [isLength]
-        }],
-        "outline-color": [{
-          outline: [colors]
-        }],
-        "ring-w": [{
-          ring: getLengthWithEmpty()
-        }],
-        "ring-w-inset": ["ring-inset"],
-        "ring-color": [{
-          ring: [colors]
-        }],
-        "ring-opacity": [{
-          "ring-opacity": [opacity]
-        }],
-        "ring-offset-w": [{
-          "ring-offset": [isLength]
-        }],
-        "ring-offset-color": [{
-          "ring-offset": [colors]
-        }],
-        shadow: [{
-          shadow: ["", "inner", "none", isTshirtSize, isArbitraryShadow]
-        }],
-        "shadow-color": [{
-          shadow: [isAny]
-        }],
-        opacity: [{
-          opacity: [opacity]
-        }],
-        "mix-blend": [{
-          "mix-blend": getBlendModes()
-        }],
-        "bg-blend": [{
-          "bg-blend": getBlendModes()
-        }],
-        filter: [{
-          filter: ["", "none"]
-        }],
-        blur: [{
-          blur: [blur]
-        }],
-        brightness: [{
-          brightness: [brightness]
-        }],
-        contrast: [{
-          contrast: [contrast]
-        }],
-        "drop-shadow": [{
-          "drop-shadow": ["", "none", isTshirtSize, isArbitraryValue]
-        }],
-        grayscale: [{
-          grayscale: [grayscale]
-        }],
-        "hue-rotate": [{
-          "hue-rotate": [hueRotate]
-        }],
-        invert: [{
-          invert: [invert]
-        }],
-        saturate: [{
-          saturate: [saturate]
-        }],
-        sepia: [{
-          sepia: [sepia]
-        }],
-        "backdrop-filter": [{
-          "backdrop-filter": ["", "none"]
-        }],
-        "backdrop-blur": [{
-          "backdrop-blur": [blur]
-        }],
-        "backdrop-brightness": [{
-          "backdrop-brightness": [brightness]
-        }],
-        "backdrop-contrast": [{
-          "backdrop-contrast": [contrast]
-        }],
-        "backdrop-grayscale": [{
-          "backdrop-grayscale": [grayscale]
-        }],
-        "backdrop-hue-rotate": [{
-          "backdrop-hue-rotate": [hueRotate]
-        }],
-        "backdrop-invert": [{
-          "backdrop-invert": [invert]
-        }],
-        "backdrop-opacity": [{
-          "backdrop-opacity": [opacity]
-        }],
-        "backdrop-saturate": [{
-          "backdrop-saturate": [saturate]
-        }],
-        "backdrop-sepia": [{
-          "backdrop-sepia": [sepia]
-        }],
-        "border-collapse": [{
-          border: ["collapse", "separate"]
-        }],
-        "border-spacing": [{
-          "border-spacing": [borderSpacing]
-        }],
-        "border-spacing-x": [{
-          "border-spacing-x": [borderSpacing]
-        }],
-        "border-spacing-y": [{
-          "border-spacing-y": [borderSpacing]
-        }],
-        "table-layout": [{
-          table: ["auto", "fixed"]
-        }],
-        caption: [{
-          caption: ["top", "bottom"]
-        }],
-        transition: [{
-          transition: ["none", "all", "", "colors", "opacity", "shadow", "transform", isArbitraryValue]
-        }],
-        duration: [{
-          duration: getNumberAndArbitrary()
-        }],
-        ease: [{
-          ease: ["linear", "in", "out", "in-out", isArbitraryValue]
-        }],
-        delay: [{
-          delay: getNumberAndArbitrary()
-        }],
-        animate: [{
-          animate: ["none", "spin", "ping", "pulse", "bounce", isArbitraryValue]
-        }],
-        transform: [{
-          transform: ["", "gpu", "none"]
-        }],
-        scale: [{
-          scale: [scale]
-        }],
-        "scale-x": [{
-          "scale-x": [scale]
-        }],
-        "scale-y": [{
-          "scale-y": [scale]
-        }],
-        rotate: [{
-          rotate: [isInteger, isArbitraryValue]
-        }],
-        "translate-x": [{
-          "translate-x": [translate]
-        }],
-        "translate-y": [{
-          "translate-y": [translate]
-        }],
-        "skew-x": [{
-          "skew-x": [skew]
-        }],
-        "skew-y": [{
-          "skew-y": [skew]
-        }],
-        "transform-origin": [{
-          origin: ["center", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left", isArbitraryValue]
-        }],
-        accent: [{
-          accent: ["auto", colors]
-        }],
-        appearance: ["appearance-none"],
-        cursor: [{
-          cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", isArbitraryValue]
-        }],
-        "caret-color": [{
-          caret: [colors]
-        }],
-        "pointer-events": [{
-          "pointer-events": ["none", "auto"]
-        }],
-        resize: [{
-          resize: ["none", "y", "x", ""]
-        }],
-        "scroll-behavior": [{
-          scroll: ["auto", "smooth"]
-        }],
-        "scroll-m": [{
-          "scroll-m": getSpacingWithArbitrary()
-        }],
-        "scroll-mx": [{
-          "scroll-mx": getSpacingWithArbitrary()
-        }],
-        "scroll-my": [{
-          "scroll-my": getSpacingWithArbitrary()
-        }],
-        "scroll-ms": [{
-          "scroll-ms": getSpacingWithArbitrary()
-        }],
-        "scroll-me": [{
-          "scroll-me": getSpacingWithArbitrary()
-        }],
-        "scroll-mt": [{
-          "scroll-mt": getSpacingWithArbitrary()
-        }],
-        "scroll-mr": [{
-          "scroll-mr": getSpacingWithArbitrary()
-        }],
-        "scroll-mb": [{
-          "scroll-mb": getSpacingWithArbitrary()
-        }],
-        "scroll-ml": [{
-          "scroll-ml": getSpacingWithArbitrary()
-        }],
-        "scroll-p": [{
-          "scroll-p": getSpacingWithArbitrary()
-        }],
-        "scroll-px": [{
-          "scroll-px": getSpacingWithArbitrary()
-        }],
-        "scroll-py": [{
-          "scroll-py": getSpacingWithArbitrary()
-        }],
-        "scroll-ps": [{
-          "scroll-ps": getSpacingWithArbitrary()
-        }],
-        "scroll-pe": [{
-          "scroll-pe": getSpacingWithArbitrary()
-        }],
-        "scroll-pt": [{
-          "scroll-pt": getSpacingWithArbitrary()
-        }],
-        "scroll-pr": [{
-          "scroll-pr": getSpacingWithArbitrary()
-        }],
-        "scroll-pb": [{
-          "scroll-pb": getSpacingWithArbitrary()
-        }],
-        "scroll-pl": [{
-          "scroll-pl": getSpacingWithArbitrary()
-        }],
-        "snap-align": [{
-          snap: ["start", "end", "center", "align-none"]
-        }],
-        "snap-stop": [{
-          snap: ["normal", "always"]
-        }],
-        "snap-type": [{
-          snap: ["none", "x", "y", "both"]
-        }],
-        "snap-strictness": [{
-          snap: ["mandatory", "proximity"]
-        }],
-        touch: [{
-          touch: ["auto", "none", "pinch-zoom", "manipulation", {
-            pan: ["x", "left", "right", "y", "up", "down"]
-          }]
-        }],
-        select: [{
-          select: ["none", "text", "all", "auto"]
-        }],
-        "will-change": [{
-          "will-change": ["auto", "scroll", "contents", "transform", isArbitraryValue]
-        }],
-        fill: [{
-          fill: [colors, "none"]
-        }],
-        "stroke-w": [{
-          stroke: [isLength, isArbitraryNumber]
-        }],
-        stroke: [{
-          stroke: [colors, "none"]
-        }],
-        sr: ["sr-only", "not-sr-only"]
-      },
-      conflictingClassGroups: {
-        overflow: ["overflow-x", "overflow-y"],
-        overscroll: ["overscroll-x", "overscroll-y"],
-        inset: ["inset-x", "inset-y", "start", "end", "top", "right", "bottom", "left"],
-        "inset-x": ["right", "left"],
-        "inset-y": ["top", "bottom"],
-        flex: ["basis", "grow", "shrink"],
-        gap: ["gap-x", "gap-y"],
-        p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
-        px: ["pr", "pl"],
-        py: ["pt", "pb"],
-        m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
-        mx: ["mr", "ml"],
-        my: ["mt", "mb"],
-        "font-size": ["leading"],
-        "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
-        "fvn-ordinal": ["fvn-normal"],
-        "fvn-slashed-zero": ["fvn-normal"],
-        "fvn-figure": ["fvn-normal"],
-        "fvn-spacing": ["fvn-normal"],
-        "fvn-fraction": ["fvn-normal"],
-        rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
-        "rounded-s": ["rounded-ss", "rounded-es"],
-        "rounded-e": ["rounded-se", "rounded-ee"],
-        "rounded-t": ["rounded-tl", "rounded-tr"],
-        "rounded-r": ["rounded-tr", "rounded-br"],
-        "rounded-b": ["rounded-br", "rounded-bl"],
-        "rounded-l": ["rounded-tl", "rounded-bl"],
-        "border-spacing": ["border-spacing-x", "border-spacing-y"],
-        "border-w": ["border-w-s", "border-w-e", "border-w-t", "border-w-r", "border-w-b", "border-w-l"],
-        "border-w-x": ["border-w-r", "border-w-l"],
-        "border-w-y": ["border-w-t", "border-w-b"],
-        "border-color": ["border-color-t", "border-color-r", "border-color-b", "border-color-l"],
-        "border-color-x": ["border-color-r", "border-color-l"],
-        "border-color-y": ["border-color-t", "border-color-b"],
-        "scroll-m": ["scroll-mx", "scroll-my", "scroll-ms", "scroll-me", "scroll-mt", "scroll-mr", "scroll-mb", "scroll-ml"],
-        "scroll-mx": ["scroll-mr", "scroll-ml"],
-        "scroll-my": ["scroll-mt", "scroll-mb"],
-        "scroll-p": ["scroll-px", "scroll-py", "scroll-ps", "scroll-pe", "scroll-pt", "scroll-pr", "scroll-pb", "scroll-pl"],
-        "scroll-px": ["scroll-pr", "scroll-pl"],
-        "scroll-py": ["scroll-pt", "scroll-pb"]
-      },
-      conflictingClassGroupModifiers: {
-        "font-size": ["leading"]
-      }
-    };
-  }
-
-  // node_modules/tailwind-merge/dist/lib/tw-merge.mjs
-  var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
-
-  // lib/utils.ts
-  function cn(...inputs) {
-    return twMerge(clsx(inputs));
-  }
-
-  // components/ui/card.tsx
-  var Card = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)
-    }, props));
-  });
-  Card.displayName = "Card";
-  var CardHeader = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("flex flex-col space-y-1.5", className)
-    }, props));
-  });
-  CardHeader.displayName = "CardHeader";
-  var CardTitle = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("h3", __assign({
-      ref,
-      className: cn("text-2xl font-semibold leading-none tracking-tight", className)
-    }, props));
-  });
-  CardTitle.displayName = "CardTitle";
-  var CardDescription = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("p", __assign({
-      ref,
-      className: cn("text-sm text-muted-foreground", className)
-    }, props));
-  });
-  CardDescription.displayName = "CardDescription";
-  var CardContent = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("p-6 pt-0", className)
-    }, props));
-  });
-  CardContent.displayName = "CardContent";
-  var CardFooter = React2.forwardRef((_a, ref) => {
-    var {className} = _a, props = __rest(_a, ["className"]);
-    return /* @__PURE__ */ React2.createElement("div", __assign({
-      ref,
-      className: cn("flex items-center p-6 pt-0", className)
-    }, props));
-  });
-  CardFooter.displayName = "CardFooter";
-
-  // src/Approval/ApprovalHeader.tsx
-  var import_react4 = __toModule(require_react());
-
-  // src/Approval/OriginHeader.tsx
-  var import_react3 = __toModule(require_react());
-  var OriginHeader = ({favIconUrl, title, url}) => {
-    const faviconSrc = favIconUrl || `${url}/favicon.ico`;
-    return /* @__PURE__ */ import_react3.default.createElement("div", {
-      className: "flex flex-col items-center justify-center space-y-2 pt-8 pb-4"
-    }, /* @__PURE__ */ import_react3.default.createElement("img", {
-      src: "https://jup.ag/favicon.ico",
-      alt: "FavIcon",
-      className: "w-20 h-20 bg-gray-800 rounded-full p-2"
-    }), /* @__PURE__ */ import_react3.default.createElement("span", {
-      className: "font-semibold"
-    }, title), /* @__PURE__ */ import_react3.default.createElement("span", {
-      className: "text-sm text-center text-gray-500"
-    }, url));
+      setTimeout(() => {
+        fetchKeypair();
+      }, 5e3);
+    }, []);
+    return keypair;
   };
-  var OriginHeader_default = OriginHeader;
-
-  // src/Approval/ApprovalHeader.tsx
-  function getBaseUrl(url) {
-    if (!url) {
-      return void 0;
-    }
-    const match = url.match(/(https?:\/\/[^\/]+\/)/);
-    return match ? match[1] : void 0;
-  }
-  function ApprovalHeader({
-    title,
-    description,
-    origin,
-    displayTitle
-  }) {
-    var _a, _b, _c;
-    return /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, displayTitle ? /* @__PURE__ */ import_react4.default.createElement(CardHeader, null, /* @__PURE__ */ import_react4.default.createElement(CardTitle, {
-      className: "text-xxl"
-    }, title), /* @__PURE__ */ import_react4.default.createElement(CardDescription, null, description)) : null, /* @__PURE__ */ import_react4.default.createElement(OriginHeader_default, {
-      title: (_a = origin == null ? void 0 : origin.tab) == null ? void 0 : _a.title,
-      url: getBaseUrl((_b = origin == null ? void 0 : origin.tab) == null ? void 0 : _b.url),
-      favIconUrl: (_c = origin == null ? void 0 : origin.tab) == null ? void 0 : _c.favIconUrl
-    }));
-  }
-
-  // components/ui/button.tsx
-  var React5 = __toModule(require_react());
-
-  // node_modules/@babel/runtime/helpers/esm/extends.js
-  function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends.apply(this, arguments);
-  }
-
-  // node_modules/@radix-ui/react-slot/dist/index.mjs
-  var import_react6 = __toModule(require_react());
-
-  // node_modules/@radix-ui/react-compose-refs/dist/index.mjs
-  var import_react5 = __toModule(require_react());
-  function $6ed0406888f73fc4$var$setRef(ref, value) {
-    if (typeof ref === "function")
-      ref(value);
-    else if (ref !== null && ref !== void 0)
-      ref.current = value;
-  }
-  function $6ed0406888f73fc4$export$43e446d32b3d21af(...refs) {
-    return (node) => refs.forEach((ref) => $6ed0406888f73fc4$var$setRef(ref, node));
-  }
-  function $6ed0406888f73fc4$export$c7b2cbe3552a0d05(...refs) {
-    return (0, import_react5.useCallback)($6ed0406888f73fc4$export$43e446d32b3d21af(...refs), refs);
-  }
-
-  // node_modules/@radix-ui/react-slot/dist/index.mjs
-  var $5e63c961fc1ce211$export$8c6ed5c666ac1360 = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
-    const {children} = props, slotProps = __rest(props, ["children"]);
-    const childrenArray = import_react6.Children.toArray(children);
-    const slottable = childrenArray.find($5e63c961fc1ce211$var$isSlottable);
-    if (slottable) {
-      const newElement = slottable.props.children;
-      const newChildren = childrenArray.map((child) => {
-        if (child === slottable) {
-          if (import_react6.Children.count(newElement) > 1)
-            return import_react6.Children.only(null);
-          return /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? newElement.props.children : null;
-        } else
-          return child;
-      });
-      return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
-        ref: forwardedRef
-      }), /* @__PURE__ */ (0, import_react6.isValidElement)(newElement) ? /* @__PURE__ */ (0, import_react6.cloneElement)(newElement, void 0, newChildren) : null);
-    }
-    return /* @__PURE__ */ (0, import_react6.createElement)($5e63c961fc1ce211$var$SlotClone, _extends({}, slotProps, {
-      ref: forwardedRef
-    }), children);
-  });
-  $5e63c961fc1ce211$export$8c6ed5c666ac1360.displayName = "Slot";
-  var $5e63c961fc1ce211$var$SlotClone = /* @__PURE__ */ (0, import_react6.forwardRef)((props, forwardedRef) => {
-    const {children} = props, slotProps = __rest(props, ["children"]);
-    if (/* @__PURE__ */ (0, import_react6.isValidElement)(children))
-      return /* @__PURE__ */ (0, import_react6.cloneElement)(children, __assign(__assign({}, $5e63c961fc1ce211$var$mergeProps(slotProps, children.props)), {
-        ref: forwardedRef ? $6ed0406888f73fc4$export$43e446d32b3d21af(forwardedRef, children.ref) : children.ref
-      }));
-    return import_react6.Children.count(children) > 1 ? import_react6.Children.only(null) : null;
-  });
-  $5e63c961fc1ce211$var$SlotClone.displayName = "SlotClone";
-  var $5e63c961fc1ce211$export$d9f1ccf0bdb05d45 = ({children}) => {
-    return /* @__PURE__ */ (0, import_react6.createElement)(import_react6.Fragment, null, children);
-  };
-  function $5e63c961fc1ce211$var$isSlottable(child) {
-    return /* @__PURE__ */ (0, import_react6.isValidElement)(child) && child.type === $5e63c961fc1ce211$export$d9f1ccf0bdb05d45;
-  }
-  function $5e63c961fc1ce211$var$mergeProps(slotProps, childProps) {
-    const overrideProps = __assign({}, childProps);
-    for (const propName in childProps) {
-      const slotPropValue = slotProps[propName];
-      const childPropValue = childProps[propName];
-      const isHandler = /^on[A-Z]/.test(propName);
-      if (isHandler) {
-        if (slotPropValue && childPropValue)
-          overrideProps[propName] = (...args) => {
-            childPropValue(...args);
-            slotPropValue(...args);
-          };
-        else if (slotPropValue)
-          overrideProps[propName] = slotPropValue;
-      } else if (propName === "style")
-        overrideProps[propName] = __assign(__assign({}, slotPropValue), childPropValue);
-      else if (propName === "className")
-        overrideProps[propName] = [
-          slotPropValue,
-          childPropValue
-        ].filter(Boolean).join(" ");
-    }
-    return __assign(__assign({}, slotProps), overrideProps);
-  }
-
-  // node_modules/class-variance-authority/dist/index.mjs
-  var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
-  var cx = clsx;
-  var cva = (base, config) => {
-    return (props) => {
-      var ref;
-      if ((config === null || config === void 0 ? void 0 : config.variants) == null)
-        return cx(base, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
-      const {variants, defaultVariants} = config;
-      const getVariantClassNames = Object.keys(variants).map((variant) => {
-        const variantProp = props === null || props === void 0 ? void 0 : props[variant];
-        const defaultVariantProp = defaultVariants === null || defaultVariants === void 0 ? void 0 : defaultVariants[variant];
-        if (variantProp === null)
-          return null;
-        const variantKey = falsyToString(variantProp) || falsyToString(defaultVariantProp);
-        return variants[variant][variantKey];
-      });
-      const propsWithoutUndefined = props && Object.entries(props).reduce((acc, param) => {
-        let [key, value] = param;
-        if (value === void 0) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-      const getCompoundVariantClassNames = config === null || config === void 0 ? void 0 : (ref = config.compoundVariants) === null || ref === void 0 ? void 0 : ref.reduce((acc, param1) => {
-        let {class: cvClass, className: cvClassName} = param1, compoundVariantOptions = __rest(param1, ["class", "className"]);
-        return Object.entries(compoundVariantOptions).every((param) => {
-          let [key, value] = param;
-          return Array.isArray(value) ? value.includes(__assign(__assign({}, defaultVariants), propsWithoutUndefined)[key]) : __assign(__assign({}, defaultVariants), propsWithoutUndefined)[key] === value;
-        }) ? [
-          ...acc,
-          cvClass,
-          cvClassName
-        ] : acc;
-      }, []);
-      return cx(base, getVariantClassNames, getCompoundVariantClassNames, props === null || props === void 0 ? void 0 : props.class, props === null || props === void 0 ? void 0 : props.className);
-    };
-  };
-
-  // components/ui/button.tsx
-  var buttonVariants = cva("inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline"
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default"
-    }
-  });
-  var Button = React5.forwardRef((_a, ref) => {
-    var {className, variant, size, asChild = false} = _a, props = __rest(_a, ["className", "variant", "size", "asChild"]);
-    const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : "button";
-    return /* @__PURE__ */ React5.createElement(Comp, __assign({
-      className: cn(buttonVariants({variant, size, className})),
-      ref
-    }, props));
-  });
-  Button.displayName = "Button";
-
-  // src/Approval/ApprovalFooter.tsx
-  var import_react7 = __toModule(require_react());
-  function ApprovalFooter({
-    onCancel,
-    onConfirm,
-    confirmText
-  }) {
-    const [isConfirmLoading, setIsConfirmLoading] = (0, import_react7.useState)(false);
-    const [isCancelLoading, setIsCancelLoading] = (0, import_react7.useState)(false);
-    const handleCancel = () => {
-      setIsCancelLoading(true);
-      onCancel();
-    };
-    const handleConfirm = () => {
-      setIsConfirmLoading(true);
-      onConfirm();
-    };
-    return /* @__PURE__ */ import_react7.default.createElement("div", {
-      className: "mt-auto flex justify-evenly pb-32 space-x-2"
-    }, /* @__PURE__ */ import_react7.default.createElement(Button, {
-      className: "rounded-full w-2/5 mr-2",
-      onClick: handleCancel
-    }, isCancelLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
-      className: "h-4 w-4 animate-spin"
-    }) : "Cancel"), /* @__PURE__ */ import_react7.default.createElement(Button, {
-      className: "rounded-full w-2/5 px-4",
-      onClick: handleConfirm
-    }, isConfirmLoading ? /* @__PURE__ */ import_react7.default.createElement(Loader2, {
-      className: "h-4 w-4 animate-spin"
-    }) : confirmText));
-  }
+  var useDummyKeypair_default = useDummyKeypair;
 
   // src/Approval/ConnectScreen.tsx
   function ConnectScreen({request, onApprove}) {
-    const handleConnect = (request2) => {
-      const dummyKeypair = getDummyKeypair();
+    var _a;
+    const dummyKeypair = useDummyKeypair_default();
+    const handleConnect = async (request2) => {
+      if (!dummyKeypair) {
+        return;
+      }
       const account = {
         address: dummyKeypair.publicKey.toBase58(),
         publicKey: dummyKeypair.publicKey.toBase58(),
@@ -28467,24 +28501,24 @@
         }
       });
     };
-    return /* @__PURE__ */ import_react8.default.createElement("div", {
+    return /* @__PURE__ */ import_react9.default.createElement("div", {
       className: "flex flex-col mx-auto max-w-sm min-h-screen"
-    }, /* @__PURE__ */ import_react8.default.createElement("div", {
+    }, /* @__PURE__ */ import_react9.default.createElement("div", {
       className: "flex-grow flex-col space-y-4 pt-16"
-    }, /* @__PURE__ */ import_react8.default.createElement(ApprovalHeader, {
+    }, /* @__PURE__ */ import_react9.default.createElement(ApprovalHeader, {
       title: "Connect",
       description: "A website is requesting to connect to your wallet",
       origin: request.origin,
       displayTitle: false
-    }), /* @__PURE__ */ import_react8.default.createElement("div", {
+    }), /* @__PURE__ */ import_react9.default.createElement("div", {
       className: "flex flex-col justify-center items-center"
-    }, /* @__PURE__ */ import_react8.default.createElement("div", {
+    }, /* @__PURE__ */ import_react9.default.createElement("div", {
       className: "text-sm font-bold pb-4"
-    }, "as:"), /* @__PURE__ */ import_react8.default.createElement(WalletDisplay, {
-      publicKey: getDummyKeypair().publicKey
-    }))), /* @__PURE__ */ import_react8.default.createElement("div", {
+    }, "as:"), /* @__PURE__ */ import_react9.default.createElement(WalletDisplay, {
+      walletAddress: (_a = dummyKeypair == null ? void 0 : dummyKeypair.publicKey.toBase58()) != null ? _a : "Loading..."
+    }))), /* @__PURE__ */ import_react9.default.createElement("div", {
       className: "text-sm text-center pb-8"
-    }, "You'll share your public wallet adddress"), /* @__PURE__ */ import_react8.default.createElement(ApprovalFooter, {
+    }, "You'll share your public wallet adddress"), /* @__PURE__ */ import_react9.default.createElement(ApprovalFooter, {
       onCancel: () => {
       },
       onConfirm: () => handleConnect(request),
@@ -28493,7 +28527,7 @@
   }
 
   // src/Approval/SignMessageScreen.tsx
-  var import_react17 = __toModule(require_react());
+  var import_react18 = __toModule(require_react());
 
   // node_modules/@solana/web3.js/src/utils/ed25519.ts
   var import_ed255192 = __toModule(require_ed25519());
@@ -28514,10 +28548,10 @@
   var React8 = __toModule(require_react());
 
   // node_modules/@radix-ui/react-separator/dist/index.mjs
-  var import_react10 = __toModule(require_react());
+  var import_react11 = __toModule(require_react());
 
   // node_modules/@radix-ui/react-primitive/dist/index.mjs
-  var import_react9 = __toModule(require_react());
+  var import_react10 = __toModule(require_react());
   var import_react_dom = __toModule(require_react_dom());
   var $8927f6f2acc4f386$var$NODES = [
     "a",
@@ -28538,13 +28572,13 @@
     "ul"
   ];
   var $8927f6f2acc4f386$export$250ffa63cdc0d034 = $8927f6f2acc4f386$var$NODES.reduce((primitive, node) => {
-    const Node = /* @__PURE__ */ (0, import_react9.forwardRef)((props, forwardedRef) => {
+    const Node = /* @__PURE__ */ (0, import_react10.forwardRef)((props, forwardedRef) => {
       const {asChild} = props, primitiveProps = __rest(props, ["asChild"]);
       const Comp = asChild ? $5e63c961fc1ce211$export$8c6ed5c666ac1360 : node;
-      (0, import_react9.useEffect)(() => {
+      (0, import_react10.useEffect)(() => {
         window[Symbol.for("radix-ui")] = true;
       }, []);
-      return /* @__PURE__ */ (0, import_react9.createElement)(Comp, _extends({}, primitiveProps, {
+      return /* @__PURE__ */ (0, import_react10.createElement)(Comp, _extends({}, primitiveProps, {
         ref: forwardedRef
       }));
     });
@@ -28560,7 +28594,7 @@
     "horizontal",
     "vertical"
   ];
-  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react10.forwardRef)((props, forwardedRef) => {
+  var $89eedd556c436f6a$export$1ff3c3f08ae963c0 = /* @__PURE__ */ (0, import_react11.forwardRef)((props, forwardedRef) => {
     const {decorative, orientation: orientationProp = $89eedd556c436f6a$var$DEFAULT_ORIENTATION} = props, domProps = __rest(props, ["decorative", "orientation"]);
     const orientation = $89eedd556c436f6a$var$isValidOrientation(orientationProp) ? orientationProp : $89eedd556c436f6a$var$DEFAULT_ORIENTATION;
     const ariaOrientation = orientation === "vertical" ? orientation : void 0;
@@ -28570,7 +28604,7 @@
       "aria-orientation": ariaOrientation,
       role: "separator"
     };
-    return /* @__PURE__ */ (0, import_react10.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+    return /* @__PURE__ */ (0, import_react11.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
       "data-orientation": orientation
     }, semanticProps, domProps, {
       ref: forwardedRef
@@ -28613,20 +28647,20 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   var React9 = __toModule(require_react());
 
   // node_modules/@radix-ui/react-scroll-area/dist/index.mjs
-  var import_react16 = __toModule(require_react());
+  var import_react17 = __toModule(require_react());
 
   // node_modules/@radix-ui/react-presence/dist/index.mjs
-  var import_react12 = __toModule(require_react());
+  var import_react13 = __toModule(require_react());
   var import_react_dom2 = __toModule(require_react_dom());
 
   // node_modules/@radix-ui/react-use-layout-effect/dist/index.mjs
-  var import_react11 = __toModule(require_react());
-  var $9f79659886946c16$export$e5c5a5f917a5871c = Boolean(globalThis === null || globalThis === void 0 ? void 0 : globalThis.document) ? import_react11.useLayoutEffect : () => {
+  var import_react12 = __toModule(require_react());
+  var $9f79659886946c16$export$e5c5a5f917a5871c = Boolean(globalThis === null || globalThis === void 0 ? void 0 : globalThis.document) ? import_react12.useLayoutEffect : () => {
   };
 
   // node_modules/@radix-ui/react-presence/dist/index.mjs
   function $fe963b355347cc68$export$3e6543de14f8614f(initialState, machine) {
-    return (0, import_react12.useReducer)((state, event) => {
+    return (0, import_react13.useReducer)((state, event) => {
       const nextState = machine[state][event];
       return nextState !== null && nextState !== void 0 ? nextState : state;
     }, initialState);
@@ -28636,19 +28670,19 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     const presence = $921a889cee6df7e8$var$usePresence(present);
     const child = typeof children === "function" ? children({
       present: presence.isPresent
-    }) : import_react12.Children.only(children);
+    }) : import_react13.Children.only(children);
     const ref = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(presence.ref, child.ref);
     const forceMount = typeof children === "function";
-    return forceMount || presence.isPresent ? /* @__PURE__ */ (0, import_react12.cloneElement)(child, {
+    return forceMount || presence.isPresent ? /* @__PURE__ */ (0, import_react13.cloneElement)(child, {
       ref
     }) : null;
   };
   $921a889cee6df7e8$export$99c2b779aa4e8b8b.displayName = "Presence";
   function $921a889cee6df7e8$var$usePresence(present) {
-    const [node1, setNode] = (0, import_react12.useState)();
-    const stylesRef = (0, import_react12.useRef)({});
-    const prevPresentRef = (0, import_react12.useRef)(present);
-    const prevAnimationNameRef = (0, import_react12.useRef)("none");
+    const [node1, setNode] = (0, import_react13.useState)();
+    const stylesRef = (0, import_react13.useRef)({});
+    const prevPresentRef = (0, import_react13.useRef)(present);
+    const prevAnimationNameRef = (0, import_react13.useRef)("none");
     const initialState = present ? "mounted" : "unmounted";
     const [state, send] = $fe963b355347cc68$export$3e6543de14f8614f(initialState, {
       mounted: {
@@ -28663,7 +28697,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         MOUNT: "mounted"
       }
     });
-    (0, import_react12.useEffect)(() => {
+    (0, import_react13.useEffect)(() => {
       const currentAnimationName = $921a889cee6df7e8$var$getAnimationName(stylesRef.current);
       prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
     }, [
@@ -28724,7 +28758,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         "mounted",
         "unmountSuspended"
       ].includes(state),
-      ref: (0, import_react12.useCallback)((node) => {
+      ref: (0, import_react13.useCallback)((node) => {
         if (node)
           stylesRef.current = getComputedStyle(node);
         setNode(node);
@@ -28736,11 +28770,11 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   }
 
   // node_modules/@radix-ui/react-context/dist/index.mjs
-  var import_react13 = __toModule(require_react());
+  var import_react14 = __toModule(require_react());
   function $c512c27ab02ef895$export$50c7b4e9d9f19c1(scopeName, createContextScopeDeps = []) {
     let defaultContexts = [];
     function $c512c27ab02ef895$export$fd42f52fd3ae1109(rootComponentName, defaultContext) {
-      const BaseContext = /* @__PURE__ */ (0, import_react13.createContext)(defaultContext);
+      const BaseContext = /* @__PURE__ */ (0, import_react14.createContext)(defaultContext);
       const index = defaultContexts.length;
       defaultContexts = [
         ...defaultContexts,
@@ -28749,14 +28783,14 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       function Provider(props) {
         const {scope, children} = props, context = __rest(props, ["scope", "children"]);
         const Context = (scope === null || scope === void 0 ? void 0 : scope[scopeName][index]) || BaseContext;
-        const value = (0, import_react13.useMemo)(() => context, Object.values(context));
-        return /* @__PURE__ */ (0, import_react13.createElement)(Context.Provider, {
+        const value = (0, import_react14.useMemo)(() => context, Object.values(context));
+        return /* @__PURE__ */ (0, import_react14.createElement)(Context.Provider, {
           value
         }, children);
       }
       function useContext(consumerName, scope) {
         const Context = (scope === null || scope === void 0 ? void 0 : scope[scopeName][index]) || BaseContext;
-        const context = (0, import_react13.useContext)(Context);
+        const context = (0, import_react14.useContext)(Context);
         if (context)
           return context;
         if (defaultContext !== void 0)
@@ -28771,11 +28805,11 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }
     const createScope = () => {
       const scopeContexts = defaultContexts.map((defaultContext) => {
-        return /* @__PURE__ */ (0, import_react13.createContext)(defaultContext);
+        return /* @__PURE__ */ (0, import_react14.createContext)(defaultContext);
       });
       return function useScope(scope) {
         const contexts = (scope === null || scope === void 0 ? void 0 : scope[scopeName]) || scopeContexts;
-        return (0, import_react13.useMemo)(() => ({
+        return (0, import_react14.useMemo)(() => ({
           [`__scope${scopeName}`]: __assign(__assign({}, scope), {
             [scopeName]: contexts
           })
@@ -28806,7 +28840,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
           const currentScope = scopeProps[`__scope${scopeName}`];
           return __assign(__assign({}, nextScopes), currentScope);
         }, {});
-        return (0, import_react13.useMemo)(() => ({
+        return (0, import_react14.useMemo)(() => ({
           [`__scope${baseScope.scopeName}`]: nextScopes1
         }), [
           nextScopes1
@@ -28818,23 +28852,23 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   }
 
   // node_modules/@radix-ui/react-use-callback-ref/dist/index.mjs
-  var import_react14 = __toModule(require_react());
+  var import_react15 = __toModule(require_react());
   function $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(callback) {
-    const callbackRef = (0, import_react14.useRef)(callback);
-    (0, import_react14.useEffect)(() => {
+    const callbackRef = (0, import_react15.useRef)(callback);
+    (0, import_react15.useEffect)(() => {
       callbackRef.current = callback;
     });
-    return (0, import_react14.useMemo)(() => (...args) => {
+    return (0, import_react15.useMemo)(() => (...args) => {
       var _callbackRef$current;
       return (_callbackRef$current = callbackRef.current) === null || _callbackRef$current === void 0 ? void 0 : _callbackRef$current.call(callbackRef, ...args);
     }, []);
   }
 
   // node_modules/@radix-ui/react-direction/dist/index.mjs
-  var import_react15 = __toModule(require_react());
-  var $f631663db3294ace$var$DirectionContext = /* @__PURE__ */ (0, import_react15.createContext)(void 0);
+  var import_react16 = __toModule(require_react());
+  var $f631663db3294ace$var$DirectionContext = /* @__PURE__ */ (0, import_react16.createContext)(void 0);
   function $f631663db3294ace$export$b39126d51d94e6f3(localDir) {
-    const globalDir = (0, import_react15.useContext)($f631663db3294ace$var$DirectionContext);
+    const globalDir = (0, import_react16.useContext)($f631663db3294ace$var$DirectionContext);
     return localDir || globalDir || "ltr";
   }
 
@@ -28854,7 +28888,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
 
   // node_modules/@radix-ui/react-scroll-area/dist/index.mjs
   function $6c2e24571c90391f$export$3e6543de14f8614f(initialState, machine) {
-    return (0, import_react16.useReducer)((state, event) => {
+    return (0, import_react17.useReducer)((state, event) => {
       const nextState = machine[state][event];
       return nextState !== null && nextState !== void 0 ? nextState : state;
     }, initialState);
@@ -28862,20 +28896,20 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   var $57acba87d6e25586$var$SCROLL_AREA_NAME = "ScrollArea";
   var [$57acba87d6e25586$var$createScrollAreaContext, $57acba87d6e25586$export$488468afe3a6f2b1] = $c512c27ab02ef895$export$50c7b4e9d9f19c1($57acba87d6e25586$var$SCROLL_AREA_NAME);
   var [$57acba87d6e25586$var$ScrollAreaProvider, $57acba87d6e25586$var$useScrollAreaContext] = $57acba87d6e25586$var$createScrollAreaContext($57acba87d6e25586$var$SCROLL_AREA_NAME);
-  var $57acba87d6e25586$export$ccf8d8d7bbf3c2cc = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$export$ccf8d8d7bbf3c2cc = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {__scopeScrollArea, type: type2 = "hover", dir, scrollHideDelay = 600} = props, scrollAreaProps = __rest(props, ["__scopeScrollArea", "type", "dir", "scrollHideDelay"]);
-    const [scrollArea, setScrollArea] = (0, import_react16.useState)(null);
-    const [viewport, setViewport] = (0, import_react16.useState)(null);
-    const [content, setContent] = (0, import_react16.useState)(null);
-    const [scrollbarX, setScrollbarX] = (0, import_react16.useState)(null);
-    const [scrollbarY, setScrollbarY] = (0, import_react16.useState)(null);
-    const [cornerWidth, setCornerWidth] = (0, import_react16.useState)(0);
-    const [cornerHeight, setCornerHeight] = (0, import_react16.useState)(0);
-    const [scrollbarXEnabled, setScrollbarXEnabled] = (0, import_react16.useState)(false);
-    const [scrollbarYEnabled, setScrollbarYEnabled] = (0, import_react16.useState)(false);
+    const [scrollArea, setScrollArea] = (0, import_react17.useState)(null);
+    const [viewport, setViewport] = (0, import_react17.useState)(null);
+    const [content, setContent] = (0, import_react17.useState)(null);
+    const [scrollbarX, setScrollbarX] = (0, import_react17.useState)(null);
+    const [scrollbarY, setScrollbarY] = (0, import_react17.useState)(null);
+    const [cornerWidth, setCornerWidth] = (0, import_react17.useState)(0);
+    const [cornerHeight, setCornerHeight] = (0, import_react17.useState)(0);
+    const [scrollbarXEnabled, setScrollbarXEnabled] = (0, import_react17.useState)(false);
+    const [scrollbarYEnabled, setScrollbarYEnabled] = (0, import_react17.useState)(false);
     const composedRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => setScrollArea(node));
     const direction = $f631663db3294ace$export$b39126d51d94e6f3(dir);
-    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaProvider, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaProvider, {
       scope: __scopeScrollArea,
       type: type2,
       dir: direction,
@@ -28895,7 +28929,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       onScrollbarYEnabledChange: setScrollbarYEnabled,
       onCornerWidthChange: setCornerWidth,
       onCornerHeightChange: setCornerHeight
-    }, /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+    }, /* @__PURE__ */ (0, import_react17.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
       dir: direction
     }, scrollAreaProps, {
       ref: composedRefs,
@@ -28907,16 +28941,16 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     })));
   });
   var $57acba87d6e25586$var$VIEWPORT_NAME = "ScrollAreaViewport";
-  var $57acba87d6e25586$export$a21cbf9f11fca853 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$export$a21cbf9f11fca853 = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {__scopeScrollArea, children} = props, viewportProps = __rest(props, ["__scopeScrollArea", "children"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$VIEWPORT_NAME, __scopeScrollArea);
-    const ref = (0, import_react16.useRef)(null);
+    const ref = (0, import_react17.useRef)(null);
     const composedRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onViewportChange);
-    return /* @__PURE__ */ (0, import_react16.createElement)(import_react16.Fragment, null, /* @__PURE__ */ (0, import_react16.createElement)("style", {
+    return /* @__PURE__ */ (0, import_react17.createElement)(import_react17.Fragment, null, /* @__PURE__ */ (0, import_react17.createElement)("style", {
       dangerouslySetInnerHTML: {
         __html: `[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}`
       }
-    }), /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+    }), /* @__PURE__ */ (0, import_react17.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
       "data-radix-scroll-area-viewport": ""
     }, viewportProps, {
       ref: composedRefs,
@@ -28924,7 +28958,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         overflowX: context.scrollbarXEnabled ? "scroll" : "hidden",
         overflowY: context.scrollbarYEnabled ? "scroll" : "hidden"
       }, props.style)
-    }), /* @__PURE__ */ (0, import_react16.createElement)("div", {
+    }), /* @__PURE__ */ (0, import_react17.createElement)("div", {
       ref: context.onContentChange,
       style: {
         minWidth: "100%",
@@ -28933,12 +28967,12 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, children)));
   });
   var $57acba87d6e25586$var$SCROLLBAR_NAME = "ScrollAreaScrollbar";
-  var $57acba87d6e25586$export$2fabd85d0eba3c57 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$export$2fabd85d0eba3c57 = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
     const {onScrollbarXEnabledChange, onScrollbarYEnabledChange} = context;
     const isHorizontal = props.orientation === "horizontal";
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       isHorizontal ? onScrollbarXEnabledChange(true) : onScrollbarYEnabledChange(true);
       return () => {
         isHorizontal ? onScrollbarXEnabledChange(false) : onScrollbarYEnabledChange(false);
@@ -28948,24 +28982,24 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       onScrollbarXEnabledChange,
       onScrollbarYEnabledChange
     ]);
-    return context.type === "hover" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarHover, _extends({}, scrollbarProps, {
+    return context.type === "hover" ? /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarHover, _extends({}, scrollbarProps, {
       ref: forwardedRef,
       forceMount
-    })) : context.type === "scroll" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarScroll, _extends({}, scrollbarProps, {
+    })) : context.type === "scroll" ? /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarScroll, _extends({}, scrollbarProps, {
       ref: forwardedRef,
       forceMount
-    })) : context.type === "auto" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({}, scrollbarProps, {
+    })) : context.type === "auto" ? /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({}, scrollbarProps, {
       ref: forwardedRef,
       forceMount
-    })) : context.type === "always" ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({}, scrollbarProps, {
+    })) : context.type === "always" ? /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({}, scrollbarProps, {
       ref: forwardedRef
     })) : null;
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarHover = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarHover = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
-    const [visible, setVisible] = (0, import_react16.useState)(false);
-    (0, import_react16.useEffect)(() => {
+    const [visible, setVisible] = (0, import_react17.useState)(false);
+    (0, import_react17.useEffect)(() => {
       const scrollArea = context.scrollArea;
       let hideTimer = 0;
       if (scrollArea) {
@@ -28988,15 +29022,15 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       context.scrollArea,
       context.scrollHideDelay
     ]);
-    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
       present: forceMount || visible
-    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({
+    }, /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarAuto, _extends({
       "data-state": visible ? "visible" : "hidden"
     }, scrollbarProps, {
       ref: forwardedRef
     })));
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarScroll = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarScroll = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
     const isHorizontal = props.orientation === "horizontal";
@@ -29019,7 +29053,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         POINTER_ENTER: "interacting"
       }
     });
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       if (state === "idle") {
         const hideTimer = window.setTimeout(() => send("HIDE"), context.scrollHideDelay);
         return () => window.clearTimeout(hideTimer);
@@ -29029,7 +29063,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       context.scrollHideDelay,
       send
     ]);
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       const viewport = context.viewport;
       const scrollDirection = isHorizontal ? "scrollLeft" : "scrollTop";
       if (viewport) {
@@ -29052,9 +29086,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       send,
       debounceScrollEnd
     ]);
-    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
       present: forceMount || state !== "hidden"
-    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
+    }, /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
       "data-state": state === "hidden" ? "hidden" : "visible"
     }, scrollbarProps, {
       ref: forwardedRef,
@@ -29062,10 +29096,10 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       onPointerLeave: $e42e1063c40fb3ef$export$b9ecd428b558ff10(props.onPointerLeave, () => send("POINTER_LEAVE"))
     })));
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarAuto = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarAuto = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
     const {forceMount} = props, scrollbarProps = __rest(props, ["forceMount"]);
-    const [visible, setVisible] = (0, import_react16.useState)(false);
+    const [visible, setVisible] = (0, import_react17.useState)(false);
     const isHorizontal = props.orientation === "horizontal";
     const handleResize = $57acba87d6e25586$var$useDebounceCallback(() => {
       if (context.viewport) {
@@ -29076,20 +29110,20 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }, 10);
     $57acba87d6e25586$var$useResizeObserver(context.viewport, handleResize);
     $57acba87d6e25586$var$useResizeObserver(context.content, handleResize);
-    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
       present: forceMount || visible
-    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
+    }, /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarVisible, _extends({
       "data-state": visible ? "visible" : "hidden"
     }, scrollbarProps, {
       ref: forwardedRef
     })));
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarVisible = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarVisible = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {orientation = "vertical"} = props, scrollbarProps = __rest(props, ["orientation"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
-    const thumbRef = (0, import_react16.useRef)(null);
-    const pointerOffsetRef = (0, import_react16.useRef)(0);
-    const [sizes, setSizes] = (0, import_react16.useState)({
+    const thumbRef = (0, import_react17.useRef)(null);
+    const pointerOffsetRef = (0, import_react17.useRef)(0);
+    const [sizes, setSizes] = (0, import_react17.useState)({
       content: 0,
       viewport: 0,
       scrollbar: {
@@ -29111,7 +29145,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       return $57acba87d6e25586$var$getScrollPositionFromPointer(pointerPos, pointerOffsetRef.current, sizes, dir);
     }
     if (orientation === "horizontal")
-      return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarX, _extends({}, commonProps, {
+      return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarX, _extends({}, commonProps, {
         ref: forwardedRef,
         onThumbPositionChange: () => {
           if (context.viewport && thumbRef.current) {
@@ -29130,7 +29164,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       }));
     if (orientation === "vertical")
-      return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarY, _extends({}, commonProps, {
+      return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarY, _extends({}, commonProps, {
         ref: forwardedRef,
         onThumbPositionChange: () => {
           if (context.viewport && thumbRef.current) {
@@ -29150,19 +29184,19 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       }));
     return null;
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarX = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarX = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {sizes, onSizesChange} = props, scrollbarProps = __rest(props, ["sizes", "onSizesChange"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
-    const [computedStyle, setComputedStyle] = (0, import_react16.useState)();
-    const ref = (0, import_react16.useRef)(null);
+    const [computedStyle, setComputedStyle] = (0, import_react17.useState)();
+    const ref = (0, import_react17.useRef)(null);
     const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onScrollbarXChange);
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       if (ref.current)
         setComputedStyle(getComputedStyle(ref.current));
     }, [
       ref
     ]);
-    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
+    return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
       "data-orientation": "horizontal"
     }, scrollbarProps, {
       ref: composeRefs,
@@ -29197,19 +29231,19 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       }
     }));
   });
-  var $57acba87d6e25586$var$ScrollAreaScrollbarY = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarY = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {sizes, onSizesChange} = props, scrollbarProps = __rest(props, ["sizes", "onSizesChange"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, props.__scopeScrollArea);
-    const [computedStyle, setComputedStyle] = (0, import_react16.useState)();
-    const ref = (0, import_react16.useRef)(null);
+    const [computedStyle, setComputedStyle] = (0, import_react17.useState)();
+    const ref = (0, import_react17.useRef)(null);
     const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, ref, context.onScrollbarYChange);
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       if (ref.current)
         setComputedStyle(getComputedStyle(ref.current));
     }, [
       ref
     ]);
-    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
+    return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaScrollbarImpl, _extends({
       "data-orientation": "vertical"
     }, scrollbarProps, {
       ref: composeRefs,
@@ -29246,13 +29280,13 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }));
   });
   var [$57acba87d6e25586$var$ScrollbarProvider, $57acba87d6e25586$var$useScrollbarContext] = $57acba87d6e25586$var$createScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME);
-  var $57acba87d6e25586$var$ScrollAreaScrollbarImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaScrollbarImpl = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {__scopeScrollArea, sizes, hasThumb, onThumbChange, onThumbPointerUp, onThumbPointerDown, onThumbPositionChange, onDragScroll, onWheelScroll, onResize} = props, scrollbarProps = __rest(props, ["__scopeScrollArea", "sizes", "hasThumb", "onThumbChange", "onThumbPointerUp", "onThumbPointerDown", "onThumbPositionChange", "onDragScroll", "onWheelScroll", "onResize"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$SCROLLBAR_NAME, __scopeScrollArea);
-    const [scrollbar, setScrollbar] = (0, import_react16.useState)(null);
+    const [scrollbar, setScrollbar] = (0, import_react17.useState)(null);
     const composeRefs = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => setScrollbar(node));
-    const rectRef = (0, import_react16.useRef)(null);
-    const prevWebkitUserSelectRef = (0, import_react16.useRef)("");
+    const rectRef = (0, import_react17.useRef)(null);
+    const prevWebkitUserSelectRef = (0, import_react17.useRef)("");
     const viewport = context.viewport;
     const maxScrollPos = sizes.content - sizes.viewport;
     const handleWheelScroll = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onWheelScroll);
@@ -29268,7 +29302,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         });
       }
     }
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       const handleWheel = (event) => {
         const element = event.target;
         const isScrollbarWheel = scrollbar === null || scrollbar === void 0 ? void 0 : scrollbar.contains(element);
@@ -29287,13 +29321,13 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       maxScrollPos,
       handleWheelScroll
     ]);
-    (0, import_react16.useEffect)(handleThumbPositionChange, [
+    (0, import_react17.useEffect)(handleThumbPositionChange, [
       sizes,
       handleThumbPositionChange
     ]);
     $57acba87d6e25586$var$useResizeObserver(scrollbar, handleResize);
     $57acba87d6e25586$var$useResizeObserver(context.content, handleResize);
-    return /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollbarProvider, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollbarProvider, {
       scope: __scopeScrollArea,
       scrollbar,
       hasThumb,
@@ -29301,7 +29335,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       onThumbPointerUp: $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbPointerUp),
       onThumbPositionChange: handleThumbPositionChange,
       onThumbPointerDown: $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(onThumbPointerDown)
-    }, /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, scrollbarProps, {
+    }, /* @__PURE__ */ (0, import_react17.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, scrollbarProps, {
       ref: composeRefs,
       style: __assign({
         position: "absolute"
@@ -29332,29 +29366,29 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     })));
   });
   var $57acba87d6e25586$var$THUMB_NAME = "ScrollAreaThumb";
-  var $57acba87d6e25586$export$9fba1154677d7cd2 = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$export$9fba1154677d7cd2 = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {forceMount} = props, thumbProps = __rest(props, ["forceMount"]);
     const scrollbarContext = $57acba87d6e25586$var$useScrollbarContext($57acba87d6e25586$var$THUMB_NAME, props.__scopeScrollArea);
-    return /* @__PURE__ */ (0, import_react16.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
+    return /* @__PURE__ */ (0, import_react17.createElement)($921a889cee6df7e8$export$99c2b779aa4e8b8b, {
       present: forceMount || scrollbarContext.hasThumb
-    }, /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaThumbImpl, _extends({
+    }, /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaThumbImpl, _extends({
       ref: forwardedRef
     }, thumbProps)));
   });
-  var $57acba87d6e25586$var$ScrollAreaThumbImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaThumbImpl = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {__scopeScrollArea, style} = props, thumbProps = __rest(props, ["__scopeScrollArea", "style"]);
     const scrollAreaContext = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$THUMB_NAME, __scopeScrollArea);
     const scrollbarContext = $57acba87d6e25586$var$useScrollbarContext($57acba87d6e25586$var$THUMB_NAME, __scopeScrollArea);
     const {onThumbPositionChange} = scrollbarContext;
     const composedRef = $6ed0406888f73fc4$export$c7b2cbe3552a0d05(forwardedRef, (node) => scrollbarContext.onThumbChange(node));
-    const removeUnlinkedScrollListenerRef = (0, import_react16.useRef)();
+    const removeUnlinkedScrollListenerRef = (0, import_react17.useRef)();
     const debounceScrollEnd = $57acba87d6e25586$var$useDebounceCallback(() => {
       if (removeUnlinkedScrollListenerRef.current) {
         removeUnlinkedScrollListenerRef.current();
         removeUnlinkedScrollListenerRef.current = void 0;
       }
     }, 100);
-    (0, import_react16.useEffect)(() => {
+    (0, import_react17.useEffect)(() => {
       const viewport = scrollAreaContext.viewport;
       if (viewport) {
         const handleScroll = () => {
@@ -29374,7 +29408,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       debounceScrollEnd,
       onThumbPositionChange
     ]);
-    return /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
+    return /* @__PURE__ */ (0, import_react17.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({
       "data-state": scrollbarContext.hasThumb ? "visible" : "hidden"
     }, thumbProps, {
       ref: composedRef,
@@ -29396,19 +29430,19 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     }));
   });
   var $57acba87d6e25586$var$CORNER_NAME = "ScrollAreaCorner";
-  var $57acba87d6e25586$export$56969d565df7cc4b = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$export$56969d565df7cc4b = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$CORNER_NAME, props.__scopeScrollArea);
     const hasBothScrollbarsVisible = Boolean(context.scrollbarX && context.scrollbarY);
     const hasCorner = context.type !== "scroll" && hasBothScrollbarsVisible;
-    return hasCorner ? /* @__PURE__ */ (0, import_react16.createElement)($57acba87d6e25586$var$ScrollAreaCornerImpl, _extends({}, props, {
+    return hasCorner ? /* @__PURE__ */ (0, import_react17.createElement)($57acba87d6e25586$var$ScrollAreaCornerImpl, _extends({}, props, {
       ref: forwardedRef
     })) : null;
   });
-  var $57acba87d6e25586$var$ScrollAreaCornerImpl = /* @__PURE__ */ (0, import_react16.forwardRef)((props, forwardedRef) => {
+  var $57acba87d6e25586$var$ScrollAreaCornerImpl = /* @__PURE__ */ (0, import_react17.forwardRef)((props, forwardedRef) => {
     const {__scopeScrollArea} = props, cornerProps = __rest(props, ["__scopeScrollArea"]);
     const context = $57acba87d6e25586$var$useScrollAreaContext($57acba87d6e25586$var$CORNER_NAME, __scopeScrollArea);
-    const [width1, setWidth] = (0, import_react16.useState)(0);
-    const [height1, setHeight] = (0, import_react16.useState)(0);
+    const [width1, setWidth] = (0, import_react17.useState)(0);
+    const [height1, setHeight] = (0, import_react17.useState)(0);
     const hasSize = Boolean(width1 && height1);
     $57acba87d6e25586$var$useResizeObserver(context.scrollbarX, () => {
       var _context$scrollbarX;
@@ -29422,7 +29456,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
       context.onCornerWidthChange(width);
       setWidth(width);
     });
-    return hasSize ? /* @__PURE__ */ (0, import_react16.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, cornerProps, {
+    return hasSize ? /* @__PURE__ */ (0, import_react17.createElement)($8927f6f2acc4f386$export$250ffa63cdc0d034.div, _extends({}, cornerProps, {
       ref: forwardedRef,
       style: __assign({
         width: width1,
@@ -29525,9 +29559,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   };
   function $57acba87d6e25586$var$useDebounceCallback(callback, delay) {
     const handleCallback = $b1b2314f5f9a1d84$export$25bec8c6f54ee79a(callback);
-    const debounceTimerRef = (0, import_react16.useRef)(0);
-    (0, import_react16.useEffect)(() => () => window.clearTimeout(debounceTimerRef.current), []);
-    return (0, import_react16.useCallback)(() => {
+    const debounceTimerRef = (0, import_react17.useRef)(0);
+    (0, import_react17.useEffect)(() => () => window.clearTimeout(debounceTimerRef.current), []);
+    return (0, import_react17.useCallback)(() => {
       window.clearTimeout(debounceTimerRef.current);
       debounceTimerRef.current = window.setTimeout(handleCallback, delay);
     }, [
@@ -29584,8 +29618,12 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
 
   // src/Approval/SignMessageScreen.tsx
   function SignMessageScreen({request, onApprove}) {
+    var _a;
+    const dummyKeypair = useDummyKeypair_default();
     const handleSignMessage = async (request2) => {
-      const dummyKeypair = getDummyKeypair();
+      if (!dummyKeypair) {
+        return;
+      }
       const input = request2.input;
       const {signature: signature2} = await signMessage(import_bs583.default.decode(input.message), dummyKeypair);
       if (!request2.origin) {
@@ -29602,32 +29640,32 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react17.default.createElement("div", {
+    return /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "flex flex-col mx-auto max-w-sm min-h-screen"
-    }, /* @__PURE__ */ import_react17.default.createElement("div", {
+    }, /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "flex-grow flex-col space-y-4"
-    }, /* @__PURE__ */ import_react17.default.createElement(ApprovalHeader, {
+    }, /* @__PURE__ */ import_react18.default.createElement(ApprovalHeader, {
       title: "Sign Message",
       description: "A website is requesting you to sign a message.",
       origin: request.origin,
       displayTitle: true
-    }), /* @__PURE__ */ import_react17.default.createElement(Separator, {
+    }), /* @__PURE__ */ import_react18.default.createElement(Separator, {
       className: "mb-4"
-    }), /* @__PURE__ */ import_react17.default.createElement("div", {
+    }), /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "Sign this message"), /* @__PURE__ */ import_react17.default.createElement("div", {
+    }, "Sign this message"), /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "p-4 bg-gray-100 rounded-md shadow"
-    }, /* @__PURE__ */ import_react17.default.createElement(ScrollArea, {
+    }, /* @__PURE__ */ import_react18.default.createElement(ScrollArea, {
       className: "h-[50px]"
-    }, /* @__PURE__ */ import_react17.default.createElement("p", {
+    }, /* @__PURE__ */ import_react18.default.createElement("p", {
       className: "text-sm text-muted-foreground mt-2"
-    }, "Hello Solana!"))), /* @__PURE__ */ import_react17.default.createElement(Separator, {
+    }, "Hello Solana!"))), /* @__PURE__ */ import_react18.default.createElement(Separator, {
       className: "my-4"
-    }), /* @__PURE__ */ import_react17.default.createElement("div", {
+    }), /* @__PURE__ */ import_react18.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "Wallet"), /* @__PURE__ */ import_react17.default.createElement(WalletDisplay, {
-      publicKey: getDummyKeypair().publicKey
-    })), /* @__PURE__ */ import_react17.default.createElement(ApprovalFooter, {
+    }, "Wallet"), /* @__PURE__ */ import_react18.default.createElement(WalletDisplay, {
+      walletAddress: (_a = dummyKeypair == null ? void 0 : dummyKeypair.publicKey.toBase58()) != null ? _a : "Loading.."
+    })), /* @__PURE__ */ import_react18.default.createElement(ApprovalFooter, {
       onCancel: () => {
       },
       onConfirm: () => handleSignMessage(request),
@@ -29636,7 +29674,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   }
 
   // src/Approval/SignTransactionScreen.tsx
-  var import_react18 = __toModule(require_react());
+  var import_react19 = __toModule(require_react());
   var import_bs584 = __toModule(require_bs583());
 
   // src/util/signVersionedTransaction.ts
@@ -29652,8 +29690,12 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
 
   // src/Approval/SignTransactionScreen.tsx
   function SignTransactionScreen({request, onApprove}) {
+    var _a;
+    const dummyKeypair = useDummyKeypair_default();
     const handleSignTransaction = async (request2) => {
-      const dummyKeypair = getDummyKeypair();
+      if (!dummyKeypair) {
+        return;
+      }
       const input = request2.input;
       const txBytes = import_bs584.default.decode(input.transaction);
       const signedTxBytes = await signVersionedTransaction(VersionedTransaction.deserialize(txBytes), dummyKeypair);
@@ -29670,46 +29712,46 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react18.default.createElement("div", {
+    return /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex flex-col mx-auto max-w-sm min-h-screen"
-    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex-grow flex-col space-y-4"
-    }, /* @__PURE__ */ import_react18.default.createElement(ApprovalHeader, {
+    }, /* @__PURE__ */ import_react19.default.createElement(ApprovalHeader, {
       title: "Sign Transaction",
       description: "A website is requesting you to approve a transaction.",
       origin: request.origin,
       displayTitle: true
-    }), /* @__PURE__ */ import_react18.default.createElement(Separator, {
+    }), /* @__PURE__ */ import_react19.default.createElement(Separator, {
       className: "mb-4"
-    }), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }), /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "Estimated Changes"), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, "Estimated Changes"), /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex justify-between"
-    }, /* @__PURE__ */ import_react18.default.createElement("span", {
+    }, /* @__PURE__ */ import_react19.default.createElement("span", {
       className: "font-bold"
-    }, "Network fee"), /* @__PURE__ */ import_react18.default.createElement("span", null, "< 0.00001 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, "Network fee"), /* @__PURE__ */ import_react19.default.createElement("span", null, "< 0.00001 SOL")), /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex justify-between"
-    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex flex-row"
-    }, /* @__PURE__ */ import_react18.default.createElement(SendHorizontal, null), /* @__PURE__ */ import_react18.default.createElement("span", {
+    }, /* @__PURE__ */ import_react19.default.createElement(SendHorizontal, null), /* @__PURE__ */ import_react19.default.createElement("span", {
       className: "font-bold ml-3"
-    }, "Sent")), /* @__PURE__ */ import_react18.default.createElement("span", {
+    }, "Sent")), /* @__PURE__ */ import_react19.default.createElement("span", {
       className: "text-red-500 font-semibold"
-    }, "0.01 SOL")), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, "0.01 SOL")), /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex justify-between"
-    }, /* @__PURE__ */ import_react18.default.createElement("div", {
+    }, /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "flex flex-row"
-    }, /* @__PURE__ */ import_react18.default.createElement(Download, null), /* @__PURE__ */ import_react18.default.createElement("span", {
+    }, /* @__PURE__ */ import_react19.default.createElement(Download, null), /* @__PURE__ */ import_react19.default.createElement("span", {
       className: "font-bold ml-3"
-    }, "Received")), /* @__PURE__ */ import_react18.default.createElement("span", {
+    }, "Received")), /* @__PURE__ */ import_react19.default.createElement("span", {
       className: "text-green-500 font-semibold"
-    }, "0.236 USDC")), /* @__PURE__ */ import_react18.default.createElement(Separator, {
+    }, "0.236 USDC")), /* @__PURE__ */ import_react19.default.createElement(Separator, {
       className: "my-4"
-    }), /* @__PURE__ */ import_react18.default.createElement("div", {
+    }), /* @__PURE__ */ import_react19.default.createElement("div", {
       className: "text-lg font-bold"
-    }, "as:"), /* @__PURE__ */ import_react18.default.createElement(WalletDisplay, {
-      publicKey: getDummyKeypair().publicKey
-    })), /* @__PURE__ */ import_react18.default.createElement(ApprovalFooter, {
+    }, "as:"), /* @__PURE__ */ import_react19.default.createElement(WalletDisplay, {
+      walletAddress: (_a = dummyKeypair == null ? void 0 : dummyKeypair.publicKey.toBase58()) != null ? _a : "Loading..."
+    })), /* @__PURE__ */ import_react19.default.createElement(ApprovalFooter, {
       onCancel: () => {
       },
       onConfirm: () => handleSignTransaction(request),
@@ -29718,7 +29760,7 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   }
 
   // src/Approval/SignAndSendTransactionScreen.tsx
-  var import_react19 = __toModule(require_react());
+  var import_react20 = __toModule(require_react());
   var import_bs585 = __toModule(require_bs583());
 
   // src/util/signAndSendTransaction.ts
@@ -29756,11 +29798,14 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     request,
     onApprove
   }) {
+    const dummyKeypair = useDummyKeypair_default();
     const handleSignAndSendTransaction = async (request2) => {
       if (!request2.origin) {
         throw new Error("Sender origin is missing: " + request2);
       }
-      const dummyKeypair = getDummyKeypair();
+      if (!dummyKeypair) {
+        return;
+      }
       const txBytes = import_bs585.default.decode(request2.input.transaction);
       const input = request2.input;
       const {signature: signature2} = await signAndSendTransaction(VersionedTransaction.deserialize(txBytes), dummyKeypair, getClusterForChain(input.chain), input.options);
@@ -29774,9 +29819,9 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
         }
       });
     };
-    return /* @__PURE__ */ import_react19.default.createElement("div", null, /* @__PURE__ */ import_react19.default.createElement("button", {
+    return /* @__PURE__ */ import_react20.default.createElement("div", null, /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => handleSignAndSendTransaction(request)
-    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react19.default.createElement("button", {
+    }, "SignAndSendTransaction"), /* @__PURE__ */ import_react20.default.createElement("button", {
       onClick: () => {
       }
     }, "Reject"));
@@ -29786,32 +29831,32 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
   function getRequestScreenComponent(request, onApprove) {
     switch (request.method) {
       case WalletRequestMethod.SOLANA_CONNECT:
-        return /* @__PURE__ */ import_react20.default.createElement(ConnectScreen, {
+        return /* @__PURE__ */ import_react21.default.createElement(ConnectScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_MESSAGE:
-        return /* @__PURE__ */ import_react20.default.createElement(SignMessageScreen, {
+        return /* @__PURE__ */ import_react21.default.createElement(SignMessageScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_AND_SEND_TRANSACTION:
-        return /* @__PURE__ */ import_react20.default.createElement(SignAndSendTransactionScreen, {
+        return /* @__PURE__ */ import_react21.default.createElement(SignAndSendTransactionScreen, {
           request,
           onApprove
         });
       case WalletRequestMethod.SOLANA_SIGN_TRANSACTION:
-        return /* @__PURE__ */ import_react20.default.createElement(SignTransactionScreen, {
+        return /* @__PURE__ */ import_react21.default.createElement(SignTransactionScreen, {
           request,
           onApprove
         });
       default:
-        return /* @__PURE__ */ import_react20.default.createElement("div", null, " loading ");
+        return /* @__PURE__ */ import_react21.default.createElement("div", null, " loading ");
     }
   }
   function ApprovalScreen() {
-    const [requestQueue, setRequestQueue] = (0, import_react20.useState)([]);
-    (0, import_react20.useEffect)(() => {
+    const [requestQueue, setRequestQueue] = (0, import_react21.useState)([]);
+    (0, import_react21.useEffect)(() => {
       function handleWalletRequest(request) {
         console.log("Approval Screen Request Received: ", request);
         if (request.type === "approval-tab-request") {
@@ -29835,12 +29880,11 @@ Defaulting to \`${$89eedd556c436f6a$var$DEFAULT_ORIENTATION}\`.`;
     };
     const handleReject = () => {
     };
-    console.log(requestQueue);
-    return /* @__PURE__ */ import_react20.default.createElement("div", {
+    return /* @__PURE__ */ import_react21.default.createElement("div", {
       className: "p-6"
     }, requestQueue.length > 0 ? getRequestScreenComponent(requestQueue[0], handleApprove) : null);
   }
 
   // src/approval.tsx
-  import_react_dom3.default.render(/* @__PURE__ */ import_react21.default.createElement(import_react21.default.StrictMode, null, /* @__PURE__ */ import_react21.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
+  import_react_dom3.default.render(/* @__PURE__ */ import_react22.default.createElement(import_react22.default.StrictMode, null, /* @__PURE__ */ import_react22.default.createElement(ApprovalScreen, null)), document.getElementById("root"));
 })();
