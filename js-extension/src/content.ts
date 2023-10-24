@@ -36,7 +36,6 @@ function forwardToBackgroundScript(request: BaseWalletRequestEncoded) {
 }
 
 function forwardToPageScript(response: BaseWalletResponseEncoded) {
-  // Overwrite `type` to wallet-approval-request before forwarding
   window.dispatchEvent(new WalletResponseEvent(response));
 }
 
@@ -46,11 +45,13 @@ window.addEventListener("page-wallet-request", async (event) => {
   forwardToBackgroundScript(walletRequest);
 });
 
-browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-  console.log("Content Script Runtime Listener: ", message);
-  if (message.type === "wallet-response") {
-    forwardToPageScript(message);
+browser.runtime.onMessage.addListener(
+  async (message, _sender, _sendResponse) => {
+    console.log("Content Script Runtime Listener: ", message);
+    if (message.type === "wallet-response") {
+      forwardToPageScript(message);
+    }
   }
-});
+);
 
 injectProvider();
