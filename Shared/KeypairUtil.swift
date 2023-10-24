@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
 import Base58Swift
-
+import os.log
 
 func generateEd25519KeyPair() -> Keypair {
     return Keypair()
@@ -16,7 +16,7 @@ func storeKeyPair(_ keypair: Keypair) {
     do {
         let jsonData = try JSONSerialization.data(withJSONObject: keysDictionary, options: .prettyPrinted)
         if let jsonString = String(data: jsonData, encoding: .utf8) {
-            UserDefaults.standard.set(jsonString, forKey: "keyPair")
+            sharedUserDefaults()?.set(jsonString, forKey: "keyPair")
         }
     } catch {
         print("Error serializing JSON: \(error)")
@@ -24,7 +24,12 @@ func storeKeyPair(_ keypair: Keypair) {
 }
 
 func fetchStoredKeypair() -> Keypair? {
-    let defaults = UserDefaults.standard
+    let logger = OSLog(subsystem: "solanamobile.SolanaSafariWalletExtension", category: "ExtensionHandler")
+
+    guard let defaults = sharedUserDefaults() else {
+        os_log("in fetchStoredKeypair: nil case", log: logger, type: .default)
+        return nil
+    }
 
     if let jsonString = defaults.string(forKey: "keyPair"),
        let jsonData = jsonString.data(using: .utf8) {
@@ -39,6 +44,7 @@ func fetchStoredKeypair() -> Keypair? {
             print("Error deserializing JSON: \(error)")
         }
     }
+    os_log("in fetchStoredKeypair: end nil case", log: logger, type: .default)
 
     return nil
 }
@@ -51,4 +57,8 @@ func logKeypairFromUserDefaults() {
         print("Public Key: null")
         print("Private Key: null")
     }
+}
+
+func sharedUserDefaults() -> UserDefaults? {
+    return UserDefaults(suiteName: "group.solanamobile.safariextensionwallet")
 }
