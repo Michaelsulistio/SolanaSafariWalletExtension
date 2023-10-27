@@ -11,19 +11,7 @@ struct WalletTabView: View {
                 }
                 .tag(0)
                 .background(Color.blue)
-            
-            Text("Search View")
-                .tabItem {
-                    WalletTabItemView(iconName: "Activity", buttonTitle: "Activity", isSelected: selectedTab == 1)
-                }
-                .tag(1)
-
-            Text("Profile View")
-                .tabItem {
-                    WalletTabItemView(iconName: "NFTs", buttonTitle: "NFTs", isSelected: selectedTab == 2)
-                }
-                .tag(2)
-
+                
             KeypairView()
                 .tabItem {
                     WalletTabItemView(iconName: "Settings", buttonTitle: "Settings", isSelected: selectedTab == 3)

@@ -40,14 +40,11 @@
 		FBD7454C2AE090C9003D5E6B /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7454B2AE090C9003D5E6B /* MainApp.swift */; };
 		FBD745502AE0913A003D5E6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD7454F2AE0913A003D5E6B /* Assets.xcassets */; };
 		FBD745522AE0913F003D5E6B /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = FBD745512AE0913F003D5E6B /* Preview Content */; };
-		FBD745562AE09D18003D5E6B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745552AE09D18003D5E6B /* OnboardingView.swift */; };
 		FBD745582AE09D2E003D5E6B /* WalletHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745572AE09D2E003D5E6B /* WalletHomeView.swift */; };
-		FBD7455A2AE0A15B003D5E6B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745592AE0A15B003D5E6B /* MainView.swift */; };
 		FBD7455E2AE3304A003D5E6B /* WalletTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7455D2AE3304A003D5E6B /* WalletTopBarView.swift */; };
 		FBD745602AE334DE003D5E6B /* TokenRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7455F2AE334DE003D5E6B /* TokenRowView.swift */; };
 		FBD745622AE39546003D5E6B /* WalletTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745612AE39546003D5E6B /* WalletTabItemView.swift */; };
 		FBD745652AE39738003D5E6B /* WalletTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745642AE39738003D5E6B /* WalletTabView.swift */; };
-		FBD745672AE39935003D5E6B /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD745662AE39935003D5E6B /* BlankView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,14 +127,11 @@
 		FBD7454B2AE090C9003D5E6B /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		FBD7454F2AE0913A003D5E6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../TestSwifUIApp/TestSwifUIApp/Assets.xcassets; sourceTree = "<group>"; };
 		FBD745512AE0913F003D5E6B /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
-		FBD745552AE09D18003D5E6B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FBD745572AE09D2E003D5E6B /* WalletHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHomeView.swift; sourceTree = "<group>"; };
-		FBD745592AE0A15B003D5E6B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FBD7455D2AE3304A003D5E6B /* WalletTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTopBarView.swift; sourceTree = "<group>"; };
 		FBD7455F2AE334DE003D5E6B /* TokenRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRowView.swift; sourceTree = "<group>"; };
 		FBD745612AE39546003D5E6B /* WalletTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabItemView.swift; sourceTree = "<group>"; };
 		FBD745642AE39738003D5E6B /* WalletTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabView.swift; sourceTree = "<group>"; };
-		FBD745662AE39935003D5E6B /* BlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,10 +213,7 @@
 			children = (
 				FB46E4F12AE8650300879F4F /* SolanaSafariWalletExtension.entitlements */,
 				FBD7454B2AE090C9003D5E6B /* MainApp.swift */,
-				FBD745552AE09D18003D5E6B /* OnboardingView.swift */,
-				FBD745592AE0A15B003D5E6B /* MainView.swift */,
 				FBD7455F2AE334DE003D5E6B /* TokenRowView.swift */,
-				FBD745662AE39935003D5E6B /* BlankView.swift */,
 				FBD745572AE09D2E003D5E6B /* WalletHomeView.swift */,
 				FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */,
 				FBD7455D2AE3304A003D5E6B /* WalletTopBarView.swift */,
@@ -483,15 +474,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD7455A2AE0A15B003D5E6B /* MainView.swift in Sources */,
 				FB46E4C32AE6FD1C00879F4F /* Keypair.swift in Sources */,
 				FBD745582AE09D2E003D5E6B /* WalletHomeView.swift in Sources */,
 				FBD745622AE39546003D5E6B /* WalletTabItemView.swift in Sources */,
 				FB46E4BB2AE3B58C00879F4F /* KeypairUtil.swift in Sources */,
 				FBD7455E2AE3304A003D5E6B /* WalletTopBarView.swift in Sources */,
-				FBD745672AE39935003D5E6B /* BlankView.swift in Sources */,
 				FBD745602AE334DE003D5E6B /* TokenRowView.swift in Sources */,
-				FBD745562AE09D18003D5E6B /* OnboardingView.swift in Sources */,
 				FB46E4BD2AE3BC4B00879F4F /* KeypairView.swift in Sources */,
 				FBD745652AE39738003D5E6B /* WalletTabView.swift in Sources */,
 				FBD7454C2AE090C9003D5E6B /* MainApp.swift in Sources */,
