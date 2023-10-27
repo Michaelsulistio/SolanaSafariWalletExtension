@@ -1,13 +1,16 @@
-TODO: Add Images
-
 # Safari Web Extension Wallet for iOS
 
-This repository showcases an example iOS wallet that utilizes a **Safari Web Extension** to enable wallet signing within the Safari browser. The wallet
-implementation is similar to Chrome extension wallets, and it uses [Wallet-standard](https://github.com/solana-labs/wallet-standard/tree/master) to subscribe and respond to requests from the dApp.
+> This repository showcases an example iOS wallet that utilizes a **Safari Web Extension** to enable wallet signing within the Safari browser. 
 
 ## Demo
 
 TODO: Add demo video
+
+<div style="display: flex;">
+    <img src="assets/ExtensionScreen1.png" width="25%">
+    &nbsp;<img src="assets/ExtensionScreen2.png" width="25%">
+    &nbsp;<img src="assets/ExtensionScreen3.png" width="25%">
+</div>
 
 ## Installation
 
@@ -28,6 +31,11 @@ A [Safari Web Extension](https://developer.apple.com/documentation/safariservice
 the Safari mobile browser. Similar to a Chrome browser extension, the Safari Web Extension can run background/content scripts and inject javascript into the web page.
 
 The **key benefit** of the web extension on mobile is that it is able to securely communicate with the native iOS app and relay information to the web page.
+
+## Wallet Standard
+
+Just like Chrome extension wallets, this uses [Wallet-standard](https://github.com/solana-labs/wallet-standard/tree/master) to subscribe and respond to requests from the dApp. It is automatically compatible
+with existing Solana web dApps.
 
 ## Diagram
 
