@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB46E4BB2AE3B58C00879F4F /* KeypairUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */; };
-		FB46E4BD2AE3BC4B00879F4F /* KeypairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */; };
+		FB46E4BD2AE3BC4B00879F4F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4BC2AE3BC4B00879F4F /* SettingsView.swift */; };
 		FB46E4C12AE6F55F00879F4F /* Base58Swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB46E4C02AE6F55F00879F4F /* Base58Swift */; };
 		FB46E4C32AE6FD1C00879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
 		FB46E4E72AE71EB300879F4F /* Keypair.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB46E4C22AE6FD1C00879F4F /* Keypair.swift */; };
@@ -97,7 +97,7 @@
 
 /* Begin PBXFileReference section */
 		FB46E4BA2AE3B58C00879F4F /* KeypairUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairUtil.swift; sourceTree = "<group>"; };
-		FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypairView.swift; sourceTree = "<group>"; };
+		FB46E4BC2AE3BC4B00879F4F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FB46E4C22AE6FD1C00879F4F /* Keypair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypair.swift; sourceTree = "<group>"; };
 		FB46E4F02AE7229F00879F4F /* SolanaSafariWalletExtension Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SolanaSafariWalletExtension Extension.entitlements"; sourceTree = "<group>"; };
 		FB46E4F12AE8650300879F4F /* SolanaSafariWalletExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SolanaSafariWalletExtension.entitlements; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 				FBD7454B2AE090C9003D5E6B /* MainApp.swift */,
 				FBD7455F2AE334DE003D5E6B /* TokenRowView.swift */,
 				FBD745572AE09D2E003D5E6B /* WalletHomeView.swift */,
-				FB46E4BC2AE3BC4B00879F4F /* KeypairView.swift */,
+				FB46E4BC2AE3BC4B00879F4F /* SettingsView.swift */,
 				FBD7455D2AE3304A003D5E6B /* WalletTopBarView.swift */,
 				FBD745642AE39738003D5E6B /* WalletTabView.swift */,
 				FBD745612AE39546003D5E6B /* WalletTabItemView.swift */,
@@ -480,7 +480,7 @@
 				FB46E4BB2AE3B58C00879F4F /* KeypairUtil.swift in Sources */,
 				FBD7455E2AE3304A003D5E6B /* WalletTopBarView.swift in Sources */,
 				FBD745602AE334DE003D5E6B /* TokenRowView.swift in Sources */,
-				FB46E4BD2AE3BC4B00879F4F /* KeypairView.swift in Sources */,
+				FB46E4BD2AE3BC4B00879F4F /* SettingsView.swift in Sources */,
 				FBD745652AE39738003D5E6B /* WalletTabView.swift in Sources */,
 				FBD7454C2AE090C9003D5E6B /* MainApp.swift in Sources */,
 			);

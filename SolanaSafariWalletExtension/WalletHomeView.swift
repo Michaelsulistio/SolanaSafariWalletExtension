@@ -2,10 +2,12 @@ import SwiftUI
 
 struct WalletHomeView: View {
     
+    @State private var keypair: Keypair?;
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             
-            WalletTopBarView()
+            WalletTopBarView(keypair: keypair)
             
             
             Text("Main Wallet")
@@ -69,6 +71,9 @@ struct WalletHomeView: View {
         .padding(.bottom)
         .padding(.horizontal)
         .background(Color(.systemBackground))
+        .onAppear {
+            self.keypair = fetchStoredKeypair()
+        }
     }
 }
 

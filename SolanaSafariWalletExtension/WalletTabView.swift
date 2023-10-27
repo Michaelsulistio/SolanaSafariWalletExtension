@@ -12,11 +12,11 @@ struct WalletTabView: View {
                 .tag(0)
                 .background(Color.blue)
                 
-            KeypairView()
+            SettingsView()
                 .tabItem {
-                    WalletTabItemView(iconName: "Settings", buttonTitle: "Settings", isSelected: selectedTab == 3)
+                    WalletTabItemView(iconName: "Settings", buttonTitle: "Settings", isSelected: selectedTab == 1)
                 }
-                .tag(3)
+                .tag(1)
 
         }
         .navigationBarBackButtonHidden(true)

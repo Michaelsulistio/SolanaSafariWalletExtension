@@ -2,36 +2,18 @@ import SwiftUI
 import CryptoKit
 import Base58Swift
 
-struct KeypairView: View {
+struct SettingsView: View {
     @State private var keypair: Keypair?;
 
     var body: some View {
-        VStack(spacing: 20) {
-            Button("Generate Keypair") {
-                keypair = generateEd25519KeyPair()
-            }
-            
-            Button("Get Keypair") {
-                keypair = fetchStoredKeypair() ?? keypair
-            }
-            
-            Button("Log stored keypairs") {
-                logKeypairFromUserDefaults();
-            }
-            
-            if let keypair {
-                Button("Store Keypair") {
-                    storeKeyPair(keypair)
-                }
-            }
-            
+        VStack(alignment: .leading, spacing: 20) {
             
             Group {
                 Text("Public Key:")
                     .bold()
-                
                 if let keypair {
                     Text(keypair.publicKeyToBase58String())
+                        .frame(maxWidth: .infinity, minHeight: 50)
                         .font(.footnote)
                         .padding()
                         .background(Color.gray.opacity(0.2))
@@ -41,12 +23,15 @@ struct KeypairView: View {
                 }
             }
 
+
             Group {
                 Text("Private Key:")
                     .bold()
+                    
                 
                 if let keypair {
                     Text(keypair.privateKeyToBase58String())
+                        .frame(maxWidth: .infinity, minHeight: 50)
                         .font(.footnote)
                         .padding()
                         .background(Color.gray.opacity(0.2))
@@ -56,13 +41,37 @@ struct KeypairView: View {
                 }
             }
             
+            HStack(alignment: .center, spacing: 6) {
+                Button(action: {
+                    keypair = generateEd25519KeyPair()
+                    storeKeyPair(keypair!)
+                }) {
+                    Text("Reset wallet")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .frame(maxWidth: .infinity)
+
+                Button(action: {
+                    logKeypairFromUserDefaults()
+                }) {
+                    Text("Log keypair")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+            }
         }
         .padding()
+        .onAppear {
+            keypair = fetchStoredKeypair()
+        }
     }
 }
 
-struct KeypairView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        KeypairView()
+        SettingsView()
     }
 }

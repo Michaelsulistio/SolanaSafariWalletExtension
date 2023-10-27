@@ -7,7 +7,16 @@
 
 import SwiftUI
 
+func truncatePubKey(pubKeyBase58: String) -> String {
+    guard pubKeyBase58.count > 6 else { return pubKeyBase58 }
+    return "\(pubKeyBase58.prefix(3))...\(pubKeyBase58.suffix(3))"
+}
+
+
 struct WalletTopBarView: View {
+    
+    var keypair: Keypair?
+
     var body: some View {
         HStack(spacing: 0) {
             ZStack(alignment: .leading) {
@@ -31,14 +40,17 @@ struct WalletTopBarView: View {
                     )
                     .offset(x: 42)
             }
+            
             .frame(maxWidth: .infinity, alignment: .leading)
             
             
 
             HStack(alignment: .center) {
-                Text("XNH4...1Wsj")
+                
+                Text(keypair != nil ? truncatePubKey(pubKeyBase58: keypair!.publicKeyToBase58String()) : "...")
                     .font(.system(size: 12))
                     .foregroundColor(.black)
+
 
                 Image(systemName: "doc.on.doc")
                     .font(.caption)
