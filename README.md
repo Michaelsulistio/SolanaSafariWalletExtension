@@ -4,7 +4,8 @@
 
 ## Demo
 
-TODO: Add demo video
+[Video](https://github.com/Michaelsulistio/SolanaSafariWalletExtension/assets/18451967/b40ce3e3-33bb-4c60-9486-4b34f8db0076) of a Jupiter Exchange swap
+
 
 <div style="display: flex;">
     <img src="assets/ExtensionScreen1.png" width="25%">
