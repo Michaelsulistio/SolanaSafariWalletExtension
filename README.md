@@ -15,6 +15,13 @@ TODO: Add demo video
 2. Build the Extension's JS bundle: `cd js-extension && npm install && npm run build:publish`
 3. Open the project in Xcode, choose your simulator/device, build and run.
 
+## Enable the extension
+
+1. In Safari, press the _Aa_ menu and click _Manage Extensions_
+2. In the extensions list, find the name, "Solana Safari Extension Wallet", and enable it.
+3. Back in the _Aa_ menu, press new "Solana Safari Extension Wallet" button.
+4. Select "Always allow" then "Always allow on every website".
+
 ## What is a Safari Web Extension?
 
 A [Safari Web Extension](https://developer.apple.com/documentation/safariservices/safari_web_extensions) allows an iOS app to add customized functionality to
